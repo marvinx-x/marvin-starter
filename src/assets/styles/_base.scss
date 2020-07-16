@@ -1,0 +1,22 @@
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  color: var(--dark);
+  font-family: var(--font-family);
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: var(--dark);
+  text-decoration: none;
+}

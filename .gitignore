@@ -1,0 +1,7 @@
+node_modules
+dist
+
+src/index_old.pug
+src/assets/images
+src/assets/js
+form/

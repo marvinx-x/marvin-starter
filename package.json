@@ -1,0 +1,41 @@
+{
+  "name": "marvin-starter",
+  "version": "1.0.0",
+  "description": "starter styleguide for HTML/CSS/JS components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "keywords": [],
+  "author": "Marlène BRUHAT",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.0.3",
+    "core-js": "^3.6.5",
+    "css-loader": "^3.6.0",
+    "gsap": "^3.4.0",
+    "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.1",
+    "path": "^0.12.7",
+    "pug": "^3.0.0",
+    "pug-loader": "^2.4.0",
+    "regenerator-runtime": "^0.13.5",
+    "sass-loader": "^9.0.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

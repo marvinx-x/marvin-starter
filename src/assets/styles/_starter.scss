@@ -1,0 +1,14 @@
+/* css that only inpact the starter himself */
+.starter-title {
+  --font-size--title: 5rem;
+  --font-weight--title: 600;
+
+  font-weight: var(--font-weight--title);
+  font-size: var(--font-size--title);
+  line-height: var(--font-size--title);
+  @include underlineText(2rem, 5rem);
+
+  &::after {
+    opacity: 0.3;
+  }
+}

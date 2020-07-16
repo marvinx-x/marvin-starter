@@ -1,0 +1,17 @@
+:root {
+  /* COLORS */
+  @include defineColorHSL(--white, 0, 0%, 100%);
+  @include defineColorHSL(--black, 0, 0%, 0%);
+  @include defineColorHSL(--light, 219, 25%, 61%);
+  @include defineColorHSL(--gray, 218, 12%, 39%);
+  @include defineColorHSL(--dark, 217, 46%, 21%);
+
+  /* TYPOGRAPHIES */
+  --font-family: "Inter", sans-serif;
+
+  /* SIZES */
+  --minWidth: 32rem;
+  --widthMenu: var(--minWidth);
+  --heightHeader: 7.2rem;
+  --heightFooter: 5.8rem;
+}

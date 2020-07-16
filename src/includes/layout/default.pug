@@ -1,0 +1,17 @@
+block vars
+  - var documentTitle = "Marvin Starter"
+  - var lang = "fr"
+
+html(lang=lang)
+  head
+  block head
+    include ../../includes/layout/head
+    title=documentTitle
+
+  body
+    div#app
+      include ../partials/header
+      include ../partials/nav
+      block body
+      include ../partials/footer
+
