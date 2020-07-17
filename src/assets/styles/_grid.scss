@@ -2,8 +2,8 @@
 #app {
   min-height: 100vh;
   display: grid;
-  grid-template-rows: var(--heightHeader) 1fr var(--heightFooter);
-  grid-template-columns: var(--widthMenu) 1fr;
+  grid-template-rows: $heightHeader 1fr $heightFooter;
+  grid-template-columns: $widthMenu 1fr;
   grid-template-areas:
     "header main"
     "nav main"
@@ -15,7 +15,6 @@ header[role="banner"] {
   position: sticky;
   top: 0px;
   z-index: 2;
-  // outline: 1px solid var(--dark);
 }
 
 nav[role="navigation"] {
@@ -31,8 +30,8 @@ nav[role="navigation"] {
     overflow-x: hidden;
     overflow-y: auto;
     height: 100%;
-    padding-top: var(--heightHeader);
-    padding-bottom: var(--heightFooter);
+    padding-top: $heightHeader;
+    padding-bottom: $heightFooter;
   }
 }
 
@@ -47,5 +46,4 @@ footer[role="contentinfo"] {
   position: sticky;
   bottom: 0;
   z-index: 1;
-  // outline: 1px solid var(--dark);
 }

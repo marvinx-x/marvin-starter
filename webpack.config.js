@@ -1,18 +1,17 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: {
-    main: path.join(__dirname, "src/index.js"),
-    form: path.join(__dirname, "src/form/form.js"),
-    topbar: path.join(__dirname, "src/assets/js/topbar.js"),
+    main: path.join(__dirname, "src/index.js")
   },
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "[name].bundle.js",
+    pathinfo: true,
   },
   module: {
     rules: [
@@ -39,19 +38,14 @@ module.exports = {
     ],
   },
   optimization: {
-    splitChunks: {
-      cacheGroups: {
-        styles: {
-          name: "styles",
-          test: /\.scss$/,
-          chunks: "all",
-          enforce: true,
-        },
-      },
-    },
+    removeAvailableModules: false,
+    removeEmptyChunks: false
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin( {
+      dry: true,
+      verbose: false,
+    }),
     new CopyWebpackPlugin({
       patterns: [
         { from: "./src/assets/images/*", to: "assets/images", flatten: true },
@@ -62,14 +56,9 @@ module.exports = {
       template: path.join(__dirname, "./src/index.pug"),
       chunks: ["main", "topbar"],
     }),
-    new HtmlWebpackPlugin({
-      filename: "form.html",
-      template: path.join(__dirname, "./src/form/form.pug"),
-      chunks: ["form", "topbar"],
-    }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
-    }),
+    } ),
   ],
   devtool: "source-map",
   mode: "development",
@@ -77,7 +66,7 @@ module.exports = {
     contentBase: ["./src", "./dist"],
     watchContentBase: true,
     inline: true,
-    open: true,
+    open: false,
     hot: true,
     port: 8000,
   },

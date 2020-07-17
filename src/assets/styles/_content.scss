@@ -1,6 +1,6 @@
 /* MAIN CONTAINER */
 
 main[role="main"] {
-  padding: var(--heightHeader);
+  padding: $heightHeader + 2rem;
   background: var(--white);
 }

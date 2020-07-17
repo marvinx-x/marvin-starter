@@ -3,7 +3,7 @@ const presets = [
     "@babel/preset-env",
     {
       useBuiltIns: "usage",
-      debug: true,
+      debug: false,
       corejs: 3,
       targets: "defaults",
     },
