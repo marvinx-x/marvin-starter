@@ -1,3 +1,6 @@
+/* FOOTER */
+$paddingFooter : $paddingBody;
+
 footer[role='contentinfo'] {
 	display: grid;
 	grid-template-columns: minmax(auto, 1fr);

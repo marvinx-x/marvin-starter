@@ -1,8 +1,9 @@
 /* HEADER */
+$gapElemsHeader: 0.8rem;
 
 header[role='banner'] {
 	display: grid;
-	width: $widthMenu;
+	width: $widthNav;
 	grid-template-rows: repeat(2, minmax(auto, ($lengthLogo - $gapElemsHeader) / 2));
 	grid-template-columns: $lengthLogo 1fr;
 	grid-gap: $gapElemsHeader;

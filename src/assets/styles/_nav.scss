@@ -1,17 +1,46 @@
 /* NAVIGATION MENU */
 
+$paddingNav : $paddingBody + ($lengthLogo/3);
+$paddingItemsNav : 2.2rem;
+$paddingTopBottomNav :  $paddingItemsNav - $paddingHeader/2;
+
 nav[role="navigation"] {
-  background: var(--dark);
-  color: var(--light);
+  background: var(--primary);
 
   > ul {
-    > li {
-      border-bottom: 0.1rem solid alpha(var(--light), 0.33);
-      padding: 2.5rem 0;
-      margin: 0 3rem;
+     margin: 0 $paddingNav;
+  }
 
-      &::first-letter {
-        text-transform: uppercase;
+  a{
+    $colorDefault : lightness(var(--primary), 2.5);
+    $colorHOver : lightness(var(--primary), 3.5);
+
+    display: block;
+    padding: $paddingItemsNav 0;
+    color: $colorDefault;
+    @include underlineText(100%, 0.1rem, $colorDefault);
+
+    &, &::after{
+      transition : all ease-in-out .15s;
+    }
+
+    &::after{
+      opacity : .25;
+    }
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+
+    &:hover{
+      padding-top: $paddingItemsNav*1.35;
+      padding-bottom: $paddingItemsNav*0.65;
+      color: $colorHOver;
+
+      &::after{
+        opacity: 1;
+        height: .2rem;
+        background-color: $colorHOver;
       }
     }
   }

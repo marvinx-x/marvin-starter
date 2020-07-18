@@ -3,7 +3,7 @@
 	min-height: 100vh;
 	display: grid;
 	grid-template-rows: $heightHeader 1fr $heightFooter;
-	grid-template-columns: $widthMenu 1fr;
+	grid-template-columns: $widthNav 1fr;
 	grid-template-areas:
 		'header main'
 		'nav main'
@@ -29,7 +29,7 @@ nav[role='navigation'] {
 		overflow-x: hidden;
 		overflow-y: auto;
 		height: 100%;
-		padding-top: $heightHeader;
+		padding-top: $heightHeader - $paddingHeader/1.5;
 		padding-bottom: $heightFooter;
 	}
 }
