@@ -1,3 +1,20 @@
 footer[role='contentinfo'] {
-	color: red;
+	display: grid;
+	grid-template-columns: minmax(auto, 1fr);
+	grid-template-rows: minmax(auto, 1fr);
+	align-items: center;
+	justify-items: flex-start;
+	padding: $paddingFooter;
+	align-content: center;
+	opacity : .35;
+
+	> ul{
+		display: grid;
+		grid-gap : $paddingFooter;
+		grid-auto-flow: column;
+
+		> li{
+			background: white;
+		}
+	}
 }

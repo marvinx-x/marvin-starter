@@ -13,6 +13,7 @@
 /* SIZES */
 //minimal wiewport size
 $minWidth: 32rem;
+$paddingBody : 1.6rem;
 
 /* BREAKPOINTS */
 $mobileBreak: $minWidth;
@@ -23,12 +24,13 @@ $desktopLargeBreak: 120rem;
 /* HEADER */
 // logo width and height
 $lengthLogo: 4rem;
-$paddingHeader : 1.6rem;
+$paddingHeader : $paddingBody;
 $gapElemsHeader: 0.8rem;
 $heightHeader: $lengthLogo + ($paddingHeader*2);
 
 /* FOOTER */
 $heightFooter: 5.8rem;
+$paddingFooter : $paddingBody;
 
 /* NAVIGATION */
 $widthMenu: $minWidth;
