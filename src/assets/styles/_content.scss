@@ -1,6 +1,10 @@
 /* MAIN CONTAINER */
 
-main[role="main"] {
-  padding: $heightHeader + 2rem;
-  background: var(--white);
+main[role='main'] {
+	padding: $heightHeader + 2rem;
+	background: var(--white);
+
+	&.home-starter {
+		// background: var(--primary);
+	}
 }

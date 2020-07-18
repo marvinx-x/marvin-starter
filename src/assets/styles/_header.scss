@@ -1,1 +1,35 @@
+/* HEADER */
 
+header[role='banner'] {
+	display: grid;
+	width: $widthMenu;
+	grid-template-rows: repeat(2, minmax(auto, ($lengthLogo - $gapElemsHeader) / 2));
+	grid-template-columns: $lengthLogo 1fr;
+	grid-gap: $gapElemsHeader;
+	align-items: stretch;
+	justify-content: flex-start;
+	padding: $paddingHeader;
+	opacity : .35;
+
+	grid-template-areas:
+		'logo title'
+		'logo description';
+
+	div {
+		background : white;
+		color: white;
+		overflow: hidden;
+
+		&:first-child {
+			grid-area: logo;
+		}
+
+		&:nth-child(2) {
+			grid-area: title;
+		}
+
+		&:nth-child(3) {
+			grid-area: description;
+		}
+	}
+}

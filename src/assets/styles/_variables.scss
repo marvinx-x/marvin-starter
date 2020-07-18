@@ -11,13 +11,26 @@
 }
 
 /* SIZES */
+//minimal wiewport size
 $minWidth: 32rem;
-$widthMenu: $minWidth;
-$heightHeader: 7.2rem;
-$heightFooter: 5.8rem;
 
 /* BREAKPOINTS */
 $mobileBreak: $minWidth;
 $tabletBreak: 76.8rem;
 $desktopBreak: 97.9rem;
 $desktopLargeBreak: 120rem;
+
+/* HEADER */
+// logo width and height
+$lengthLogo: 4rem;
+$paddingHeader : 1.6rem;
+$gapElemsHeader: 0.8rem;
+$heightHeader: $lengthLogo + ($paddingHeader*2);
+
+/* FOOTER */
+$heightFooter: 5.8rem;
+
+/* NAVIGATION */
+$widthMenu: $minWidth;
+
+

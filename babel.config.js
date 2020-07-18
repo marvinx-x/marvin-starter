@@ -1,13 +1,13 @@
 const presets = [
-  [
-    "@babel/preset-env",
-    {
-      useBuiltIns: "usage",
-      debug: false,
-      corejs: 3,
-      targets: "defaults",
-    },
-  ],
+	[
+		'@babel/preset-env',
+		{
+			useBuiltIns: 'usage',
+			debug: true,
+			corejs: 3,
+			targets: 'defaults'
+		}
+	]
 ];
 
 module.exports = { presets };
