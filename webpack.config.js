@@ -25,7 +25,7 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.scss$/i,
+				test: /\.scss$/,
 				use: [
 					'style-loader',
 					MiniCssExtractPlugin.loader,
@@ -69,11 +69,11 @@ module.exports = {
 	mode: isDevelopment ? 'development' : 'production',
 	devtool: isDevelopment ? 'source-map' : 'eval',
 	devServer: {
-		contentBase: path.resolve(__dirname, 'src'),
+		contentBase: path.resolve(__dirname, 'dist'),
 		watchContentBase: true,
 		inline: true,
-		open: false,
-		hot: true,
+		open: true,
+		writeToDisk: true,
 		port: 8000
 	}
 };
