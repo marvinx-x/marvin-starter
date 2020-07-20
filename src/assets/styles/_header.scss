@@ -1,7 +1,6 @@
 /* HEADER */
-$gapElemsHeader: .4rem;
 
-header[role='banner'] {
+header[role="banner"] {
 	position: relative;
 	display: grid;
 	grid-template-rows: repeat(2, minmax(auto, ($lengthLogo - $gapElemsHeader) / 2));
@@ -11,11 +10,11 @@ header[role='banner'] {
 	justify-content: flex-start;
 	padding: $paddingHeader;
 	grid-template-areas:
-		'logo title'
-		'logo description';
+		"logo title"
+		"logo description";
 
 	div {
-		background : white;
+		background: white;
 		color: white;
 		overflow: hidden;
 		position: relative;

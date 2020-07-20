@@ -8,6 +8,9 @@ $paddingItemsNav: 2.2rem;
 $paddingTopBottomNav: $paddingItemsNav - $paddingHeader/2;
 
 button#button-nav {
+  width: $widthButtonNav;
+  height: $lengthLogo;
+
   svg {
     fill: var(--white);
   }

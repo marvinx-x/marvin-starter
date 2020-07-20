@@ -8,26 +8,24 @@
 	@include defineColorHSL(--primary, 213, 23%, 51%);
 
 	/* TYPOGRAPH */
-	--font-family: 'Inter', sans-serif;
+	--font-family: "Inter", sans-serif;
 }
 
 /* SIZES */
 //minimal wiewport size
 $minWidth: 32rem;
-$paddingBody : 1.6rem;
+$paddingBody: 1.6rem;
 
 /* HEADER */
 // logo width and height
 $lengthLogo: 4rem;
-$paddingHeader : $paddingBody;
-$heightHeader: $lengthLogo + ($paddingHeader*2);
+$paddingHeader: $paddingBody;
+$heightHeader: $lengthLogo + ($paddingHeader * 2);
+$gapElemsHeader: 0.4rem;
 
 /* FOOTER */
 $heightFooter: 5.8rem;
 
 /* NAVIGATION */
 $widthNav: $minWidth;
-$widthButtonNav : 5.2rem;
-
-
-
+$widthButtonNav: 5.2rem;
