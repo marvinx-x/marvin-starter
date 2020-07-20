@@ -1,17 +1,15 @@
 /* HEADER */
-$gapElemsHeader: 0.8rem;
+$gapElemsHeader: .4rem;
 
 header[role='banner'] {
+	position: relative;
 	display: grid;
-	width: $widthNav;
 	grid-template-rows: repeat(2, minmax(auto, ($lengthLogo - $gapElemsHeader) / 2));
 	grid-template-columns: $lengthLogo 1fr;
 	grid-gap: $gapElemsHeader;
 	align-items: stretch;
 	justify-content: flex-start;
 	padding: $paddingHeader;
-	opacity : .35;
-
 	grid-template-areas:
 		'logo title'
 		'logo description';
@@ -20,6 +18,8 @@ header[role='banner'] {
 		background : white;
 		color: white;
 		overflow: hidden;
+		position: relative;
+		z-index: 1;
 
 		&:first-child {
 			grid-area: logo;

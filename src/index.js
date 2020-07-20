@@ -1,5 +1,10 @@
 import './assets/styles/styles.scss';
-import './index.scss';
-// import { gsap } from "gsap";
 
-//gsap.to("div", { duration: 1, x: 100 });
+const buttonNav = document.getElementById('button-nav');
+const nav = document.querySelector( 'nav[role=navigation]' );
+
+buttonNav.addEventListener( 'click', () => {
+  nav.classList.toggle('open');
+})
+
+

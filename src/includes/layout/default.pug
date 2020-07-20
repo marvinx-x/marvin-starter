@@ -1,17 +1,28 @@
 block vars
   - var documentTitle = "Marvin Starter"
   - var lang = "fr"
+  - var headerLess = false
+  - var navLess = false
+  - var footerLess = false
 
 html(lang=lang)
+
   head
   block head
     include ../../includes/layout/head
     title=documentTitle
 
-  body
+  body(class=navLess ? 'nav-less' : null)
     div#app
-      include ../partials/header
-      include ../partials/nav
+
+      if(!headerLess)
+        include ../partials/header
+
+      if(!navLess)
+        include ../partials/nav
+
       block body
-      include ../partials/footer
+
+      if(!footerLess)
+        include ../partials/footer
 

@@ -2,10 +2,10 @@
 	/* COLORS */
 	@include defineColorHSL(--white, 0, 0%, 100%);
 	@include defineColorHSL(--black, 0, 0%, 0%);
-	@include defineColorHSL(--light, 219, 25%, 61%);
+	@include defineColorHSL(--light, 171, 20%, 81%);
 	@include defineColorHSL(--gray, 218, 12%, 39%);
-	@include defineColorHSL(--dark, 217, 100%, 21%);
-	@include defineColorHSL(--primary, 930, 90%, 25%);
+	@include defineColorHSL(--dark, 930, 90%, 25%);
+	@include defineColorHSL(--primary, 213, 23%, 51%);
 
 	/* TYPOGRAPH */
 	--font-family: 'Inter', sans-serif;
@@ -16,23 +16,18 @@
 $minWidth: 32rem;
 $paddingBody : 1.6rem;
 
-/* BREAKPOINTS */
-$mobileBreak: $minWidth;
-$tabletBreak: 76.8rem;
-$desktopBreak: 97.9rem;
-$desktopLargeBreak: 120rem;
-
 /* HEADER */
 // logo width and height
- $lengthLogo: 4rem;
- $paddingHeader : $paddingBody;
- $heightHeader: $lengthLogo + ($paddingHeader*2);
+$lengthLogo: 4rem;
+$paddingHeader : $paddingBody;
+$heightHeader: $lengthLogo + ($paddingHeader*2);
 
 /* FOOTER */
 $heightFooter: 5.8rem;
 
 /* NAVIGATION */
 $widthNav: $minWidth;
+$widthButtonNav : 5.2rem;
 
 
 

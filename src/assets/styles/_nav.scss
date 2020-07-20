@@ -1,24 +1,34 @@
 /* NAVIGATION MENU */
 
+/*  */
+/* button nav */
+/*  */
 $paddingNav : $paddingBody + ($lengthLogo/3);
 $paddingItemsNav : 2.2rem;
 $paddingTopBottomNav :  $paddingItemsNav - $paddingHeader/2;
 
+button#button-nav{
+
+  svg{
+    fill : var(--white);
+  }
+}
+
+/*  */
+/* navigation items */
+/*  */
+
+$colorDefault : lightness(var(--primary), 2.5);
+$colorHOver : lightness(var(--primary), 3.5);
+
 nav[role="navigation"] {
   background: var(--primary);
 
-  > ul {
-     margin: 0 $paddingNav;
-  }
-
   a{
-    $colorDefault : lightness(var(--primary), 2.5);
-    $colorHOver : lightness(var(--primary), 3.5);
-
     display: block;
-    padding: $paddingItemsNav 0;
+    padding: $paddingItemsNav $paddingNav;
     color: $colorDefault;
-    @include underlineText(100%, 0.1rem, $colorDefault);
+    @include underlineText(calc(100% - #{$paddingNav*2}), 0.1rem, $colorDefault);
 
     &, &::after{
       transition : all ease-in-out .15s;
@@ -26,6 +36,7 @@ nav[role="navigation"] {
 
     &::after{
       opacity : .25;
+      left : $paddingNav;
     }
 
     &::first-letter {

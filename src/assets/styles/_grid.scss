@@ -1,48 +1,87 @@
 /* MAIN GRID */
+
+$transitionNav : ease(easeOutQuad) .35s;
+
 #app {
-	min-height: 100vh;
-	display: grid;
-	grid-template-rows: $heightHeader 1fr $heightFooter;
-	grid-template-columns: $widthNav 1fr;
-	grid-template-areas:
-		'header main'
-		'nav main'
-		'footer footer';
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: $heightHeader 1fr $heightFooter;
+  grid-template-columns: $widthButtonNav (calc(#{$widthNav} - #{$widthButtonNav})) 1fr;
+  grid-template-areas:
+    'navbutton header main'
+    'nav nav main'
+    'footer footer footer';
+}
+
+button#button-nav {
+  grid-area: navbutton;
+  z-index: 2;
 }
 
 header[role='banner'] {
-	grid-area: header;
-	position: sticky;
-	top: 0px;
-	z-index: 2;
+  grid-area: header;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
 }
 
 nav[role='navigation'] {
-	grid-area: nav;
-	grid-row: 1 / 4;
-	position: sticky;
-	top: 0;
-	z-index: 1;
-	height: 100vh;
+  grid-area: nav;
+  grid-row: 1 / 4;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  height: 100vh;
+  clip-path: inset(0px $widthNav 0px 0px);
+  transition: clip-path $transitionNav;
 
-	> ul {
-		overflow-x: hidden;
-		overflow-y: auto;
-		height: 100%;
-		padding-top: $heightHeader - $paddingHeader/1.5;
-		padding-bottom: $heightFooter;
-	}
+  >ul {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    padding-top: $heightHeader - $paddingHeader/1.5;
+    padding-bottom: $heightFooter;
+  }
+
+  &.open {
+    clip-path: inset(0px 0px 0px 0px);
+
+    @include desktop() {
+      &+main[role="main"] {
+        width: calc(100% - #{$widthNav});
+      }
+    }
+  }
 }
 
 main[role='main'] {
-	grid-area: main;
-	grid-column-start: 2;
-	grid-row-end: 4;
+  grid-area: main;
+  grid-column-start: 1;
+  grid-row-end: 4;
+  justify-self: flex-end;
+  width: 100%;
+  transition: width $transitionNav;
 }
 
 footer[role='contentinfo'] {
-	grid-area: footer;
-	position: sticky;
-	bottom: 0;
-	z-index: 1;
+  grid-area: footer;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+
+/* page without navigation */
+body.nav-less {
+
+  header[role='banner'],
+  main[role='main'] {
+    grid-column-start: 1;
+  }
+}
+
+body:not(.nav-less) {
+  header[role='banner'] {
+    padding-left: 0;
+  }
 }

@@ -1,11 +1,12 @@
-// return css color variable with different opacity value
-@function alpha($color, $opacity) {
-  $color: str-replace($color, "var(");
-  $color: str-replace($color, ")");
-  $color-h: var(#{$color + "-h"});
-  $color-s: var(#{$color + "-s"});
-  $color-l: var(#{$color + "-l"});
-  @return hsla($color-h, $color-s, $color-l, $opacity);
+
+@function parseInt($n) {
+  @return $n / ($n * 0 + 1);
+}
+
+//convert rem back to px
+@function rem-to-px($size) {
+	$value: parseInt($size) * 10px; //15px is the base size specified
+	@return round($value);
 }
 
 // replace substring with another string
@@ -21,6 +22,17 @@
       );
   }
   @return $string;
+}
+
+/* SCSS COLORS FUNCTIONS */
+// return css color variable with different opacity value
+@function alpha($color, $opacity) {
+  $color: str-replace($color, "var(");
+  $color: str-replace($color, ")");
+  $color-h: var(#{$color + "-h"});
+  $color-s: var(#{$color + "-s"});
+  $color-l: var(#{$color + "-l"});
+  @return hsla($color-h, $color-s, $color-l, $opacity);
 }
 
 @function lightness($color, $lightnessMultiplier) {
@@ -40,4 +52,3 @@
   $color-l: var(#{$color + "-l"});
   @return hsl($color-h, calc(#{$color-s} * #{$saturationMultiplier}), $color-l);
 }
-

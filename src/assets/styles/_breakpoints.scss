@@ -1,0 +1,42 @@
+/* BREAKPOINTS */
+$mobileBreakPortrait : rem-to-px($minWidth);
+$mobileBreakLandscape : 480px;
+$tabletBreakPortrait: 768px;
+$tabletBreakLandscape: 1024px;
+$desktopBreak: 1200px;
+$desktopLargeBreak: 1400px;
+
+/* mobile */
+@mixin mobile {
+	@media (max-width: $mobileBreakLandscape){
+		@content;
+	}
+}
+
+/* tablet */
+@mixin  tablet{
+	@media (max-width: $tabletBreakPortrait) {
+		@content;
+	}
+}
+
+/* Tablet landscape */
+@mixin  tabletLandscape{
+	@media (max-width: $tabletBreakLandscape) {
+		@content;
+	}
+}
+
+/* Destop */
+@mixin desktop{
+	@media (min-width: $tabletBreakLandscape + 1px) {
+		@content;
+	}
+}
+
+/* Large desktop */
+@mixin largeDesktop {
+	@media (min-width: $desktopLargeBreak) {
+		@content;
+	}
+}
