@@ -1,10 +1,17 @@
 - var starterItems = ["titles", "forms", "Buttons", "typographies", "components", "titles", "forms", "Buttons", "typographies", "components", "titles", "forms", "Buttons", "typographies", "components", "titles", "forms", "Buttons", "typographies", "components","Buttons", "typographies", "components", "titles", "forms", "Buttons", "typographies"]
 
 button(type="button")#button-nav
-  svg(viewBox="0 0 52 40" style="enable-background:new 0 0 52 40;" xml:space="preserve" preserveAspectRatio="none"): g
-    rect(x="16" y="12.5" width="20" height="3")
-    rect(x="16" y="18.5" width="20" height="3")
-    rect(x="16" y="24.5" width="20" height="3")
+  - var widthLogo = 52;
+  - var widthLine = 22;
+  - var heightLogo = 40;
+  - var heightLine = 3;
+  - var spaceLines = 4;
+  - var space = heightLine + spaceLines;
+  - var positionTop = heightLogo/2 - (heightLine*3 + spaceLines*2) / 2;
+  - var positionLeft = widthLogo/2 - widthLine/2;
+  svg(viewBox='0 0 '+widthLogo+' '+heightLogo+'' style='enable-background:new 0 0 '+widthLogo+' '+heightLogo+';' xml:space='preserve' preserveAspectRatio='none'): g
+      - for(var i=0; i < 3; i++)
+          rect(x=positionLeft y='' + (i * space + positionTop) + '' width=widthLine height=heightLine)
 
 nav(role="navigation")
   ul

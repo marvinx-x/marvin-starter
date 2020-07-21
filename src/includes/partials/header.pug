@@ -1,4 +1,17 @@
+
 header(role="banner")
-  div mb
-  div marlene bruhat
-  div creative
+  h1
+    span#logo
+      //+set-svg(40, 40)
+        g
+          path(d="M0.083,2.667v16.06h4.14V4.074h4.783v10.661h4.141V4.074h4.783v14.652v21.19l0,0h21.987v-21.19h-4.142H22.069l0,0V0.083H0.083V2.667M22.069,35.925V22.718h13.706v4.484H26.21v3.991h9.565v4.731H22.069z")
+
+    span#title #[strong bruhat]marlène
+      a(href="" title="")  @Marvin_X_
+    span#description
+      //+svg(40, 40): g
+        defs
+          mask#mask-description
+            rect
+            text(dy="17" dx="3") marvinstarter
+        rect

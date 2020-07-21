@@ -21,7 +21,7 @@ button#button-nav {
 /*  */
 
 $colorDefault: lightness(var(--primary), 2.5);
-$colorHOver: lightness(var(--primary), 3.5);
+$colorHover: lightness(var(--primary), 4);
 
 nav[role="navigation"] {
   background: var(--primary);
@@ -49,12 +49,12 @@ nav[role="navigation"] {
     &:hover {
       padding-top: $paddingItemsNav * 1.35;
       padding-bottom: $paddingItemsNav * 0.65;
-      color: $colorHOver;
+      color: $colorHover;
 
       &::after {
         opacity: 1;
         height: 0.2rem;
-        background-color: $colorHOver;
+        background-color: $colorHover;
       }
     }
   }

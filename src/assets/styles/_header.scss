@@ -1,35 +1,71 @@
 /* HEADER */
+$heightTitle: (($lengthLogo/2) - $gapElemsHeader);
+$heightDescription: ($lengthLogo / 2);
 
 header[role="banner"] {
-	position: relative;
-	display: grid;
-	grid-template-rows: repeat(2, minmax(auto, ($lengthLogo - $gapElemsHeader) / 2));
-	grid-template-columns: $lengthLogo 1fr;
-	grid-gap: $gapElemsHeader;
-	align-items: stretch;
-	justify-content: flex-start;
-	padding: $paddingHeader;
-	grid-template-areas:
-		"logo title"
-		"logo description";
-
-	div {
-		background: white;
-		color: white;
-		overflow: hidden;
+	h1 {
 		position: relative;
-		z-index: 1;
+		display: grid;
+		grid-template-rows: $heightTitle $heightDescription;
+		grid-template-columns: $lengthLogo auto;
+		grid-gap: $gapElemsHeader;
+		background: red;
+		align-items: flex-start;
+		line-height: 1;
 
-		&:first-child {
-			grid-area: logo;
+		grid-template-areas:
+			"logo title"
+			"logo description";
+	}
+}
+
+#logo {
+	grid-area: logo;
+
+	svg {
+		fill: var(--white);
+	}
+}
+
+#title {
+	grid-area: title;
+	text-transform: uppercase;
+	font-size: $heightTitle + 0.3rem;
+	line-height: $heightTitle + 0.3rem;
+
+	&,
+	a {
+		color: var(--white);
+	}
+
+	a {
+		text-transform: none;
+		display: none;
+	}
+}
+
+#description {
+	grid-area: description;
+
+	align-self: flex-start;
+	display: block;
+
+	svg {
+		text {
+			text-transform: uppercase;
+			font-size: 20px;
+
+			fill: purple;
 		}
+		defs rect {
+			fill: var(--white);
 
-		&:nth-child(2) {
-			grid-area: title;
+			width: 100%;
 		}
-
-		&:nth-child(3) {
-			grid-area: description;
+		> rect {
+			fill: var(--white);
+			mask: url(#mask-description);
+			width: 100%;
 		}
 	}
 }

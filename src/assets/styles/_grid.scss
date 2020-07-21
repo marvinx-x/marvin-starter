@@ -18,6 +18,8 @@ button#button-nav {
   z-index: 2;
   align-self: center;
   justify-self: center;
+  position: sticky;
+  top: $paddingHeader;
 }
 
 header[role="banner"] {
@@ -25,6 +27,7 @@ header[role="banner"] {
   position: sticky;
   top: 0px;
   z-index: 2;
+  padding: $paddingHeader;
 }
 
 nav[role="navigation"] {

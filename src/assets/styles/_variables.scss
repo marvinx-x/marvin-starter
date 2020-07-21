@@ -5,7 +5,7 @@
 	@include defineColorHSL(--light, 171, 20%, 81%);
 	@include defineColorHSL(--gray, 218, 12%, 39%);
 	@include defineColorHSL(--dark, 930, 90%, 25%);
-	@include defineColorHSL(--primary, 213, 23%, 51%);
+	@include defineColorHSL(--primary, 240, 64%, 27%);
 
 	/* TYPOGRAPH */
 	--font-family: "Inter", sans-serif;
@@ -21,7 +21,7 @@ $paddingBody: 1.6rem;
 $lengthLogo: 4rem;
 $paddingHeader: $paddingBody;
 $heightHeader: $lengthLogo + ($paddingHeader * 2);
-$gapElemsHeader: 0.4rem;
+$gapElemsHeader: 0.6rem;
 
 /* FOOTER */
 $heightFooter: 5.8rem;
