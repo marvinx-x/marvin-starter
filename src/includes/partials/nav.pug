@@ -1,15 +1,15 @@
 - var starterItems = ["titles", "forms", "Buttons", "typographies", "components", "titles", "forms", "Buttons", "typographies", "components", "titles", "forms", "Buttons", "typographies", "components", "titles", "forms", "Buttons", "typographies", "components","Buttons", "typographies", "components", "titles", "forms", "Buttons", "typographies"]
 
 button(type="button")#button-nav
-  - var widthLogo = 52;
-  - var widthLine = 22;
-  - var heightLogo = 40;
-  - var heightLine = 3;
-  - var spaceLines = 4;
-  - var space = heightLine + spaceLines;
-  - var positionTop = heightLogo/2 - (heightLine*3 + spaceLines*2) / 2;
-  - var positionLeft = widthLogo/2 - widthLine/2;
-  svg(viewBox='0 0 '+widthLogo+' '+heightLogo+'' style='enable-background:new 0 0 '+widthLogo+' '+heightLogo+';' xml:space='preserve' preserveAspectRatio='none'): g
+  - var widthBurger = 52
+  - var widthLine = 22
+  - var heightBurger = 40
+  - var heightLine = 3
+  - var spaceLines = 4
+  - var space = heightLine + spaceLines
+  - var positionTop = heightBurger/2 - (heightLine*3 + spaceLines*2) / 2
+  - var positionLeft = widthBurger/2 - widthLine/2
+  svg(viewBox='0 0 '+widthBurger+' '+heightBurger+'' style='enable-background:new 0 0 '+widthBurger+' '+heightBurger+';' preserveAspectRatio='xMidYMid meet'): g
       - for(var i=0; i < 3; i++)
           rect(x=positionLeft y='' + (i * space + positionTop) + '' width=widthLine height=heightLine)
 

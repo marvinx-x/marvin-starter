@@ -9,9 +9,6 @@ header[role="banner"] {
 		grid-template-rows: $heightTitle $heightDescription;
 		grid-template-columns: $lengthLogo auto;
 		grid-gap: $gapElemsHeader;
-		background: red;
-		align-items: flex-start;
-		line-height: 1;
 
 		grid-template-areas:
 			"logo title"
@@ -30,42 +27,60 @@ header[role="banner"] {
 #title {
 	grid-area: title;
 	text-transform: uppercase;
-	font-size: $heightTitle + 0.3rem;
-	line-height: $heightTitle + 0.3rem;
+	font-size: 1.6rem;
+	line-height: $heightTitle;
+	white-space: nowrap;
+	font-weight: 300;
+	letter-spacing: -0.045rem;
 
 	&,
 	a {
 		color: var(--white);
 	}
+	strong {
+		font-weight: 600;
+	}
 
 	a {
 		text-transform: none;
-		display: none;
+		font-size: 1.38rem;
+		opacity: 0.75;
+		transition: opacity ease 0.15s;
+		font-weight: 400;
+
+		&::before {
+			content: " ";
+		}
+
+		&:hover {
+			opacity: 1;
+		}
 	}
 }
 
 #description {
 	grid-area: description;
-
-	align-self: flex-start;
 	display: block;
+	font-size: $heightDescription;
+	justify-self: flex-start;
 
 	svg {
 		text {
 			text-transform: uppercase;
-			font-size: 20px;
-
-			fill: purple;
+			word-spacing: -0.5rem;
+			letter-spacing: 0;
+			font-weight: 400;
+			fill: var(--black);
 		}
-		defs rect {
-			fill: var(--white);
 
-			width: 100%;
+		tspan {
+			font-weight: 700;
 		}
-		> rect {
-			fill: var(--white);
-			mask: url(#mask-description);
+
+		rect {
 			width: 100%;
+			height: 100%;
+			fill: var(--white);
 		}
 	}
 }

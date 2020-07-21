@@ -15,7 +15,7 @@ $transitionNav: ease(easeOutQuad) 0.35s;
 
 button#button-nav {
   grid-area: navbutton;
-  z-index: 2;
+  z-index: 1;
   align-self: center;
   justify-self: center;
   position: sticky;
@@ -26,7 +26,7 @@ header[role="banner"] {
   grid-area: header;
   position: sticky;
   top: 0px;
-  z-index: 2;
+  z-index: 1;
   padding: $paddingHeader;
 }
 
@@ -35,7 +35,6 @@ nav[role="navigation"] {
   grid-row: 1 / 4;
   position: sticky;
   top: 0;
-  z-index: 1;
   height: 100vh;
   clip-path: inset(0px $widthNav 0px 0px);
   transition: clip-path $transitionNav;
@@ -44,7 +43,7 @@ nav[role="navigation"] {
     overflow-x: hidden;
     overflow-y: auto;
     height: 100%;
-    padding-top: $heightHeader - $paddingHeader/1.5;
+    padding-top: $heightHeader;
     padding-bottom: $heightFooter;
   }
 

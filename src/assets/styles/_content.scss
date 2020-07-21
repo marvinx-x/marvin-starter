@@ -4,10 +4,11 @@ $paddingContent: ($heightHeader + $paddingBody) ($widthButtonNav + $lengthLogo/2
 $paddingContentMobile: $paddingBody + ($lengthLogo/2);
 
 main[role="main"] {
-	$gradient: alpha(var(--primary), 0.5), var(--white);
+	$gradient: alpha(var(--primary), 0.25), var(--white);
 	padding: $paddingContent;
 	background: radial-gradient(farthest-corner ellipse at top left, $gradient);
 	position: relative;
+	box-shadow: 0 0 6rem 0 rgba(0, 0, 0, 0.4);
 
 	@include tablet() {
 		padding-left: $paddingContentMobile;

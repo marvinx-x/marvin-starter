@@ -1,17 +1,29 @@
+//- HEADER
+
+- var infos = { lastname: 'Bruhat', firstname: 'Marlène', username : '@Marvin_X_', urltwitter : 'https://twitter.com/Marvin_X_', descriptionword : 'Marvin', descriptionword : 'Starter'}
 
 header(role="banner")
   h1
     span#logo
-      //+set-svg(40, 40)
-        g
+      - var lenghtLogo = 40
+      svg(viewBox='0 0 '+lenghtLogo+' '+lenghtLogo+'' style='enable-background:new 0 0 '+lenghtLogo+' '+lenghtLogo+';' preserveAspectRatio='xMidYMid meet'  xml:space="preserve"): g
           path(d="M0.083,2.667v16.06h4.14V4.074h4.783v10.661h4.141V4.074h4.783v14.652v21.19l0,0h21.987v-21.19h-4.142H22.069l0,0V0.083H0.083V2.667M22.069,35.925V22.718h13.706v4.484H26.21v3.991h9.565v4.731H22.069z")
 
-    span#title #[strong bruhat]marlène
-      a(href="" title="")  @Marvin_X_
+    span#title #[strong= infos.lastname]
+      = infos.firstname
+      a(href=infos.urltwitter title=infos.username target="blank")= infos.username
+
     span#description
-      //+svg(40, 40): g
+      - var widthDescription = 154
+      - var heightDescription = 21
+      - var fontSizeDescription = 17
+      - var dy = 17
+      svg(width=widthDescription height=heightDescription viewBox='0 0 '+widthDescription+' '+heightDescription+'' style='enable-background:new 0 0 '+widthDescription+' '+heightDescription+';' preserveAspectRatio='none' xml:space="preserve"): g
         defs
           mask#mask-description
             rect
-            text(dy="17" dx="3") marvinstarter
-        rect
+            text(x='50%' y=0 dx=0, dy=dy text-anchor="middle" font-size=fontSizeDescription) marvin
+              tspan starter
+        rect(mask="url(#mask-description)")
+
+
