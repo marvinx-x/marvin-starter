@@ -2,10 +2,10 @@
 	/* COLORS */
 	@include defineColorHSL(--white, 0, 0%, 100%);
 	@include defineColorHSL(--black, 0, 0%, 0%);
-	@include defineColorHSL(--light, 171, 20%, 81%);
+	@include defineColorHSL(--light, 171, 20%, 72%);
 	@include defineColorHSL(--gray, 218, 12%, 39%);
-	@include defineColorHSL(--dark, 930, 90%, 25%);
-	@include defineColorHSL(--primary, 340, 64%, 27%);
+	@include defineColorHSL(--dark, 230, 5%, 25%);
+	@include defineColorHSL(--primary, 900, 100%, 15%);
 
 	/* TYPOGRAPH */
 	--font-family: "Inter", sans-serif;

@@ -7,7 +7,7 @@ $paddingNav: $paddingBody + ($lengthLogo/3);
 $paddingItemsNav: 2.2rem;
 $paddingTopBottomNav: $paddingItemsNav - $paddingHeader/2;
 
-button#button-nav {
+header[role="banner"] + button.button-nav {
   width: $widthButtonNav;
   height: $lengthLogo;
 

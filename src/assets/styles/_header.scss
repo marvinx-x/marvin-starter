@@ -13,6 +13,10 @@ header[role="banner"] {
 		grid-template-areas:
 			"logo title"
 			"logo description";
+
+		span {
+			display: block;
+		}
 	}
 }
 
@@ -60,7 +64,6 @@ header[role="banner"] {
 
 #description {
 	grid-area: description;
-	display: block;
 	font-size: $heightDescription;
 	justify-self: flex-start;
 

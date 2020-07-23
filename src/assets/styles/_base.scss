@@ -35,3 +35,12 @@ button {
 	border: none;
 	cursor: pointer;
 }
+
+
+svg{
+	width: 100%;
+	height: auto;
+	fill : var(--primary);
+	transform-origin: 50% 50%;
+}
+

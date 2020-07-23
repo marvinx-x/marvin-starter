@@ -4,59 +4,14 @@ $paddingContent: ($heightHeader + $paddingBody) ($widthButtonNav + $lengthLogo/2
 $paddingContentMobile: $paddingBody + ($lengthLogo/2);
 
 main[role="main"] {
-	$gradient: alpha(var(--primary), 0.25), var(--white);
 	padding: $paddingContent;
-	background: radial-gradient(farthest-corner ellipse at top left, $gradient);
+	background: var(--light);
 	position: relative;
-	box-shadow: 0 0 6rem 0 rgba(0, 0, 0, 0.4);
+	color: var(--white);
+	display: grid;
 
 	@include tablet() {
 		padding-left: $paddingContentMobile;
 		padding-right: $paddingContentMobile;
 	}
-
-	/* full screen page */
-	// &.full-screen {
-	// 	background: var(--light);
-	// 	width: 100vw;
-	// 	height: 100vh;
-	// 	position: absolute;
-	// 	top: 0;
-	// 	left: 0;
-	// 	display: flex;
-	// 	flex-direction: column;
-	// 	align-items: center;
-	// 	justify-content: center;
-	// 	padding: 0;
-
-	// 	> section {
-	// 		max-width: 800px;
-	// 	}
-
-	// 	p,
-	// 	a {
-	// 		color: var(--white);
-	// 	}
-
-	// 	p {
-	// 		font-size: 12px;
-	// 		line-height: 9px;
-	// 		text-transform: uppercase;
-	// 		@include underlineText(50px, 10px, var(--white));
-
-	// 		span {
-	// 			font-weight: 900;
-	// 		}
-
-	// 		&::after {
-	// 			//bottom : -50px;
-	// 		}
-	// 	}
-
-	// 	a {
-	// 		font-size: 6px;
-	// 		margin-top: 100px;
-	// 		//max-width: 100px;
-	// 	}
-	// }
 }
