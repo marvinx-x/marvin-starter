@@ -44,3 +44,12 @@ svg{
 	transform-origin: 50% 50%;
 }
 
+
+main[role=main]{
+
+	.logo{
+		grid-area: unset;
+		width: 25%;
+		display: block;
+	}
+}

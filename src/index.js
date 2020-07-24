@@ -7,6 +7,8 @@ import {
 	timelineMax,
 	TimelineLite,
 	TimelineMax,
+	TweenMax,
+	TweenLite,
 	Plugins,
 	CSSPlugin,
 	AttrPlugin,
@@ -32,32 +34,69 @@ import {
 	Sine,
 	Strong,
 	SlowMo,
-	SteppedEase
+	CustomEase,
+	SteppedEase,
+
 } from 'gsap/all';
 
-const buttonNav = document.querySelectorAll('.button-nav');
-const nav = document.querySelector('nav[role="navigation"]');
 
-buttonNav.forEach( ( el, i ) => {
-  const iconRects = el.querySelectorAll( 'rect' );
-  const duration = parseFloat( window.getComputedStyle(nav, null ).getPropertyValue( "transition-duration" ) ) / 2;
-  const heightGroup = iconRects[i].parentElement.getBBox().height;
-  const heightLine = parseInt(iconRects[i].attributes.height.nodeValue);
-  const spaceLines = parseInt(heightLine + (heightGroup - heightLine*3) / 2);
+function iconburger() {
+	const buttonNav = document.querySelectorAll('.button-nav');
+	const nav = document.querySelector('nav[role="navigation"]');
 
-  const timeline = new TimelineMax( {
-    paused: true,
-    reversed: true,
-    ease : Quad.easeOut
-  } )
-    .to( iconRects[0], duration, { y: spaceLines }, 'position' )
-    .to( iconRects[2], duration, { y: -spaceLines }, 'position' )
-    .to( iconRects[0], duration, { rotation: 135, transformOrigin: '50% 50%', }, 'rotate' )
-    .to( iconRects[2], duration, { rotation: 225, transformOrigin: '50% 50%', }, 'rotate' )
-    .to( iconRects[1], duration, { scaleX: 0, transformOrigin: '50% 50%', }, 'rotate' );
+	buttonNav.forEach( ( el, i ) => {
+		const iconRects = el.querySelectorAll( 'rect' );
+		const duration = parseFloat( window.getComputedStyle(nav, null ).getPropertyValue( "transition-duration" ) ) / 2;
+		const heightGroup = iconRects[i].parentElement.getBBox().height;
+		const heightLine = parseInt(iconRects[i].attributes.height.nodeValue);
+		const spaceLines = parseInt(heightLine + (heightGroup - heightLine*3) / 2);
 
-  el.addEventListener( 'click', ( e ) => {
-    timeline.reversed() ? timeline.play() : timeline.reverse();
-    nav.classList.toggle( 'open' );
-  });
-});
+		const timeline = new TimelineMax( {
+			paused: true,
+			reversed: true,
+			ease : Quad.easeInOut
+		} )
+			.to( iconRects[0], duration, { y: spaceLines }, 'position' )
+			.to( iconRects[2], duration, { y: -spaceLines }, 'position' )
+			.to( iconRects[0], duration, { rotation: 135, transformOrigin: '50% 50%', }, 'rotate' )
+			.to( iconRects[2], duration, { rotation: 225, transformOrigin: '50% 50%', }, 'rotate' )
+			.to( iconRects[1], duration, { scaleX: 0, transformOrigin: '50% 50%', }, 'rotate' );
+
+		el.addEventListener( 'click', ( e ) => {
+			timeline.reversed() ? timeline.play() : timeline.reverse();
+			nav.classList.toggle( 'open' );
+		});
+	});
+}
+
+function iconLogo() {
+
+	const logo = document.querySelectorAll( '.logo' );
+
+	logo.forEach( ( el, i ) => {
+		const iconLogo = el.querySelector( 'svg' );
+		const clone = iconLogo.cloneNode(true);
+		iconLogo.after( clone );
+		const iconBackLogo = iconLogo.nextSibling;
+		const duration = 1.5;
+		gsap.set( iconBackLogo, { rotationY: 180 } )
+
+		const timeline = new TimelineLite({
+			paused: true,
+			reversed: true,
+			ease : Circ.easeInOut
+		})
+			.to( iconLogo, duration, { rotationY: 360 }, 'rotate' )
+			.to( iconBackLogo, duration, { rotationY: -180 }, 'rotate' )
+
+		el.addEventListener( 'mouseenter', ( e ) => timeline.reversed() ? timeline.play() : null);
+		el.addEventListener( 'mouseleave', ( e ) => {
+			TweenLite.delayedCall(.3, function(){
+				timeline.reverse();
+		 });
+		});
+	});
+}
+
+iconburger();
+iconLogo();

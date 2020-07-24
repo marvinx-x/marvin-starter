@@ -5,10 +5,10 @@ $paddingContentMobile: $paddingBody + ($lengthLogo/2);
 
 main[role="main"] {
 	padding: $paddingContent;
-	background: var(--light);
+
+	background: lightness(var(--primary), 3);
 	position: relative;
 	color: var(--white);
-	display: grid;
 
 	@include tablet() {
 		padding-left: $paddingContentMobile;

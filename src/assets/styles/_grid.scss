@@ -1,6 +1,6 @@
 /* MAIN GRID */
 
-$transitionNavEase: ease(easeOutQuad);
+$transitionNavEase: ease(easeInOutQuad);
 $transitionNavDuration: 0.35s;
 #app {
   min-height: 100vh;
@@ -31,7 +31,6 @@ header[role="banner"] {
 }
 
 nav[role="navigation"] {
-
   grid-area: nav;
   grid-row: 1 / 4;
   position: sticky;

@@ -3,10 +3,10 @@
 
 header(role="banner")
   h1
-    span#logo: +logo-svg()
+    span.logo: +logo-svg()
 
-    span#title #[strong= infos.lastname]
+    span.title #[strong= infos.lastname]
       = infos.firstname
       a(href=infos.urltwitter title=infos.username target="blank")= infos.username
 
-    span#description: +description-svg()
+    span.description: +description-svg()

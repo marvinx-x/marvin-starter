@@ -5,6 +5,8 @@ block vars
   - var navLess = false
   - var footerLess = false
 
+
+
 html(lang=lang)
 
   head
@@ -17,6 +19,7 @@ html(lang=lang)
     include ../../includes/utils/mixins
 
   body(class=navLess ? 'nav-less' : null)
+
     div#app
 
       if(!headerLess)
