@@ -39,9 +39,12 @@ import {
 
 } from 'gsap/all';
 
+import 'hammerjs';
 
-function iconburger() {
-	const buttonNav = document.querySelectorAll('.button-nav');
+
+
+function navigation() {
+	const buttonNav = document.querySelectorAll( '.button-nav' );
 	const nav = document.querySelector('nav[role="navigation"]');
 
 	buttonNav.forEach( ( el, i ) => {
@@ -62,15 +65,28 @@ function iconburger() {
 			.to( iconRects[2], duration, { rotation: 225, transformOrigin: '50% 50%', }, 'rotate' )
 			.to( iconRects[1], duration, { scaleX: 0, transformOrigin: '50% 50%', }, 'rotate' );
 
-		el.addEventListener( 'click', ( e ) => {
+		const navEvents = () => {
 			timeline.reversed() ? timeline.play() : timeline.reverse();
 			nav.classList.toggle( 'open' );
+		};
+
+		el.addEventListener( 'click', ( e ) => navEvents());
+		const manager = new Hammer.Manager(nav);
+		const Swipe = new Hammer.Swipe();
+		manager.add(Swipe);
+		let deltaX = 0;
+
+		manager.on( 'swipe', function ( e ) {
+			deltaX = deltaX + e.deltaX;
+			e.offsetDirection === 2 ? navEvents() : null;
 		});
 	});
 }
 
-function iconLogo() {
 
+
+
+function iconLogo() {
 	const logo = document.querySelectorAll( '.logo' );
 
 	logo.forEach( ( el, i ) => {
@@ -98,5 +114,7 @@ function iconLogo() {
 	});
 }
 
-iconburger();
+navigation();
 iconLogo();
+
+

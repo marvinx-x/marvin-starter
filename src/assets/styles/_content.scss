@@ -1,12 +1,10 @@
 /* MAIN CONTAINER */
-
 $paddingContent: ($heightHeader + $paddingBody) ($widthButtonNav + $lengthLogo/2);
 $paddingContentMobile: $paddingBody + ($lengthLogo/2);
 
 main[role="main"] {
 	padding: $paddingContent;
-
-	background: lightness(var(--primary), 3);
+	background: lightness(var(--primary), 4);
 	position: relative;
 	color: var(--white);
 

@@ -62,6 +62,7 @@ nav[role="navigation"] {
     padding: $paddingItemsNav $paddingNav;
     color: $colorDefault;
     @include underlineText(calc(100% - #{$paddingNav * 2}), 0.1rem, $colorDefault);
+    pointer-events: none;
 
     &,
     & ::after {
