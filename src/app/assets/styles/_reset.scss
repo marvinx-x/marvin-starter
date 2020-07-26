@@ -1,13 +1,9 @@
-:root {
-	font-size: 62.5%;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body {
-	font-size: 1.6rem;
-	color: var(--primary);
-	font-family: var(--font-family);
-	background-color: var(--white);
-}
 
 ul {
 	list-style: none;
@@ -44,12 +40,3 @@ svg{
 	transform-origin: 50% 50%;
 }
 
-
-main[role=main]{
-
-	.logo{
-		grid-area: unset;
-		width: 25%;
-		display: block;
-	}
-}

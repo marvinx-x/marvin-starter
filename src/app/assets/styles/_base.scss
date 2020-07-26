@@ -1,0 +1,47 @@
+:root {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.6rem;
+	color: var(--primary);
+	font-family: var(--font-family);
+	background-color: var(--white);
+}
+
+
+body.nav-less {
+  header[role="banner"],
+  main[role="main"] {
+    grid-column-start: 1;
+  }
+}
+
+body:not(.nav-less) {
+  header[role="banner"] {
+    padding-left: 0;
+  }
+}
+
+#app {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: $heightHeader 1fr $heightFooter;
+  grid-template-columns: $widthButtonNav (calc(#{$widthNav} - #{$widthButtonNav})) 1fr;
+  grid-template-areas:
+    "navbutton header main"
+    "nav nav main"
+    "footer footer footer";
+}
+
+main[role="main"] {
+  grid-area: main;
+  grid-column-start: 1;
+  grid-row-end: 4;
+  justify-self: flex-end;
+  width: 100%;
+  transition-property: width;
+  transition-duration: $transitionNavDuration;
+  transition-timing-function: $transitionNavEase;
+}
+

@@ -54,12 +54,12 @@ module.exports = {
 		new CleanWebpackPlugin(),
 		new CopyWebpackPlugin({
 			patterns: [
-				{ from: './src/assets/images/*', to: 'assets/images', flatten: true }
+				{ from: './src/app/assets/images/*', to: 'assets/images', flatten: true }
 			]
 		}),
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
-			template: path.join(__dirname, './src/index.pug'),
+			template: path.join(__dirname, './src/app/index.pug'),
 			chunks: ['main']
 		}),
 		new MiniCssExtractPlugin({

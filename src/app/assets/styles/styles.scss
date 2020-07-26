@@ -10,11 +10,10 @@
 @import "classes";
 
 /* LAYOUT */
-@import "grid";
-@import "header";
-@import "nav";
+@import "../../components/header/header.scss";
+@import "../../components/nav/nav.scss";
+@import "../../components/footer/footer.scss";
 @import "content";
-@import "footer";
 
 /* STYLES */
 @import "titles";

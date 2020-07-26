@@ -7,7 +7,14 @@ $paddingNav: $paddingBody + ($lengthLogo/3);
 $paddingItemsNav: 2.2rem;
 $paddingTopBottomNav: $paddingItemsNav - $paddingHeader/2;
 
+
 header[role="banner"] + button.button-nav {
+  grid-area: navbutton;
+  z-index: 2;
+  align-self: center;
+  justify-self: center;
+  position: sticky;
+  top: $paddingHeader;
   width: $widthButtonNav;
   height: $lengthLogo;
 
@@ -34,7 +41,34 @@ $gradientNav : var(--primary) 35%, transparent;
 
 nav[role="navigation"] {
   background: var(--primary);
+  grid-area: nav;
+  grid-row: 1 / 4;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  clip-path: inset(0px $widthNav 0px 0px);
+  transition-property: clip-path;
+  transition-duration: $transitionNavDuration;
+  transition-timing-function: $transitionNavEase;
+  z-index: 1;
 
+  > ul {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    padding-top: $heightHeader;
+    padding-bottom: $heightFooter;
+  }
+
+  &.open {
+    clip-path: inset(0px 0px 0px 0px);
+
+    @include desktop() {
+      & + main[role="main"] {
+        width: calc(100% - #{$widthNav});
+      }
+    }
+  }
 
   &::before,
   &::after{

@@ -2,6 +2,10 @@
 $paddingFooter : $paddingBody;
 
 footer[role='contentinfo'] {
+  grid-area: footer;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
 	display: grid;
 	grid-template-columns: minmax(auto, 1fr);
 	grid-template-rows: minmax(auto, 1fr);
@@ -10,6 +14,7 @@ footer[role='contentinfo'] {
 	padding: $paddingFooter;
 	align-content: center;
 	opacity : .35;
+
 
 	> ul{
 		display: grid;

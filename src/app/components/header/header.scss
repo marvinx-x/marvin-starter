@@ -3,6 +3,12 @@ $heightTitle: (($lengthLogo/2) - $gapElemsHeader);
 $heightDescription: ($lengthLogo / 2);
 
 header[role="banner"] {
+  grid-area: header;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
+	padding: $paddingHeader;
+
 	h1 {
 		position: relative;
 		display: grid;
