@@ -1,5 +1,6 @@
 
 import { TimelineMax, Quad } from 'gsap/all';
+import 'hammerjs';
 
 export function navigation() {
 	const buttonNav = document.querySelectorAll( '.button-nav' );

@@ -1,5 +1,5 @@
 block vars
-  - var documentTitle = "Marvin Starter"
+  - var documentTitle = "Marvin Starter - Start here"
   - var lang = "fr"
   - var headerLess = false
   - var navLess = false
@@ -26,7 +26,8 @@ html(lang=lang)
       if(!navLess)
         include ../../components/nav/nav
 
-      block body
+      main(role="main")
+        block main
 
       if(!footerLess)
         include ../../components/footer/footer
