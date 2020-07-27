@@ -1,9 +1,8 @@
 - var starterItems = ["titles", "forms", "Buttons", "typographies", "components", "titles", "forms", "Buttons", "typographies", "components", "titles", "forms", "Buttons", "typographies", "components", "titles", "forms", "Buttons", "typographies", "components","Buttons", "typographies", "components", "titles", "forms", "Buttons", "typographies"]
 
-button(type="button").button-nav: +burger-svg()
+button(type="button" aria-expanded="false" aria-controls="main-nav").button-nav: +burger-svg()
 
-nav(role="navigation")
-  ul
+nav(role="navigation" aria-label="Main navigation")
+  ul(id="main-nav")
     each starterItem in starterItems
-      li
-        a(href="./index.html")= starterItem
+      li: a(href="./index.html")= starterItem

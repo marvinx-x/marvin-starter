@@ -1,3 +1,5 @@
+"use strict";
+
 import './app/assets/styles/styles.scss';
 import { navigation } from './app/components/nav/nav';
 import { logo } from './app/components/header/header';

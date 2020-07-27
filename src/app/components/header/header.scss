@@ -46,7 +46,7 @@ header[role="banner"] {
 		}
 
 		&:last-of-type(){
-			fill: lightness(var(--primary), 6);
+			fill: lightness(var(--primary), 3.85);
 			z-index: 1;
 		}
 	}
