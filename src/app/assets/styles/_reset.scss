@@ -1,9 +1,12 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
+::selection {
+	@extend %selection;
+}
 
 ul {
 	list-style: none;
@@ -17,7 +20,7 @@ button,
 a {
 	&:focus,
 	&:active {
-		outline: 0.1rem dotted alpha(var(--white), 0.25);
+		outline: 0.1rem dotted alpha(var(--fluo), 0.25);
 	}
 }
 
@@ -32,11 +35,9 @@ button {
 	cursor: pointer;
 }
 
-
-svg{
+svg {
 	width: 100%;
 	height: auto;
-	fill : var(--primary);
+	fill: var(--primary);
 	transform-origin: 50% 50%;
 }
-

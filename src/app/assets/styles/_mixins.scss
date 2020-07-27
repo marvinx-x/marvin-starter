@@ -1,7 +1,6 @@
 /* MIXINS */
 
 /// DEFINE A COLOR IN HSL
-
 @mixin defineColorHSL($color, $hue, $saturation, $lightness) {
   #{$color}: unquote("hsl(#{$hue}, #{$saturation}, #{$lightness})");
   #{$color}-h: #{$hue};

@@ -5,12 +5,12 @@ import { logo } from './app/components/header/header';
 navigation();
 logo();
 
-import { library, dom, config } from "@fortawesome/fontawesome-svg-core";
-import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
-config.autoReplaceSvg = 'nest';
-config.measurePerformance = true;
-library.add(faCheck);
-dom.watch();
+// import { library, dom, config } from "@fortawesome/fontawesome-svg-core";
+// import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
+// config.autoReplaceSvg = 'nest';
+// config.measurePerformance = true;
+// library.add(faCheck);
+// dom.watch();
 
 // import {
 // 	gsap,

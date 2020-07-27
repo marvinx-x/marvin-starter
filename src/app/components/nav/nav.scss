@@ -7,7 +7,6 @@ $paddingNav: $paddingBody + ($lengthLogo/3);
 $paddingItemsNav: 2.2rem;
 $paddingTopBottomNav: $paddingItemsNav - $paddingHeader/2;
 
-
 header[role="banner"] + button.button-nav {
   grid-area: navbutton;
   z-index: 2;
@@ -17,15 +16,15 @@ header[role="banner"] + button.button-nav {
   top: $paddingHeader;
   width: $widthButtonNav;
   height: $lengthLogo;
+  margin: 0 $marginButtonNav;
 
   svg {
     fill: var(--white);
-    transition : fill .25s;
+    transition: fill 0.25s;
   }
 
-  &:hover{
-
-    svg{
+  &:hover {
+    svg {
       fill: lightness(var(--primary), 6);
     }
   }
@@ -35,9 +34,9 @@ header[role="banner"] + button.button-nav {
 /* navigation items */
 /*  */
 
-$colorDefault: lightness(var(--primary), 3);
+$colorDefault: lightness(var(--primary), 2.5);
 $colorHover: lightness(var(--primary), 4);
-$gradientNav : var(--primary) 35%, transparent;
+$gradientNav: var(--primary) 35%, transparent;
 
 nav[role="navigation"] {
   background: var(--primary);
@@ -71,7 +70,7 @@ nav[role="navigation"] {
   }
 
   &::before,
-  &::after{
+  &::after {
     @extend %after-before--utils;
     width: 100%;
     position: absolute;
@@ -79,15 +78,15 @@ nav[role="navigation"] {
     z-index: 2;
   }
 
-  &::before{
+  &::before {
     top: 0;
-    background : linear-gradient($gradientNav);
+    background: linear-gradient($gradientNav);
     height: $heightHeader + $paddingHeader;
   }
 
-  &::after{
+  &::after {
     bottom: 0;
-    background : linear-gradient(0deg, $gradientNav);
+    background: linear-gradient(0deg, $gradientNav);
     height: $heightFooter + $paddingHeader;
   }
 
@@ -96,7 +95,6 @@ nav[role="navigation"] {
     padding: $paddingItemsNav $paddingNav;
     color: $colorDefault;
     @include underlineText(calc(100% - #{$paddingNav * 2}), 0.1rem, $colorDefault);
-    pointer-events: none;
 
     &,
     & ::after {

@@ -1,13 +1,12 @@
 mixin burger-svg()
-  - var widthBurger = 52
+  - var lengthBurger = 40
   - var widthLine = 22
-  - var heightBurger = 40
   - var heightLine = 3
   - var spaceLines = 4
   - var space = heightLine + spaceLines
-  - var positionTop = heightBurger/2 - (heightLine*3 + spaceLines*2) / 2
-  - var positionLeft = widthBurger/2 - widthLine/2
-  svg(aria-hidden="true" role="button" viewBox='0 0 '+widthBurger+' '+heightBurger+'' style='enable-background:new 0 0 '+widthBurger+' '+heightBurger+';' preserveAspectRatio='xMidYMid meet')
+  - var positionTop = lengthBurger/2 - (heightLine*3 + spaceLines*2) / 2
+  - var positionLeft = lengthBurger/2 - widthLine/2
+  svg(aria-hidden="true" role="button" viewBox='0 0 '+lengthBurger+' '+lengthBurger+'' style='enable-background:new 0 0 '+lengthBurger+' '+lengthBurger+';' preserveAspectRatio='xMidYMid meet')
     g(aria-hidden="true")
       - for(var i=0; i < 3; i++)
           rect(aria-hidden="true" x=positionLeft y='' + (i * space + positionTop) + '' width=widthLine height=heightLine)
@@ -16,16 +15,17 @@ mixin burger-svg()
 
 mixin logo-svg()
   - var lenghtLogo = 40
-  svg(aria-hidden="true" viewBox='0 0 '+lenghtLogo+' '+lenghtLogo+'' style='enable-background:new 0 0 '+lenghtLogo+' '+lenghtLogo+';' preserveAspectRatio='xMidYMid meet'  xml:space="preserve"): g(aria-hidden="true")
-      path(aria-hidden="true" d="M22,20V0H0v20h4.1V3.9h4.9v9.9h3.9V4.1H18V40h22V20H22z M36.1,28H26v4.1h10.1v4H22V24h14.1V28z")
+  - for(var i=0; i < 2; i++)
+    svg(aria-hidden="true" viewBox='0 0 '+lenghtLogo+' '+lenghtLogo+'' style='enable-background:new 0 0 '+lenghtLogo+' '+lenghtLogo+';' preserveAspectRatio='xMidYMid meet'  xml:space="preserve"): g(aria-hidden="true")
+        path(aria-hidden="true" d="M22,18V0H0v22h4.1V3.9h4.9V13h3.9V4.1H18V40h22V18H22z M36.1,27H27v4.1h9.1v5H22V22h14.1V27z")
 
 
 mixin description-svg()
   - var widthDescription = 152
-  - var heightDescription = 20
+  - var heightDescription = 22
   - var fontSizeDescription = 17
-  - var dy = 16.5
-  svg(aria-hidden="true" width=widthDescription height=heightDescription viewBox='0 0 '+widthDescription+' '+heightDescription+'' style='enable-background:new 0 0 '+widthDescription+' '+heightDescription+';' preserveAspectRatio='none' xml:space="preserve"): g
+  - var dy = 17
+  svg(aria-hidden="true" width=widthDescription height=heightDescription viewBox='0 0 '+widthDescription+' '+heightDescription+'' style='enable-background:new 0 0 '+widthDescription+' '+heightDescription+';' preserveAspectRatio='xMidYMid meet' xml:space="preserve"): g
     defs
       mask#mask-description
         rect

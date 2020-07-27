@@ -4,9 +4,11 @@ import 'hammerjs';
 
 export function navigation() {
 	const buttonNav = document.querySelectorAll( '.button-nav' );
-	const nav = document.querySelector('nav[role="navigation"]');
+	const nav = document.querySelector( 'nav[role="navigation"]' );
+	const navClass = 'open';
 
 	buttonNav.forEach( ( el, i ) => {
+		/// BURGER MENU ICON ANIMATION
 		const iconRects = el.querySelectorAll( 'rect' );
 		const duration = parseFloat( window.getComputedStyle(nav, null ).getPropertyValue( "transition-duration" ) ) / 2;
 		const heightGroup = iconRects[i].parentElement.getBBox().height;
@@ -24,20 +26,45 @@ export function navigation() {
 			.to( iconRects[2], duration, { rotation: 225, transformOrigin: '50% 50%', }, 'rotate' )
 			.to( iconRects[1], duration, { scaleX: 0, transformOrigin: '50% 50%', }, 'rotate' );
 
+		nav.classList == navClass ? timeline.seek( '-=0', false ).reversed( !timeline.reversed() ) : null;
+
 		const navEvents = () => {
 			timeline.reversed() ? timeline.play() : timeline.reverse();
-			nav.classList.toggle( 'open' );
+			nav.classList.toggle( navClass );
 		};
 
-		el.addEventListener( 'click', ( e ) => navEvents());
-		const manager = new Hammer.Manager(nav);
-		const Swipe = new Hammer.Swipe();
-		manager.add(Swipe);
-		let deltaX = 0;
+		/// PRESS EVENT
+		const pressEvent = new Hammer.Manager(el);
+		const Press = new Hammer.Press({ time: 10 });
+		pressEvent.add(Press);
+		pressEvent.on( 'press', ( e ) => navEvents() );
 
-		manager.on( 'swipe', function ( e ) {
+		/// SWIPE EVENT
+		const recognizer = {
+			recognizers: [
+				[Hammer.Swipe, {
+					direction: Hammer.DIRECTION_HORIZONTAL
+				}]
+			]
+		};
+
+		let deltaX = 0;
+		const swipeEvent = new Hammer.Manager( nav, recognizer );
+		const Swipe = new Hammer.Swipe();
+		swipeEvent.add( Swipe );
+
+		swipeEvent.on('swipe', ( e ) => {
 			deltaX = deltaX + e.deltaX;
 			e.offsetDirection === 2 ? navEvents() : null;
+		} );
+
+		const links = nav.querySelectorAll( 'a' );
+		links.forEach( ( el, i ) => {
+			const swipeLinks = new Hammer.Manager( el, recognizer );
+			swipeLinks.on( 'swipe', ( e ) => {
+				e.srcEvent.preventDefault();
+				return false;
+			});
 		});
 	});
 }

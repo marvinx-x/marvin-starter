@@ -4,7 +4,7 @@ $paddingContentMobile: $paddingBody + ($lengthLogo/2);
 
 main[role="main"] {
 	padding: $paddingContent;
-	background: lightness(var(--primary), 4);
+	background: lightness(var(--primary), 3.2);
 	position: relative;
 	color: var(--white);
 

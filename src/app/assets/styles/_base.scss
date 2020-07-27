@@ -27,7 +27,7 @@ body:not(.nav-less) {
   min-height: 100vh;
   display: grid;
   grid-template-rows: $heightHeader 1fr $heightFooter;
-  grid-template-columns: $widthButtonNav (calc(#{$widthNav} - #{$widthButtonNav})) 1fr;
+  grid-template-columns: $widthColumnButtonNav (calc(#{$widthNav} - #{$widthColumnButtonNav})) 1fr;
   grid-template-areas:
     "navbutton header main"
     "nav nav main"

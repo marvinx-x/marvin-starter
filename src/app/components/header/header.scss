@@ -1,6 +1,7 @@
 /* HEADER */
-$heightTitle: (($lengthLogo/2) - $gapElemsHeader);
-$heightDescription: ($lengthLogo / 2);
+$heightDescription: ($lengthLogo / 2) + .2rem;
+$heightTitle: ($heightDescription - $gapElemsHeader);
+
 
 header[role="banner"] {
   grid-area: header;
@@ -15,6 +16,8 @@ header[role="banner"] {
 		grid-template-rows: $heightTitle $heightDescription;
 		grid-template-columns: $lengthLogo auto;
 		grid-gap: $gapElemsHeader;
+		align-items: flex-end;
+		justify-content: flex-start;
 
 		grid-template-areas:
 			"logo title"
@@ -28,22 +31,23 @@ header[role="banner"] {
 
 .logo {
 	grid-area: logo;
+	display: block;
 	position: relative;
 
 	svg {
-     backface-visibility: hidden;
+		 backface-visibility: hidden;
+		 position: absolute;
+		 bottom: 0;
+		 left: 0;
 
 		&:first-of-type(){
 			fill: var(--white);
       z-index: 2;
-			position: absolute;
-			top: 0;
-			left: 0;
 		}
 
 		&:last-of-type(){
 			fill: lightness(var(--primary), 6);
-      z-index: 1;
+			z-index: 1;
 		}
 	}
 }
@@ -54,7 +58,7 @@ header[role="banner"] {
 	grid-area: title;
 	text-transform: uppercase;
 	font-size: 1.6rem;
-	line-height: $heightTitle;
+	line-height: 1rem;
 	white-space: nowrap;
 	font-weight: 300;
 	letter-spacing: -0.045rem;
@@ -87,9 +91,10 @@ header[role="banner"] {
 .description {
 	grid-area: description;
 	font-size: $heightDescription;
-	justify-self: flex-start;
 
 	svg {
+		width: auto;
+
 		text {
 			text-transform: uppercase;
 			word-spacing: -0.5rem;

@@ -2,10 +2,8 @@
 	/* COLORS */
 	@include defineColorHSL(--white, 0, 0%, 100%);
 	@include defineColorHSL(--black, 0, 0%, 0%);
-	@include defineColorHSL(--light, 171, 20%, 72%);
-	@include defineColorHSL(--gray, 218, 12%, 39%);
-	@include defineColorHSL(--dark, 230, 5%, 25%);
-	@include defineColorHSL(--primary, 200, 100%, 15%);
+	@include defineColorHSL(--fluo, 60, 100%, 50%);
+	@include defineColorHSL(--primary, 215, 50%, 23%);
 
 	/* TYPOGRAPH */
 	--font-family: "Inter", sans-serif;
@@ -28,6 +26,8 @@ $heightFooter: 5.8rem;
 
 /* NAVIGATION */
 $widthNav: $minWidth;
-$widthButtonNav: 5.2rem;
+$widthButtonNav: $lengthLogo;
+$marginButtonNav: $paddingBody/2;
+$widthColumnButtonNav: $widthButtonNav + $marginButtonNav * 2;
 $transitionNavEase: ease(easeInOutQuad);
 $transitionNavDuration: 0.35s;
