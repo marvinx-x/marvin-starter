@@ -19,13 +19,13 @@ header[role="banner"] + button.button-nav {
   margin: 0 $marginButtonNav;
 
   svg {
-    fill: var(--white);
+    fill: $colorElemsHeader;
     transition: fill 0.25s;
   }
 
   &:hover {
     svg {
-      fill: lightness(var(--primary), 3.85);
+      fill: lightness(var(--primary), 1);
     }
   }
 }
@@ -34,12 +34,14 @@ header[role="banner"] + button.button-nav {
 /* navigation items */
 /*  */
 
-$colorDefault: lightness(var(--primary), 2.5);
+$colorDefault: lightness(var(--primary), 2);
 $colorHover: lightness(var(--primary), 4);
-$gradientNav: var(--primary) 35%, transparent;
+$colorGradient1 :lightness(var(--primary), 1.35);
+$colorGradient2 :var(--primary);
+
 
 nav[role="navigation"] {
-  background: var(--primary);
+  background: linear-gradient($colorGradient1, $colorGradient2);
   grid-area: nav;
   grid-row: 1 / 4;
   position: sticky;
@@ -82,13 +84,13 @@ nav[role="navigation"] {
 
   &::before {
     top: 0;
-    background: linear-gradient($gradientNav);
+    background: linear-gradient($colorGradient1 35%, transparent);
     height: $heightHeader + $paddingHeader;
   }
 
   &::after {
     bottom: 0;
-    background: linear-gradient(0deg, $gradientNav);
+    background: linear-gradient(0deg, $colorGradient2 35%, transparent);
     height: $heightFooter + $paddingHeader;
   }
 

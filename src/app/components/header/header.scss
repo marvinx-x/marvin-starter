@@ -41,12 +41,12 @@ header[role="banner"] {
 		 left: 0;
 
 		&:first-of-type(){
-			fill: var(--white);
+			fill: $colorElemsHeader;
       z-index: 2;
 		}
 
 		&:last-of-type(){
-			fill: lightness(var(--primary), 3.85);
+			fill: lightness(var(--primary), 1);
 			z-index: 1;
 		}
 	}
@@ -65,7 +65,7 @@ header[role="banner"] {
 
 	&,
 	a {
-		color: var(--white);
+		color: $colorElemsHeader;
 	}
 	strong {
 		font-weight: 600;
@@ -74,8 +74,7 @@ header[role="banner"] {
 	a {
 		text-transform: none;
 		font-size: 1.38rem;
-		opacity: 0.75;
-		transition: opacity ease 0.15s;
+		transition: color ease 0.15s;
 		font-weight: 400;
 
 		&::before {
@@ -83,7 +82,7 @@ header[role="banner"] {
 		}
 
 		&:hover {
-			opacity: 1;
+			color: var(--primary);
 		}
 	}
 }
@@ -110,7 +109,11 @@ header[role="banner"] {
 		rect {
 			width: 100%;
 			height: 100%;
-			fill: var(--white);
+			fill : white;
+		}
+
+		g > rect{
+			fill : $colorElemsHeader;
 		}
 	}
 }

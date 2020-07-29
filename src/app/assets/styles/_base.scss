@@ -33,14 +33,3 @@ body:not(.nav-less) {
     "nav nav main"
     "footer footer footer";
 }
-
-main[role="main"] {
-  grid-area: main;
-  grid-column-start: 1;
-  grid-row-end: 4;
-  justify-self: flex-end;
-  width: 100%;
-  transition-property: width;
-  transition-duration: $transitionNavDuration;
-  transition-timing-function: $transitionNavEase;
-}

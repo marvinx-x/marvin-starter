@@ -7,6 +7,16 @@ import { logo } from './app/components/header/header';
 navigation();
 logo();
 
+
+let resizeTimer;
+window.addEventListener("resize", () => {
+  document.body.classList.add("resize-animation-stopper");
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    document.body.classList.remove("resize-animation-stopper");
+  }, 400);
+});
+
 // import { library, dom, config } from "@fortawesome/fontawesome-svg-core";
 // import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
 // config.autoReplaceSvg = 'nest';
