@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import './app/assets/styles/styles.scss';
 import { navigation } from './app/components/nav/nav';
@@ -7,22 +7,19 @@ import { logo } from './app/components/header/header';
 navigation();
 logo();
 
-
 let resizeTimer;
-window.addEventListener("resize", () => {
-  document.body.classList.add("resize-animation-stopper");
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => {
-    document.body.classList.remove("resize-animation-stopper");
-  }, 400);
+window.addEventListener('resize', () => {
+	document.body.classList.add('resize-animation-stopper');
+	clearTimeout(resizeTimer);
+	resizeTimer = setTimeout(() => {
+		document.body.classList.remove('resize-animation-stopper');
+	}, 100);
 });
 
-// import { library, dom, config } from "@fortawesome/fontawesome-svg-core";
-// import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
-// config.autoReplaceSvg = 'nest';
-// config.measurePerformance = true;
-// library.add(faCheck);
-// dom.watch();
+require('webpack-icons-installer'); //load ALL icons
+// require('webpack-icons-installer/font-awesome'); //load only font-awesome icons
+// require('webpack-icons-installer/google');  //load only google material-design-icons
+// require('webpack-icons-installer/bootstrap');
 
 // import {
 // 	gsap,

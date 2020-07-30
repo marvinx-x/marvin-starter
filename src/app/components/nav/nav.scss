@@ -36,9 +36,8 @@ header[role="banner"] + button.button-nav {
 
 $colorDefault: lightness(var(--primary), 2);
 $colorHover: lightness(var(--primary), 4);
-$colorGradient1 :lightness(var(--primary), 1.35);
-$colorGradient2 :var(--primary);
-
+$colorGradient1: lightness(var(--primary), 1.45);
+$colorGradient2: var(--primary);
 
 nav[role="navigation"] {
   background: linear-gradient($colorGradient1, $colorGradient2);

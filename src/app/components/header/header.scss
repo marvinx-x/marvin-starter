@@ -60,7 +60,7 @@ header[role="banner"] {
 	font-size: 1.6rem;
 	line-height: 1rem;
 	white-space: nowrap;
-	font-weight: 300;
+	font-weight: 400;
 	letter-spacing: -0.045rem;
 
 	&,
@@ -68,7 +68,7 @@ header[role="banner"] {
 		color: $colorElemsHeader;
 	}
 	strong {
-		font-weight: 600;
+		font-weight: 700;
 	}
 
 	a {
@@ -97,7 +97,6 @@ header[role="banner"] {
 		text {
 			text-transform: uppercase;
 			word-spacing: -0.5rem;
-			letter-spacing: 0;
 			font-weight: 400;
 			fill: var(--black);
 		}

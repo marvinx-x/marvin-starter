@@ -1,1 +1,16 @@
+.resize-animation-stopper * {
+  animation: none !important;
+  transition: none !important;
+}
 
+button,
+a {
+  &.active-circle {
+    transition: background ease 0.1s;
+    border-radius: 100%;
+
+    &:active {
+      background: alpha(var(--primary), 0.15);
+    }
+  }
+}

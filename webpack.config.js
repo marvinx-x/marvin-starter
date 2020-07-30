@@ -5,17 +5,20 @@ const {
   CleanWebpackPlugin
 } = require( 'clean-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const FaviconsWebpackPlugin = require( 'favicons-webpack-plugin' )
+const FaviconsWebpackPlugin = require( 'favicons-webpack-plugin' );
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
+const entry = path.resolve( __dirname, './src/index.js' );
+const output = path.resolve( __dirname, './dist' );
+
 module.exports = {
   entry: {
-    main: path.resolve( __dirname, './src/index.js' ),
+    main: entry,
     styleguide: path.resolve( __dirname, './src/app/styleguide/styleguide.js' )
   },
   output: {
-    path: path.resolve( __dirname, './dist' ),
+    path: output,
     filename: isDevelopment ? '[name].bundle.js' : '[name].bundle.[hash].js',
     pathinfo: true
   },
@@ -28,7 +31,16 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 8192,
+          name: isDevelopment ? '[name].[ext]' : '[name].[hash].[ext]',
+          outputPath: 'assets/icons/'
+        }
+      },
+      {
+        test: /\.(sc|c)ss$/,
         use: [
           'style-loader',
           MiniCssExtractPlugin.loader,
@@ -81,7 +93,7 @@ module.exports = {
   mode: isDevelopment ? 'development' : 'production',
   devtool: isDevelopment ? 'source-map' : 'eval',
   devServer: {
-    contentBase: path.resolve( __dirname, './dist' ),
+    contentBase: output,
     watchContentBase: true,
     inline: true,
     open: true,

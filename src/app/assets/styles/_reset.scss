@@ -42,8 +42,6 @@ svg {
 	transform-origin: 50% 50%;
 }
 
-
-.resize-animation-stopper * {
-  animation: none !important;
-  transition: none !important;
+i {
+	color: var(--dark);
 }
