@@ -1,13 +1,12 @@
 /* HEADER */
-$heightDescription: ($lengthLogo / 2) + .2rem;
+$heightDescription: ($lengthLogo / 2) + 0.2rem;
 $heightTitle: ($heightDescription - $gapElemsHeader);
 
-
 header[role="banner"] {
-  grid-area: header;
-  position: sticky;
-  top: 0px;
-  z-index: 2;
+	grid-area: header;
+	position: sticky;
+	top: 0px;
+	z-index: 2;
 	padding: $paddingHeader;
 
 	h1 {
@@ -33,26 +32,25 @@ header[role="banner"] {
 	grid-area: logo;
 	display: block;
 	position: relative;
+	height: $lengthLogo;
 
 	svg {
-		 backface-visibility: hidden;
-		 position: absolute;
-		 bottom: 0;
-		 left: 0;
+		backface-visibility: hidden;
+		position: absolute;
+		bottom: 0;
+		left: 0;
 
-		&:first-of-type(){
+		&:first-of-type() {
 			fill: $colorElemsHeader;
-      z-index: 2;
+			z-index: 2;
 		}
 
-		&:last-of-type(){
+		&:last-of-type() {
 			fill: lightness(var(--primary), 1);
 			z-index: 1;
 		}
 	}
 }
-
-
 
 .title {
 	grid-area: title;
@@ -108,11 +106,11 @@ header[role="banner"] {
 		rect {
 			width: 100%;
 			height: 100%;
-			fill : white;
+			fill: white;
 		}
 
-		g > rect{
-			fill : $colorElemsHeader;
+		g > rect {
+			fill: $colorElemsHeader;
 		}
 	}
 }

@@ -3,7 +3,7 @@
 
 header(role="banner")
   h1
-    span.logo: +logo-svg()
+    a(href="./index.html" title=infos.firstname + ' ' + infos.lastname).logo: +logo-svg()
 
     span.title #[strong= infos.lastname]
       = infos.firstname

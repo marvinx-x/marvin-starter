@@ -1,30 +1,30 @@
 /* MAIN CONTAINER */
-$paddingContent: ($heightHeader + $paddingBody) ($widthButtonNav + $lengthLogo/2);
+$paddingContentVert : $heightHeader + $paddingBody;
+$paddingContentHor : $widthButtonNav + $lengthLogo/2;
 $paddingContentMobile: $paddingBody + ($lengthLogo/2);
 
 main[role="main"] {
-  grid-area: main;
-  grid-column-start: 1;
-  grid-row-end: 4;
-  justify-self: flex-end;
-  width: 100%;
-  transition-property: width;
-  transition-duration: $transitionNavDuration;
+	grid-area: main;
+	grid-column-start: 1;
+	grid-row-end: 4;
+	justify-self: flex-end;
+	width: 100%;
+	transition-property: width;
+	transition-duration: $transitionNavDuration;
 	transition-timing-function: $transitionNavEase;
-	padding: $paddingContent;
+	padding: $paddingContentVert $paddingContentHor;
 	background: var(--white);
 	color: var(--dark);
 	position: relative;
-	color: var(--white);
-	box-shadow: -0.2rem 1rem 2.5rem 0.2rem alpha(var(--dark), .2);
-
+	box-shadow: -0.2rem 1rem 2.5rem 0.2rem alpha(var(--dark), 0.2);
+	background-size: cover;
 
 	@include tablet() {
 		padding-left: $paddingContentMobile;
 		padding-right: $paddingContentMobile;
 	}
 
-	@include desktop(){
+	@include desktop() {
 		z-index: 1;
 	}
 }

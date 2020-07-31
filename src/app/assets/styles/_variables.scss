@@ -9,6 +9,8 @@
 	/* TYPOGRAPH */
 	--font-family: "Inter", sans-serif;
 }
+/* PATHS */
+$pathImgs : "./assets/images/";
 
 /* SIZES */
 //minimal wiewport size
@@ -21,7 +23,7 @@ $lengthLogo: 4rem;
 $paddingHeader: $paddingBody;
 $heightHeader: $lengthLogo + ($paddingHeader * 2);
 $gapElemsHeader: 0.6rem;
-$colorElemsHeader : var(--dark);
+$colorElemsHeader: var(--dark);
 
 /* FOOTER */
 $heightFooter: 5.8rem;

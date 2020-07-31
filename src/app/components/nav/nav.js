@@ -52,7 +52,9 @@ export function navigation() {
 
     /// PRESS EVENT
     const pressEvent = new Hammer.Manager( el );
-    const Press = new Hammer.Press( {time: 0 } );
+    const Press = new Hammer.Press( {
+      time: 0
+    } );
     pressEvent.add( Press );
     pressEvent.on( 'press', ( e ) => navEvents() );
     document.addEventListener( 'keydown', ( e ) => el === document.activeElement && ( e.code === "Enter" || e.code === "Space" ) ? navEvents() : null );

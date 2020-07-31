@@ -1,14 +1,13 @@
 :root {
-	font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-	font-size: 1.6rem;
-	color: var(--primary);
-	font-family: var(--font-family);
-	background-color: var(--white);
+  font-size: 1.6rem;
+  color: var(--primary);
+  font-family: var(--font-family);
+  background-color: var(--white);
 }
-
 
 body.nav-less {
   header[role="banner"],
@@ -32,4 +31,13 @@ body:not(.nav-less) {
     "navbutton header main"
     "nav nav main"
     "footer footer footer";
+}
+
+.img {
+  @include bgimage('image.png');
+  background-size : cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-width: 100%;
+  min-height: 25vw;
 }

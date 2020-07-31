@@ -6,6 +6,8 @@ const {
 } = require( 'clean-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const FaviconsWebpackPlugin = require( 'favicons-webpack-plugin' );
+const ImageminPlugin = require( 'imagemin-webpack-plugin' ).default;
+const imageminMozjpeg = require( 'imagemin-mozjpeg' );
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -32,7 +34,7 @@ module.exports = {
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader',
+        loader: 'file-loader',
         options: {
           limit: 8192,
           name: isDevelopment ? '[name].[ext]' : '[name].[hash].[ext]',
@@ -40,11 +42,29 @@ module.exports = {
         }
       },
       {
-        test: /\.(sc|c)ss$/,
+        test: /\.(jpe?g|png|gif)$/,
+        loader: 'file-loader',
+        options: {
+          emitFile: true,
+          name: '[path][name].[hash].[ext]',
+          outputPath: 'assets/images/'
+        }
+      },
+      {
+        test: /\.(css)$/,
+        use: [ 'style-loader', MiniCssExtractPlugin.loader, 'css-loader' ]
+      },
+      {
+        test: /\.(scss)$/,
         use: [
           'style-loader',
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: false
+            }
+          },
           'sass-loader'
         ]
       },
@@ -72,6 +92,28 @@ module.exports = {
         flatten: true
       } ]
     } ),
+    new ImageminPlugin( {
+      // disable: isDevelopment,
+      test: /\.(jpe?g|png|gif)$/,
+      jpegtran: {
+        progressive: false
+      },
+      pngquant: {
+        quality: '2-2'
+      },
+      optipng: {
+        optimizationLevel: 9
+      },
+      gifsicle: {
+        optimizationLevel: 9
+      },
+      plugins: [
+        imageminMozjpeg( {
+          quality: 2,
+          progressive: true
+        } )
+      ]
+    } ),
     new HtmlWebpackPlugin( {
       filename: 'index.html',
       template: path.join( __dirname, './src/app/index.pug' ),
@@ -96,7 +138,7 @@ module.exports = {
     contentBase: output,
     watchContentBase: true,
     inline: true,
-    open: true,
+    open: false,
     writeToDisk: true,
     port: 8000
   }

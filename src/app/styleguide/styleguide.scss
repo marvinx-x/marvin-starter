@@ -1,17 +1,42 @@
 @import "../assets/styles/styles.scss";
 
 /* css that only inpact the starter himself */
-.starter-title {
+.styleguide-title {
   --font-size--title: 5rem;
   --font-weight--title: 600;
   font-weight: var(--font-weight--title);
   font-size: var(--font-size--title);
   line-height: var(--font-size--title);
   @include underlineText();
-	padding-bottom: 2rem;
-	margin-bottom: 5rem;
+  padding-bottom: 2rem;
+  margin-bottom: 5rem;
 
   &::after {
     opacity: 0.3;
+  }
+}
+
+.styleguide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: $paddingContentHor;
+  grid-auto-flow: row;
+  align-items: stretch;
+  justify-items: stretch;
+
+  $imgs: (
+    1: "image.jpg",
+    2: "image.png",
+    3: "image.gif",
+  );
+
+  .col {
+    @each $key, $img in $imgs {
+      &:nth-child(#{$key + 3}) {
+        .img {
+          @include bgimage($img);
+        }
+      }
+    }
   }
 }

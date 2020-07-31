@@ -1,25 +1,31 @@
 'use strict';
 
+
+require( 'webpack-icons-installer' ); //load ALL icons
+// require('webpack-icons-installer/font-awesome'); //load only font-awesome icons
+// require('webpack-icons-installer/google');  //load only google material-design-icons
+// require('webpack-icons-installer/bootstrap');
+
+
 import './app/assets/styles/styles.scss';
-import { navigation } from './app/components/nav/nav';
-import { logo } from './app/components/header/header';
+import {
+  navigation
+} from './app/components/nav/nav';
+import {
+  logo
+} from './app/components/header/header';
 
 navigation();
 logo();
 
 let resizeTimer;
-window.addEventListener('resize', () => {
-	document.body.classList.add('resize-animation-stopper');
-	clearTimeout(resizeTimer);
-	resizeTimer = setTimeout(() => {
-		document.body.classList.remove('resize-animation-stopper');
-	}, 100);
-});
-
-require('webpack-icons-installer'); //load ALL icons
-// require('webpack-icons-installer/font-awesome'); //load only font-awesome icons
-// require('webpack-icons-installer/google');  //load only google material-design-icons
-// require('webpack-icons-installer/bootstrap');
+window.addEventListener( 'resize', () => {
+  document.body.classList.add( 'resize-animation-stopper' );
+  clearTimeout( resizeTimer );
+  resizeTimer = setTimeout( () => {
+    document.body.classList.remove( 'resize-animation-stopper' );
+  }, 100 );
+} );
 
 // import {
 // 	gsap,

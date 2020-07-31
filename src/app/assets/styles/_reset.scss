@@ -12,8 +12,9 @@ ul {
 	list-style: none;
 }
 
-img {
+img, .img {
 	max-width: 100%;
+	object-fit: cover;
 }
 
 button,
