@@ -8,6 +8,7 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const imageminPngquant = require('imagemin-pngquant');
 const imageminGifsicle = require('imagemin-gifsicle');
+const imageminSvgo = require('imagemin-svgo');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -84,14 +85,15 @@ module.exports = {
 			patterns: [
 				{
 					from: './src/app/assets/images/*',
-					to: 'assets/images',
-					flatten: true
+					to: 'assets/images/[name].[ext]',
+					flatten: true,
+					cacheTransform : true
 				}
 			]
 		}),
 		new ImageminPlugin({
-			// disable: isDevelopment,
-			test: /\.(jpe?g|png|gif)$/,
+			disable: isDevelopment,
+			test: /\.(jpe?g|png|gif|svg)$/,
 			plugins: [
 				imageminMozjpeg({
 					quality: 2,
@@ -106,7 +108,10 @@ module.exports = {
 					floyd: 0.5,
 					speed: 2,
 					quality: [0.02, 0.02]
-				})
+				}),
+				imageminSvgo({
+					removeViewBox: true
+			})
 			]
 		}),
 		new HtmlWebpackPlugin({
@@ -121,7 +126,9 @@ module.exports = {
 		}),
 		new FaviconsWebpackPlugin({
 			logo: './src/app/assets/favicon/logo-40x40.svg',
-			prefix: 'assets/favicon/'
+			prefix: 'assets/favicon/',
+			cache: true,
+			inject: true,
 		}),
 		new MiniCssExtractPlugin({
 			filename: isDevelopment ? '[name].css' : '[name].[hash].css'

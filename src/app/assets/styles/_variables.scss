@@ -2,6 +2,7 @@
 	/* COLORS */
 	@include defineColorHSL(--white, 0, 0%, 100%);
 	@include defineColorHSL(--black, 0, 0%, 0%);
+	@include defineColorHSL(--light, 240, 2%, 91%);
 	@include defineColorHSL(--dark, 0, 0%, 4%);
 	@include defineColorHSL(--fluo, 60, 100%, 50%);
 	@include defineColorHSL(--primary, 225, 48%, 45%);
@@ -10,7 +11,7 @@
 	--font-family: "Inter", sans-serif;
 }
 /* PATHS */
-$pathImgs : "./assets/images/";
+$pathImgs: "./assets/images/";
 
 /* SIZES */
 //minimal wiewport size

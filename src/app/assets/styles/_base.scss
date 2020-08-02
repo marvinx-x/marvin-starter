@@ -32,12 +32,3 @@ body:not(.nav-less) {
     "nav nav main"
     "footer footer footer";
 }
-
-.img {
-  @include bgimage('image.png');
-  background-size : cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  min-width: 100%;
-  min-height: 25vw;
-}

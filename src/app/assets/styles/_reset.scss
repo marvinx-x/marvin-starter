@@ -12,11 +12,6 @@ ul {
 	list-style: none;
 }
 
-img, .img {
-	max-width: 100%;
-	object-fit: cover;
-}
-
 button,
 a {
 	&:focus,
@@ -45,4 +40,24 @@ svg {
 
 i {
 	color: var(--dark);
+}
+
+picture {
+	background: var(--light);
+	display: flex;
+}
+
+img,
+.img {
+	width: 100%;
+	object-fit: cover;
+}
+
+.img {
+	background-color: var(--light);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	min-width: 100%;
+	min-height: 25vw;
 }

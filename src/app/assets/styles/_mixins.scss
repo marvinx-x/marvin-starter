@@ -10,10 +10,14 @@
 
 /// BACKGROUND IMAGE PATH
 @mixin bgimage($name) {
-  $url:"#{$pathImgs}#{$name}";
+  $url: null;
+  @if (str-index($name, "data:image")) {
+    $url: "#{$name}";
+  } @else {
+    $url: "#{$pathImgs}#{$name}";
+  }
   background-image: url($url);
 }
-
 
 /// DEFINE A COLOR LINE
 @mixin underlineText($width: 100%, $height: 0.1rem, $color: var(--primary)) {
