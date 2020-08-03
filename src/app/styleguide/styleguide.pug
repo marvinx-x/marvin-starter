@@ -44,17 +44,18 @@ append main
   i.material-icons traffic
 
 
+
   .styleguide-grid
     .col
       p img html jpg
       picture
-        source(srcset="" media="")
-        img(src=imgDir + "image.jpg" alt="")
+        source(srcset=imgDir + "image-320.jpg 320w, "+imgDir+"image-1120.jpg 1120w, "+imgDir+"image-1920.jpg 1920w" type='image/jpg')
+        img(src=imgDir + "image.jpg" srcset=imgDir+"image-320.jpg 320w, "+imgDir+"image-1120.jpg 1120w, "+imgDir+"image-1920.jpg 1920w" sizes='100vw' alt="")
     .col
       p img html png
         picture
           source(srcset="" media="")
-          img(src=imgDir + "image.png" alt="")
+          img(src=imgDir + "image-100.png" alt="")
     .col
       p img html gif
         picture
@@ -85,5 +86,11 @@ append main
     .col
       p img css data uri
       .img
+
+    //- .col
+    //-   p img html jpg
+    //-   picture
+    //-     source(srcSet={responsiveImage.srcSet} type='image/jpg')
+    //-     //- img(src={responsiveImage.src} srcSet={responsiveImage.srcSet} width={responsiveImage.width} height={responsiveImage.height} sizes='(min-width: 1024px) 1024px, 100vw' loading="lazy")
 
 

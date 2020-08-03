@@ -45,6 +45,23 @@ module.exports = {
 				}
 			},
 			{
+        test: /\.(jpe?g|png)$/i,
+         use: [
+          {
+            loader: "responsive-loader",
+            options: {
+							name: '[name]-[width].[ext]',
+							outputPath : 'assets/images',
+							min: 320,
+							max : 1920,
+							steps : 3,
+							placeholder: true,
+							disable : false
+            },
+          },
+        ],
+      },
+			{
 				test: /\.(css)$/,
 				use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader']
 			},
@@ -92,7 +109,7 @@ module.exports = {
 			]
 		}),
 		new ImageminPlugin({
-			disable: isDevelopment,
+			// disable: isDevelopment,
 			test: /\.(jpe?g|png|gif|svg)$/,
 			plugins: [
 				imageminMozjpeg({

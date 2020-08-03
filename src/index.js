@@ -1,19 +1,18 @@
 'use strict';
 
+//require( 'webpack-icons-installer' ); //load ALL icons
+require('webpack-icons-installer/font-awesome'); //load only font-awesome icons
+require('webpack-icons-installer/google');  //load only google material-design-icons
+require( 'webpack-icons-installer/bootstrap' );
 
-require( 'webpack-icons-installer' ); //load ALL icons
-// require('webpack-icons-installer/font-awesome'); //load only font-awesome icons
-// require('webpack-icons-installer/google');  //load only google material-design-icons
-// require('webpack-icons-installer/bootstrap');
+import responsiveImageJpg from './app/assets/images/image.jpg';
+import responsiveImagePng from './app/assets/images/image.png';
 
+// console.log(responsiveImageJpg.srcSet);
 
 import './app/assets/styles/styles.scss';
-import {
-  navigation
-} from './app/components/nav/nav';
-import {
-  logo
-} from './app/components/header/header';
+import { navigation } from './app/components/nav/nav';
+import { logo } from './app/components/header/header';
 
 navigation();
 logo();
@@ -26,6 +25,7 @@ window.addEventListener( 'resize', () => {
     document.body.classList.remove( 'resize-animation-stopper' );
   }, 100 );
 } );
+
 
 // import {
 // 	gsap,

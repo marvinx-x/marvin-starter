@@ -2,10 +2,13 @@
 	/* COLORS */
 	@include defineColorHSL(--white, 0, 0%, 100%);
 	@include defineColorHSL(--black, 0, 0%, 0%);
-	@include defineColorHSL(--light, 240, 2%, 91%);
-	@include defineColorHSL(--dark, 0, 0%, 4%);
-	@include defineColorHSL(--fluo, 60, 100%, 50%);
 	@include defineColorHSL(--primary, 225, 48%, 45%);
+	@include defineColorHSL(--light, 240, 2%, 91%);
+
+	@include defineColorHSL(--fluo, 60, 100%, 50%);
+
+	// @include defineColorHSL(--dark, 0, 0%, 4%);
+
 
 	/* TYPOGRAPH */
 	--font-family: "Inter", sans-serif;
@@ -24,7 +27,7 @@ $lengthLogo: 4rem;
 $paddingHeader: $paddingBody;
 $heightHeader: $lengthLogo + ($paddingHeader * 2);
 $gapElemsHeader: 0.6rem;
-$colorElemsHeader: var(--dark);
+$colorElemsHeader: lightness(var(--primary), 0.5);
 
 /* FOOTER */
 $heightFooter: 5.8rem;

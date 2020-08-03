@@ -42,6 +42,7 @@
 		"imagemin-pngquant": "^9.0.0",
 		"imagemin-svgo": "^8.0.0",
 		"imagemin-webpack-plugin": "^2.4.2",
+		"jimp": "^0.14.0",
 		"mini-css-extract-plugin": "^0.9.0",
 		"mobile-device-detect": "^0.4.3",
 		"node-sass": "^4.14.1",
@@ -51,11 +52,13 @@
 		"pug-loader": "^2.4.0",
 		"regenerator-runtime": "^0.13.5",
 		"resolve-url-loader": "^3.1.1",
+		"responsive-loader": "^2.0.0",
 		"sass-loader": "^9.0.2",
 		"style-loader": "^1.2.1",
 		"url-loader": "^4.1.0",
 		"webpack": "^4.43.0",
 		"webpack-cli": "^3.3.12",
+		"webpack-dashboard": "^3.2.0",
 		"webpack-dev-server": "^3.11.0",
 		"webpack-icons-installer": "^2.0.0"
 	}
