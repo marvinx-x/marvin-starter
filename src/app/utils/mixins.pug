@@ -1,0 +1,8 @@
+mixin img-src(src, picture=false, width=false, height=false, srcset, type, sizes=false,  media=false, alt="Alternative text")
+  if(!picture)
+    img(src=src srcset=srcset, sizes=sizes alt=alt width=width height=height)
+  else
+    picture
+      source(srcset=srcset media=media sizes=sizes type= type ? "image/"+type : false)
+      img(src=src alt=alt width=width height=height)
+

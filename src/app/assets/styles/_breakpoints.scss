@@ -1,42 +1,23 @@
 /* BREAKPOINTS */
-$mobileBreakPortrait : rem-to-px($minWidth);
-$mobileBreakLandscape : 480px;
-$tabletBreakPortrait: 768px;
-$tabletBreakLandscape: 1024px;
-$desktopBreak: 1200px;
-$desktopLargeBreak: 1400px;
+$mobileBreakPortrait: $minWidth;
+$mobileBreakLandscape: 48rem;
+$tabletBreakPortrait: 76.8rem;
+$tabletBreakLandscape: 102.4rem;
+$desktopLargeBreak: 160rem;
 
-/* mobile */
-@mixin mobile {
-	@media (max-width: $mobileBreakLandscape){
-		@content;
-	}
-}
+$breakpoints: (
+  'mobile'  : ( max-width: $mobileBreakPortrait ),
+  'mobileLandscape' : (min-width: $mobileBreakPortrait + 0.1rem),
+  'tablet'  : (min-width: $mobileBreakLandscape + 0.1rem),
+  'tabletLandscape'  : (min-width: $tabletBreakPortrait + 0.1rem),
+  'desktop'  :  (min-width: $tabletBreakLandscape + 0.1rem),
+  'largeDesktop'  : (min-width: $desktopLargeBreak)
+);
 
-/* tablet */
-@mixin  tablet{
-	@media (max-width: $tabletBreakPortrait) {
-		@content;
-	}
-}
-
-/* Tablet landscape */
-@mixin  tabletLandscape{
-	@media (max-width: $tabletBreakLandscape) {
-		@content;
-	}
-}
-
-/* Destop */
-@mixin desktop{
-	@media (min-width: $tabletBreakLandscape + 1px) {
-		@content;
-	}
-}
-
-/* Large desktop */
-@mixin largeDesktop {
-	@media (min-width: $desktopLargeBreak) {
-		@content;
-	}
+@mixin respond-to($name) {
+  @if map-has-key($breakpoints, $name) {
+    @media #{inspect(map-get($breakpoints, $name))} {
+      @content;
+    }
+  }
 }

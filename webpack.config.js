@@ -52,11 +52,7 @@ module.exports = {
             options: {
 							name: '[name]-[width].[ext]',
 							outputPath : 'assets/images',
-							min: 320,
-							max : 1920,
-							steps : 3,
-							placeholder: true,
-							disable : false
+							placeholder: true
             },
           },
         ],
@@ -85,7 +81,8 @@ module.exports = {
 					{
 						loader: 'pug-loader',
 						options: {
-							pretty: isDevelopment ? true : false
+							pretty: isDevelopment ? true : false,
+							self: true,
 						}
 					}
 				]
@@ -101,15 +98,17 @@ module.exports = {
 		new CopyWebpackPlugin({
 			patterns: [
 				{
-					from: './src/app/assets/images/*',
-					to: 'assets/images/[name].[ext]',
-					flatten: true,
-					cacheTransform : true
+					from: './src/app/assets/images/*.gif',
+					to: 'assets/images/[name].[ext]'
+				},
+				{
+					from: './src/app/assets/images/*.svg',
+					to: 'assets/images/[name].[ext]'
 				}
 			]
 		}),
 		new ImageminPlugin({
-			// disable: isDevelopment,
+			disable: isDevelopment,
 			test: /\.(jpe?g|png|gif|svg)$/,
 			plugins: [
 				imageminMozjpeg({

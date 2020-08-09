@@ -10,3 +10,7 @@ import {
 
 navigation();
 logo();
+
+// import responsiveImageJpg from '../assets/images/image.jpg?sizes[]=320,sizes[]=1120,sizes[]=1920';
+// import responsiveImagePng from 'img/myImage.jpg?sizes[]=320,sizes[]=1120,sizes[]=1920';
+// console.log(responsiveImageJpg);

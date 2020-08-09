@@ -1,7 +1,6 @@
 /* MAIN CONTAINER */
 $paddingContentVert : $heightHeader + $paddingBody;
-$paddingContentHor : $widthButtonNav + $lengthLogo/2;
-$paddingContentMobile: $paddingBody + ($lengthLogo/2);
+$paddingContentHor : $widthButtonNav + $paddingBody;
 
 main[role="main"] {
 	grid-area: main;
@@ -19,12 +18,7 @@ main[role="main"] {
 	box-shadow: -0.2rem 1rem 2.5rem 0.2rem alpha(var(--dark), 0.2);
 	background-size: cover;
 
-	@include tablet() {
-		padding-left: $paddingContentMobile;
-		padding-right: $paddingContentMobile;
-	}
-
-	@include desktop() {
+	@include respond-to(desktop) {
 		z-index: 1;
 	}
 }

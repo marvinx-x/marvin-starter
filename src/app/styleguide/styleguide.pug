@@ -43,54 +43,78 @@ append main
   i.material-icons computer
   i.material-icons traffic
 
+  - var extensions = ["jpg", "png", "gif", "svg", "dataUri"]
 
+  - var sizes = [1920, 1120, 320];
+  - var originalImg = 'https://via.placeholder.com/'+sizes[0]
+  - var srcSet = originalImg +' '+ sizes[0]+"w, https://via.placeholder.com/1920 "+sizes[1]+"w, https://via.placeholder.com/1120 "+sizes[2]+"w";
+
+  //- .styleguide-grid
+  //-   each extension, key in extensions
+  //-     .col
+  //-       p= 'img html '+ key + ': ' + extension
+  //-       picture
+  //-         source(srcset=srcSet)
+  //-         img(src=originalImg srcset=srcSet alt="Alternative Text" sizes="100w")
 
   .styleguide-grid
-    .col
-      p img html jpg
-      picture
-        source(srcset=imgDir + "image-320.jpg 320w, "+imgDir+"image-1120.jpg 1120w, "+imgDir+"image-1920.jpg 1920w" type='image/jpg')
-        img(src=imgDir + "image.jpg" srcset=imgDir+"image-320.jpg 320w, "+imgDir+"image-1120.jpg 1120w, "+imgDir+"image-1920.jpg 1920w" sizes='100vw' alt="")
-    .col
-      p img html png
-        picture
-          source(srcset="" media="")
-          img(src=imgDir + "image-100.png" alt="")
-    .col
-      p img html gif
-        picture
-          source(srcset="" media="")
-          img(src=imgDir + "image.gif" alt="")
-    .col
-      p img html svg
-        picture
-          source(srcset="" media="")
-          img(src=imgDir + "image.svg" alt="")
-    .col
-      p img html data URI
-        picture
-          source(srcset="" media="")
-          img(src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAwFBMVEXm7NK41k3w8fDv7+q01Tyy0zqv0DeqyjOszDWnxjClxC6iwCu11z6y1DvA2WbY4rCAmSXO3JZDTxOiwC3q7tyryzTs7uSqyi6tzTCmxSukwi9aaxkWGga+3FLv8Ozh6MTT36MrMwywyVBziSC01TbT5ZW9z3Xi6Mq2y2Xu8Oioxy7f572qxzvI33Tb6KvR35ilwTmvykiwzzvV36/G2IPw8O++02+btyepyDKvzzifvSmw0TmtzTbw8PAAAADx8fEC59dUAAAA50lEQVQYV13RaXPCIBAG4FiVqlhyX5o23vfVqUq6mvD//1XZJY5T9xPzzLuwgKXKslQvZSG+6UXgCnFePtBE7e/ivXP/nRvUUl7UqNclvO3rpLqofPDAD8xiu2pOntjamqRy/RqZxs81oeVzwpCwfyA8A+8mLKFku9XfI0YnSKXnSYZ7ahSII+AwrqoMmEFKriAeVrqGM4O4Z+ADZIhjg3R6LtMpWuW0ERs5zunKVHdnnnMLNQqaUS0kyKkjE1aE98b8y9x9JYHH8aZXFMKO6JFMEvhucj3Wj0kY2D92HlHbE/9Vk77mD6srRZqmVEAZAAAAAElFTkSuQmCC" alt="")
-    .col
-      p img css jpg
-      .img
-    .col
-      p img css png
-      .img
-    .col
-      p img css gif
-      .img
-    .col
-      p img css svg
-      .img
-    .col
-      p img css data uri
-      .img
+    each extension, key in extensions
+      .col
+        p= key+1 + ': image html ' + extension
+
+        case extension
+          when "jpg"
+            - var originalImgJpg = require("../"+imgDir+"image.jpg").src
+            +img-src(originalImgJpg)
+
+          when "png"
+            - var originalImgPng = require("../"+imgDir+"image.png").src
+            +img-src(originalImgPng, true)
+
+          when "gif"
+            +img-src(imgDir+"image.gif")
+
+          when "svg"
+            +img-src(imgDir+"image.svg", true)
+
+          when "dataUri"
+           - var originalImgDataUri = require("../"+imgDir+"image.jpg").placeholder
+            +img-src(originalImgDataUri, false, 40, 40)
+
+          default
+            p you have #{key} key
+
+        //- picture
+        //-   if(extension === "jpg")
+        //-     - var originalImgJpg = require("../"+imgDir+"image.jpg")
+        //-     +src-picture(originalImgJpg)
+
+        //-   else if(extension === "png")
+        //-     - var originalImgPng = require("../"+imgDir+"image.png")
+        //-     - var srcSetPng = require("../"+imgDir+"image.png?{sizes:[100,200,300]}").srcSet
+        //-     +src-picture(originalImgPng, srcSetPng)
+
+        //-   else
+        //-     source(srcset="" media="")
+
+        //-     if(extension !== 'dataUri')
+        //-       img(src=imgDir + "image."+extension alt="")
+
+        //-     else
+        //-       img(src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAwFBMVEXm7NK41k3w8fDv7+q01Tyy0zqv0DeqyjOszDWnxjClxC6iwCu11z6y1DvA2WbY4rCAmSXO3JZDTxOiwC3q7tyryzTs7uSqyi6tzTCmxSukwi9aaxkWGga+3FLv8Ozh6MTT36MrMwywyVBziSC01TbT5ZW9z3Xi6Mq2y2Xu8Oioxy7f572qxzvI33Tb6KvR35ilwTmvykiwzzvV36/G2IPw8O++02+btyepyDKvzzifvSmw0TmtzTbw8PAAAADx8fEC59dUAAAA50lEQVQYV13RaXPCIBAG4FiVqlhyX5o23vfVqUq6mvD//1XZJY5T9xPzzLuwgKXKslQvZSG+6UXgCnFePtBE7e/ivXP/nRvUUl7UqNclvO3rpLqofPDAD8xiu2pOntjamqRy/RqZxs81oeVzwpCwfyA8A+8mLKFku9XfI0YnSKXnSYZ7ahSII+AwrqoMmEFKriAeVrqGM4O4Z+ADZIhjg3R6LtMpWuW0ERs5zunKVHdnnnMLNQqaUS0kyKkjE1aE98b8y9x9JYHH8aZXFMKO6JFMEvhucj3Wj0kY2D92HlHbE/9Vk77mD6srRZqmVEAZAAAAAElFTkSuQmCC" alt="")
 
     //- .col
-    //-   p img html jpg
-    //-   picture
-    //-     source(srcSet={responsiveImage.srcSet} type='image/jpg')
-    //-     //- img(src={responsiveImage.src} srcSet={responsiveImage.srcSet} width={responsiveImage.width} height={responsiveImage.height} sizes='(min-width: 1024px) 1024px, 100vw' loading="lazy")
-
-
+    //-   p img css jpg
+    //-   .img
+    //- .col
+    //-   p img css png
+    //-   .img
+    //- .col
+    //-   p img css gif
+    //-   .img
+    //- .col
+    //-   p img css svg
+    //-   .img
+    //- .col
+    //-   p img css data uri
+    //-   .img

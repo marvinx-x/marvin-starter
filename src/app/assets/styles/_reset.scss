@@ -43,7 +43,6 @@ i {
 }
 
 picture {
-	background: var(--light);
 	display: flex;
 }
 
@@ -51,10 +50,10 @@ img,
 .img {
 	width: 100%;
 	object-fit: cover;
+	background-color: var(--light);
 }
 
 .img {
-	background-color: var(--light);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;

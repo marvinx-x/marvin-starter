@@ -2,7 +2,7 @@
 
 button(type="button" aria-expanded="false" aria-controls="main-nav").button-nav.active-circle: +burger-svg()
 
-nav(role="navigation" aria-label="Main navigation").open
+nav(role="navigation" aria-label="Main navigation")
   ul(id="main-nav")
     each starterItem in starterItems
       li: a(href="./index.html")= starterItem

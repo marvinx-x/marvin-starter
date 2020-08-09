@@ -65,7 +65,7 @@ nav[role="navigation"] {
     clip-path: inset(0px 0px 0px 0px);
     visibility: visible;
 
-    @include desktop() {
+    @include respond-to(desktop) {
       & + main[role="main"] {
         width: calc(100% - #{$widthNav});
       }
