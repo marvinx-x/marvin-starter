@@ -4,11 +4,7 @@
 	@include defineColorHSL(--black, 0, 0%, 0%);
 	@include defineColorHSL(--primary, 225, 48%, 45%);
 	@include defineColorHSL(--light, 240, 2%, 91%);
-
 	@include defineColorHSL(--fluo, 60, 100%, 50%);
-
-	// @include defineColorHSL(--dark, 0, 0%, 4%);
-
 
 	/* TYPOGRAPH */
 	--font-family: "Inter", sans-serif;
@@ -19,7 +15,9 @@ $pathImgs: "./assets/images/";
 /* SIZES */
 //minimal wiewport size
 $minWidth: 32rem;
+$maxWidth: 192rem;
 $paddingBody: 1.6rem;
+$fontSizeBase: 1.6rem;
 
 /* HEADER */
 // logo width and height

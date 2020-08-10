@@ -1,6 +1,6 @@
 /* MAIN CONTAINER */
-$paddingContentVert : $heightHeader + $paddingBody;
-$paddingContentHor : $widthButtonNav + $paddingBody;
+$paddingContentVert: $heightHeader + $paddingBody;
+$paddingContentHor: $widthButtonNav + $paddingBody;
 
 main[role="main"] {
 	grid-area: main;
@@ -8,6 +8,7 @@ main[role="main"] {
 	grid-row-end: 4;
 	justify-self: flex-end;
 	width: 100%;
+	max-width: $maxWidth;
 	transition-property: width;
 	transition-duration: $transitionNavDuration;
 	transition-timing-function: $transitionNavEase;

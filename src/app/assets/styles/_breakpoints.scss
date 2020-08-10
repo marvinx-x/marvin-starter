@@ -1,22 +1,31 @@
 /* BREAKPOINTS */
-$mobileBreakPortrait: $minWidth;
-$mobileBreakLandscape: 48rem;
-$tabletBreakPortrait: 76.8rem;
-$tabletBreakLandscape: 102.4rem;
-$desktopLargeBreak: 160rem;
+$mobileBreakPortrait: $minWidth/$fontSizeBase;
+$mobileBreakLandscape: 48rem/$fontSizeBase;
+$tabletBreakPortrait: 76.8rem/$fontSizeBase;
+$tabletBreakLandscape: 102.4rem/$fontSizeBase;
+$desktopLargeBreak: $maxWidth/$fontSizeBase;
 
 $breakpoints: (
-  'mobile'  : ( max-width: $mobileBreakPortrait ),
-  'mobileLandscape' : (min-width: $mobileBreakPortrait + 0.1rem),
+  'mobile'  : ( min-width: 0rem ),
+  'mobileLandscape' : (min-width: $mobileBreakPortrait+0.1rem),
   'tablet'  : (min-width: $mobileBreakLandscape + 0.1rem),
   'tabletLandscape'  : (min-width: $tabletBreakPortrait + 0.1rem),
   'desktop'  :  (min-width: $tabletBreakLandscape + 0.1rem),
-  'largeDesktop'  : (min-width: $desktopLargeBreak)
+  'largeDesktop'  : (min-width: $desktopLargeBreak + 0rem)
+);
+
+$breakpointsMax: (
+  'mobile'  : ( max-width: $mobileBreakPortrait + 0rem),
+  'mobileLandscape' : (max-width: $mobileBreakLandscape + 0rem),
+  'tablet'  : (max-width: $tabletBreakPortrait + 0rem),
+  'tabletLandscape'  : (max-width: $tabletBreakLandscape + 0rem),
+  'desktop'  :  (max-width: $desktopLargeBreak + 0rem),
+  'largeDesktop'  : (max-width: 100%)
 );
 
 @mixin respond-to($name) {
   @if map-has-key($breakpoints, $name) {
-    @media #{inspect(map-get($breakpoints, $name))} {
+    @media screen and #{inspect(map-get($breakpoints, $name))} and #{inspect(map-get($breakpointsMax, $name))} {
       @content;
     }
   }

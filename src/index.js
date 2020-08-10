@@ -1,10 +1,12 @@
-// 'use strict';
+'use strict';
 
 //require( 'webpack-icons-installer' ); //load ALL icons
 require('webpack-icons-installer/font-awesome'); //load only font-awesome icons
 require('webpack-icons-installer/google');  //load only google material-design-icons
 require( 'webpack-icons-installer/bootstrap' );
 
+// import responsiveImageJpg from './app/assets/images/image.jpg?sizes[]=320,sizes[]=1120,sizes[]=1920&format=webp';
+// console.log(responsiveImageJpg);
 
 import './app/assets/styles/styles.scss';
 import { navigation } from './app/components/nav/nav';

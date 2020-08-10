@@ -4,10 +4,10 @@
 }
 
 //convert rem back to px
-@function rem-to-px($size) {
-	$value: parseInt($size) * 10px; //15px is the base size specified
-	@return round($value);
-}
+// @function rem-to-px($size) {
+// 	$value: parseInt($size) * 10px; //15px is the base size specified
+// 	@return round($value);
+// }
 
 // replace substring with another string
 // credits: https://css-tricks.com/snippets/sass/str-replace-function/

@@ -11,7 +11,7 @@
 /// BACKGROUND IMAGE PATH
 @mixin bgimage($name) {
   $url: null;
-  @if (str-index($name, "data:image")) {
+  @if (str-index($name, "data:image") or str-index($name, "http")) {
     $url: "#{$name}";
   } @else {
     $url: "#{$pathImgs}#{$name}";

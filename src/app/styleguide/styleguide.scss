@@ -16,54 +16,86 @@
   }
 }
 
-/* BLOC IMAGE */
-
-$imgs: (
-  1: "image.jpg",
-  2: "image.png",
-  3: "image.gif",
-  4: "image.svg",
-  5: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAwFBMVEXm7NK41k3w8fDv7+q01Tyy0zqv0DeqyjOszDWnxjClxC6iwCu11z6y1DvA2WbY4rCAmSXO3JZDTxOiwC3q7tyryzTs7uSqyi6tzTCmxSukwi9aaxkWGga+3FLv8Ozh6MTT36MrMwywyVBziSC01TbT5ZW9z3Xi6Mq2y2Xu8Oioxy7f572qxzvI33Tb6KvR35ilwTmvykiwzzvV36/G2IPw8O++02+btyepyDKvzzifvSmw0TmtzTbw8PAAAADx8fEC59dUAAAA50lEQVQYV13RaXPCIBAG4FiVqlhyX5o23vfVqUq6mvD//1XZJY5T9xPzzLuwgKXKslQvZSG+6UXgCnFePtBE7e/ivXP/nRvUUl7UqNclvO3rpLqofPDAD8xiu2pOntjamqRy/RqZxs81oeVzwpCwfyA8A+8mLKFku9XfI0YnSKXnSYZ7ahSII+AwrqoMmEFKriAeVrqGM4O4Z+ADZIhjg3R6LtMpWuW0ERs5zunKVHdnnnMLNQqaUS0kyKkjE1aE98b8y9x9JYHH8aZXFMKO6JFMEvhucj3Wj0kY2D92HlHbE/9Vk77mD6srRZqmVEAZAAAAAElFTkSuQmCC",
-);
-
-
-$nbrImgs: length($imgs);
-
 .styleguide-grid {
   display: grid;
-  grid-template-columns: repeat($nbrImgs, 1fr);
   grid-gap: $paddingContentHor;
   grid-auto-flow: row;
   align-items: stretch;
   justify-items: stretch;
+  margin-top: $paddingContentHor;
 
-  .col{
+  @for $i from 0 to 10 {
+    &.col--#{$i + 1} {
+      grid-template-columns: repeat($i + 1, 1fr);
 
-    p{
-      width: 100%;
-    }
-
-    &:last-of-type{
-      img{
-        width: unset;
-      }
-    }
-  }
-
-  @each $key, $img in $imgs {
-    .col {
-      &:nth-child(#{$key + $nbrImgs}) {
-        .img {
-          @include bgimage($img);
+      @each $key, $breakpoint in $breakpoints {
+        $y: index($breakpoints, $key $breakpoint);
+        @include respond-to(#{$key}) {
+          grid-template-columns: repeat($y, 1fr);
         }
       }
     }
   }
+}
 
-  @each $key, $breakpoint in $breakpoints{
-    $i: index($breakpoints, $key $breakpoint);
-    @include respond-to(#{$key}){
-      grid-template-columns: repeat($i, 1fr);
+.styleguide-content {
+  margin-top: $paddingContentHor;
+}
+
+$imgs: (
+  1: "image-400.jpg",
+  2: "image-400.png",
+  3: "image.gif",
+  4: "image.svg",
+  5: "image-400.webp",
+  6:
+    "data:image/jpeg;base64,/9j/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAoACgDASIAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAAAAUCBwMEBgj/xAA3EAABAwMCAwYCBwkAAAAAAAABAgMEAAURBhITITEHFCJBUWEVNRYjMjNCdbRSVnOBkZOUsdP/xAAYAQADAQEAAAAAAAAAAAAAAAACAwQFAf/EACERAQACAgEFAAMAAAAAAAAAAAEAAgMRIQQiMTJBEmGh/9oADAMBAAIRAxEAPwDzdus1r09YirTFqnPy4KpDz8lcjepXHeR0Q6lIAShPlV99lmgexrtL0VIkWTTke2aijtbZEd+ZJdQw7jwr28QFbSj5ggjmOo50hbrfFujuioU6bFhxF24GQ7IkBlIbEt8rAUeQVtzj1NWJpa2dnVmuzlwtmsERVPRnDGV8VSkcItM5S8kpz94XfqyMkJB2kCpOoqNO1S363/ZRjdPIanFXiyItGrJOlr7oexW2aySlSkqlkEHo4hReIKSOYVgj2zypjrDsxt9l7sqNFMuM4Snj5WA4QlStySMp24Qodcgg8qew40TU8xi5WxLjymLIl94SJilobXs3u7vCOTfJITz549Ka651E0zNtOnH0hWnlxVOgR4vNp5xooJRjB+14iD61t9LgDCWucsmu92iVGx8FudmvbX0YtUR6JbVSGZEdyRvC0utJz4nVJIIUrPLz8qK19PJKYGpkqGCmzOg/32KKz0CyEN8EhfPkWl/yk/qpFKMmm98+Q6X/ACk/qpFJ6di9YNvMsHTMlbWmX+E4tsLZW2sJJG5OAcHHlyH9KdXbUeo+BDuES3bYS4e1aVgEOJU1tV556c8j0HpXH6UmhTPdSQCnmB6+tObvd32bW1E74kcFJDSgvbtT+x79Tj2OK1q2HGO4r7OctKw5H1O4BjdZVnHvxmM0VCx57jqTOPkrnT+OxRWJf3Y74TLwLbdtO2Ap1JZYbsWAph5mU66haV94eX+FtQxtWk5zWD4DC/e/TH+Q/wD8aKKUXtXgYWhkkwodrSqYNUWN/aMFuM86pw59ApoD360qmz4br5UmWpYxyK8k/wCqKKox5rfjpgWDc3rHMt7dl1E89cYzTjluMZlhW7iPLU60rwgJxgBBySR/OiiilvKs78n/2Q==",
+);
+
+$nbrImgs: length($imgs);
+
+.styleguide-imgs {
+  .col {
+    p {
+      width: 100%;
+    }
+
+    &:last-of-type {
+      img,
+      .img {
+        min-width: unset;
+        min-height: unset;
+        width: 4rem;
+        height: 4rem;
+      }
+    }
+  }
+
+  &:nth-of-type(2) {
+    @each $key, $img in $imgs {
+      .col {
+        &:nth-child(#{$key}) {
+          .img {
+            @include bgimage($img);
+          }
+        }
+      }
+    }
+  }
+}
+
+.styleguide-srcset {
+  $srcsets: (
+    "mobileLandscape": 480,
+    "tablet": 1024,
+    "desktop": 1920,
+  );
+
+  @each $key, $srcset in $srcsets {
+    @include respond-to($key) {
+      .img {
+        @include bgimage("https://via.placeholder.com/#{$srcset}x300?size=#{$srcset}");
+      }
     }
   }
 }

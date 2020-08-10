@@ -45,14 +45,15 @@ module.exports = {
 				}
 			},
 			{
-        test: /\.(jpe?g|png)$/i,
+        test: /\.(jpe?g|png|webp)$/i,
          use: [
           {
             loader: "responsive-loader",
             options: {
 							name: '[name]-[width].[ext]',
 							outputPath : 'assets/images',
-							placeholder: true
+							placeholder: true,
+							adapter: require('responsive-loader/sharp')
             },
           },
         ],
@@ -109,7 +110,7 @@ module.exports = {
 		}),
 		new ImageminPlugin({
 			disable: isDevelopment,
-			test: /\.(jpe?g|png|gif|svg)$/,
+			test: /\.(jpe?g|png|gif|svg|webp)$/,
 			plugins: [
 				imageminMozjpeg({
 					quality: 2,

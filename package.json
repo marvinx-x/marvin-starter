@@ -54,6 +54,7 @@
 		"resolve-url-loader": "^3.1.1",
 		"responsive-loader": "^2.0.0",
 		"sass-loader": "^9.0.2",
+		"sharp": "^0.25.4",
 		"style-loader": "^1.2.1",
 		"url-loader": "^4.1.0",
 		"webpack": "^4.43.0",

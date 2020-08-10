@@ -1,8 +1,8 @@
-mixin img-src(src, picture=false, width=false, height=false, srcset, type, sizes=false,  media=false, alt="Alternative text")
+mixin img-src(src, picture=false, alt=" ", width=false, height=false, lazy="lazy", srcset, sizes=false,  type, media=false)
   if(!picture)
-    img(src=src srcset=srcset, sizes=sizes alt=alt width=width height=height)
+    img(src=src srcset=srcset, sizes=sizes alt=alt width=width height=height loading=lazy)
   else
     picture
       source(srcset=srcset media=media sizes=sizes type= type ? "image/"+type : false)
-      img(src=src alt=alt width=width height=height)
+      img(src=src alt=alt width=width height=height loading=lazy)
 
