@@ -1,24 +1,26 @@
 /* MAIN CONTAINER */
-$paddingContentVert: $heightHeader + $paddingBody;
-$paddingContentHor: $widthButtonNav + $paddingBody;
 
 main[role="main"] {
 	grid-area: main;
 	grid-column-start: 1;
 	grid-row-end: 4;
 	justify-self: flex-end;
-	width: 100%;
-	max-width: $maxWidth;
-	transition-property: width;
+	background: var(--white);
+	width: calc(100vw - #{$minWidth});
+	transition-property: transform;
 	transition-duration: $transitionNavDuration;
 	transition-timing-function: $transitionNavEase;
-	padding: $paddingContentVert $paddingContentHor;
-	background: var(--white);
-	color: var(--dark);
-	position: relative;
-	box-shadow: -0.2rem 1rem 2.5rem 0.2rem alpha(var(--dark), 0.2);
-	background-size: cover;
+	transform : translate3d(-$minWidth,0,0);
+	padding: 0 $paddingContentHor $paddingContentVert $paddingContentHor;
 
+	@include breakpoints-max(smallDesktop) {
+		width: 100vw;
+		transform: translate3d(0,0,0);
+	}
+
+	// position: relative;
+	// box-shadow: -0.2rem 1rem 2.5rem 0.2rem alpha(var(--dark), 0.2);
+	// z-index : 2;
 	// &::after{
 	// 	@extend %after-before--utils;
 	// 	height : $heightHeader * 2;
@@ -29,8 +31,4 @@ main[role="main"] {
 	// 	background-image: radial-gradient(ellipse farthest-side at top left ,var(--white) 50%, transparent);
 	// 	pointer-events: none;
 	// }
-
-	@include breakpoints-between(desktop) {
-		z-index: 1;
-	}
 }

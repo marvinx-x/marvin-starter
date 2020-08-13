@@ -4,9 +4,24 @@
 
 body {
   font-size: $fontSizeBase;
-  color: var(--primary);
+  color: lightness(var(--primary), 0.9);
   font-family: var(--font-family);
   background-color: var(--white);
+  line-height: 2.35rem;
+
+  // @each $key, $breakpoint in $breakpointsMin {
+  //   @include breakpoints-between(#{$key}) {
+  //     &::before {
+  //       content: "#{$key}";
+  //       display: block;
+  //       position: fixed;
+  //       z-index: 10;
+  //       top: 0;
+  //       left: 0;
+  //       color: black;
+  //     }
+  //   }
+  // }
 }
 
 body.nav-less {

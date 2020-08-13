@@ -65,9 +65,9 @@ nav[role="navigation"] {
     clip-path: inset(0px 0px 0px 0px);
     visibility: visible;
 
-    @include breakpoints-between(desktop) {
+    @include breakpoints-min(desktop) {
       & + main[role="main"] {
-        width: calc(100% - #{$widthNav});
+        transform: translate3d(0,0,0);
       }
     }
   }

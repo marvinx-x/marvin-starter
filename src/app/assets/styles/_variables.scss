@@ -9,6 +9,7 @@
 	/* TYPOGRAPH */
 	--font-family: "Inter", sans-serif;
 }
+
 /* PATHS */
 $pathImgs: "./assets/images/";
 
@@ -37,3 +38,10 @@ $marginButtonNav: $paddingBody/2;
 $widthColumnButtonNav: $widthButtonNav + $marginButtonNav * 2;
 $transitionNavEase: ease(easeInOutQuad);
 $transitionNavDuration: 0.35s;
+
+
+/* MAIN CONTENT */
+$paddingContentHor: $widthButtonNav + $paddingBody;
+$paddingContentVert: $heightFooter;
+$paddingContentBlock : $paddingContentHor;
+

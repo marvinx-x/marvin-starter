@@ -2,17 +2,16 @@
 
 /* css that only inpact the starter himself */
 .styleguide-title {
-  --font-size--title: 5rem;
+  --font-size--title: 3rem;
   --font-weight--title: 600;
   font-weight: var(--font-weight--title);
   font-size: var(--font-size--title);
   line-height: var(--font-size--title);
-  @include underlineText();
-  padding-bottom: 2rem;
-  margin-bottom: 5rem;
+  letter-spacing: -.05rem;
+  padding-bottom: 1rem;
 
-  &::after {
-    opacity: 0.3;
+  &::first-letter{
+   text-transform: uppercase;
   }
 }
 
@@ -28,8 +27,8 @@
     &.col--#{$i + 1} {
       grid-template-columns: repeat($i + 1, 1fr);
 
-      @each $key, $breakpoint in $breakpoints {
-        $y: index($breakpoints, $key $breakpoint);
+      @each $key, $breakpoint in $breakpointsMin {
+        $y: index($breakpointsMin, $key $breakpoint);
         @include breakpoints-between(#{$key}) {
           grid-template-columns: repeat($y, 1fr);
         }
@@ -39,7 +38,7 @@
 }
 
 .styleguide-content {
-  margin-top: $paddingContentHor;
+  padding-top: $heightHeader + $paddingBody;
 }
 
 $imgs: (

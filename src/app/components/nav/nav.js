@@ -1,19 +1,25 @@
-import {
-  TimelineMax,
-  Quad
-} from 'gsap/all';
 import 'hammerjs';
+
+import {
+  gsap,
+  TimelineMax,
+  Quad,
+  ScrollToPlugin
+} from 'gsap/all';
+gsap.registerPlugin( ScrollToPlugin );
+
 
 export function navigation() {
   const buttonNav = document.querySelectorAll( '.button-nav' );
   const nav = document.querySelector( 'nav[role="navigation"]' );
   const navClass = 'open';
+  const duration = parseFloat( window.getComputedStyle( nav, null ).getPropertyValue( "transition-duration" ) ) / 2;
 
   buttonNav.forEach( ( el, i ) => {
 
     /// BURGER MENU ICON ANIMATION
     const iconRects = el.querySelectorAll( 'rect' );
-    const duration = parseFloat( window.getComputedStyle( nav, null ).getPropertyValue( "transition-duration" ) ) / 2;
+
     const heightGroup = iconRects[ i ].parentElement.getBBox().height;
     const heightLine = parseInt( iconRects[ i ].attributes.height.nodeValue );
     const spaceLines = parseInt( heightLine + ( heightGroup - heightLine * 3 ) / 2 );
@@ -95,6 +101,21 @@ export function navigation() {
           }
           e.code === "Space" ? e.preventDefault() : null;
         }
+      } );
+
+
+
+      // const sizeMediaQueries = "(min-width : 64.1rem)";
+      // const mq = window.matchMedia( sizeMediaQueries );
+      elems.addEventListener( 'click', ( e ) => {
+        e.preventDefault();
+        e.stopPropagation();
+        // !mq.matches ? navEvents() : null;
+        gsap.to( window, {
+          duration: duration,
+          scrollTo: elems.getAttribute( 'href' ),
+          ease: Quad
+        } );
       } );
     } );
   } );
