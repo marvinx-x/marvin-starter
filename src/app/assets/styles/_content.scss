@@ -19,7 +19,18 @@ main[role="main"] {
 	box-shadow: -0.2rem 1rem 2.5rem 0.2rem alpha(var(--dark), 0.2);
 	background-size: cover;
 
-	@include respond-to(desktop) {
+	// &::after{
+	// 	@extend %after-before--utils;
+	// 	height : $heightHeader * 2;
+	// 	width: $minWidth * 2;
+	// 	position: fixed;
+	// 	top: 0;
+	// 	left: -($widthButtonNav + $marginButtonNav * 2);
+	// 	background-image: radial-gradient(ellipse farthest-side at top left ,var(--white) 50%, transparent);
+	// 	pointer-events: none;
+	// }
+
+	@include breakpoints-between(desktop) {
 		z-index: 1;
 	}
 }

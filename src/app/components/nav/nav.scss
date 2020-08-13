@@ -9,7 +9,7 @@ $paddingTopBottomNav: $paddingItemsNav - $paddingHeader/2;
 
 header[role="banner"] + button.button-nav {
   grid-area: navbutton;
-  z-index: 2;
+  z-index: 3;
   align-self: center;
   justify-self: center;
   position: sticky;
@@ -50,7 +50,7 @@ nav[role="navigation"] {
   transition-property: clip-path, visibility;
   transition-duration: $transitionNavDuration;
   transition-timing-function: $transitionNavEase;
-  z-index: 1;
+  z-index: 2;
   visibility: hidden;
 
   > ul {
@@ -65,7 +65,7 @@ nav[role="navigation"] {
     clip-path: inset(0px 0px 0px 0px);
     visibility: visible;
 
-    @include respond-to(desktop) {
+    @include breakpoints-between(desktop) {
       & + main[role="main"] {
         width: calc(100% - #{$widthNav});
       }

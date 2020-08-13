@@ -30,7 +30,7 @@
 
       @each $key, $breakpoint in $breakpoints {
         $y: index($breakpoints, $key $breakpoint);
-        @include respond-to(#{$key}) {
+        @include breakpoints-between(#{$key}) {
           grid-template-columns: repeat($y, 1fr);
         }
       }
@@ -92,7 +92,7 @@ $nbrImgs: length($imgs);
   );
 
   @each $key, $srcset in $srcsets {
-    @include respond-to($key) {
+    @include breakpoints-min($key) {
       .img {
         @include bgimage("https://via.placeholder.com/#{$srcset}x300?size=#{$srcset}");
       }

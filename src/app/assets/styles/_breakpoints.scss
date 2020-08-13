@@ -20,13 +20,32 @@ $breakpointsMax: (
   'tablet'  : (max-width: $tabletBreakPortrait + 0rem),
   'tabletLandscape'  : (max-width: $tabletBreakLandscape + 0rem),
   'desktop'  :  (max-width: $desktopLargeBreak + 0rem),
-  'largeDesktop'  : (max-width: 100%)
+  'largeDesktop'  : (max-width: 100vw)
 );
 
-@mixin respond-to($name) {
+
+@mixin breakpoints-min($name) {
+  @if map-has-key($breakpoints, $name) {
+    @media screen and #{inspect(map-get($breakpoints, $name))} {
+      @content;
+    }
+  }
+}
+
+
+@mixin breakpoints-max($name) {
+  @if map-has-key($breakpoints, $name) {
+    @media screen and #{inspect(map-get($breakpointsMax, $name))} {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoints-between($name) {
   @if map-has-key($breakpoints, $name) {
     @media screen and #{inspect(map-get($breakpoints, $name))} and #{inspect(map-get($breakpointsMax, $name))} {
       @content;
     }
   }
 }
+
