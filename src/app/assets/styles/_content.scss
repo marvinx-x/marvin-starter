@@ -4,31 +4,15 @@ main[role="main"] {
 	grid-area: main;
 	grid-column-start: 1;
 	grid-row-end: 4;
-	justify-self: flex-end;
+	justify-self: center;
 	background: var(--white);
 	width: calc(100vw - #{$minWidth});
 	transition-property: transform;
 	transition-duration: $transitionNavDuration;
 	transition-timing-function: $transitionNavEase;
-	transform : translate3d(-$minWidth,0,0);
 	padding: 0 $paddingContentHor $paddingContentVert $paddingContentHor;
 
 	@include breakpoints-max(smallDesktop) {
 		width: 100vw;
-		transform: translate3d(0,0,0);
 	}
-
-	// position: relative;
-	// box-shadow: -0.2rem 1rem 2.5rem 0.2rem alpha(var(--dark), 0.2);
-	// z-index : 2;
-	// &::after{
-	// 	@extend %after-before--utils;
-	// 	height : $heightHeader * 2;
-	// 	width: $minWidth * 2;
-	// 	position: fixed;
-	// 	top: 0;
-	// 	left: -($widthButtonNav + $marginButtonNav * 2);
-	// 	background-image: radial-gradient(ellipse farthest-side at top left ,var(--white) 50%, transparent);
-	// 	pointer-events: none;
-	// }
 }

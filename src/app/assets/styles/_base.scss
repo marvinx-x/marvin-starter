@@ -9,19 +9,11 @@ body {
   background-color: var(--white);
   line-height: 2.35rem;
 
-  // @each $key, $breakpoint in $breakpointsMin {
-  //   @include breakpoints-between(#{$key}) {
-  //     &::before {
-  //       content: "#{$key}";
-  //       display: block;
-  //       position: fixed;
-  //       z-index: 10;
-  //       top: 0;
-  //       left: 0;
-  //       color: black;
-  //     }
-  //   }
-  // }
+  /* use to grab the content value in javascript */
+  &::before {
+    content: quote(map-get($breakpointsMin, "smallDesktop"));
+    display: none;
+  }
 }
 
 body.nav-less {

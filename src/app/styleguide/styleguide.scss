@@ -7,11 +7,11 @@
   font-weight: var(--font-weight--title);
   font-size: var(--font-size--title);
   line-height: var(--font-size--title);
-  letter-spacing: -.05rem;
+  letter-spacing: -0.05rem;
   padding-bottom: 1rem;
 
-  &::first-letter{
-   text-transform: uppercase;
+  &::first-letter {
+    text-transform: uppercase;
   }
 }
 
@@ -38,7 +38,7 @@
 }
 
 .styleguide-content {
-  padding-top: $heightHeader + $paddingBody;
+  padding-top: $heightHeader + $paddingBody * 2;
 }
 
 $imgs: (

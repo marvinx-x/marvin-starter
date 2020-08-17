@@ -41,7 +41,6 @@ $breakpointsMax: (
   }
 }
 
-
 @mixin breakpoints-max($name) {
   @if map-has-key($breakpointsMax, $name) {
     @media screen and #{inspect(map-get($breakpointsMax, $name))} {

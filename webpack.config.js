@@ -45,35 +45,43 @@ module.exports = {
 				}
 			},
 			{
-        test: /\.(jpe?g|png|webp)$/i,
-         use: [
-          {
-            loader: "responsive-loader",
-            options: {
+				test: /\.(jpe?g|png|webp)$/i,
+				use: [
+					{
+						loader: 'responsive-loader',
+						options: {
 							name: '[name]-[width].[ext]',
-							outputPath : 'assets/images',
+							outputPath: 'assets/images',
 							placeholder: true,
 							adapter: require('responsive-loader/sharp')
-            },
-          },
-        ],
-      },
+						}
+					}
+				]
+			},
 			{
-				test: /\.(css)$/,
+				test: /\.css$/,
 				use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader']
 			},
 			{
-				test: /\.(scss)$/,
+				test: /\.scss$/,
 				use: [
 					'style-loader',
-					MiniCssExtractPlugin.loader,
+					{
+						loader: MiniCssExtractPlugin.loader
+					},
 					{
 						loader: 'css-loader',
 						options: {
-							url: false
+							url: false,
+							sourceMap: isDevelopment ? true : false
 						}
 					},
-					'sass-loader'
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: isDevelopment ? true : false
+						}
+					}
 				]
 			},
 			{
@@ -83,16 +91,12 @@ module.exports = {
 						loader: 'pug-loader',
 						options: {
 							pretty: isDevelopment ? true : false,
-							self: true,
+							self: true
 						}
 					}
 				]
 			}
 		]
-	},
-	optimization: {
-		removeAvailableModules: false,
-		removeEmptyChunks: false
 	},
 	plugins: [
 		new CleanWebpackPlugin(),
@@ -128,7 +132,7 @@ module.exports = {
 				}),
 				imageminSvgo({
 					removeViewBox: true
-			})
+				})
 			]
 		}),
 		new HtmlWebpackPlugin({
@@ -145,7 +149,7 @@ module.exports = {
 			logo: './src/app/assets/favicon/logo-40x40.svg',
 			prefix: 'assets/favicon/',
 			cache: true,
-			inject: true,
+			inject: true
 		}),
 		new MiniCssExtractPlugin({
 			filename: isDevelopment ? '[name].css' : '[name].[hash].css'

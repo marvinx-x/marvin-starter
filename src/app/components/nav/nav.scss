@@ -21,6 +21,8 @@ header[role="banner"] + button.button-nav {
   svg {
     fill: $colorElemsHeader;
     transition: fill 0.25s;
+    position: relative;
+    z-index: 1;
   }
 
   &:hover {
@@ -59,6 +61,18 @@ nav[role="navigation"] {
     height: 100%;
     padding-top: $heightHeader;
     padding-bottom: $heightFooter;
+    position: relative;
+
+    &::before {
+      @extend %after-before--utils;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      box-shadow: -0.2rem 0rem 2rem 0.25rem alpha(var(--dark), 0.75);
+      z-index: 3;
+      pointer-events: none;
+    }
   }
 
   &.open {
@@ -67,7 +81,7 @@ nav[role="navigation"] {
 
     @include breakpoints-min(desktop) {
       & + main[role="main"] {
-        transform: translate3d(0,0,0);
+        transform: translate3d(#{$minWidth/2}, 0, 0);
       }
     }
   }
@@ -79,6 +93,7 @@ nav[role="navigation"] {
     position: absolute;
     left: 0;
     z-index: 2;
+    pointer-events: none;
   }
 
   &::before {

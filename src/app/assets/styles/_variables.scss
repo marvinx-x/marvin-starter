@@ -3,6 +3,7 @@
 	@include defineColorHSL(--white, 0, 0%, 100%);
 	@include defineColorHSL(--black, 0, 0%, 0%);
 	@include defineColorHSL(--primary, 225, 48%, 45%);
+	@include defineColorHSL(--dark, 225, 48%, 20%);
 	@include defineColorHSL(--light, 240, 2%, 91%);
 	@include defineColorHSL(--fluo, 60, 100%, 50%);
 
@@ -26,7 +27,7 @@ $lengthLogo: 4rem;
 $paddingHeader: $paddingBody;
 $heightHeader: $lengthLogo + ($paddingHeader * 2);
 $gapElemsHeader: 0.6rem;
-$colorElemsHeader: lightness(var(--primary), 0.5);
+$colorElemsHeader: var(--dark);
 
 /* FOOTER */
 $heightFooter: 5.8rem;
