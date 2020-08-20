@@ -43,12 +43,12 @@ header[role="banner"] {
 		bottom: 0;
 		left: 0;
 
-		&:first-of-type() {
+		&:first-of-type {
 			fill: $colorElemsHeader;
 			z-index: 2;
 		}
 
-		&:last-of-type() {
+		&:last-of-type {
 			fill: lightness(var(--primary), 1);
 			z-index: 1;
 		}

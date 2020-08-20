@@ -8,13 +8,26 @@ append head
 
 append vars
   - var documentTitle = "Marvin Starter - Styleguide"
+  - var styleguide = true
 
 append main
 
   each starterItem in starterItems
-    .styleguide-content(id=starterItem.toLowerCase())
+    - var item = starterItem.toLowerCase()
+
+    .styleguide-content(id=item)
       h2.styleguide-title= starterItem
-      p Lorem ipsum dolor sit amet consectetur, adipisicing elit. At numquam tempora nesciunt harum eum odit praesentium excepturi, ipsa natus dolor? Quidem consequuntur perspiciatis repellat, corrupti libero ullam sapiente magni optio deserunt id veniam soluta earum assumenda, quae fugit corporis tempora. Saepe veniam ab praesentium eum, aspernatur expedita! Tempora hic minima, ex quod, cupiditate ipsa aliquam delectus ea voluptas ab fugit? Placeat tempore non consequatur at impedit, minus error velit dolores soluta repellat rerum excepturi distinctio veritatis porro! Numquam reprehenderit ipsam dolorum, placeat nostrum necessitatibus dicta praesentium laudantium ratione quibusdam ab id culpa, quos optio ea. Vel odit earum molestiae odio vitae repellat fugit accusantium incidunt est debitis commodi, voluptatibus similique facilis obcaecati, harum sapiente ipsum dolorem maiores assumenda dolorum ea. Quos magnam omnis repudiandae, libero laboriosam molestiae, autem molestias illum nisi ab impedit facere dignissimos deleniti nobis, praesentium sequi voluptatibus nulla iste. Atque repellat odio dolorem aperiam cupiditate consequuntur quidem, amet sequi, praesentium placeat, asperiores at animi ipsa autem. Commodi facilis possimus soluta cupiditate fugit aliquid voluptatum quo officia perspiciatis quam, laudantium, doloremque voluptas? Sapiente quae ducimus quasi id dignissimos assumenda provident, nostrum saepe culpa dolor, commodi et sed laudantium quibusdam corrupti, possimus porro! Fugit laborum cum ea earum quidem architecto veritatis impedit, quas reiciendis quae nesciunt culpa sit ipsam ratione? Delectus dolor unde distinctio iusto nam sint velit. Magni ducimus quaerat modi aspernatur doloribus animi corrupti quisquam labore natus amet sequi, molestias voluptatem? Inventore, eum. Tempora voluptatibus debitis rem fugiat magni. Voluptatem molestiae necessitatibus ea aut architecto, iusto amet.
+
+      case item
+        when "colors"
+          include partials/colors
+
+        when "typography"
+          include partials/typography
+
+        default
+          p There is no item related to this section
+
 
 
   //- a(href="./index.html") back to starter
@@ -50,7 +63,7 @@ append main
 
   //- - var methods = ["html", "css"]
   //- each method in methods
-  //-   .styleguide-imgs.styleguide-grid.col--6
+  //-   .styleguide-imgs.grid.col--6
 
   //-     - var extensions = ["jpg", "png", "gif", "svg", "webp", "data-uri"]
   //-     each extension, key in extensions

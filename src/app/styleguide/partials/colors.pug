@@ -1,0 +1,13 @@
+//- block colors
+
+- var colors = ["primary", "dark", "gray", "light"]
+
+p Lorem ipsum dolor sit amet consectetur adipisicing elit. In et dicta porro? Veritatis vero dolorem ut at optio corrupti fugit dolore, qui totam aliquid amet debitis mollitia ullam animi quidem exercitationem! Libero quas earum cum molestias iusto!
+section(class="grid styleguide-colors col--"+colors.length)
+  each color, key in colors
+    .col
+      h3.styleguide-title= color
+      ul
+        - for(var i=0; i < 5; i++)
+          li
+

@@ -27,7 +27,7 @@ header[role="banner"] + button.button-nav {
 
   &:hover {
     svg {
-      fill: lightness(var(--primary), 1);
+      fill: lightness(var(--primary), 0.75);
     }
   }
 }
@@ -36,10 +36,10 @@ header[role="banner"] + button.button-nav {
 /* navigation items */
 /*  */
 
-$colorDefault: lightness(var(--primary), 2);
-$colorHover: lightness(var(--primary), 4);
-$colorGradient1: lightness(var(--primary), 1.45);
-$colorGradient2: var(--primary);
+$colorDefault: alpha(var(--white), 0.85);
+$colorHover: var(--white);
+$colorGradient1: lightness(var(--primary), 1.2);
+$colorGradient2: lightness(var(--primary), 0.9);
 
 nav[role="navigation"] {
   background: linear-gradient($colorGradient1, $colorGradient2);
@@ -69,7 +69,7 @@ nav[role="navigation"] {
       position: absolute;
       top: 0;
       right: 0;
-      box-shadow: -0.2rem 0rem 2rem 0.25rem alpha(var(--dark), 0.75);
+      box-shadow: -0.2rem 0rem 2rem 0.25rem alpha(var(--dark), 0.35);
       z-index: 3;
       pointer-events: none;
     }
@@ -81,7 +81,7 @@ nav[role="navigation"] {
 
     @include breakpoints-min(desktop) {
       & + main[role="main"] {
-        transform: translate3d(#{$minWidth/2}, 0, 0);
+        transform: translate3d(#{($minWidth/2)}, 0, 0);
       }
     }
   }

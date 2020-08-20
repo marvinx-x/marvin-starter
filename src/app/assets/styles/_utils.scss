@@ -25,3 +25,12 @@
   background: alpha(var(--primary), 0.15);
   color: var(--primary);
 }
+
+//// style text paragraph
+%text-style {
+  opacity: 0.6;
+  font-size: $fontSizeBase;
+  font-style: normal;
+  font-weight: 400;
+  color: $colorText;
+}

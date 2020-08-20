@@ -8,6 +8,7 @@ body {
   font-family: var(--font-family);
   background-color: var(--white);
   line-height: 2.35rem;
+  font-weight: 500;
 
   /* use to grab the content value in javascript */
   &::before {

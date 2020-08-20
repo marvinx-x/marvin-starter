@@ -1,0 +1,24 @@
+.grid {
+  display: grid;
+  grid-gap: $paddingContentHor;
+  grid-auto-flow: row;
+  align-items: stretch;
+  justify-items: stretch;
+
+  @for $i from 0 to 5 {
+    &.col--#{$i + 1} {
+      grid-template-columns: repeat($i + 1, 1fr);
+
+      @include breakpoints-between("desktop") {
+        grid-template-columns: repeat(($i + 1)/2, 1fr);
+      }
+      @include breakpoints-max("tablet") {
+        grid-template-columns: repeat(($i + 1)/2, 1fr);
+      }
+
+      @include breakpoints-max("mobileLandscape") {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

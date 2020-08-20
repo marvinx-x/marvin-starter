@@ -33,3 +33,10 @@
     left: 0;
   }
 }
+
+////// CONTENT BEFORE AFTER TEXT PARAGRAPHE
+@mixin content-text($text) {
+  content: "#{$text}";
+  display: block;
+  @extend %text-style;
+}

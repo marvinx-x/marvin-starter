@@ -6,23 +6,13 @@
 // require( 'webpack-icons-installer/bootstrap' );
 
 import './styleguide.scss';
-import {
-  utils
-} from '../assets/scripts/utils';
-import {
-  navigation
-} from '../components/nav/nav';
-import {
-  logo
-} from '../components/header/header';
-
-
+import { utils } from '../assets/scripts/utils';
+import { navigation } from '../components/nav/nav';
+import { logo } from '../components/header/header';
 
 utils();
 navigation();
 logo();
-
-
 
 // import {
 // 	gsap,

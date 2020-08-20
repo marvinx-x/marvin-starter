@@ -64,6 +64,5 @@ img,
 }
 
 p {
-	opacity: 0.75;
-	margin-top: 0.4rem;
+	@extend %text-style;
 }

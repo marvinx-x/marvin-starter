@@ -11,11 +11,13 @@
 @import "base";
 @import "classes";
 
+
+/* STYLES */
+@import "titles";
+@import "grid";
+
 /* LAYOUT */
 @import "../../components/header/header.scss";
 @import "../../components/nav/nav.scss";
 @import "../../components/footer/footer.scss";
 @import "content";
-
-/* STYLES */
-@import "titles";

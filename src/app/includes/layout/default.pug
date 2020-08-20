@@ -4,8 +4,9 @@ block vars
   - var headerLess = false
   - var navLess = false
   - var footerLess = false
+  - var styleguide = false
   - var imgDir = 'assets/images/'
-  - var starterItems = ["colors", "Typography", "Icons", "images", "Buttons", "Tags", "Forms", "menu", "Accessibility"]
+  - var starterItems = ["colors", "Typography", "Titles", "Icons", "images", "Buttons", "Tags", "Forms", "menu", "Accessibility"]
 
 html(lang=lang)
 
@@ -18,7 +19,7 @@ html(lang=lang)
 
     include ../../utils/mixins
 
-  body(class=navLess ? 'nav-less' : null)
+  body(class=navLess ? 'nav-less' : null || styleguide ? 'styleguide' : null)
 
     div#app
 
