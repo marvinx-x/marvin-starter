@@ -1,11 +1,69 @@
 @import "../assets/styles/styles.scss";
 
+/*  */
+/* STYLEGUIDE */
+/*  */
+
 .styleguide {
   .grid {
     grid-gap: 4rem;
-    // margin-top: $paddingContentHor;
+    grid-area: content;
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+
+    .col{
+      & > h1{
+        padding-bottom: 5rem;
+      }
+      & > h3{
+        padding-bottom: 1rem;
+      }
+    }
   }
 }
+
+
+.styleguide-content {
+  padding-top: $heightHeader + $paddingBody * 4;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "title content"
+    "text content";
+  grid-auto-flow: row;
+
+  & > h2{
+    padding-bottom: 3.5rem;
+  }
+
+
+  & > p:last-of-type {
+    width: 30rem;
+    margin-right: 6vw;
+    margin-bottom: 4rem;
+    grid-area: text;
+    grid-column-start: 1;
+    grid-row-end: 3;
+  }
+
+  @include breakpoints-max("tabletLandscape") {
+    display: flex;
+    flex-flow: column wrap;
+
+    & > p:last-of-type {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+}
+
+
+/*  */
+/* COLORS */
+/*  */
+
 
 .styleguide-colors {
   grid-area: content;
@@ -24,12 +82,6 @@
       $color: nth($colors, $i);
 
       &:nth-of-type(#{$i}) {
-        // .styleguide-title {
-        //   &::after {
-        //     // @include content-text("hsl(#{$mainHue}, #{$saturation-light}, #{$lightness-light})");
-        //     // @include content-text(unquote((#{$saturation-$color})));
-        //   }
-        // }
         li {
           @for $y from 0 to 5 {
             &:nth-child(#{$y + 1}) {
@@ -57,67 +109,83 @@
       }
     }
   }
-}
-
-/* css that only inpact the starter himself */
-.styleguide-title {
-  grid-area: title;
-  grid-column-start: 1;
-  grid-row-end: 2;
-}
-
-h2 {
-  &.styleguide-title {
-    --font-size--title: 3.75rem;
-    --font-weight--title: 600;
-    font-weight: var(--font-weight--title);
-    font-size: var(--font-size--title);
-    line-height: var(--font-size--title);
-    letter-spacing: -0.075rem;
-    padding-bottom: 3.5rem;
-  }
-}
-
-h3 {
-  &.styleguide-title {
-    --font-size--title: 2rem;
-    --font-weight--title: 600;
-    font-weight: var(--font-weight--title);
-    font-size: var(--font-size--title);
-    line-height: var(--font-size--title);
-    padding-bottom: 1rem;
-  }
-}
-
-.styleguide-content {
-  padding-top: $heightHeader + $paddingBody * 4;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    "title content"
-    "text content";
-  grid-auto-flow: row;
-
-  & > p:last-of-type {
-    width: 30rem;
-    margin-right: 6vw;
-    margin-bottom: 3rem;
-    grid-area: text;
+  .styleguide-title {
+    grid-area: title;
     grid-column-start: 1;
-    grid-row-end: 3;
+    grid-row-end: 2;
+  }
+}
+
+/*  */
+/* TYPOGRAPHY */
+/*  */
+
+.styleguide-styles{
+  $marginStyleguideStyles : 5rem;
+  margin-bottom : $marginStyleguideStyles;
+  max-width : 42rem;
+  margin-top : 1.2rem;
+
+  &:first-of-type{
+
+    p[class^="font-weight--"]{
+      @include underlineText(100%, 0.1rem, alpha(var(--dark), .25));
+      line-height: 1.7;
+      font-size : 2.9rem;
+      letter-spacing: -0.15rem;
+    }
   }
 
-  @include breakpoints-max("tabletLandscape") {
-    display: flex;
-    flex-flow: column wrap;
+  &:last-of-type{
 
-    & > p:last-of-type {
-      width: 100%;
-      margin-right: 0;
+    display: flex;
+    flex-flow : column wrap;
+    align-items : flex-start;
+    margin-bottom : 0rem;
+
+    @include breakpoints-max("tablet"){
+      margin-bottom : $marginStyleguideStyles;
+    }
+    @include breakpoints-between("desktop"){
+      margin-bottom : $marginStyleguideStyles;
+    }
+
+    .crossed{
+      line-height: 1.25;
+      font-weight : 400;
+      font-size : 2.7rem;
+      letter-spacing: -0.25rem;
+      padding-right: .5rem;
+    }
+  }
+
+  p{
+    &::first-letter{
+      text-transform: uppercase;
+    }
+  }
+
+  @include breakpoints-max("tabletLandscape"){
+    &:first-of-type{
+
+      p[class^="font-weight--"]{
+        font-size : 2.4rem;
+      }
+    }
+
+    &:last-of-type{
+
+      .crossed{
+        font-size : 2.25rem;
+        padding-right : 0;
+      }
     }
   }
 }
+
+/*  */
+/* IMAGES */
+/*  */
 
 $imgs: (
   1: "image-400.jpg",

@@ -24,6 +24,7 @@ $lightness-light: 88%;
 	@include defineColorHSL(--light, $mainHue, $saturation-light, $lightness-light);
 
 	@include defineColorHSL(--fluo, 60, 100%, 50%);
+	@include defineColorHSL(--red, 358, 100%, 33%);
 
 	/* TYPOGRAPH */
 	--font-family: "Inter", sans-serif;
@@ -38,6 +39,9 @@ $minWidth: 32rem;
 $maxWidth: 192rem;
 $paddingBody: 1.6rem;
 $fontSizeBase: 1.6rem;
+$fontWeightBase: 500;
+$letterSpacingBase: -0.001rem;
+$lineHeightBase: 2.35rem;
 
 /* HEADER */
 // logo width and height
@@ -62,4 +66,4 @@ $transitionNavDuration: 0.35s;
 $paddingContentHor: $widthButtonNav + $paddingBody;
 $paddingContentVert: $heightFooter;
 $paddingContentBlock: $paddingContentHor;
-$colorText : lightness(var(--primary), 0.55);
+$colorText: lightness(var(--primary), 0.55);

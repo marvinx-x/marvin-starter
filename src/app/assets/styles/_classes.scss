@@ -14,3 +14,39 @@ a {
     }
   }
 }
+
+/*  */
+/* FONT-WEIGHT CLASSES */
+/*  */
+
+$weightFonts : ("Thin", "Extra-light", "Light", "regular", "Medium", "Semi-bold", "Bold", "Extra-bold", "Black");
+
+@each $weightFont in $weightFonts{
+  $i: index($weightFonts, $weightFont);
+  .font-weight--#{to-lower-case($weightFont)}{
+    font-weight: unquote("#{$i}00");
+  }
+}
+
+.italic{
+  font-style : italic;
+}
+
+/*  */
+/* CROSSED TEXT */
+/*  */
+
+.crossed{
+  position: relative;
+  display: inline-block;
+
+  &::before{
+    @extend %after-before--utils;
+    position: absolute;
+    top : 50%;
+    left : 0;
+    width : 100%;
+    height : 0.4rem;
+    background : var(--red);
+  }
+}

@@ -7,8 +7,9 @@ body {
   color: lightness(var(--primary), 0.9);
   font-family: var(--font-family);
   background-color: var(--white);
-  line-height: 2.35rem;
-  font-weight: 500;
+  line-height: $lineHeightBase;
+  letter-spacing : $letterSpacingBase;
+  font-weight: $fontWeightBase;
 
   /* use to grab the content value in javascript */
   &::before {
