@@ -11,14 +11,10 @@ section(class="grid  col--"+typeFonts.length)
     .col
       h3.styleguide-title #{typeFont} fonts example
 
-      - var fontFamilyIndex = googleFontsUrl.indexOf('=') + 1
-      - var fontFamilyName = googleFontsUrl.substr(fontFamilyIndex, googleFontsUrl.indexOf(':wght')-fontFamilyIndex);
       h1= fontFamilyName
 
       if(googleFontsUrl && googleFontsUrl.length)
-        - var getStringBeforeIndex = googleFontsUrl.indexOf('@') + 1
-        - var getFontWeights = googleFontsUrl.substr(getStringBeforeIndex, googleFontsUrl.indexOf('&')-getStringBeforeIndex);
-        - var nbrWeights = getFontWeights.replace(/00|;/g, '')
+        - var nbrWeights = googleFontsUrl.substr(googleFontsUrl.indexOf('@') + 1, googleFontsUrl.indexOf('&')-googleFontsUrl.indexOf('@') + 1).replace(/00|;/g, '');
 
         each fontCat in fontCats
           h3.styleguide-title #{fontCat} fonts

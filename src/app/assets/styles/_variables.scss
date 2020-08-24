@@ -25,9 +25,6 @@ $lightness-light: 88%;
 
 	@include defineColorHSL(--fluo, 60, 100%, 50%);
 	@include defineColorHSL(--red, 358, 100%, 33%);
-
-	/* TYPOGRAPH */
-	--font-family: "Inter", sans-serif;
 }
 
 /* PATHS */

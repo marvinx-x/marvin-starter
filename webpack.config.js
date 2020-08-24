@@ -1,9 +1,7 @@
 const path = require( 'path' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
-const {
-  CleanWebpackPlugin
-} = require( 'clean-webpack-plugin' );
+const {CleanWebpackPlugin} = require( 'clean-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 // const FaviconsWebpackPlugin = require( 'favicons-webpack-plugin' );
 const ImageminPlugin = require( 'imagemin-webpack-plugin' ).default;
@@ -85,15 +83,17 @@ module.exports = {
       },
       {
 				test: /\.pug$/,
-				exclude: /node_modules/,
-        use: [ {
+				// exclude: /node_modules/,
+        use: [
+          {
           loader: 'pug-loader',
           options: {
             pretty: isDevelopment ? true : false,
             self: true
           }
-        } ]
-      }
+        }
+        ]
+      },
     ]
   },
   plugins: [
@@ -135,12 +135,14 @@ module.exports = {
     new HtmlWebpackPlugin( {
       filename: 'index.html',
       template: path.join( __dirname, './src/app/index.pug' ),
-      chunks: [ 'main' ]
+      chunks: ['main'],
+      title : 'Marvin Starter - Homepage',
     } ),
     new HtmlWebpackPlugin( {
       filename: 'styleguide.html',
       template: path.join( __dirname, './src/app/styleguide/styleguide.pug' ),
-      chunks: [ 'styleguide' ]
+      chunks: [ 'styleguide' ],
+      title : 'Marvin Starter - Styleguide',
     } ),
     // new FaviconsWebpackPlugin( {
     //   logo: './src/app/assets/favicon/logo-40x40.svg',
@@ -161,5 +163,5 @@ module.exports = {
     open: false,
     writeToDisk: true,
     port: 8000
-  },
+  }
 };

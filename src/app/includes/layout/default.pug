@@ -1,12 +1,18 @@
 block vars
+  // GLOBAL
   - var documentTitle = "Marvin Starter - Start here"
   - var lang = "fr"
+  // PATHS
+  - var imgDir = 'assets/images/'
+  // CLASSES
   - var headerLess = false
   - var navLess = false
   - var footerLess = false
   - var styleguide = false
-  - var imgDir = 'assets/images/'
-  - var googleFontsUrl = "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+  // FONT
+  - var fontFamilyName = "Inter";
+  - var googleFontsUrl = "https://fonts.googleapis.com/css2?family="+fontFamilyName.replace(" ", "+")+":wght@300;400;500;600;700&display=swap"
+  // ITEMS STYLEGUIDE
   - var starterItems = ["colors", "Typography", "Titles", "Icons", "images", "Buttons", "Tags", "Forms", "menu", "Grid", "Accessibility"]
 
 html(lang=lang)
@@ -20,9 +26,9 @@ html(lang=lang)
 
     include ../../utils/mixins
 
-  body(class=navLess ? 'nav-less' : null || styleguide ? 'styleguide' : null)
+  body( class=navLess ? 'nav-less' : null || styleguide ? 'styleguide' : null)
 
-    div#app
+    div#app(style="font-family:"+fontFamilyName+", sans-serif;")
 
       if(!headerLess)
         include ../../components/header/header
