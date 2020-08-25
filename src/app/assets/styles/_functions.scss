@@ -2,12 +2,6 @@
   @return $n / ($n * 0 + 1);
 }
 
-//convert rem back to px
-// @function rem-to-px($size) {
-// 	$value: parseInt($size) * 10px; //15px is the base size specified
-// 	@return round($value);
-// }
-
 // replace substring with another string
 // credits: https://css-tricks.com/snippets/sass/str-replace-function/
 @function str-replace($string, $search, $replace: "") {
@@ -49,12 +43,6 @@
 }
 
 
-/// Map deep get
-/// @author Hugo Giraudel
-/// @access public
-/// @param {Map} $map - Map
-/// @param {Arglist} $keys - Key chain
-/// @return {*} - Desired value
 @function map-deep-get($map, $keys...) {
     @each $key in $keys {
         $map: map-get($map, $key);

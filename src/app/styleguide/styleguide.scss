@@ -17,7 +17,7 @@
         padding-bottom: 5rem;
       }
       & > h3{
-        padding-bottom: 1rem;
+        padding-bottom: 1.5rem;
       }
     }
   }
@@ -76,23 +76,36 @@
       &::after {
         margin-top: 1rem;
       }
+
+      & + p{
+        margin-bottom: .6rem;
+      }
     }
 
-    @for $i from 1 through length($colors) {
-      $color: nth($colors, $i);
+    @each $color in $colors{
+      $i: index($colors, $color);
+      $keys: map-keys($colors);
+      $valueKey : nth($keys, $i);
 
       &:nth-of-type(#{$i}) {
         li {
           @for $y from 0 to 5 {
             &:nth-child(#{$y + 1}) {
-              @if ($color == "primary") {
-                background-color: lightness(var(--#{unquote($color)}), 1 + $y * 0.2);
-              } @else if ($color == "dark") {
-                background-color: lightness(var(--#{unquote($color)}), 1 + $y * 0.3);
-              } @else if ($color == "gray") {
-                background-color: lightness(var(--#{unquote($color)}), 1 + $y * 0.13);
-              } @else if ($color == "light") {
-                background-color: lightness(var(--#{unquote($color)}), 1 + $y * 0.028);
+              @if ($valueKey == "primary") {
+                content : "PRIMARYY";
+                background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.2);
+              }
+              @if ($valueKey == "dark") {
+                content : "DARRKKK";
+                background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.3);
+              }
+              @if ($valueKey == "neutral") {
+                content : "GRAYY";
+                background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.13);
+              }
+              @if ($valueKey == "light") {
+                content : "LIGHTTTT";
+                background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.028);
               }
 
               @if ($y > 0) {

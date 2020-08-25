@@ -24,13 +24,12 @@ mixin logo-svg()
 mixin description-svg()
   - var widthDescription = 157
   - var heightDescription = 22
-  - var fontSizeDescription = 17
   - var dy = 17
   svg(aria-hidden="true" width=widthDescription height=heightDescription viewBox='0 0 '+widthDescription+' '+heightDescription+'' style='enable-background:new 0 0 '+widthDescription+' '+heightDescription+';' preserveAspectRatio='xMidYMid meet' xml:space="preserve"): g(aria-hidden="true")
     defs
       mask#mask-description
         rect
-        text(x='50%' y=0 dx=0, dy=dy text-anchor="middle" font-size=fontSizeDescription letter-spacing="0.35") marvin
+        text(x='50%' y=0 dx=0, dy=dy text-anchor="middle" letter-spacing="0.35") marvin
           tspan starter
     rect(aria-hidden="true" mask="url(#mask-description)")
 

@@ -1,28 +1,42 @@
-$colors: "primary", "dark", "gray", "light";
 $mainHue: 225;
-/* primary */
-$saturation-primary: 40%;
-$lightness-primary: 50%;
-/* dark */
-$saturation-dark: 15%;
-$lightness-dark: 18%;
-/* gray */
-$saturation-gray: 5%;
-$lightness-gray: 60%;
-/* light */
-$saturation-light: 40%;
-$lightness-light: 88%;
+$colors : (
+	primary : (
+		hue : $mainHue,
+		saturation : 40,
+		lightness : 50
+	),
+	dark : (
+		hue : $mainHue,
+		saturation : 15,
+		lightness : 18
+	),
+	neutral : (
+		hue : $mainHue,
+		saturation : 5,
+		lightness : 60
+	),
+	light : (
+		hue : $mainHue,
+		saturation : 40,
+		lightness : 88
+	)
+);
 
 :root {
 	/* COLORS */
+	@each $color in $colors{
+		$i: index($colors, $color);
+		$keys: map-keys($colors);
+		$valueKey : nth($keys, $i);
+		$colorValues : map-keys(map-get($colors, $valueKey));
+		$hue : map-deep-get($colors, $valueKey, hue);
+		$saturation : map-deep-get($colors, $valueKey, saturation)+"%";
+		$lightness : map-deep-get($colors, $valueKey, lightness)+"%";
+		@include defineColorHSL(--#{$valueKey}, $hue, $saturation, $lightness);
+	}
+
 	@include defineColorHSL(--white, 0, 0%, 100%);
 	@include defineColorHSL(--black, 0, 0%, 0%);
-
-	@include defineColorHSL(--primary, $mainHue, $saturation-primary, $lightness-primary);
-	@include defineColorHSL(--dark, $mainHue, $saturation-dark, $lightness-dark);
-	@include defineColorHSL(--gray, $mainHue, $saturation-gray, $lightness-gray);
-	@include defineColorHSL(--light, $mainHue, $saturation-light, $lightness-light);
-
 	@include defineColorHSL(--fluo, 60, 100%, 50%);
 	@include defineColorHSL(--red, 358, 100%, 33%);
 }

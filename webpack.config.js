@@ -32,17 +32,29 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
-      },
-      {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader',
-        options: {
-          limit: 8192,
-          name: isDevelopment ? '[name].[ext]' : '[name].[hash].[ext]',
-          outputPath: 'assets/icons/',
-          emitFile: true
+    },
+    {
+      test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'fonts/'
+          }
         }
-      },
+      ]
+    },
+      // {
+      //   test: /\.(woff(2)?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      //   loader: 'file-loader',
+      //   options: {
+      //     limit: 8192,
+      //     name: isDevelopment ? '[name].[ext]' : '[name].[hash].[ext]',
+      //     outputPath: 'assets/icons/',
+      //     emitFile: true
+      //   }
+      // },
       {
         test: /\.(jpe?g|png|webp)$/i,
         use: [ {
@@ -83,7 +95,7 @@ module.exports = {
       },
       {
 				test: /\.pug$/,
-				// exclude: /node_modules/,
+				exclude: /node_modules/,
         use: [
           {
           loader: 'pug-loader',
