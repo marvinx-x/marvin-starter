@@ -1,15 +1,11 @@
-:root {
-  font-size: 62.5%;
-}
-
 body {
   font-size: $fontSizeBase;
   color: lightness(var(--primary), 0.9);
-  font-family: var(--font-family);
   background-color: var(--white);
   line-height: $lineHeightBase;
   letter-spacing : $letterSpacingBase;
   font-weight: $fontWeightBase;
+  font-family: "Helvetica", "Arial", sans-serif;
 
   /* use to grab the content value in javascript */
   &::before {

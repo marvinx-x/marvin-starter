@@ -1,6 +1,8 @@
+$gridGap : $paddingContentHor;
+
 .grid {
   display: grid;
-  grid-gap: $paddingContentHor;
+  grid-gap: $gridGap;
   grid-auto-flow: row;
   align-items: stretch;
   justify-items: stretch;

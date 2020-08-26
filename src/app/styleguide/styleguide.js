@@ -5,6 +5,7 @@
 // require('webpack-icons-installer/google');  //load only google material-design-icons
 // require( 'webpack-icons-installer/bootstrap' );
 
+import '../assets/fonts/stylesheet.css';
 import './styleguide.scss';
 import { utils } from '../assets/scripts/utils';
 import { navigation } from '../components/nav/nav';
@@ -18,7 +19,7 @@ const sass = require( 'sass-extract-loader!./styleguide.scss' );
 const globalSass = sass.global;
 const colorValues = Object.keys( globalSass.$colors.value );
 
-const insertColor = document.querySelectorAll( '.styleguide-colors p' ).forEach( ( el, i ) => {
+document.querySelectorAll( '.styleguide-colors p' ).forEach( ( el, i ) => {
   const color = colorValues[i];
   switch (color) {
     case 'primary':
@@ -47,5 +48,7 @@ const insertColor = document.querySelectorAll( '.styleguide-colors p' ).forEach(
       break;
   }
 } );
+
+
 
 

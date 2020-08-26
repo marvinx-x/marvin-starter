@@ -72,6 +72,7 @@
   grid-row-end: 3;
 
   .col {
+
     .styleguide-title {
       &::after {
         margin-top: 1rem;
@@ -92,19 +93,15 @@
           @for $y from 0 to 5 {
             &:nth-child(#{$y + 1}) {
               @if ($valueKey == "primary") {
-                content : "PRIMARYY";
                 background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.2);
               }
               @if ($valueKey == "dark") {
-                content : "DARRKKK";
                 background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.3);
               }
               @if ($valueKey == "neutral") {
-                content : "GRAYY";
                 background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.13);
               }
               @if ($valueKey == "light") {
-                content : "LIGHTTTT";
                 background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.028);
               }
 
@@ -133,24 +130,18 @@
 /* TYPOGRAPHY */
 /*  */
 
+
 .styleguide-styles{
   $marginStyleguideStyles : 5rem;
   margin-bottom : $marginStyleguideStyles;
   max-width : 42rem;
   margin-top : 1.2rem;
 
-  &:first-of-type{
-
-    p[class^="font-weight--"]{
-      @include underlineText(100%, 0.1rem, alpha(var(--dark), .25));
-      line-height: 1.7;
-      font-size : 2.9rem;
-      letter-spacing: -0.15rem;
-    }
+  &:last-of-type{
+    margin-bottom: 0;
   }
 
-  &:last-of-type{
-
+  &:nth-of-type(2){
     display: flex;
     flex-flow : column wrap;
     align-items : flex-start;
@@ -162,33 +153,34 @@
     @include breakpoints-between("desktop"){
       margin-bottom : $marginStyleguideStyles;
     }
+  }
 
-    .crossed{
+  p{
+    @include underlineText(100%, 0.1rem, alpha(var(--dark), .25));
+    line-height: 1.7;
+    font-size : 2.9rem;
+    letter-spacing: -0.15rem;
+
+    &::first-letter{
+      text-transform: uppercase;
+    }
+
+    &.crossed{
       line-height: 1.25;
       font-weight : 400;
       font-size : 2.7rem;
       letter-spacing: -0.25rem;
       padding-right: .5rem;
-    }
-  }
 
-  p{
-    &::first-letter{
-      text-transform: uppercase;
-    }
-  }
-
-  @include breakpoints-max("tabletLandscape"){
-    &:first-of-type{
-
-      p[class^="font-weight--"]{
-        font-size : 2.4rem;
+      &::after{
+        display: none;
       }
     }
 
-    &:last-of-type{
+    @include breakpoints-max("tabletLandscape"){
+      font-size : 2.4rem;
 
-      .crossed{
+      &.crossed{
         font-size : 2.25rem;
         padding-right : 0;
       }
@@ -196,10 +188,48 @@
   }
 }
 
+
+
+
+
+
+.styleguide-fonts{
+  .col{
+    &:last-of-type{
+      h1{
+        font-family: 'ralewaymedium';
+      }
+      p{
+
+        $arrFontsCustom : ('extralight', 'light', 'medium', 'bold', 'extrabold', 'black');
+
+        @each $font in $arrFontsCustom{
+          $i : index($arrFontsCustom, $font);
+          &:nth-of-type(#{$i}){
+            font-family: quote('raleway#{$font}');
+          }
+        }
+      }
+    }
+  }
+}
+
+/*  */
+/* TITLES */
+/*  */
+.styleguide-titles{
+  h1, h2, h3, h4, h5, h6{
+    @include underlineText(100%, 0.1rem, alpha(var(--dark), .25));
+
+    &::after{
+      bottom: -$gridGap/4;
+    }
+  }
+}
+
 /*  */
 /* IMAGES */
 /*  */
-
 $imgs: (
   1: "image-400.jpg",
   2: "image-400.png",

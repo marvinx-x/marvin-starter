@@ -1,4 +1,4 @@
-$mainHue: 225;
+$mainHue: 220;
 $colors : (
 	primary : (
 		hue : $mainHue,
@@ -39,6 +39,8 @@ $colors : (
 	@include defineColorHSL(--black, 0, 0%, 0%);
 	@include defineColorHSL(--fluo, 60, 100%, 50%);
 	@include defineColorHSL(--red, 358, 100%, 33%);
+
+	font-size: 62.5%;
 }
 
 /* PATHS */

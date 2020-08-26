@@ -34,38 +34,17 @@ module.exports = {
         }
     },
     {
-      test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+      test: /\.pug$/,
+      exclude: /node_modules/,
       use: [
         {
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'fonts/'
-          }
+        loader: 'pug-loader',
+        options: {
+          pretty: isDevelopment ? true : false,
+          self: true
         }
+      }
       ]
-    },
-      // {
-      //   test: /\.(woff(2)?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      //   loader: 'file-loader',
-      //   options: {
-      //     limit: 8192,
-      //     name: isDevelopment ? '[name].[ext]' : '[name].[hash].[ext]',
-      //     outputPath: 'assets/icons/',
-      //     emitFile: true
-      //   }
-      // },
-      {
-        test: /\.(jpe?g|png|webp)$/i,
-        use: [ {
-          loader: 'responsive-loader',
-          options: {
-            name: '[name]-[width].[ext]',
-            outputPath: 'assets/images',
-            placeholder: true,
-            adapter: require( 'responsive-loader/sharp' )
-          }
-        } ]
       },
       {
         test: /\.css$/,
@@ -94,33 +73,67 @@ module.exports = {
         ]
       },
       {
-				test: /\.pug$/,
-				exclude: /node_modules/,
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
-          loader: 'pug-loader',
-          options: {
-            pretty: isDevelopment ? true : false,
-            self: true
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: '/assets/fonts/'
+            }
           }
-        }
         ]
-      },
+      }
+    // {
+    //   test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+    //   use: [
+    //     {
+    //       loader: 'file-loader',
+    //       options: {
+    //         name: '[name].[ext]',
+    //         outputPath: 'fonts/'
+    //       }
+    //     }
+    //   ]
+    // },
+      // {
+      //   test: /\.(woff(2)?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      //   loader: 'file-loader',
+      //   options: {
+      //     limit: 8192,
+      //     name: isDevelopment ? '[name].[ext]' : '[name].[hash].[ext]',
+      //     outputPath: 'assets/icons/',
+      //     emitFile: true
+      //   }
+      // },
+      // {
+      //   test: /\.(jpe?g|png|webp)$/i,
+      //   use: [ {
+      //     loader: 'responsive-loader',
+      //     options: {
+      //       name: '[name]-[width].[ext]',
+      //       outputPath: 'assets/images',
+      //       placeholder: true,
+      //       adapter: require( 'responsive-loader/sharp' )
+      //     }
+      //   } ]
+      // },
+
     ]
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CopyWebpackPlugin( {
-      patterns: [ {
-          from: './src/app/assets/images/*.gif',
-          to: 'assets/images/[name].[ext]'
-        },
-        {
-          from: './src/app/assets/images/*.svg',
-          to: 'assets/images/[name].[ext]'
-        }
-      ]
-    } ),
+    // new CopyWebpackPlugin( {
+    //   patterns: [ {
+    //       from: './src/app/assets/images/*.gif',
+    //       to: 'assets/images/[name].[ext]'
+    //     },
+    //     {
+    //       from: './src/app/assets/images/*.svg',
+    //       to: 'assets/images/[name].[ext]'
+    //     }v b
+    //   ]
+    // } ),
     new ImageminPlugin( {
       disable: isDevelopment,
       test: /\.(jpe?g|png|gif|svg|webp)$/,
