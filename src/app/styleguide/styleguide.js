@@ -1,9 +1,9 @@
 'use strict';
 
 // require( 'webpack-icons-installer' ); //load ALL icons
-// require('webpack-icons-installer/font-awesome'); //load only font-awesome icons
-// require('webpack-icons-installer/google');  //load only google material-design-icons
-// require( 'webpack-icons-installer/bootstrap' );
+require('webpack-icons-installer/font-awesome'); //load only font-awesome icons
+require('webpack-icons-installer/google');  //load only google material-design-icons
+require( 'webpack-icons-installer/bootstrap' );
 
 import '../assets/fonts/stylesheet.css';
 import './styleguide.scss';
@@ -14,6 +14,8 @@ import { logo } from '../components/header/header';
 utils();
 navigation();
 logo();
+
+
 
 const sass = require( 'sass-extract-loader!./styleguide.scss' );
 const globalSass = sass.global;
@@ -48,7 +50,4 @@ document.querySelectorAll( '.styleguide-colors p' ).forEach( ( el, i ) => {
       break;
   }
 } );
-
-
-
 

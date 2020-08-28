@@ -222,10 +222,20 @@
     @include underlineText(100%, 0.1rem, alpha(var(--dark), .25));
 
     &::after{
-      bottom: -$gridGap/4;
+      bottom: -$gridGap/3;
     }
   }
 }
+
+
+/*  */
+/* ICONS */
+/*  */
+.styleguide-icons{
+  display: block !important;
+}
+
+
 
 /*  */
 /* IMAGES */
