@@ -36,12 +36,12 @@ button {
 svg {
 	width: 100%;
 	height: auto;
-	fill: var(--dark);
+	fill : currentColor;
 	transform-origin: 50% 50%;
 }
 
 i {
-	color: var(--dark);
+	color: currentColor;
 }
 
 picture {

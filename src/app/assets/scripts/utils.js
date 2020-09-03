@@ -1,3 +1,9 @@
+
+// require( 'webpack-icons-installer' ); //load ALL icons
+require('webpack-icons-installer/font-awesome'); //load only font-awesome icons
+require('webpack-icons-installer/google');  //load only google material-design-icons
+require( 'webpack-icons-installer/bootstrap' );
+
 function resize() {
   let resizeTimer;
   window.addEventListener( 'resize', () => {
@@ -9,7 +15,11 @@ function resize() {
   } );
 }
 
+function requireAll(r) {
+  r.keys().forEach(r);
+}
 
 export function utils() {
   resize();
+  requireAll(require.context('../icons/', true, /\.svg$/));
 }

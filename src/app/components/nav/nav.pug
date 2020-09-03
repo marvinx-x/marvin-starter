@@ -1,6 +1,40 @@
 button(type="button" aria-expanded="false" aria-controls="main-nav").button-nav.active-circle: +burger-svg()
 
-nav(role="navigation" aria-label="Main navigation")
+nav(role="navigation" aria-label="Main navigation").open
   ul(id="main-nav")
     each starterItem in starterItems
-      li: a(href="#"+starterItem.toLowerCase())= starterItem
+      - var item = starterItem.toLowerCase()
+      li: a(href="#"+item)
+
+        case item
+          when "colors"
+            +icon("invert_colors", "material-icons")
+
+          when "typography"
+            +icon("xf031", "font-awesome", true)
+
+          when "titles"
+            +icon("text_fields", "material-icons")
+
+          when "icons"
+            +icon("insert_emoticon", "material-icons")
+
+          when "images"
+            +icon("images")
+
+          when "buttons"
+            +icon("button")
+
+          when "forms"
+            +icon("xe032", "glyphicon", true)
+
+          when "menu"
+            +icon("bars", "font-awesome")
+
+          when "grid"
+            +icon("th", "glyphicon")
+
+          when "accessibility"
+            +icon("hearing", "material-icons")
+
+        span= starterItem

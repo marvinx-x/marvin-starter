@@ -32,11 +32,9 @@ $weightFonts : ("Thin", "Extra-light", "Light", "regular", "Medium", "Semi-bold"
   font-style : italic;
 }
 
-
 /*  */
 /* CROSSED TEXT */
 /*  */
-
 .crossed{
   position: relative;
   display: inline-block;
@@ -50,4 +48,26 @@ $weightFonts : ("Thin", "Extra-light", "Light", "regular", "Medium", "Semi-bold"
     height : 0.4rem;
     background : var(--red);
   }
+}
+
+
+/*  */
+/* ICONS */
+/*  */
+
+.fa-icon{
+  font-family:"FontAwesome";
+}
+
+.fa,
+.material-icons{
+  font-size : $sizeBaseIcon !important;
+}
+
+.fa-icon,
+.glyphicon,
+.custom-icon{
+  width: $sizeBaseIcon;
+  height: $sizeBaseIcon;
+  font-size : $sizeBaseIcon;
 }

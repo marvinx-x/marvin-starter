@@ -63,10 +63,6 @@ export function navigation() {
 		const body = document.querySelector('body');
 		const sizeMediaQueries = window.getComputedStyle(body, ':before').getPropertyValue('content').split('"').join('');
     const mq = window.matchMedia(sizeMediaQueries);
-		// const desktop = exportedVars.breakpointDesktop;
-		// const mq = window.matchMedia(
-		// 	desktop !== undefined ? desktop.split('"').join('') : null
-		// );
 
 		links.forEach((elems, i) => {
 			////// smoothScroll when desktop

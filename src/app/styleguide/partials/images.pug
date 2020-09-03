@@ -1,0 +1,58 @@
+
+- var methods = ["html", "css"]
+each method in methods
+  .styleguide-imgs.grid.col--6
+
+    - var extensions = ["jpg", "png", "gif", "svg", "webp", "data-uri"]
+    each extension, key in extensions
+      .col
+        - var name = method === 'html' ? 'html ' : 'css ';
+        p= key+1 + ': image '+ name +' ' + extension
+
+        if method === 'html'
+          case extension
+            when "jpg"
+              - var originalImgJpg = require("../"+imgDir+"image.jpg").src
+              +img-src(originalImgJpg)
+
+            when "png"
+              - var originalImgPng = require("../"+imgDir+"image.png").src
+              +img-src(originalImgPng, true)
+
+            when "gif"
+              +img-src(imgDir+"image.gif")
+
+            when "svg"
+              +img-src(imgDir+"image.svg", true, ' ', ' ', false)
+
+            when "webp"
+              - var originalImgWebp = require("../"+imgDir+"image.webp").src
+              +img-src(originalImgWebp, true)
+
+            when "data-uri"
+              - var originalImgDataUri = require("../"+imgDir+"image.jpg").placeholder
+              +img-src(originalImgDataUri, false, " ", 40, 40, false)
+
+        else
+          .img
+
+
+- var sizes = [1920, 1024, 480];
+- var heightImageSrcSet = 300;
+- var extImageSrcSet = 'jpg';
+- var imageSrcset = "https://via.placeholder.com/"+sizes[0]+"x"+heightImageSrcSet+"."+extImageSrcSet
+- var srcSet = imageSrcset +' '+ sizes[0]+"w, https://via.placeholder.com/"+sizes[1]+"x"+heightImageSrcSet+"."+extImageSrcSet+" "+sizes[1]+"w, https://via.placeholder.com/"+sizes[2]+"x"+heightImageSrcSet+"."+extImageSrcSet+" "+sizes[2]+"w";
+
+each method in methods
+  if method === 'html'
+    .styleguide-content
+      p image srcset html
+      +img-src(imageSrcset, false, "image srcset", sizes[1], heightImageSrcSet, false, srcSet, '100w')
+    .styleguide-content
+      p image srcset html picture
+      +img-src(imageSrcset, true, "image picture srcset", sizes[1], heightImageSrcSet, false, srcSet, '100w', extImageSrcSet)
+  else
+    .styleguide-content.styleguide-srcset
+      p image srcset css
+      .img
+

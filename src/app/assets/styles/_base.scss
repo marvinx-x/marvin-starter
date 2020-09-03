@@ -9,7 +9,7 @@ body {
 
   /* use to grab the content value in javascript */
   &::before {
-    content: quote(map-get($breakpointsMin, "smallDesktop"));
+    content: quote(map-get($breakpointsMin, "desktop"));
     display: none;
   }
 }
@@ -28,6 +28,7 @@ body:not(.nav-less) {
 }
 
 #app {
+  content-visibility: auto;
   min-height: 100vh;
   display: grid;
   grid-template-rows: $heightHeader 1fr $heightFooter;

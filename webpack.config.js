@@ -1,7 +1,15 @@
 const path = require( 'path' );
+const {CleanWebpackPlugin} = require( 'clean-webpack-plugin' );
+// const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const {CleanWebpackPlugin} = require( 'clean-webpack-plugin' );
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+
+const ImageminPlugin = require( 'imagemin-webpack-plugin' ).default;
+const imageminMozjpeg = require( 'imagemin-mozjpeg' );
+const imageminPngquant = require( 'imagemin-pngquant' );
+const imageminGifsicle = require( 'imagemin-gifsicle' );
+const imageminSvgo = require( 'imagemin-svgo' );
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -32,9 +40,12 @@ module.exports = {
       use: [{
         loader: 'pug-loader',
         options: {
-          pretty: isDevelopment ? true : false,
-          self: true
-        }
+          pretty: isDevelopment ? true : false
+        },
+        //  data: {
+//         global: require('./src/content/global.json'),
+//         home: require('./src/content/home.json')
+//       }
       }]
     },
     {
@@ -65,19 +76,20 @@ module.exports = {
     },
     {
       test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+      exclude: /assets\/icons\/.*\.svg$/,
       use: [
         {
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
             outputPath: (url, resourcePath) => {
-              if ( /assets/.test( resourcePath ) )
+              if ( /assets\/fonts/.test( resourcePath ) )
               {
-                return `/assets/fonts/webfont/${url}`;
+                return `/assets/fonts/${url}`;
               }
               if ( /node_modules/.test( resourcePath ) )
               {
-                return `/assets/fonts/externicons/${url}`;
+                return `/assets/icons/${url}`;
               }
               return `/assets/${url}`;
             },
@@ -85,10 +97,41 @@ module.exports = {
         }
       ]
      },
+     {
+      test: /assets\/icons\/.*\.svg$/,
+      loader: 'svg-sprite-loader',
+      options: {
+        extract: true,
+        spriteFilename: './assets/icons/custom/sprite.svg'
+        }
+      },
+      {
+        test: /\.(jpe?g|png|webp)$/i,
+        use: [ {
+          loader: 'responsive-loader',
+          options: {
+            name: '[name]-[width].[ext]',
+            outputPath: './assets/images',
+            placeholder: true,
+            adapter: require( 'responsive-loader/sharp' )
+          }
+        } ]
+      },
     ]
   },
   plugins: [
     new CleanWebpackPlugin(),
+    // new CopyWebpackPlugin( {
+    // patterns: [ {
+    //     from: './src/app/assets/images/*.gif',
+    //     to: 'assets/images/[name].[ext]'
+    //     },
+    //     {
+    //       from: './src/app/assets/images/*.svg',
+    //       to: 'assets/images/[name].[ext]'
+    //     }
+    //   ]
+    // } ),
     new HtmlWebpackPlugin( {
       filename: 'index.html',
       template: path.join( __dirname, './src/app/index.pug' ),
@@ -104,40 +147,9 @@ module.exports = {
     new MiniCssExtractPlugin( {
       filename: isDevelopment ? '[name].css' : '[name].[hash].css'
     } ),
-  ],
-
-
-  mode: isDevelopment ? 'development' : 'production',
-  devtool: isDevelopment ? 'source-map' : 'eval',
-  devServer: {
-    contentBase: output,
-    watchContentBase: true,
-    inline: true,
-    open: false,
-    writeToDisk: true,
-    port: 8000
-  }
-};
-
-
-// const ImageminPlugin = require( 'imagemin-webpack-plugin' ).default;
-// const imageminMozjpeg = require( 'imagemin-mozjpeg' );
-// const imageminPngquant = require( 'imagemin-pngquant' );
-// const imageminGifsicle = require( 'imagemin-gifsicle' );
-// const imageminSvgo = require( 'imagemin-svgo' );
-// const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
-// const FaviconsWebpackPlugin = require( 'favicons-webpack-plugin' );
-    // new CopyWebpackPlugin( {
-    //   patterns: [ {
-    //       from: './src/app/assets/images/*.gif',
-    //       to: 'assets/images/[name].[ext]'
-    //     },
-    //     {
-    //       from: './src/app/assets/images/*.svg',
-    //       to: 'assets/images/[name].[ext]'
-    //     }
-    //   ]
-    // } ),
+    new SpriteLoaderPlugin({
+      plainSprite: true
+    }),
     // new ImageminPlugin( {
     //   disable: isDevelopment,
     //   test: /\.(jpe?g|png|gif|svg|webp)$/,
@@ -160,7 +172,25 @@ module.exports = {
     //       removeViewBox: true
     //     } )
     //   ]
-    // } ),
+    // } )
+  ],
+  mode: isDevelopment ? 'development' : 'production',
+  devtool: isDevelopment ? 'source-map' : 'eval',
+  devServer: {
+    contentBase: output,
+    watchContentBase: true,
+    inline: true,
+    open: false,
+    writeToDisk: true,
+    port: 8000
+  }
+};
+
+
+
+
+// const FaviconsWebpackPlugin = require( 'favicons-webpack-plugin' );
+
     // new FaviconsWebpackPlugin( {
     //   logo: './src/app/assets/favicon/logo-40x40.svg',
     //   prefix: 'assets/favicon/',
@@ -169,16 +199,3 @@ module.exports = {
     // } ),
 
 
-
-      // {
-      //   test: /\.(jpe?g|png|webp)$/i,
-      //   use: [ {
-      //     loader: 'responsive-loader',
-      //     options: {
-      //       name: '[name]-[width].[ext]',
-      //       outputPath: 'assets/images',
-      //       placeholder: true,
-      //       adapter: require( 'responsive-loader/sharp' )
-      //     }
-      //   } ]
-      // },

@@ -1,3 +1,30 @@
+//// mixin icons librairies
+- var librairiesIcons = ["custom", "font-awesome", "glyphicon", "material-icons"]
+
+mixin icon(icon = false, library = librairiesIcons[0], glyph = false, animated = false, typeAnim = "spin")
+  if(library === librairiesIcons[0])
+    svg(class="custom-icon" preserveAspectRatio='xMidYMid meet' aria-hidden="true" shape-rendering="geometricPrecision")
+      use(xlink:href=spriteSvgIcons+"#"+icon aria-hidden="true")
+
+  else if(library === librairiesIcons[1] || library === librairiesIcons[2])
+    if(glyph)
+      - var nameClass = library === librairiesIcons[1] ? 'fa-icon' : 'glyphicon'
+      svg(class=nameClass preserveAspectRatio='xMidYMid meet' aria-hidden="true")
+        g: text(x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" style="transform : translate3d(0,10%,0)") &##{icon};
+    else
+      - var nameClass = library === librairiesIcons[1] ? animated ? 'fa-'+typeAnim+' fa fa-' : 'fa fa-' : 'glyphicon glyphicon-'
+      i(class=nameClass+icon aria-hidden="true")
+
+  else if(library === librairiesIcons[3])
+    - var webfont = true
+    i(class="material-icons" aria-hidden="true")= icon
+
+  else
+    p no icon
+
+
+
+//// mixins types images
 mixin img-src(src, picture=false, alt=" ", width=false, height=false, lazy="lazy", srcset, sizes=false,  type, media=false)
   if(!picture)
     img(src=src srcset=srcset, sizes=sizes alt=alt width=width height=height loading=lazy)
@@ -5,4 +32,3 @@ mixin img-src(src, picture=false, alt=" ", width=false, height=false, lazy="lazy
     picture
       source(srcset=srcset media=media sizes=sizes type= type ? "image/"+type : false)
       img(src=src alt=alt width=width height=height loading=lazy)
-

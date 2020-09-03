@@ -109,10 +109,13 @@ nav[role="navigation"] {
   }
 
   a {
-    display: block;
+    display: flex;
+    flex-flow : row nowrap;
+    align-items: center;
     padding: $paddingItemsNav $paddingNav;
     color: $colorDefault;
     @include underlineText(calc(100% - #{$paddingNav * 2}), 0.1rem, $colorDefault);
+    line-height: 1;
 
     &,
     & ::after {
@@ -124,8 +127,16 @@ nav[role="navigation"] {
       left: $paddingNav;
     }
 
-    &::first-letter {
-      text-transform: uppercase;
+    span{
+      display: inline-block;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+
+    svg, i{
+      margin-right: 1rem;
     }
 
     &:hover {

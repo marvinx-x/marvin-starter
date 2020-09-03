@@ -2,13 +2,7 @@
 
 p= txt
 section(class="grid styleguide-icons col--1")
-  svg(width='500' height='110')
-    g#shape3
-      rect(x='0' y='0' width='50' height='50')
-    use(xlink:href='#shape3' x='100' y='50' style='fill: #00ff00;')
-    use(xlink:href='#shape3' x='200' y='50' style='stroke: #00ff00; fill: none;')
-
-    //- // Bootstrap glyphicons classes
+  //- // Bootstrap glyphicons classes
   i.glyphicon.glyphicon-cloud
   i.glyphicon.glyphicon-remove
   i.glyphicon.glyphicon-user
@@ -27,5 +21,6 @@ section(class="grid styleguide-icons col--1")
   i.material-icons attachment
   i.material-icons computer
   i.material-icons traffic
-  // custom
-  a.customiconfont ahahah
+
+  +icon("alert")
+  +icon("bell")
