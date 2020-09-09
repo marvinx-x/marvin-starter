@@ -7,9 +7,8 @@ p= txt
 section(class="grid styleguide-colors col--"+colors.length)
   each color, key in colors
     .col
-      h3.styleguide-title= color
+      h3= color
       p hsl()
       ul
         - for(var i=0; i < 5; i++)
           li
-

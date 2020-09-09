@@ -13,10 +13,8 @@ append vars
 append main
   each starterItem in starterItems
     - var item = starterItem.toLowerCase()
-
     .styleguide-content(id=item)
       h2.styleguide-title= starterItem
-
       case item
         when "colors"
           include partials/colors
@@ -29,9 +27,6 @@ append main
 
         when "icons"
           include partials/icons
-
-        when "images"
-          //include partials/images
 
         default
           p There is no item related to this section

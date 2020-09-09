@@ -36,8 +36,6 @@ header[role="banner"] + button.button-nav {
 /* navigation items */
 /*  */
 
-$colorDefault: alpha(var(--white), 0.85);
-$colorHover: var(--white);
 $colorGradient1: lightness(var(--primary), 1.3);
 $colorGradient2: lightness(var(--primary), 0.9);
 
@@ -54,6 +52,7 @@ nav[role="navigation"] {
   transition-timing-function: $transitionNavEase;
   z-index: 2;
   visibility: hidden;
+  color : var(--white);
 
   > ul {
     overflow-x: hidden;
@@ -113,13 +112,15 @@ nav[role="navigation"] {
     flex-flow : row nowrap;
     align-items: center;
     padding: $paddingItemsNav $paddingNav;
-    color: $colorDefault;
-    @include underlineText(calc(100% - #{$paddingNav * 2}), 0.1rem, $colorDefault);
+    color: currentColor;
+    @include underlineText(calc(100% - #{$paddingNav * 2}), 0.1rem);
     line-height: 1;
+    opacity : .85;
+
 
     &,
     & ::after {
-      transition: all ease-in-out 0.15s;
+      transition: opacity ease-in-out 0.15s;
     }
 
     &::after {
@@ -140,14 +141,11 @@ nav[role="navigation"] {
     }
 
     &:hover {
-      padding-top: $paddingItemsNav * 1.35;
-      padding-bottom: $paddingItemsNav * 0.65;
-      color: $colorHover;
+      opacity : 1;
 
       &::after {
         opacity: 1;
         height: 0.2rem;
-        background-color: $colorHover;
       }
     }
   }

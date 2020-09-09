@@ -10,8 +10,9 @@ $mobileBreakLandscape: set-rem-breakpoint(48rem);
 $tabletBreakPortrait: set-rem-breakpoint(76.8rem);
 $tabletBreakLandscape: set-rem-breakpoint(102.4rem);
 $desktopBreak : set-rem-breakpoint(120rem);
-$desktopMediumBreak : set-rem-breakpoint(140rem);
-$desktopLargeBreak: set-rem-breakpoint($maxWidth);
+$desktopMediumBreak : set-rem-breakpoint(133.6rem);
+$desktopLargeBreak : set-rem-breakpoint(160rem);
+$desktopMaxBreak: set-rem-breakpoint($maxWidth);
 
 $breakpointsMin: (
   'mobile'  : ( min-width: 0rem ),
@@ -21,7 +22,8 @@ $breakpointsMin: (
   'smallDesktop'  :  (min-width: $tabletBreakLandscape + 0.1rem),
   'desktop'  :  (min-width: $desktopBreak + 0.1rem),
   'mediumDesktop'  :  (min-width: $desktopMediumBreak + 0.1rem),
-  'largeDesktop'  : (min-width: $desktopLargeBreak + 0rem)
+  'largeDesktop'  : (min-width: $desktopLargeBreak + 0.1rem),
+  'maxDesktop'  : (min-width: $desktopMaxBreak + 0rem)
 );
 
 $breakpointsMax: (
@@ -32,7 +34,8 @@ $breakpointsMax: (
   'smallDesktop'  :  (max-width: $desktopBreak + 0rem),
   'desktop'  :  (max-width: $desktopMediumBreak + 0rem),
   'mediumDesktop'  :  (max-width: $desktopLargeBreak + 0rem),
-  'largeDesktop'  : (max-width: 100vw)
+  'largeDesktop'  : (max-width: $desktopMaxBreak + 0rem),
+  'maxDesktop'  : (max-width: 100vw)
 );
 
 

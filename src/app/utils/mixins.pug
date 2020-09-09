@@ -1,26 +1,26 @@
 //// mixin icons librairies
-- var librairiesIcons = ["custom", "font-awesome", "glyphicon", "material-icons"]
+- var librairiesIcons = ["custom", "material-icons", "font-awesome", "glyphicon"]
 
 mixin icon(icon = false, library = librairiesIcons[0], glyph = false, animated = false, typeAnim = "spin")
   if(library === librairiesIcons[0])
     svg(class="custom-icon" preserveAspectRatio='xMidYMid meet' aria-hidden="true" shape-rendering="geometricPrecision")
       use(xlink:href=spriteSvgIcons+"#"+icon aria-hidden="true")
 
-  else if(library === librairiesIcons[1] || library === librairiesIcons[2])
-    if(glyph)
-      - var nameClass = library === librairiesIcons[1] ? 'fa-icon' : 'glyphicon'
-      svg(class=nameClass preserveAspectRatio='xMidYMid meet' aria-hidden="true")
-        g: text(x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" style="transform : translate3d(0,10%,0)") &##{icon};
-    else
-      - var nameClass = library === librairiesIcons[1] ? animated ? 'fa-'+typeAnim+' fa fa-' : 'fa fa-' : 'glyphicon glyphicon-'
-      i(class=nameClass+icon aria-hidden="true")
-
-  else if(library === librairiesIcons[3])
+  else if(library === librairiesIcons[1])
     - var webfont = true
     i(class="material-icons" aria-hidden="true")= icon
 
+  else if(library === librairiesIcons[2] || library === librairiesIcons[3])
+    if(glyph)
+      - var nameClass = library === librairiesIcons[2] ? 'fa-icon' : 'glyphicon'
+      svg(class=nameClass preserveAspectRatio='xMidYMid meet' aria-hidden="true"  shape-rendering="geometricPrecision")
+        g: text(x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" style="transform : translate3d(0,10%,0)" data-unicode=icon) &##{icon};
+    else
+      - var nameClass = library === librairiesIcons[2] ? animated ? 'fa-'+typeAnim+' fa fa-' : 'fa fa-' : 'glyphicon glyphicon-'
+      i(class=nameClass+icon aria-hidden="true")
+
   else
-    p no icon
+    p No icon
 
 
 

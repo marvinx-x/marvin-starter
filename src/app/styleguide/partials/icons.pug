@@ -1,26 +1,45 @@
+include ../../utils/mixins
+//////////////////////////////////////
+// icons are automatically generate in js, all document is parse and each of the icons are clone into this block
+////////////////////////////////////
+
 - var txt = "Lorem ipsum dolor sit amet consectetur adipisicing elit. In et dicta porro? Veritatis vero dolorem ut at optio corrupti fugit dolore, qui totam aliquid amet debitis mollitia ullam animi quidem exercitationem! Libero quas earum cum molestias iusto!"
 
-p= txt
-section(class="grid styleguide-icons col--1")
-  //- // Bootstrap glyphicons classes
-  i.glyphicon.glyphicon-cloud
-  i.glyphicon.glyphicon-remove
-  i.glyphicon.glyphicon-user
-  i.glyphicon.glyphicon-envelope
-  i.glyphicon.glyphicon-thumbs-up
-  // font-awesome classes
-  i.fa.fa-spinner.fa-spin
-  i.fa.fa-circle-o-notch.fa-spin
-  i.fa.fa-refresh.fa-spin
-  i.fa.fa-cog.fa-spin
-  i.fa.fa-spinner.fa-pulse
-  //- i.fa.fa-car.fa-4x.fa-stack-2x
-  // material-design-icons class and contents
-  i.material-icons cloud
-  i.material-icons favorite
-  i.material-icons attachment
-  i.material-icons computer
-  i.material-icons traffic
+- var NoIcon = "No Icons";
+- var typeImplement = ['svg use', 'font face', 'svg unicode'];
 
-  +icon("alert")
-  +icon("bell")
+- var unicode = typeImplement[2].substr(4);
+- var fontface = typeImplement[1].replace(/\s/g, '');
+
+- var custom = librairiesIcons[0];
+
+- var material = librairiesIcons[1].substr(0, librairiesIcons[1].indexOf('-'));
+
+- var fontawesome = librairiesIcons[2].charAt(0)+librairiesIcons[2].charAt(5);
+- var faUnicode = fontawesome+unicode;
+- var faFontFace = fontawesome+fontface;
+
+- var glyphiconUnicode = librairiesIcons[3]+unicode;
+- var glyphiconFontFace = librairiesIcons[3]+fontface;
+
+- var styleguideIconsCat = [custom, material, faFontFace, faUnicode, glyphiconFontFace, glyphiconUnicode];
+
+p= txt
+section(class="grid styleguide-icons col--2")
+  each librairyIcons, key in librairiesIcons
+    - var librairy = librairyIcons.toLowerCase()
+    .col
+      h3= librairy
+      case librairy
+        when librairiesIcons[key]
+          if(key == 0 || key == 1)
+            h4.style-h5= typeImplement[key]
+            div(class="grid grid-icons styleguide-icons--"+styleguideIconsCat[key])
+              p= NoIcon
+          else
+            -for(var i = 0; i < 2; i++)
+              h4.style-h5= typeImplement[i + 1]
+              div(class="grid grid-icons styleguide-icons--"+styleguideIconsCat[key == 2 ? key + i : key + i + 1])
+                p= NoIcon
+
+

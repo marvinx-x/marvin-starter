@@ -28,7 +28,6 @@ body:not(.nav-less) {
 }
 
 #app {
-  content-visibility: auto;
   min-height: 100vh;
   display: grid;
   grid-template-rows: $heightHeader 1fr $heightFooter;

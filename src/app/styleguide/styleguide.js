@@ -10,8 +10,6 @@ utils();
 navigation();
 logo();
 
-
-
 const sass = require( 'sass-extract-loader!./styleguide.scss' );
 const globalSass = sass.global;
 const colorValues = Object.keys( globalSass.$colors.value );
@@ -45,3 +43,67 @@ document.querySelectorAll( '.styleguide-colors p' ).forEach( ( el, i ) => {
       break;
   }
 } );
+
+
+
+function iconTypes() {
+
+  const icons = document.querySelectorAll( '.custom-icon, .material-icons, .fa-icon, .fa, .glyphicon' );
+  const categories = ["custom", "material", "fa", "glyphicon"];
+  const catIcons = [categories[0], categories[1], categories[2] + "Fontface", categories[2] + "Unicode", categories[3] + "Fontface", categories[3] + "Unicode"];
+  const wrapIcon = "wrap-icon";
+
+  const arrIconsHtml = [];
+  icons.forEach( ( el, i ) => {
+    arrIconsHtml.push( el.outerHTML.replace(/\s+/g, ' ').trim() );
+  } );
+
+  const setNoDuplicate = new Set( arrIconsHtml );
+
+  const arraysIcons = [];
+  catIcons.forEach( ( key ) => {
+    arraysIcons[key] = [];
+  } );
+
+  setNoDuplicate.forEach( ( icon ) => {
+    const str = `<div class="${wrapIcon}">${icon}<p></p></div>`;
+    str.includes( categories[0] ) ? arraysIcons.custom.push(str) : null;
+    str.includes( categories[1] ) ? arraysIcons.material.push(str) : null;
+    str.includes( categories[2]+' '+categories[2]+'-' ) ? arraysIcons.faFontface.push(str) :  null;
+    str.includes( categories[2]+'-icon' ) ? arraysIcons.faUnicode.push(str) :  null;
+    str.includes( categories[3] + ' ' + categories[3] + '-' ) ? arraysIcons.glyphiconFontface.push(str) : null;
+    str.includes( categories[3] + '\"' ) ? arraysIcons.glyphiconUnicode.push( str ) : null;
+  });
+  for (const key in arraysIcons) {
+    const blocCat = document.querySelector( `.styleguide-icons--${key}` );
+    blocCat.innerHTML = arraysIcons[key].toString().replace( /\,/g, " " );
+  }
+
+  document.querySelectorAll( `.${wrapIcon} p` ).forEach( ( el, i ) => {
+    const icon = el.previousElementSibling;
+    let nameIcon = "";
+    if (icon.classList.contains(categories[0]+'-icon'))
+    {
+      const linkHref = icon.querySelector( 'use' ).getAttribute( 'xlink:href' );
+      nameIcon = linkHref.substring(linkHref.indexOf('#') + 1);
+    }
+    else if ( icon.classList.contains( categories[1]+'-icons' ) )
+    {
+      nameIcon = icon.innerHTML;
+    }
+    else if ( icon.classList.contains( categories[2] ) || icon.classList.contains( categories[3] ) && icon.tagName === "I")
+    {
+      const classes = icon.getAttribute( 'class' );
+      nameIcon = classes.substring(classes.indexOf('-') + 1);
+    }
+    else if ( icon.classList.contains( categories[2]+'-icon' ) || icon.classList.contains( categories[3] ) && icon.tagName === "svg" )
+    {
+      nameIcon = icon.querySelector('text').getAttribute('data-unicode');
+    }
+    el.innerHTML = `\"${nameIcon}\"`;
+  } );
+
+}
+
+
+iconTypes();

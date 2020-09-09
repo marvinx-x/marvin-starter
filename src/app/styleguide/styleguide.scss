@@ -4,25 +4,11 @@
 /* STYLEGUIDE */
 /*  */
 
-.styleguide {
-  .grid {
-    grid-gap: 4rem;
-    grid-area: content;
-    grid-column-start: 2;
-    grid-row-start: 1;
-    grid-row-end: 3;
-
-    .col{
-      & > h1{
-        padding-bottom: 5rem;
-      }
-      & > h3{
-        padding-bottom: 1.5rem;
-      }
-    }
+.styleguide{
+  h1, h2, h3{
+    color : $colorText;
   }
 }
-
 
 .styleguide-content {
   padding-top: $heightHeader + $paddingBody * 4;
@@ -33,6 +19,27 @@
     "title content"
     "text content";
   grid-auto-flow: row;
+
+
+  & > .grid {
+    grid-column-start: 2;
+
+    &:first-of-type{
+      grid-area: content;
+    }
+
+    .col{
+      & > h1{
+        padding-bottom: 5rem;
+      }
+      & > h3{
+        padding-bottom: 1.5rem;
+      }
+      & > h4{
+        padding: 2rem 0 1.1rem 0;
+      }
+    }
+  }
 
   & > h2{
     padding-bottom: 3.5rem;
@@ -49,8 +56,7 @@
   }
 
   @include breakpoints-max("tabletLandscape") {
-    display: flex;
-    flex-flow: column wrap;
+    display: block;
 
     & > p:last-of-type {
       width: 100%;
@@ -64,7 +70,6 @@
 /* COLORS */
 /*  */
 
-
 .styleguide-colors {
   grid-area: content;
   grid-column-start: 2;
@@ -72,14 +77,11 @@
   grid-row-end: 3;
 
   .col {
-
-    .styleguide-title {
-      &::after {
-        margin-top: 1rem;
-      }
+    h3 {
 
       & + p{
         margin-bottom: .6rem;
+        font-size: 1.5rem;
       }
     }
 
@@ -119,18 +121,11 @@
       }
     }
   }
-  .styleguide-title {
-    grid-area: title;
-    grid-column-start: 1;
-    grid-row-end: 2;
-  }
 }
 
 /*  */
 /* TYPOGRAPHY */
 /*  */
-
-
 .styleguide-styles{
   $marginStyleguideStyles : 5rem;
   margin-bottom : $marginStyleguideStyles;
@@ -188,11 +183,6 @@
   }
 }
 
-
-
-
-
-
 .styleguide-fonts{
   .col{
     &:last-of-type{
@@ -220,9 +210,10 @@
 .styleguide-titles{
   h1, h2, h3, h4, h5, h6{
     @include underlineText(100%, 0.1rem, alpha(var(--dark), .25));
+    line-height: .5;
 
     &::after{
-      bottom: -$gridGap/3;
+      bottom: -$gridGap/2;
     }
   }
 }
@@ -231,10 +222,50 @@
 /*  */
 /* ICONS */
 /*  */
-.styleguide-icons{
-  display: block !important;
-}
 
+.styleguide-icons{
+  $lenghtColSquare : 15rem;
+
+  .grid-icons{
+    grid-gap : 1rem;
+    grid-template-columns: repeat(auto-fill, minmax($lenghtColSquare, 1fr));
+
+    & > p{
+      margin-top: .5rem;
+      margin-bottom: 12rem;
+    }
+
+    .wrap-icon{
+      $sizeBigIcon : 3.5rem;
+      background-color : lightness(var(--light), 1.1);
+      height : $lenghtColSquare;
+      display: flex;
+      flex-flow : column wrap;
+      align-items: center;
+      justify-content: center;
+
+      .fa,
+      .material-icons,
+      .fa-icon,
+      .glyphicon,
+      .custom-icon{
+        font-size: $sizeBigIcon !important;
+      }
+
+      .fa-icon,
+      .glyphicon,
+      .custom-icon{
+        width: $sizeBigIcon;
+        height: $sizeBigIcon + 1;
+      }
+
+      p{
+       transform: translate3d(0,$sizeBigIcon,0);
+       font-size: 1.5rem;
+      }
+    }
+  }
+}
 
 /*  */
 /* IMAGES */

@@ -20,7 +20,7 @@
 }
 
 /// DEFINE A COLOR LINE
-@mixin underlineText($width: 100%, $height: 0.1rem, $color: var(--primary)) {
+@mixin underlineText($width: 100%, $height: 0.1rem, $color: currentColor) {
   position: relative;
 
   &::after {

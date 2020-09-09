@@ -3,8 +3,6 @@ import 'hammerjs';
 import { gsap, TimelineMax, Quad, ScrollToPlugin } from 'gsap/all';
 gsap.registerPlugin(ScrollToPlugin);
 
-// import exportedVars from '../../assets/scripts/_export.scss';
-
 export function navigation() {
 	const buttonNav = document.querySelectorAll('.button-nav');
 	const nav = document.querySelector('nav[role="navigation"]');

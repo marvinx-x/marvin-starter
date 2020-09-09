@@ -15,6 +15,7 @@ a {
   }
 }
 
+
 /*  */
 /* FONT-WEIGHT CLASSES */
 /*  */
@@ -54,13 +55,17 @@ $weightFonts : ("Thin", "Extra-light", "Light", "regular", "Medium", "Semi-bold"
 /*  */
 /* ICONS */
 /*  */
+$sizeBaseIcon : $fontSizeBase + .2rem;
 
 .fa-icon{
   font-family:"FontAwesome";
 }
 
 .fa,
-.material-icons{
+.material-icons,
+.fa-icon,
+.glyphicon,
+.custom-icon{
   font-size : $sizeBaseIcon !important;
 }
 
@@ -69,5 +74,7 @@ $weightFonts : ("Thin", "Extra-light", "Light", "regular", "Medium", "Semi-bold"
 .custom-icon{
   width: $sizeBaseIcon;
   height: $sizeBaseIcon;
-  font-size : $sizeBaseIcon;
 }
+
+
+

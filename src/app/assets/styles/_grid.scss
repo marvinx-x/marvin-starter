@@ -11,13 +11,12 @@ $gridGap : $paddingContentHor;
     &.col--#{$i + 1} {
       grid-template-columns: repeat($i + 1, 1fr);
 
-      @include breakpoints-between("desktop") {
+      @include breakpoints-max("mediumDesktop") {
+        grid-template-columns: repeat($i, 1fr);
+      }
+      @include breakpoints-max("desktop") {
         grid-template-columns: repeat(($i + 1)/2, 1fr);
       }
-      @include breakpoints-max("tablet") {
-        grid-template-columns: repeat(($i + 1)/2, 1fr);
-      }
-
       @include breakpoints-max("mobileLandscape") {
         grid-template-columns: 1fr;
       }

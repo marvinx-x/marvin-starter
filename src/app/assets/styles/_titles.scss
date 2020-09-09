@@ -74,10 +74,11 @@ $titles : (
   $i: index($titles, $title);
   $titleStyles : map-keys(map-get($titles, "h#{$i}"));
 
-  h#{$i} {
+  h#{$i},
+  .style-h#{$i} {
     font-weight: normal;
     font-style: normal;
-    color: $colorText;
+    color: currentColor;
     @extend %h#{$i}-style;
 
     &::first-letter {
