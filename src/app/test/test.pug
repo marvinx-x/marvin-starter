@@ -1,0 +1,33 @@
+extends ../includes/layout/default
+
+include ../utils/icons
+
+append head
+
+append vars
+  - var documentTitle = "Marvin Starter - test"
+
+append main
+  .test(style="margin-top : 15rem")
+    a(href="./styleguide.html") use the styleguide
+    a(href="./test.html") go to test
+
+
+    +icon("menu")
+    +icon("menu")
+
+    +icon("android", "material-icons")
+    +icon("android", "material-icons")
+
+    +icon("anchor", "font-awesome")
+    +icon("anchor", "font-awesome")
+
+    +icon("tower", "glyphicon")
+    +icon("tower", "glyphicon")
+
+
+    +icon("xf080", "font-awesome", true)
+    +icon("xf080", "font-awesome", true)
+
+    +icon("xe179", "glyphicon", true)
+    +icon("xe179", "glyphicon", true)

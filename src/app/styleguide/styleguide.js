@@ -10,60 +10,72 @@ utils();
 navigation();
 logo();
 
-const sass = require( 'sass-extract-loader!./styleguide.scss' );
-const globalSass = sass.global;
-const colorValues = Object.keys( globalSass.$colors.value );
+function hsl() {
+  const sass = require( 'sass-extract-loader!./styleguide.scss' );
+  const globalSass = sass.global;
+  const colorValues = Object.keys( globalSass.$colors.value );
 
-document.querySelectorAll( '.styleguide-colors p' ).forEach( ( el, i ) => {
-  const color = colorValues[i];
-  switch (color) {
-    case 'primary':
-      const huePrimary = globalSass.$colors.value.primary.value.hue.value;
-      const saturationPrimary = globalSass.$colors.value.primary.value.saturation.value;
-      const lightnessPrimary = globalSass.$colors.value.primary.value.lightness.value;
-      el.innerHTML = `hsl(${huePrimary}, ${saturationPrimary}%, ${lightnessPrimary}%)`;
-      break;
-    case 'dark':
-      const hueDark = globalSass.$colors.value.dark.value.hue.value;
-      const saturationDark = globalSass.$colors.value.dark.value.saturation.value;
-      const lightnessDark = globalSass.$colors.value.dark.value.lightness.value;
-      el.innerHTML = `hsl(${hueDark}, ${saturationDark}%, ${lightnessDark}%)`;
-      break;
-    case 'neutral':
-      const hueNeutral = globalSass.$colors.value.neutral.value.hue.value;
-      const saturationNeutral = globalSass.$colors.value.neutral.value.saturation.value;
-      const lightnessNeutral = globalSass.$colors.value.neutral.value.lightness.value;
-      el.innerHTML = `hsl(${hueNeutral}, ${saturationNeutral}%, ${lightnessNeutral}%)`;
-      break;
-    case 'light':
-      const hueLight = globalSass.$colors.value.light.value.hue.value;
-      const saturationLight = globalSass.$colors.value.light.value.saturation.value;
-      const lightnessLight = globalSass.$colors.value.light.value.lightness.value;
-      el.innerHTML = `hsl(${hueLight}, ${saturationLight}%, ${lightnessLight}%)`;
-      break;
-  }
-} );
+  document.querySelectorAll( '.styleguide-colors p' ).forEach( ( el, i ) => {
+    const color = colorValues[i];
+    switch (color) {
+      case 'primary':
+        const huePrimary = globalSass.$colors.value.primary.value.hue.value;
+        const saturationPrimary = globalSass.$colors.value.primary.value.saturation.value;
+        const lightnessPrimary = globalSass.$colors.value.primary.value.lightness.value;
+        el.innerHTML = `hsl(${huePrimary}, ${saturationPrimary}%, ${lightnessPrimary}%)`;
+        break;
+      case 'dark':
+        const hueDark = globalSass.$colors.value.dark.value.hue.value;
+        const saturationDark = globalSass.$colors.value.dark.value.saturation.value;
+        const lightnessDark = globalSass.$colors.value.dark.value.lightness.value;
+        el.innerHTML = `hsl(${hueDark}, ${saturationDark}%, ${lightnessDark}%)`;
+        break;
+      case 'neutral':
+        const hueNeutral = globalSass.$colors.value.neutral.value.hue.value;
+        const saturationNeutral = globalSass.$colors.value.neutral.value.saturation.value;
+        const lightnessNeutral = globalSass.$colors.value.neutral.value.lightness.value;
+        el.innerHTML = `hsl(${hueNeutral}, ${saturationNeutral}%, ${lightnessNeutral}%)`;
+        break;
+      case 'light':
+        const hueLight = globalSass.$colors.value.light.value.hue.value;
+        const saturationLight = globalSass.$colors.value.light.value.saturation.value;
+        const lightnessLight = globalSass.$colors.value.light.value.lightness.value;
+        el.innerHTML = `hsl(${hueLight}, ${saturationLight}%, ${lightnessLight}%)`;
+        break;
+    }
+  } );
+}
+
+hsl();
+
+///////////////////////////////
 
 
+const arrIconsHtml = [];
 
-function iconTypes() {
+function iconTypes(url) {
 
-  const icons = document.querySelectorAll( '.custom-icon, .material-icons, .fa-icon, .fa, .glyphicon' );
+  const request = new XMLHttpRequest();
   const categories = ["custom", "material", "fa", "glyphicon"];
+  const iconClasses = `.${categories[0]}-icon, .${categories[1]}-icons, .${categories[2]}-icon, .${categories[2]}, .${categories[3]}`;
   const catIcons = [categories[0], categories[1], categories[2] + "Fontface", categories[2] + "Unicode", categories[3] + "Fontface", categories[3] + "Unicode"];
   const wrapIcon = "wrap-icon";
 
-  const arrIconsHtml = [];
-  icons.forEach( ( el, i ) => {
-    arrIconsHtml.push( el.outerHTML.replace(/\s+/g, ' ').trim() );
-  } );
+  request.addEventListener( "load", function ( evt ) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString( evt.srcElement.response, "text/html" );
+    const icons = doc.querySelectorAll( iconClasses );
 
-  const setNoDuplicate = new Set( arrIconsHtml );
+    icons.forEach( ( el, i ) => {
+      arrIconsHtml.push( el.outerHTML.replace(/\s+/g, ' ').trim() );
+    } );
 
-  const arraysIcons = [];
-  catIcons.forEach( ( key ) => {
-    arraysIcons[key] = [];
-  } );
+    const setNoDuplicate = new Set( arrIconsHtml );
+
+    const arraysIcons = [];
+    catIcons.forEach( ( key ) => {
+      arraysIcons[key] = [];
+    } );
 
   setNoDuplicate.forEach( ( icon ) => {
     const str = `<div class="${wrapIcon}">${icon}<p></p></div>`;
@@ -73,7 +85,8 @@ function iconTypes() {
     str.includes( categories[2]+'-icon' ) ? arraysIcons.faUnicode.push(str) :  null;
     str.includes( categories[3] + ' ' + categories[3] + '-' ) ? arraysIcons.glyphiconFontface.push(str) : null;
     str.includes( categories[3] + '\"' ) ? arraysIcons.glyphiconUnicode.push( str ) : null;
-  });
+  } );
+
   for (const key in arraysIcons) {
     const blocCat = document.querySelector( `.styleguide-icons--${key}` );
     blocCat.innerHTML = arraysIcons[key].toString().replace( /\,/g, " " );
@@ -102,8 +115,15 @@ function iconTypes() {
     }
     el.innerHTML = `\"${nameIcon}\"`;
   } );
+  }, false );
 
+  request.open('GET', url, false),
+  request.send();
 }
 
+const arrPages = ["index", "test", "styleguide"];
+arrPages.forEach( ( el, i ) => {
+  iconTypes(`/${el}.html`);
+})
 
-iconTypes();
+// console.log([...document.links].map(l => l.href))

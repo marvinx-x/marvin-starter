@@ -19,7 +19,8 @@ const output = path.resolve( __dirname, './dist' );
 module.exports = {
   entry: {
     main: entry,
-    styleguide: path.resolve( __dirname, './src/app/styleguide/styleguide.js' )
+    styleguide: path.resolve( __dirname, './src/app/styleguide/styleguide.js' ),
+    test: path.resolve( __dirname, './src/app/test/test.js' )
   },
   output: {
     path: output,
@@ -143,6 +144,12 @@ module.exports = {
       template: path.join( __dirname, './src/app/styleguide/styleguide.pug' ),
       chunks: [ 'styleguide' ],
       title : 'Marvin Starter - Styleguide',
+    } ),
+    new HtmlWebpackPlugin( {
+      filename: 'test.html',
+      template: path.join( __dirname, './src/app/test/test.pug' ),
+      chunks: [ 'test' ],
+      title : 'Marvin Starter - test',
     } ),
     new MiniCssExtractPlugin( {
       filename: isDevelopment ? '[name].css' : '[name].[hash].css'
