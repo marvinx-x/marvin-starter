@@ -52,7 +52,7 @@ img,
 .img {
 	width: 100%;
 	object-fit: cover;
-	background-color: var(--light);
+	background-color: $backColorImg;
 }
 
 .img {
@@ -60,7 +60,7 @@ img,
 	background-repeat: no-repeat;
 	background-position: center center;
 	min-width: 100%;
-	min-height: 30rem;
+	min-height: 25rem;
 }
 
 p {

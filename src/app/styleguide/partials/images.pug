@@ -1,58 +1,71 @@
+- var txt = "Lorem ipsum dolor sit amet consectetur adipisicing elit. In et dicta porro? Veritatis vero dolorem ut at optio corrupti fugit dolore, qui totam aliquid amet debitis mollitia ullam animi quidem exercitationem! Libero quas earum cum molestias iusto!"
 
-- var methods = ["html", "css"]
-each method in methods
-  .styleguide-imgs.grid.col--6
+- var methods = ["srcset", "html", "css"]
 
-    - var extensions = ["jpg", "png", "gif", "svg", "webp", "data-uri"]
-    each extension, key in extensions
-      .col
-        - var name = method === 'html' ? 'html ' : 'css ';
-        p= key+1 + ': image '+ name +' ' + extension
+p= txt
+section(class="grid styleguide-imgs col--1")
+  each method in methods
+    .col
+      h3= method
+
+      if method === 'srcset'
+        - var srcsets = ["img", "picture", "css"]
+        - var sizes = [500, 250, 100];
+        - var heightImageSrcSet = 250;
+        - var extImageSrcSet = 'jpg';
+        - var imageSrcset = "https://via.placeholder.com/"+sizes[0]+"x"+heightImageSrcSet+"."+extImageSrcSet+'/F4F6FA/bec8db'
+        - var srcSet = imageSrcset +' '+ sizes[0]+"w, https://via.placeholder.com/"+sizes[1]+"x"+heightImageSrcSet+"."+extImageSrcSet+" "+sizes[1]+"w, https://via.placeholder.com/"+sizes[2]+"x"+heightImageSrcSet+"."+extImageSrcSet+" "+sizes[2]+"w";
+
+        section(class="grid styleguide-imgs--"+method+" col--"+sizes.length)
+          each srcset in srcsets
+            .col
+              h4= srcset
+              case srcset
+                when "img"
+                  +img-src(imageSrcset, false, "image srcset", sizes[1], heightImageSrcSet, false, srcSet, '100w')
+
+                when "picture"
+                  +img-src(imageSrcset, true, "image picture srcset", sizes[1], heightImageSrcSet, false, srcSet, '100w', extImageSrcSet)
+
+                when "css"
+                  .img
+
+      else
+
+        - var extensions = ["jpg", "png", "gif", "svg", "webp", "data-uri"]
 
         if method === 'html'
-          case extension
-            when "jpg"
-              - var originalImgJpg = require("../"+imgDir+"image.jpg").src
-              +img-src(originalImgJpg)
+          section(class="grid styleguide-imgs--"+method+" col--6")
+            each extension in extensions
+              .col
+                h4= extension
+                case extension
+                  when "jpg"
+                    - var originalImgJpg = require("../"+imgDir+"image.jpg").src
+                    +img-src(originalImgJpg)
 
-            when "png"
-              - var originalImgPng = require("../"+imgDir+"image.png").src
-              +img-src(originalImgPng, true)
+                  when "png"
+                    - var originalImgPng = require("../"+imgDir+"image.png").src
+                    +img-src(originalImgPng, true)
 
-            when "gif"
-              +img-src(imgDir+"image.gif")
+                  when "gif"
+                    +img-src(imgDir+"image.gif")
 
-            when "svg"
-              +img-src(imgDir+"image.svg", true, ' ', ' ', false)
+                  when "svg"
+                    +img-src(imgDir+"image.svg", true, ' ', ' ', false)
 
-            when "webp"
-              - var originalImgWebp = require("../"+imgDir+"image.webp").src
-              +img-src(originalImgWebp, true)
+                  when "webp"
+                    - var originalImgWebp = require("../"+imgDir+"image.webp").src
+                    +img-src(originalImgWebp, true)
 
-            when "data-uri"
-              - var originalImgDataUri = require("../"+imgDir+"image.jpg").placeholder
-              +img-src(originalImgDataUri, false, " ", 40, 40, false)
-
-        else
-          .img
+                  when "data-uri"
+                    - var originalImgDataUri = require("../"+imgDir+"image.jpg").placeholder
+                    +img-src(originalImgDataUri, false, " ", 40, 30, false)
 
 
-- var sizes = [1920, 1024, 480];
-- var heightImageSrcSet = 300;
-- var extImageSrcSet = 'jpg';
-- var imageSrcset = "https://via.placeholder.com/"+sizes[0]+"x"+heightImageSrcSet+"."+extImageSrcSet
-- var srcSet = imageSrcset +' '+ sizes[0]+"w, https://via.placeholder.com/"+sizes[1]+"x"+heightImageSrcSet+"."+extImageSrcSet+" "+sizes[1]+"w, https://via.placeholder.com/"+sizes[2]+"x"+heightImageSrcSet+"."+extImageSrcSet+" "+sizes[2]+"w";
-
-each method in methods
-  if method === 'html'
-    .styleguide-content
-      p image srcset html
-      +img-src(imageSrcset, false, "image srcset", sizes[1], heightImageSrcSet, false, srcSet, '100w')
-    .styleguide-content
-      p image srcset html picture
-      +img-src(imageSrcset, true, "image picture srcset", sizes[1], heightImageSrcSet, false, srcSet, '100w', extImageSrcSet)
-  else
-    .styleguide-content.styleguide-srcset
-      p image srcset css
-      .img
-
+        if method === 'css'
+          section(class="grid styleguide-imgs--"+method+" col--6")
+            each extension in extensions
+              .col
+                h4= extension
+                .img
