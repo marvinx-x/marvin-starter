@@ -20,7 +20,6 @@
     "text content";
   grid-auto-flow: row;
 
-
   & > .grid {
     grid-column-start: 2;
 
@@ -34,7 +33,7 @@
         padding-bottom: 5rem;
       }
       & > h3{
-        padding-bottom: 1.5rem;
+        padding-bottom: 1.2rem;
       }
       & > h4{
         padding: 2.2rem 0 1.1rem 0;
@@ -58,6 +57,7 @@
 
   @include breakpoints-max("tabletLandscape") {
     display: block;
+    padding-top: $heightHeader + $paddingBody * 2;
 
     & > p:last-of-type {
       width: 100%;
@@ -130,7 +130,6 @@
 .styleguide-styles{
   $marginStyleguideStyles : 5rem;
   margin-bottom : $marginStyleguideStyles;
-  max-width : 42rem;
   margin-top : 1.2rem;
 
   &:last-of-type{
@@ -227,6 +226,14 @@
 .styleguide-icons{
   $lenghtColSquare : 15rem;
 
+  &.grid{
+    .col{
+      & > h3{
+        padding-bottom: 0;
+      }
+    }
+  }
+
   .grid-icons{
     grid-gap : 1rem;
     grid-template-columns: repeat(auto-fill, minmax($lenghtColSquare, 1fr));
@@ -283,6 +290,15 @@ $imgs: (
 $nbrImgs: length($imgs);
 
 .styleguide-imgs {
+
+  &.grid{
+    .col{
+      & > h3{
+        padding-bottom: 0;
+      }
+    }
+  }
+
   &--srcset {
 
     $srcsets: (
@@ -331,7 +347,16 @@ $nbrImgs: length($imgs);
       }
     }
   }
+
+  .grid-imgs{
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  }
 }
+
+
+/*  */
+/* PAGES */
+/*  */
 
 .styleguide-pages{
   a{
