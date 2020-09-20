@@ -210,7 +210,6 @@
 .styleguide-titles{
   h1, h2, h3, h4, h5, h6{
     @include underlineText(100%, 0.1rem, alpha(var(--dark), .25));
-    line-height: .5;
 
     &::after{
       bottom: -$gridGap/2;
@@ -268,8 +267,8 @@
       }
 
       p{
-       transform: translate3d(0,$sizeBigIcon,0);
        font-size: 1.5rem;
+       margin-top : 1rem;
       }
     }
   }
@@ -289,7 +288,9 @@ $imgs: (
 
 $nbrImgs: length($imgs);
 
+
 .styleguide-imgs {
+
 
   &.grid{
     .col{
@@ -301,22 +302,29 @@ $nbrImgs: length($imgs);
 
   &--srcset {
 
+    picture{
+      height: 20rem;
+    }
+
     $srcsets: (
-      "mobileLandscape": 125,
-      "tablet": 250,
-      "desktop": 500,
+      "maxDesktop": 1600,
+      "mediumDesktop": 912,
+      "tablet": 656,
+      "mobileLandscape": 368,
+      "mobile"  : 208,
     );
 
     @each $key, $srcset in $srcsets {
-      @include breakpoints-min($key) {
+      @include breakpoints-max($key) {
         .img {
-          @include bgimage("https://via.placeholder.com/#{$srcset}x250/F4F6FA/bec8db?size=#{$srcset}");
+          @include bgimage("https://via.placeholder.com/#{$srcset}x200/F4F6FA/bec8db?size=#{$srcset}");
         }
       }
     }
   }
 
   &--css {
+
     .img{
       min-height: 14rem;
     }

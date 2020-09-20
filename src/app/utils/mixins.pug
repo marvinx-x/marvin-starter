@@ -30,5 +30,5 @@ mixin img-src(src, picture=false, alt=" ", width=false, height=false, lazy="lazy
     img(src=src srcset=srcset, sizes=sizes alt=alt width=width height=height loading=lazy)
   else
     picture
-      source(srcset=srcset media=media sizes=sizes type= type ? "image/"+type : false)
+      source(srcset=srcset media=media type= type ? "image/"+type : false)
       img(src=src alt=alt width=width height=height loading=lazy)
