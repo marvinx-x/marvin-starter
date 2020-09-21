@@ -154,21 +154,24 @@ module.exports = {
       test: /\.(jpe?g|png|gif|svg|webp)$/,
       plugins: [
         imageminMozjpeg( {
-          quality: 2,
+          quality: 80,
           progressive: true
         } ),
         imageminGifsicle( {
           interlaced: false,
           optimizationLevel: 3,
-          colors: 2
+          colors: 150
         } ),
         imageminPngquant( {
-          floyd: 0.5,
-          speed: 2,
-          quality: [ 0.02, 0.02 ]
+          speed: 6,
+          strip: true,
+          quality: [ 0.5, 0.8 ]
         } ),
         imageminSvgo( {
-          removeViewBox: true
+          removeViewBox: true,
+          removeTitle: true,
+          convertColors: {shorthex: true},
+          convertPathData: true
         } )
       ]
     } )

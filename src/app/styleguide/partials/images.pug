@@ -1,50 +1,18 @@
-- var txt = "Lorem ipsum dolor sit amet consectetur adipisicing elit. In et dicta porro? Veritatis vero dolorem ut at optio corrupti fugit dolore, qui totam aliquid amet debitis mollitia ullam animi quidem exercitationem! Libero quas earum cum molestias iusto!"
-- var methods = ["srcset", "html", "css"]
+append vars
 
+- var txt = "Lorem ipsum dolor sit amet consectetur adipisicing elit. In et dicta porro? Veritatis vero dolorem ut at optio corrupti fugit dolore, qui totam aliquid amet debitis mollitia ullam animi quidem exercitationem! Libero quas earum cum molestias iusto!"
+- var methods = ["html", "css", "srcset"]
+- var extensions = ["jpg", "png", "gif", "svg", "webp", "data-uri"]
 
 p= txt
 section(class="grid styleguide-imgs col--1")
   each method in methods
     .col
       h3= method
-
       case method
-
-        when "srcset"
-          - const srcsets = ["img", "picture", "css"]
-          - var urlImg = "https://via.placeholder.com/"
-          - var originalSizeImg = 1600;
-          - var heightImageSrcSet = 200;
-          - var extImageSrcSet = 'jpg';
-          - var colorImg = "/F4F6FA/bec8db"
-          - var endUrl = "x"+heightImageSrcSet+"."+extImageSrcSet+colorImg
-
-          section(class="grid styleguide-imgs--"+method+" col--1")
-            each srcset in srcsets
-              .col
-                h4= srcset
-                case srcset
-                  when "img"
-                    - var arrBreakpointsImgs = [320, 480, 768, 1600]
-                    - var arrSizesImgs = [208, 368, 656, 912]
-
-                    img(srcset=urlImg+arrSizesImgs[0]+endUrl+" "+arrSizesImgs[0]+"w, "+urlImg+arrSizesImgs[1]+endUrl+" "+arrSizesImgs[1]+"w, "+urlImg+arrSizesImgs[2]+endUrl+" "+arrSizesImgs[2]+"w, "+urlImg+arrSizesImgs[3]+endUrl+" "+arrSizesImgs[3]+"w, "+urlImg+originalSizeImg+endUrl+" "+originalSizeImg+"w" sizes="(max-width: "+arrBreakpointsImgs[0]+"px) "+arrBreakpointsImgs[0]+"px, (max-width: "+arrBreakpointsImgs[1]+"px) "+arrSizesImgs[1]+"px, (max-width: "+arrBreakpointsImgs[2]+"px) "+arrSizesImgs[2]+"px, (max-width: "+arrBreakpointsImgs[3]+"px) "+arrSizesImgs[3]+"px, "+arrBreakpointsImgs[3]+"px" src=urlImg+originalSizeImg+endUrl alt="example img implementation")
-
-                  when "picture"
-
-                    - var valuesSizes = { 320 : 208 , 480 : 368, 768 : 656, 1600 : 912}
-                    picture
-                      each val, key in valuesSizes
-                        source(media="(max-width: "+key+"px)" srcset=urlImg+val+endUrl type="image/"+extImageSrcSet)
-                      img(src=urlImg+originalSizeImg+endUrl alt="example picture implementation")
-
-                  when "css"
-                    .img
 
         when "html"
           section(class="grid grid-imgs styleguide-imgs--"+method)
-
-            - var extensions = ["jpg", "png", "gif", "svg", "webp", "data-uri"]
 
             each extension in extensions
               .col
@@ -66,10 +34,7 @@ section(class="grid styleguide-imgs col--1")
                     img(src=require("../"+imgDir+"image.webp").src alt="image webp")
 
                   when "data-uri"
-                    - var originalImgDataUri = require("../"+imgDir+"image.jpg").placeholder
-                    +img-src(originalImgDataUri, false, " ", 40, 30, false)
-
-
+                    img(src=require("../"+imgDir+"image.jpg").placeholder alt="image data-uri")
 
         when "css"
           section(class="grid grid-imgs styleguide-imgs--"+method)
@@ -77,3 +42,33 @@ section(class="grid styleguide-imgs col--1")
               .col
                 h4= extension
                 .img
+
+        when "srcset"
+          - const srcsets = ["img", "picture", "background-image"]
+          - var urlImg = "https://via.placeholder.com/"
+          - var originalSizeImg = 1600;
+          - var heightImageSrcSet = 200;
+          - var extImageSrcSet = 'jpg';
+          - var colorImg = "/F4F6FA/bec8db"
+          - var endUrl = "x"+heightImageSrcSet+"."+extImageSrcSet+colorImg
+
+          section(class="grid styleguide-imgs--"+method+" col--1")
+            each srcset in srcsets
+              .col
+                h4= srcset
+                case srcset
+
+                  when "img"
+                    - var arrBreakpointsImgs = [320, 480, 768, 1600]
+                    - var arrSizesImgs = [208, 368, 656, 912]
+                    img(srcset=urlImg+arrSizesImgs[0]+endUrl+" "+arrSizesImgs[0]+"w, "+urlImg+arrSizesImgs[1]+endUrl+" "+arrSizesImgs[1]+"w, "+urlImg+arrSizesImgs[2]+endUrl+" "+arrSizesImgs[2]+"w, "+urlImg+arrSizesImgs[3]+endUrl+" "+arrSizesImgs[3]+"w, "+urlImg+originalSizeImg+endUrl+" "+originalSizeImg+"w" sizes="(max-width: "+arrBreakpointsImgs[0]+"px) "+arrBreakpointsImgs[0]+"px, (max-width: "+arrBreakpointsImgs[1]+"px) "+arrSizesImgs[1]+"px, (max-width: "+arrBreakpointsImgs[2]+"px) "+arrSizesImgs[2]+"px, (max-width: "+arrBreakpointsImgs[3]+"px) "+arrSizesImgs[3]+"px, "+arrBreakpointsImgs[3]+"px" src=urlImg+originalSizeImg+endUrl alt="example img implementation")
+
+                  when "picture"
+                    - var valuesSizes = { 320 : 208 , 480 : 368, 768 : 656, 1600 : 912}
+                    picture
+                      each val, key in valuesSizes
+                        source(media="(max-width: "+key+"px)" srcset=urlImg+val+endUrl type="image/"+extImageSrcSet)
+                      img(src=urlImg+originalSizeImg+endUrl alt="example picture implementation")
+
+                  when "background-image"
+                    .img

@@ -21,14 +21,3 @@ mixin icon(icon = false, library = librairiesIcons[0], glyph = false, animated =
 
   else
     p No icon
-
-
-
-//// mixins types images
-mixin img-src(src, picture=false, alt=" ", width=false, height=false, lazy="lazy", srcset, sizes=false,  type, media=false)
-  if(!picture)
-    img(src=src srcset=srcset, sizes=sizes alt=alt width=width height=height loading=lazy)
-  else
-    picture
-      source(srcset=srcset media=media type= type ? "image/"+type : false)
-      img(src=src alt=alt width=width height=height loading=lazy)
