@@ -66,8 +66,15 @@ $heightHeader: $lengthLogo + ($paddingHeader * 2);
 $gapElemsHeader: 0.6rem;
 $colorElemsHeader: var(--dark);
 
+/* NAV */
+$paddingNav: $paddingBody + ($lengthLogo/3);
+$paddingItemsNav: 2.2rem;
+
+/* BUTTONS */
+$heightLinks : 5rem;
+
 /* FOOTER */
-$heightFooter: 5.8rem;
+$heightFooter: $heightLinks + $paddingItemsNav*2;
 
 /* NAVIGATION */
 $widthNav: $minWidth;
@@ -78,7 +85,7 @@ $transitionNavEase: ease(easeInOutQuad);
 $transitionNavDuration: 0.35s;
 
 /* MAIN CONTENT */
-$paddingContentHor: $widthButtonNav + $paddingBody;
+$paddingContentHor: $widthButtonNav + $paddingBody*2;
 $paddingContentVert: $heightFooter;
 $paddingContentBlock: $paddingContentHor;
 $colorText: lightness(var(--primary), 0.75);

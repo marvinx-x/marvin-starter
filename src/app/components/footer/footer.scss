@@ -5,24 +5,16 @@ footer[role='contentinfo'] {
   grid-area: footer;
   position: sticky;
   bottom: 0;
-  z-index: 1;
-	display: grid;
-	grid-template-columns: minmax(auto, 1fr);
-	grid-template-rows: minmax(auto, 1fr);
+  z-index: 2;
+	display: flex;
+	flex-flow: row nowrap;
 	align-items: center;
-	justify-items: flex-start;
-	padding: $paddingFooter;
-	align-content: center;
-	opacity : .35;
+	justify-items: center;
+	max-width: $minWidth;
+	padding: 0 $paddingItemsNav;
+	color : var(--dark);
 
-
-	> ul{
-		display: grid;
-		grid-gap : $paddingFooter;
-		grid-auto-flow: column;
-
-		> li{
-			background: white;
-		}
+	a{
+		margin-right: 1.3rem;
 	}
 }

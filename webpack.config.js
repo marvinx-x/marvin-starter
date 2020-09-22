@@ -168,10 +168,7 @@ module.exports = {
           quality: [ 0.5, 0.8 ]
         } ),
         imageminSvgo( {
-          removeViewBox: true,
-          removeTitle: true,
-          convertColors: {shorthex: true},
-          convertPathData: true
+          removeViewBox: true
         } )
       ]
     } )

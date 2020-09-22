@@ -1,8 +1,15 @@
+- var projectLinks = ['gitlab', 'github', 'bitbucket']
+
 footer(role="contentinfo")
-  ul
-    li
-      a Gitlab
-    li
-      a Github
-    li
-      a Bitbucket
+  each link in projectLinks
+    a(class='btn icon rounded')
+      case link
+        when projectLinks[0]
+          +icon(link.toLowerCase(), "font-awesome")
+
+        when projectLinks[1]
+          +icon(link.toLowerCase(), "font-awesome")
+
+        when projectLinks[2]
+          +icon(link.toLowerCase())
+

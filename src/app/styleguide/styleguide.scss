@@ -8,6 +8,7 @@
   h1, h2, h3{
     color : $colorText;
   }
+
 }
 
 .styleguide-content {
@@ -19,6 +20,8 @@
     "title content"
     "text content";
   grid-auto-flow: row;
+  align-items: flex-start;
+
 
   & > .grid {
     grid-column-start: 2;
@@ -210,6 +213,7 @@
 .styleguide-titles{
   h1, h2, h3, h4, h5, h6{
     @include underlineText(100%, 0.1rem, alpha(var(--dark), .25));
+    line-height: .75;
 
     &::after{
       bottom: -$gridGap/2;
@@ -361,6 +365,32 @@ $nbrImgs: length($imgs);
   }
 }
 
+/*  */
+/* BUTTONS */
+/*  */
+
+.styleguide-buttons{
+  align-items: flex-start;
+  justify-items: flex-start;
+
+  h3{
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .col{
+    display: inline-flex;
+    flex-flow: row wrap;
+  }
+
+
+
+  .btn{
+    $marginBtnsStyleguide : 1.5rem;
+    margin : 0 $marginBtnsStyleguide $marginBtnsStyleguide 0;
+  }
+
+}
 
 /*  */
 /* PAGES */

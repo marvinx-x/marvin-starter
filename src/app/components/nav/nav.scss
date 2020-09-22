@@ -3,8 +3,6 @@
 /*  */
 /* button nav */
 /*  */
-$paddingNav: $paddingBody + ($lengthLogo/3);
-$paddingItemsNav: 2.2rem;
 $paddingTopBottomNav: $paddingItemsNav - $paddingHeader/2;
 
 header[role="banner"] + button.button-nav {
@@ -59,7 +57,7 @@ nav[role="navigation"] {
     overflow-y: auto;
     height: 100%;
     padding-top: $heightHeader;
-    padding-bottom: $heightFooter;
+    padding-bottom: $heightFooter + 2rem;
     position: relative;
 
     &::before {

@@ -9,7 +9,7 @@ mixin burger-svg()
   svg(aria-hidden="true" role="button" viewBox='0 0 '+lengthBurger+' '+lengthBurger+'' style='enable-background:new 0 0 '+lengthBurger+' '+lengthBurger+';' preserveAspectRatio='xMidYMid meet')
     g(aria-hidden="true")
       - for(var i=0; i < 3; i++)
-        rect(aria-hidden="true" x=Math.round(positionLeft) y='' + (i * space + positionTop) + '' width=widthLine height=heightLine shape-rendering="crispEdges")
+        rect(aria-hidden="true" x=Math.round(positionLeft) y='' + (i * space + positionTop) + '' width=widthLine height=heightLine)
     g(aria-hidden="true"): text(opacity="0") open menu
 
 

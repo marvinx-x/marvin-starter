@@ -25,12 +25,17 @@ a {
 a {
 	color: currentColor;
 	text-decoration: none;
+	cursor: pointer;
 }
 
 button {
 	background: none;
 	border: none;
 	cursor: pointer;
+	color: currentColor;
+	margin: 0;
+	padding: 0;
+	display: block;
 }
 
 svg {

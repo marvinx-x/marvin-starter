@@ -1,11 +1,9 @@
-$gridGap : $paddingContentHor;
+$gridGap : 5.6rem;
 
 .grid {
   display: grid;
   grid-gap: $gridGap;
   grid-auto-flow: row;
-  align-items: stretch;
-  justify-items: stretch;
 
   @for $i from 0 to 6 {
     &.col--#{$i + 1} {
