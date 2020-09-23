@@ -39,7 +39,7 @@
         padding-bottom: 1.2rem;
       }
       & > h4{
-        padding: 2.2rem 0 1.1rem 0;
+        padding: 2.2rem 0 1.25rem 0;
       }
     }
   }
@@ -247,32 +247,22 @@
     }
 
     .wrap-icon{
-      $sizeBigIcon : 3.5rem;
       background-color : $backColorImg;
       height : $lenghtColSquare;
       display: flex;
       flex-flow : column wrap;
       align-items: center;
       justify-content: center;
-
-      .fa,
-      .material-icons,
-      .fa-icon,
-      .glyphicon,
-      .custom-icon{
-        font-size: $sizeBigIcon !important;
-      }
-
-      .fa-icon,
-      .glyphicon,
-      .custom-icon{
-        width: $sizeBigIcon;
-        height: $sizeBigIcon + 1;
-      }
+      position: relative;
+      @include icons(3.5rem);
 
       p{
        font-size: 1.5rem;
-       margin-top : 1rem;
+       position: absolute;
+       bottom: 1rem;
+       left: 0;
+       text-align: center;
+       width: 100%;
       }
     }
   }
@@ -373,23 +363,17 @@ $nbrImgs: length($imgs);
   align-items: flex-start;
   justify-items: flex-start;
 
-  h3{
+  h4{
     width: 100%;
-    margin-bottom: 1.5rem;
   }
-
   .col{
     display: inline-flex;
     flex-flow: row wrap;
   }
-
-
-
   .btn{
-    $marginBtnsStyleguide : 1.5rem;
+    $marginBtnsStyleguide : 1.25rem;
     margin : 0 $marginBtnsStyleguide $marginBtnsStyleguide 0;
   }
-
 }
 
 /*  */

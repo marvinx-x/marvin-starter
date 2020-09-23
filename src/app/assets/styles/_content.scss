@@ -14,5 +14,6 @@ main[role="main"] {
 
 	@include breakpoints-max(smallDesktop) {
 		width: 100vw;
+		padding: 0 $paddingContentHorMobile $paddingContentVert $paddingContentHorMobile;
 	}
 }

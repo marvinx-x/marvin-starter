@@ -40,3 +40,22 @@
   display: block;
   @extend %text-style;
 }
+
+//////// ICONS
+@mixin icons($fontSize : $sizeBaseIcon) {
+  .material-icons,
+  .fa,
+  .glyphicon,
+  .fa-icon{
+    font-size: $fontSize !important;
+    @content;
+  }
+
+  .custom-icon,
+  svg.fa-icon,
+  svg.glyphicon{
+    width : $fontSize;
+    height : $fontSize;
+    @content;
+  }
+}

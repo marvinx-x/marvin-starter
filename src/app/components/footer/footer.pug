@@ -1,8 +1,9 @@
 - var projectLinks = ['gitlab', 'github', 'bitbucket']
+- var urlporjectLinks = ["https://gitlab.com/marvinx-x/marvin-starter", "https://github.com/marvinx-x/marvin-starter", "https://bitbucket.org/Marvin_X/marvin-starter/src/master/"]
 
 footer(role="contentinfo")
   each link in projectLinks
-    a(class='btn icon rounded')
+    a(class='btn icon rounded outlined' target="_blank" aria-label="See project with Git (New window)")
       case link
         when projectLinks[0]
           +icon(link.toLowerCase(), "font-awesome")

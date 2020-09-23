@@ -53,6 +53,7 @@ $minWidth: 32rem;
 $maxWidth: 192rem;
 $paddingBody: 1.6rem;
 $fontSizeBase: 1.6rem;
+$sizeBaseIcon : $fontSizeBase + .2rem;
 $fontWeightBase: 500;
 $letterSpacingBase: -0.001rem;
 $lineHeightBase: 2.35rem;
@@ -86,6 +87,7 @@ $transitionNavDuration: 0.35s;
 
 /* MAIN CONTENT */
 $paddingContentHor: $widthButtonNav + $paddingBody*2;
+$paddingContentHorMobile: $widthButtonNav + $paddingBody;
 $paddingContentVert: $heightFooter;
 $paddingContentBlock: $paddingContentHor;
 $colorText: lightness(var(--primary), 0.75);

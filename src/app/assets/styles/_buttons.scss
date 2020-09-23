@@ -1,62 +1,88 @@
+/*  */
+/* VARS */
+/*  */
+$backColorBtn : saturation(var(--primary), 1.25);
+$backColorHoverBtn : saturation(var(--primary), 0.75);
+$colorBtn : var(--white);
 
+$backColorOutlinedBtn : alpha(var(--white), .75);
+$backColorOutlinedHoverBtn : var(--white);
+$colorHoverOutlinedBtn : var(--dark);
+$borderColorOutlinedBtn : alpha(var(--primary), 1);
+$borderColorOutlinedHoverBtn : alpha($colorHoverOutlinedBtn, .75);
+
+$fontWeightBtn : 600;
+$fontSizeBtn : 1.5rem;
+$letterSpacingBtn : .005rem;
+
+$heightBtn : $heightLinks;
+$paddingBtn : $heightLinks/2;
+$timeTransitionBtn : .2s;
+
+$radiusBtn : .6rem;
+$opacityDisabledBtn : .25;
 
 .btn{
-  border: .1rem solid currentColor;
-  background-color : alpha(var(--white), .85);
-  padding: 0 $heightLinks/2;
+  background-color: $backColorBtn;
+  color : $colorBtn;
+  padding: 0 $paddingBtn;
   display: inline-flex;
   align-items: center;
   justify-items: center;
   justify-content: center;
-  font-weight: 600;
-  font-size: 1.5rem;
-  letter-spacing: .015rem;
+  font-weight: $fontWeightBtn;
+  font-size: $fontSizeBtn;
+  letter-spacing: $letterSpacingBtn;
   height: $heightLinks;
-  text-align: center;
+  transition: all $timeTransitionBtn;
+  line-height: 1;
+  @include icons($fontSizeBtn + .65);
 
-  .fa,
-  .material-icons,
-  .fa-icon,
-  .glyphicon,
-  .custom-icon{
-    margin-right : .75rem;
-    font-size : $sizeBaseIcon + 0.2rem !important;
+  i + span,
+  svg + span,
+  span + i,
+  span + svg{
+    margin-left: .5rem;
   }
 
-  &.icon{
-    $fontSizeIconRounded : $sizeBaseIcon + .7rem;
+  &:hover,
+  &:focus{
+    background-color: $backColorHoverBtn;
+  }
 
-    .fa,
-    .material-icons,
-    .fa-icon,
-    .glyphicon,
-    .custom-icon{
-      margin-right : 0;
-    }
+  /* OUTLINED */
+  &.outlined{
+    border: .1rem solid $borderColorOutlinedBtn;
+    background-color : $backColorOutlinedBtn;
+    color : currentColor;
 
-    .fa,
-    .material-icons,
-    .fa-icon,
-    .glyphicon{
-      font-size : $fontSizeIconRounded !important;
-    }
-
-    .fa-github{
-      font-size: $fontSizeIconRounded + .5rem !important;
-    }
-
-    .custom-icon{
-      width: $fontSizeIconRounded - 0.3rem;
-      height: $fontSizeIconRounded - 0.3rem;
+    &:hover,
+    &:focus{
+      background-color : $backColorOutlinedHoverBtn;
+      color : $colorHoverOutlinedBtn;
+      border-color : $borderColorOutlinedHoverBtn;
     }
   }
 
+  /* ROUNDED */
   &.rounded{
-    border-radius: $heightLinks;
+    border-radius: $heightBtn;
+  }
 
-    &.icon{
-      width: $heightLinks;
-      padding: 0;
-    }
+  /* RADIUS */
+  &.radius{
+    border-radius: $radiusBtn;
+  }
+
+  /* DISABLED */
+  &.disabled{
+    pointer-events: none;
+    opacity: $opacityDisabledBtn;
+  }
+
+  /* ICON ONLY */
+  &.icon{
+    width: $heightBtn;
+    padding: 0;
   }
 }
