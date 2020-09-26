@@ -20,7 +20,7 @@ section(class="grid styleguide-buttons col--2")
     a(href=href class='btn')
       span Link icon text
       +icon("arrow_forward", "material-icons")
-    a(href=href class='btn disabled') Link disabled
+    a(href=href class='btn disabled' tabindex="-1") Link disabled
 
     h4= buttons[1]
     a(href=href class='btn outlined') Link
@@ -35,7 +35,7 @@ section(class="grid styleguide-buttons col--2")
     a(href=href class='btn outlined')
       span Link icon text
       +icon("arrow_forward", "material-icons")
-    a(href=href class='btn disabled outlined') Link disabled
+    a(href=href class='btn disabled outlined' tabindex="-1") Link disabled
 
   .col
     h3 button
@@ -53,7 +53,7 @@ section(class="grid styleguide-buttons col--2")
     button(class='btn')
       span Button icon text
       +icon("arrow_forward", "material-icons")
-    button(class='btn disabled') Button disabled
+    button(class='btn disabled' tabindex="-1") Button disabled
 
     h4= buttons[1]
     button(class='btn outlined') Button
@@ -68,4 +68,4 @@ section(class="grid styleguide-buttons col--2")
     button(class='btn outlined')
       span Button icon text
       +icon("arrow_forward", "material-icons")
-    button(class='btn disabled outlined') Button disabled
+    button(class='btn disabled outlined' tabindex="-1") Button disabled

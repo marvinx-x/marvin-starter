@@ -5,16 +5,11 @@ footer[role='contentinfo'] {
   grid-area: footer;
   position: sticky;
   bottom: 0;
-  z-index: 2;
-	display: flex;
-	flex-flow: row nowrap;
-	align-items: center;
-	justify-items: center;
-	max-width: $minWidth;
+	z-index: 2;
+	max-width: $minWidth/2 + $paddingContentHor;
 	padding: 0 $paddingItemsNav;
-	// color : var(--dark);
-
-	a{
-		margin-right: 1.3rem;
-	}
+	display: grid;
+	grid-template-columns: repeat(3 , 1fr);
+	justify-items: center;
+	align-items: center;
 }

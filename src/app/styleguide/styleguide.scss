@@ -376,6 +376,38 @@ $nbrImgs: length($imgs);
   }
 }
 
+
+/*  */
+/* TOOLTIPS */
+/*  */
+
+.styleguide-tooltips{
+  justify-items: flex-start;
+
+  @include breakpoints-max(mediumDesktop) {
+
+    > div{
+      display: none;
+    }
+  }
+
+  @include breakpoints-max(smallDesktop) {
+
+    .simpletooltip_container{
+
+      @for $i from 0 to 7{
+        &:nth-of-type(#{$i+1}){
+            order: $i + 1;
+        }
+      }
+    }
+  }
+
+  @include breakpoints-max(mobileLandscape) {
+    justify-items: center;
+  }
+}
+
 /*  */
 /* PAGES */
 /*  */

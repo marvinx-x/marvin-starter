@@ -2,7 +2,7 @@
 /* VARS */
 /*  */
 $backColorBtn : saturation(var(--primary), 1.25);
-$backColorHoverBtn : saturation(var(--primary), 0.75);
+$backColorHoverBtn : saturation(var(--primary), 0.9);
 $colorBtn : var(--white);
 
 $backColorOutlinedBtn : alpha(var(--white), .75);
@@ -46,6 +46,7 @@ $opacityDisabledBtn : .25;
   }
 
   &:hover,
+  &:active,
   &:focus{
     background-color: $backColorHoverBtn;
   }
@@ -57,6 +58,7 @@ $opacityDisabledBtn : .25;
     color : currentColor;
 
     &:hover,
+    &:active,
     &:focus{
       background-color : $backColorOutlinedHoverBtn;
       color : $colorHoverOutlinedBtn;

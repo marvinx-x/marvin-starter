@@ -18,7 +18,7 @@ button,
 a {
 	&:focus,
 	&:active {
-		outline: 0.1rem dotted alpha(var(--fluo), 0.25);
+		outline: 0.1rem dotted alpha(var(--dark), 0.25);
 	}
 }
 

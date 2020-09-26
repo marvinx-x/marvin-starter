@@ -1,6 +1,8 @@
 require('webpack-icons-installer/font-awesome'); //load only font-awesome icons
 require('webpack-icons-installer/google');  //load only google material-design-icons
 require( 'webpack-icons-installer/bootstrap' );
+require( 'van11y-accessible-simple-tooltip-aria/src/van11y-accessible-simple-tooltip-aria.es6' );
+
 
 function resize() {
   let resizeTimer;
@@ -21,6 +23,8 @@ export function utils() {
   resize();
   requireAll(require.context('../icons/', true, /\.svg$/));
 }
+
+
 
 
 
