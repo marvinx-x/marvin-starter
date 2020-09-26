@@ -16,7 +16,7 @@ $fontSizeBtn : 1.5rem;
 $letterSpacingBtn : .005rem;
 
 $heightBtn : $heightLinks;
-$paddingBtn : $heightLinks/2;
+$paddingBtn : $heightLinks/2.2;
 $timeTransitionBtn : .2s;
 
 $radiusBtn : .6rem;
@@ -33,7 +33,7 @@ $opacityDisabledBtn : .25;
   font-weight: $fontWeightBtn;
   font-size: $fontSizeBtn;
   letter-spacing: $letterSpacingBtn;
-  height: $heightLinks;
+  height: $heightBtn;
   transition: all $timeTransitionBtn;
   line-height: 1;
   @include icons($fontSizeBtn + .65);
@@ -88,3 +88,5 @@ $opacityDisabledBtn : .25;
     padding: 0;
   }
 }
+
+

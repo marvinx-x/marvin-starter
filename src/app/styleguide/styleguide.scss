@@ -154,7 +154,7 @@
   }
 
   p{
-    @include underlineText(100%, 0.1rem, alpha(var(--dark), .25));
+    @include underlineText(100%, 0.1rem);
     line-height: 1.7;
     font-size : 2.9rem;
     letter-spacing: -0.15rem;
@@ -211,9 +211,11 @@
 /* TITLES */
 /*  */
 .styleguide-titles{
+  margin-top: 1rem;
+
   h1, h2, h3, h4, h5, h6{
-    @include underlineText(100%, 0.1rem, alpha(var(--dark), .25));
-    line-height: .75;
+    @include underlineText();
+    line-height: .25;
 
     &::after{
       bottom: -$gridGap/2;
@@ -226,8 +228,8 @@
 /* ICONS */
 /*  */
 
+
 .styleguide-icons{
-  $lenghtColSquare : 15rem;
 
   &.grid{
     .col{
@@ -238,31 +240,23 @@
   }
 
   .grid-icons{
-    grid-gap : 1rem;
+    $fontSizeIcons : 3rem;
+    grid-gap : $tinyGap;
     grid-template-columns: repeat(auto-fill, minmax($lenghtColSquare, 1fr));
-
-    & > p{
-      margin-top: .5rem;
-      margin-bottom: 12rem;
-    }
 
     .wrap-icon{
       background-color : $backColorImg;
       height : $lenghtColSquare;
+      @include icons($fontSizeIcons);
+      text-align: center;
+      padding-top : $fontSizeIcons + .5;
       display: flex;
       flex-flow : column wrap;
       align-items: center;
-      justify-content: center;
-      position: relative;
-      @include icons(3.5rem);
+      justify-content: space-evenly;
 
       p{
-       font-size: 1.5rem;
-       position: absolute;
-       bottom: 1rem;
-       left: 0;
-       text-align: center;
-       width: 100%;
+        font-size: 1.4rem;
       }
     }
   }
@@ -351,7 +345,8 @@ $nbrImgs: length($imgs);
   }
 
   .grid-imgs{
-    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax($lenghtColSquare, 1fr));
+    grid-gap : $tinyGap;
   }
 }
 
@@ -360,22 +355,51 @@ $nbrImgs: length($imgs);
 /*  */
 
 .styleguide-buttons{
-  align-items: flex-start;
-  justify-items: flex-start;
+
+  .grid-buttons{
+    grid-template-columns: repeat(3, auto);
+    justify-items: flex-start;
+    grid-gap : 1.5rem $gridGap;
+
+    @include breakpoints-max(mediumDesktop){
+      grid-template-columns: repeat(2, auto);
+    }
+
+    @include breakpoints-max(mobileLandscape){
+      grid-template-columns: repeat(1, auto);
+    }
+  }
+
+  h3{
+    padding-bottom: 0;
+  }
 
   h4{
-    width: 100%;
-  }
-  .col{
-    display: inline-flex;
-    flex-flow: row wrap;
-  }
-  .btn{
-    $marginBtnsStyleguide : 1.25rem;
-    margin : 0 $marginBtnsStyleguide $marginBtnsStyleguide 0;
+    margin: 1rem 0 .5rem 0;
   }
 }
 
+/*  */
+/* TAGS */
+/*  */
+
+.styleguide-tags{
+
+  &.grid{
+    .col{
+      > h3{
+
+        &:not(:first-of-type){
+          padding-top: 2rem;
+        }
+      }
+
+      > h4{
+        padding-top: .5rem;
+      }
+    }
+  }
+}
 
 /*  */
 /* TOOLTIPS */
@@ -385,7 +409,6 @@ $nbrImgs: length($imgs);
   justify-items: flex-start;
 
   @include breakpoints-max(mediumDesktop) {
-
     > div{
       display: none;
     }
@@ -416,5 +439,7 @@ $nbrImgs: length($imgs);
   a{
     text-decoration: underline;
     display: block;
+    @include underlineText();
+    line-height: 3;
   }
 }

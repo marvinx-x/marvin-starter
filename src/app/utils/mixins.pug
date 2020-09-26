@@ -14,7 +14,7 @@ mixin icon(icon = false, library = librairiesIcons[0], glyph = false, animated =
     if(glyph)
       - var nameClass = library === librairiesIcons[2] ? 'fa-icon' : 'glyphicon'
       svg(class=nameClass preserveAspectRatio='xMidYMid meet' aria-hidden="true"  shape-rendering="geometricPrecision")
-        g: text(x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" style="transform : translate3d(0,10%,0)" data-unicode=icon) &##{icon};
+        g: text(x="50%" y="50%" text-anchor="middle" dominant-baseline="central" data-unicode=icon) &##{icon};
     else
       - var nameClass = library === librairiesIcons[2] ? animated ? 'fa-'+typeAnim+' fa fa-' : 'fa fa-' : 'glyphicon glyphicon-'
       i(class=nameClass+icon aria-hidden="true")
