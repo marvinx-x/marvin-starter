@@ -1,0 +1,110 @@
+- var txt = "Lorem ipsum dolor sit amet consectetur adipisicing elit. In et dicta porro? Veritatis vero dolorem ut at optio corrupti fugit dolore, qui totam aliquid amet debitis mollitia ullam animi quidem exercitationem! Libero quas earum cum molestias iusto!"
+
+p= txt
+section(class="grid styleguide-forms col--1")
+  .col
+    h3 Inputs
+    section(class="grid col--2")
+      .col
+        form(class="styleguide-inputs" action="" method="get")
+          div
+            label(for="text") Input text
+            input(type="text" id="text" name="text" placeholder="Normal")
+          div
+            label(for="search") Input search
+            div.input-icons
+              +icon("xf002", "font-awesome", true)
+              input(type="search" id="search" name="search" placeholder="Search")
+          div
+            label(for="password") Input password
+            input(type="password" id="password" name="password" placeholder="Password")
+          div
+            label(for="tel") Input tel
+            input(type="tel" id="tel" name="tel" placeholder="xx.xx.xx.xx.xx" pattern="[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}")
+          div
+            label(for="url") Input url
+            input(type="url" id="url" name="url" placeholder="https://example.com" pattern="https://.*")
+          div
+            label(for="email") Input email
+            input(type="email" id="email" name="email" placeholder="example@example.com")
+          div
+            label(for="number") Input number
+            div.input-number
+              input(type="number" id="number" name="number" placeholder="0-100" min="0" max="100")
+      .col
+        form(class="styleguide-inputs")
+          div
+            label(for="date") Input date
+            input(type="date" id="date" name="date")
+          div
+            label(for="month") Input month
+            input(type="month" id="month" name="month")
+          div
+            label(for="week") Input week
+            input(type="week" id="week" name="week")
+          div
+            label(for="time") Input time
+            input(type="time" id="time" name="time")
+          div
+            label(for="button") Input button
+            input(type="button" id="button" name="button" value="Button" class="btn outlined radius")
+          div
+            label(for="submit") Input submit
+            input(type="submit" id="submit" name="submit" class="btn outlined radius")
+          div
+            label(for="") Input file
+            input#file.input-file(type='file' name='file' data-multiple-caption='{count} files selected' multiple='')
+            label(for='file')
+              span
+              strong
+                +icon("system_update_alt", "material-icons")
+                | Choose a file
+
+    //- h3 Checkboxes
+    //- form(class="styleguide-checkboxes")
+          div
+            label(for="range") Input range
+            input(type="range" id="range" name="range")
+    //-   div
+    //-     input(type="checkbox" id="normal" name="normal")
+    //-     label(for="normal") Normal
+    //-   div
+    //-     input(type="checkbox" id="checked" name="checked" checked)
+    //-     label(for="checked") Checked
+    //-   div
+    //-     input(type="checkbox" id="disabled" name="disabled")
+    //-     label(for="disabled") Disabled
+    //- h3 Radios
+    //- form(class="styleguide-radios")
+    //-   div
+    //-     input(type="radio" id="normal" name="normal" value="normal")
+    //-     label(for="normal") Normal
+    //-   div
+    //-     input(type="radio" id="checked" name="checked" value="checked")
+    //-     label(for="checked") Checked
+    //-   div
+    //-     input(type="radio" id="disabled" name="disabled" value="disabled")
+    //-     label(for="disabled") Disabled
+    //- h3 Switches
+    //- form(class="styleguide-switches")
+    //-   label.switch
+    //-     input(type="checkbox")
+    //-     span
+    //-   label.switch
+    //-     input(type="checkbox")
+    //-     span
+    //-   label.switch
+    //-     input(type="checkbox")
+    //-     span
+    //- h3 Selects
+    //- form
+    //-   label(for="select-example") Select
+    //-   select(name="select_name" id="select-example")
+    //-     option(value="")
+    //-     option(value="item select one")
+    //-     option(value="item select two")
+    //-     option(value="item select three")
+    //- h3 Textaera
+    //- form
+    //-   textarea This is a textarea zone...
+

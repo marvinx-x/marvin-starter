@@ -8,7 +8,7 @@ $colorBtn : var(--white);
 $backColorOutlinedBtn : alpha(var(--white), .75);
 $backColorOutlinedHoverBtn : var(--white);
 $colorHoverOutlinedBtn : var(--dark);
-$borderColorOutlinedBtn : alpha(var(--primary), 1);
+$borderColorOutlinedBtn : alpha(var(--primary), .35);
 $borderColorOutlinedHoverBtn : alpha($colorHoverOutlinedBtn, .75);
 
 $fontWeightBtn : 600;

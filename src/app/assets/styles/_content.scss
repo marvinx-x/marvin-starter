@@ -5,7 +5,6 @@ main[role="main"] {
 	grid-column-start: 1;
 	grid-row-end: 4;
 	justify-self: center;
-	background: var(--white);
 	width: calc(100vw - #{$minWidth});
 	transition-property: transform;
 	transition-duration: $transitionNavDuration;
