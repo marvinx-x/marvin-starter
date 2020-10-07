@@ -14,23 +14,26 @@ section(class="grid styleguide-forms col--1")
             label(for="search") Input search
             div.input-icons
               +icon("xf002", "font-awesome", true)
-              input(type="search" id="search" name="search" placeholder="Search")
+              input(type="search" id="search" name="search" placeholder="Search" title="Search here")
           div
             label(for="password") Input password
-            input(type="password" id="password" name="password" placeholder="Password")
+            input(type="password" id="password" name="password" placeholder="Password" autocomplete="current-password")
           div
             label(for="tel") Input tel
-            input(type="tel" id="tel" name="tel" placeholder="xx.xx.xx.xx.xx" pattern="[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}")
+            input(type="tel" id="tel" name="tel" placeholder="xx.xx.xx.xx.xx" pattern="[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}" autocomplete="tel-country-code")
           div
             label(for="url") Input url
-            input(type="url" id="url" name="url" placeholder="https://example.com" pattern="https://.*")
+            input(type="url" id="url" name="url" placeholder="https://example.com" pattern="https://.*" autocomplete="url")
           div
             label(for="email") Input email
             input(type="email" id="email" name="email" placeholder="example@example.com")
           div
             label(for="number") Input number
             div.input-number
-              input(type="number" id="number" name="number" placeholder="0-100" min="0" max="100")
+              input(type="number" id="number" name="number" placeholder="0-100" min="0" max="100" autocomplete="email")
+          div
+            label(for="disabled") Input disabled
+            input(type="text" id="disabled" name="disabled" placeholder="Disabled" disabled)
       .col
         form(class="styleguide-inputs")
           div
@@ -50,7 +53,7 @@ section(class="grid styleguide-forms col--1")
             input(type="button" id="button" name="button" value="Button" class="btn outlined radius")
           div
             label(for="submit") Input submit
-            input(type="submit" id="submit" name="submit" class="btn outlined radius")
+            input(type="submit" id="submit" name="submit" class="btn outlined radius" value="Submit")
           div
             label(for="") Input file
             input#file.input-file(type='file' name='file' data-multiple-caption='{count} files selected' multiple='')
@@ -60,31 +63,32 @@ section(class="grid styleguide-forms col--1")
                 +icon("system_update_alt", "material-icons")
                 | Choose a file
 
-    //- h3 Checkboxes
-    //- form(class="styleguide-checkboxes")
-          div
-            label(for="range") Input range
-            input(type="range" id="range" name="range")
-    //-   div
-    //-     input(type="checkbox" id="normal" name="normal")
-    //-     label(for="normal") Normal
-    //-   div
-    //-     input(type="checkbox" id="checked" name="checked" checked)
-    //-     label(for="checked") Checked
-    //-   div
-    //-     input(type="checkbox" id="disabled" name="disabled")
-    //-     label(for="disabled") Disabled
-    //- h3 Radios
-    //- form(class="styleguide-radios")
-    //-   div
-    //-     input(type="radio" id="normal" name="normal" value="normal")
-    //-     label(for="normal") Normal
-    //-   div
-    //-     input(type="radio" id="checked" name="checked" value="checked")
-    //-     label(for="checked") Checked
-    //-   div
-    //-     input(type="radio" id="disabled" name="disabled" value="disabled")
-    //-     label(for="disabled") Disabled
+  .col
+    section(class="grid col--2")
+      .col
+        h3 Checkboxes
+        form(class="styleguide-checkboxes")
+          div.input-checkbox
+            input(type="checkbox" id="normal-checkbox" name="normal-checkbox")
+            label(for="normal-checkbox") Normal
+          div.input-checkbox
+            input(type="checkbox" id="checked-checkbox" name="checked-checkbox" checked)
+            label(for="checked-checkbox") Checked
+          div.input-checkbox
+            input(type="checkbox" id="disabled-checkbox" name="disabled-checkbox" disabled)
+            label(for="disabled-checkbox") Disabled
+      .col
+        h3 Radios
+        form(class="styleguide-radios")
+          div.input-radio
+            input(type="radio" id="normal-radio" name="radio" value="normal-radio")
+            label(for="normal-radio") Normal
+          div.input-radio
+            input(type="radio" id="checked-radio" name="radio" value="checked-radio" checked)
+            label(for="checked-radio") Checked
+          div.input-radio
+            input(type="radio" id="disabled-radio" name="radio" value="disabled-radio" disabled)
+            label(for="disabled-radio") Disabled
     //- h3 Switches
     //- form(class="styleguide-switches")
     //-   label.switch
@@ -108,3 +112,7 @@ section(class="grid styleguide-forms col--1")
     //- form
     //-   textarea This is a textarea zone...
 
+
+//- div
+//-         label(for="range") Input range
+//-         input(type="range" id="range" name="range")

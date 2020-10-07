@@ -451,10 +451,13 @@ $nbrImgs: length($imgs);
   & > div{
     display: flex;
     flex-flow: row wrap;
+    margin-top : 1rem;
+  }
+
+  @include breakpoints-max("mobileLandscape"){
+      flex-direction: column;
   }
 }
-
-
 
 /*  */
 /* PAGES */

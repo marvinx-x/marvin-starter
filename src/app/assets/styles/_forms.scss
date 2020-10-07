@@ -29,14 +29,13 @@ $fontSizeIconsInput : 1.8rem;
 $colorInput : alpha(var(--dark), 1);
 $colorPlaceholderInput : lightness(var(--light), .75);
 $colorIconsInput : alpha(var(--primary), .75);
-$outlinedFocusInput : saturation(var(--primary), 2.5);
+$focusInputs : 0 0 .3rem alpha(var(--primary), .75);
 
 @mixin typeInputs() {
   &:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]){
     @content;
   }
 }
-
 
 %inputs {
   font-size: $fontSizeInput;
@@ -45,6 +44,7 @@ $outlinedFocusInput : saturation(var(--primary), 2.5);
   height: $lineHeightInput;
   line-height: $lineHeightInput;
   transition: border-color .15s;
+  font-weight : normal;
 
   &:hover{
     border-color : $borderColorHoverInput;
@@ -53,13 +53,18 @@ $outlinedFocusInput : saturation(var(--primary), 2.5);
   &:focus,
   &:active{
     outline : none;
-    border-color: $outlinedFocusInput;
+    box-shadow : $focusInputs;
   }
+
+
 }
 
 
 
+
+
 input{
+
   @include typeInputs(){
     padding: 0 $paddingInput;
     color : $colorInput;
@@ -104,6 +109,14 @@ input{
       }
     }
   }
+
+  &:disabled {
+    &, & + label {
+      opacity: .5;
+      cursor: default;
+      pointer-events: none;
+    }
+  }
 }
 
 input[type="button"],
@@ -113,6 +126,12 @@ input[type="submit"]{
 
   &.btn{
     height : $lineHeightInput;
+  }
+
+  &:focus,
+  &:active{
+    box-shadow : $focusInputs;
+    outline : none;
   }
 }
 
@@ -202,6 +221,10 @@ input[type="submit"]{
   position: absolute;
   z-index: -1;
 
+  &:disabled {
+    opacity: 0;
+  }
+
   & + label{
     border: .1rem solid $borderColorInput;
     white-space: nowrap;
@@ -240,7 +263,6 @@ input[type="submit"]{
       border-left : .1rem solid $borderColorInput;
       transition: border-color .15s;
       max-width : 15rem;
-
       @include icons(2rem){
         margin-right : .5rem;
       }
@@ -269,11 +291,144 @@ input[type="submit"]{
   &:focus + label,
   .has-focus + label{
     outline : none;
-    border-color: $outlinedFocusInput;
+    box-shadow : $focusInputs;
 
     strong{
-      border-color: $outlinedFocusInput;
+      box-shadow : $focusInputs;
     }
+  }
+}
+
+
+/*  */
+/* CHECKBOX */
+/* RADIO */
+/*  */
+
+
+
+$lengthCheckboxesRadios : 2rem;
+$activeColor : saturation(var(--primary), 1.25);
+
+.input-checkbox,
+.input-radio{
+  display: flex;
+  flex-flow : row nowrap;
+  line-height: $lengthCheckboxesRadios;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: $lengthCheckboxesRadios;
+  outline: none;
+  position: relative;
+  margin: 0;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+  border: .1rem solid $borderColorInput;
+
+  &:after {
+    @extend %after-before--utils;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transition: transform .15s;
+  }
+  &:checked {
+    background: $activeColor;
+    border-color : $activeColor;
+  }
+
+  &:focus {
+    box-shadow : $focusInputs;
+  }
+
+  &:not(.switch) {
+    width: $lengthCheckboxesRadios;
+    &:after {
+      opacity: var(--o, 0);
+    }
+    &:checked {
+      --o: 1;
+    }
+  }
+
+  & + label {
+    cursor: pointer;
+    position: relative;
+    margin : 0 2rem 0 .6rem;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    text-transform: none;
+    font-size: $fontSizeInput;
+  }
+}
+
+input[type='checkbox'] {
+  &:not(.switch) {
+    border-radius: $radiusInputs;
+
+    &:after {
+      $width : .4rem;
+      $height : .8rem;
+      width: $width;
+      height: $height;
+      margin-left : -($width/2) - .1rem;
+      margin-top : -($height/2) - .2rem;
+      border: .2rem solid var(--white);
+      border-top: 0;
+      border-left: 0;
+      transform: rotate(var(--r, 43deg));
+    }
+  }
+
+
+  // &.switch {
+  //   width: 38px;
+  //   border-radius: 11px;
+  //   &:after {
+  //     left: 2px;
+  //     top: 2px;
+  //     border-radius: 50%;
+  //     width: 15px;
+  //     height: 15px;
+  //     background: var(--ab, var(--border));
+  //     transform: translateX(var(--x, 0));
+  //   }
+  //   &:checked {
+  //     --ab: var(--active-inner);
+  //     --x: 17px;
+  //   }
+  //   &:disabled {
+  //     &:not(:checked) {
+  //       &:after {
+  //         opacity: .6;
+  //       }
+  //     }
+  //   }
+  // }
+}
+
+
+input[type='radio'] {
+  $sizeChecked : $lengthCheckboxesRadios - $lengthCheckboxesRadios/2;
+  border-radius: 50%;
+
+  &:after {
+    width: $sizeChecked;
+    height: $sizeChecked;
+    border-radius: 50%;
+    margin-left : -($sizeChecked/2);
+    margin-top : -($sizeChecked/2);
+    background: var(--white);
+    transform: scale(var(--s, 0));
+  }
+  &:checked {
+    --s: 1;
   }
 }
 
@@ -286,5 +441,6 @@ input[type="submit"]{
 textarea{
   resize: none;
 }
+
 
 
