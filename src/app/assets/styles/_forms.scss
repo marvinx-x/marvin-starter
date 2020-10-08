@@ -27,9 +27,9 @@ $lineHeightInput : 4.8rem;
 $fontSizeInput : 1.5rem;
 $fontSizeIconsInput : 1.8rem;
 $colorInput : alpha(var(--dark), 1);
-$colorPlaceholderInput : lightness(var(--light), .75);
 $colorIconsInput : alpha(var(--primary), .75);
-$focusInputs : 0 0 .3rem alpha(var(--primary), .75);
+$colorPlaceholderInput : lightness(var(--light), .75);
+$focusInputs : 0 0 .3rem var(--shadow, var(--primary));
 
 @mixin typeInputs() {
   &:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]){
@@ -53,15 +53,79 @@ $focusInputs : 0 0 .3rem alpha(var(--primary), .75);
   &:focus,
   &:active{
     outline : none;
-    box-shadow : $focusInputs;
+    box-shadow: $focusInputs;
   }
 
+  &::placeholder{
+    color : $colorPlaceholderInput;
+    font-size: $fontSizeInput;
+  }
 
+  & + label + span{
+    position: absolute;
+    top : 100%;
+    right: 0;
+    font-size : 1.4rem;
+    font-style : italic;
+  }
+
+  &.error{
+    $colorError : var(--red);
+    border-color : $colorError;
+    color : $colorError;
+    &::placeholder{
+      color : alpha($colorError, .5);
+    }
+    &:focus,
+    &:active{
+      --shadow : var(--red);
+    }
+  }
+
+  &.error{
+    $colorError : var(--red);
+    border-color : $colorError;
+    color : $colorError;
+    & + label + span{
+      color : $colorError;
+    }
+    &::placeholder
+    {
+      color : alpha($colorError, .5);
+    }
+
+    &:focus,
+    &:active{
+      --shadow : var(--red);
+    }
+  }
+
+  &.success{
+    $colorSuccess : var(--green);
+    border-color : $colorSuccess;
+    color : $colorSuccess;
+
+    & + label + span{
+      color : $colorSuccess;
+    }
+
+    &::placeholder{
+      color : alpha($colorSuccess, .5);
+    }
+
+    &:focus,
+    &:active{
+      --shadow : var(--green);
+    }
+  }
 }
 
 
-
-
+.input{
+  display :flex;
+  flex-flow : column-reverse wrap;
+  position: relative;
+}
 
 input{
 
@@ -69,11 +133,6 @@ input{
     padding: 0 $paddingInput;
     color : $colorInput;
     @extend %inputs;
-
-    &::placeholder{
-      color : $colorPlaceholderInput;
-      font-size: $fontSizeInput;
-    }
 
     &[type="date"],
     &[type="week"],
@@ -115,6 +174,14 @@ input{
       opacity: .5;
       cursor: default;
       pointer-events: none;
+    }
+  }
+
+  &:required{
+    & + label{
+      &::after{
+        content : "*";
+      }
     }
   }
 }
@@ -303,15 +370,15 @@ input[type="submit"]{
 /*  */
 /* CHECKBOX */
 /* RADIO */
+/* SWITCH */
 /*  */
-
-
 
 $lengthCheckboxesRadios : 2rem;
 $activeColor : saturation(var(--primary), 1.25);
 
 .input-checkbox,
-.input-radio{
+.input-radio,
+.input-switch{
   display: flex;
   flex-flow : row nowrap;
   line-height: $lengthCheckboxesRadios;
@@ -369,6 +436,7 @@ input[type='radio'] {
 }
 
 input[type='checkbox'] {
+
   &:not(.switch) {
     border-radius: $radiusInputs;
 
@@ -386,33 +454,37 @@ input[type='checkbox'] {
     }
   }
 
+  &.switch {
+    $heightSwitchButton : $lengthCheckboxesRadios;
+    $widthSwitchButton : $lengthCheckboxesRadios*1.75;
+    $spaceSwitchInside : .3rem;
+    $lengthSwitchButtonInside : $heightSwitchButton - $spaceSwitchInside*2;
 
-  // &.switch {
-  //   width: 38px;
-  //   border-radius: 11px;
-  //   &:after {
-  //     left: 2px;
-  //     top: 2px;
-  //     border-radius: 50%;
-  //     width: 15px;
-  //     height: 15px;
-  //     background: var(--ab, var(--border));
-  //     transform: translateX(var(--x, 0));
-  //   }
-  //   &:checked {
-  //     --ab: var(--active-inner);
-  //     --x: 17px;
-  //   }
-  //   &:disabled {
-  //     &:not(:checked) {
-  //       &:after {
-  //         opacity: .6;
-  //       }
-  //     }
-  //   }
-  // }
+    width: $widthSwitchButton;
+    height : $heightSwitchButton;
+    border-radius: $heightSwitchButton/2;
+    position: relative;
+
+    &:after {
+      width: $lengthSwitchButtonInside;
+      height: $lengthSwitchButtonInside;
+      border-radius: 50%;
+      position: absolute;
+      left: $spaceSwitchInside;
+      top: 50%;
+      margin-top : -($lengthSwitchButtonInside/2);
+      background: var(--ab, var(--light));
+    }
+
+    &:checked {
+      --ab: var(--white);
+      &::after{
+        $positionOn : $widthSwitchButton - $lengthSwitchButtonInside - $spaceSwitchInside*2 - .1rem;
+        transform: translate3d($positionOn,0,0);
+      }
+    }
+  }
 }
-
 
 input[type='radio'] {
   $sizeChecked : $lengthCheckboxesRadios - $lengthCheckboxesRadios/2;
@@ -432,7 +504,98 @@ input[type='radio'] {
   }
 }
 
+/*  */
+/* RANGE */
+/*  */
+$backTrack : lightness(var(--light), 1.05);
+$backTrackFocus : lightness(var(--light), .98);
+$lengthThumb : $lengthCheckboxesRadios;
+$colorThumb : $activeColor;
+$colorThumbHover : saturation(var(--primary), .8);
+$heightTrack : .4rem;
 
+@mixin range-thumb(){
+  width: $lengthThumb;
+  height: $lengthThumb;
+  border-radius: 50%;
+  background: $colorThumb;
+  transition : background .15s;
+  margin-top : -($lengthThumb/2) + $heightTrack;
+}
+
+@mixin range-track(){
+  width: 100%;
+  height: $heightTrack;
+  border-radius: $radiusInputs;
+  cursor: pointer;
+  transition : background .15s;
+}
+
+input[type=range]{
+  -webkit-appearance: none;
+  padding: 0;
+  cursor: pointer;
+  outline : none;
+
+  ///thumb
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    @include range-thumb();
+  }
+  &::-moz-range-thumb {
+    @include range-thumb();
+  }
+  &::-ms-thumb {
+    @include range-thumb();
+  }
+
+
+  &:hover{
+    &::-webkit-slider-thumb {
+      background : $colorThumbHover;
+    }
+    &::-moz-range-thumb {
+      background : $colorThumbHover;
+    }
+    &::-ms-thumb {
+      background : $colorThumbHover;
+    }
+  }
+
+  ///track
+  &::-webkit-slider-runnable-track{
+    @include range-track();
+    background: $backTrack;
+  }
+  &::-moz-range-track{
+    @include range-track();
+    background: $backTrack;
+  }
+  &::ms-track{
+    @include range-track();
+    background: transparent;
+    color: transparent;
+  }
+  &::-ms-fill-lower{
+    background: $backTrack;
+  }
+  &::-ms-fill-upper{
+    background: $backTrack;
+  }
+
+
+  &:focus{
+    &::-webkit-slider-runnable-track{
+      background: $backTrackFocus;
+    }
+    &::-ms-fill-lower{
+      background: $backTrackFocus;
+    }
+    &::-ms-fill-upper{
+      background: $backTrackFocus;
+    }
+  }
+}
 
 /*  */
 /* TEXTAERA */

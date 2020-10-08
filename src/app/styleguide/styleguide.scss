@@ -436,15 +436,9 @@ $nbrImgs: length($imgs);
 /* FORMS */
 /*  */
 
-.styleguide-inputs{
-  & > div{
-    display: flex;
-    flex-flow: column wrap;
-  }
-}
-
 .styleguide-checkboxes,
-.styleguide-radios{
+.styleguide-radios,
+.styleguide-switches{
   display: flex;
   flex-flow: row wrap;
 
@@ -455,8 +449,12 @@ $nbrImgs: length($imgs);
   }
 
   @include breakpoints-max("mobileLandscape"){
-      flex-direction: column;
+    flex-direction: column;
   }
+}
+
+.styleguide-range{
+  margin-top: 2rem;
 }
 
 /*  */

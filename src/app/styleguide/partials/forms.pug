@@ -7,62 +7,72 @@ section(class="grid styleguide-forms col--1")
     section(class="grid col--2")
       .col
         form(class="styleguide-inputs" action="" method="get")
-          div
+          div.input
+            input(type="text" id="text" name="text" placeholder="Normal" aria-label="your text")
             label(for="text") Input text
-            input(type="text" id="text" name="text" placeholder="Normal")
-          div
-            label(for="search") Input search
+          div.input
             div.input-icons
               +icon("xf002", "font-awesome", true)
-              input(type="search" id="search" name="search" placeholder="Search" title="Search here")
-          div
+              input(type="search" id="search" name="search" placeholder="Search" title="Search here" aria-label="your search")
+            label(for="search") Input search
+          div.input
+            input(type="password" id="password" name="password" placeholder="Password" autocomplete="current-password" aria-label="your password")
             label(for="password") Input password
-            input(type="password" id="password" name="password" placeholder="Password" autocomplete="current-password")
-          div
+          div.input
+            input(type="tel" id="tel" name="tel" placeholder="xx.xx.xx.xx.xx" pattern="[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}" autocomplete="tel-country-code" aria-label="your phone")
             label(for="tel") Input tel
-            input(type="tel" id="tel" name="tel" placeholder="xx.xx.xx.xx.xx" pattern="[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}" autocomplete="tel-country-code")
-          div
+          div.input
+            input(type="url" id="url" name="url" placeholder="https://example.com" pattern="https://.*" autocomplete="url" aria-label="put the url")
             label(for="url") Input url
-            input(type="url" id="url" name="url" placeholder="https://example.com" pattern="https://.*" autocomplete="url")
-          div
+          div.input
+            input(type="email" id="email" name="email" placeholder="example@example.com" aria-label="Your email")
             label(for="email") Input email
-            input(type="email" id="email" name="email" placeholder="example@example.com")
-          div
-            label(for="number") Input number
+          div.input
             div.input-number
-              input(type="number" id="number" name="number" placeholder="0-100" min="0" max="100" autocomplete="email")
-          div
+              input(type="number" id="number" name="number" placeholder="0-100" min="0" max="100" autocomplete="email" aria-label="Put a number betwwen 0 and 100")
+            label(for="number") Input number
+          div.input
+            input(type="text" id="required" name="required" placeholder="Required" aria-label="your input required" required)
+            label(for="required") Input required
+          div.input
+            input(type="text" id="disabled" name="disabled" placeholder="Disabled" aria-label="Your text" disabled)
             label(for="disabled") Input disabled
-            input(type="text" id="disabled" name="disabled" placeholder="Disabled" disabled)
       .col
         form(class="styleguide-inputs")
-          div
+          div.input
+            input(type="date" id="date" name="date" aria-label="put a date")
             label(for="date") Input date
-            input(type="date" id="date" name="date")
-          div
+          div.input
+            input(type="month" id="month" name="month" aria-label="put a month")
             label(for="month") Input month
-            input(type="month" id="month" name="month")
-          div
+          div.input
+            input(type="week" id="week" name="week" aria-label="put a week")
             label(for="week") Input week
-            input(type="week" id="week" name="week")
-          div
+          div.input
+            input(type="time" id="time" name="time" aria-label="put a time")
             label(for="time") Input time
-            input(type="time" id="time" name="time")
-          div
-            label(for="button") Input button
+          div.input
             input(type="button" id="button" name="button" value="Button" class="btn outlined radius")
-          div
-            label(for="submit") Input submit
+            label(for="button") Input button
+          div.input
             input(type="submit" id="submit" name="submit" class="btn outlined radius" value="Submit")
-          div
-            label(for="") Input file
-            input#file.input-file(type='file' name='file' data-multiple-caption='{count} files selected' multiple='')
+            label(for="submit") Input submit
+          div.input
+            input#file.input-file(type='file' name='file' data-multiple-caption='{count} files selected' multiple='' aria-label="Choose a file")
             label(for='file')
               span
               strong
                 +icon("system_update_alt", "material-icons")
                 | Choose a file
-
+            label(for="") Input file
+          div.input
+            input(type="text" id="success" name="success" placeholder="Success" value="Success" class="success")
+            label(for="success") Input success
+            span Success !
+          div.input
+            input(type="text" id="error" name="error" placeholder="Error" value="Error" class="error")
+            label(for="error") Input error
+            span Error !
   .col
     section(class="grid col--2")
       .col
@@ -89,17 +99,26 @@ section(class="grid styleguide-forms col--1")
           div.input-radio
             input(type="radio" id="disabled-radio" name="radio" value="disabled-radio" disabled)
             label(for="disabled-radio") Disabled
-    //- h3 Switches
-    //- form(class="styleguide-switches")
-    //-   label.switch
-    //-     input(type="checkbox")
-    //-     span
-    //-   label.switch
-    //-     input(type="checkbox")
-    //-     span
-    //-   label.switch
-    //-     input(type="checkbox")
-    //-     span
+  .col
+    section(class="grid col--2")
+      .col
+        h3 Switches
+        form(class="styleguide-switches")
+          div.input-switch
+            input(id="switch-off" type="checkbox" class="switch")
+            label(for="switch-off") Switch off
+          div.input-switch
+            input(id="switch-on" type="checkbox" class="switch" checked)
+            label(for="switch-on") Switch on
+          div.input-switch
+            input(id="switch-on" type="checkbox" class="switch" disabled)
+            label(for="switch-on") Switch disabled
+      .col
+        h3 Range
+        form(class="styleguide-range")
+          div.input
+            input(type="range" id="range" name="range")
+
     //- h3 Selects
     //- form
     //-   label(for="select-example") Select
@@ -111,8 +130,3 @@ section(class="grid styleguide-forms col--1")
     //- h3 Textaera
     //- form
     //-   textarea This is a textarea zone...
-
-
-//- div
-//-         label(for="range") Input range
-//-         input(type="range" id="range" name="range")
