@@ -8,6 +8,9 @@ section(class="grid styleguide-buttons col--1")
     h3 Link
     h4= buttons[0]
     div(class="grid grid-buttons")
+      a(href=href class='btn icon' title="This is a link with icon"): +icon("link", "material-icons")
+      a(href=href class='btn radius icon' title="This is a link radius with icon"): +icon("link", "material-icons")
+      a(href=href class='btn icon rounded' title="This is a link rounded with icon"): +icon("link", "material-icons")
       a(href=href class='btn') Link
       a(href=href class='btn radius') Link radius
       a(href=href class='btn rounded') Link rounded
@@ -18,18 +21,15 @@ section(class="grid styleguide-buttons col--1")
         span Icon text
         +icon("arrow_forward", "material-icons")
       a(href=href class='btn disabled' tabindex="-1") Link disabled
-      a(href=href class='btn icon' title="This is a link with icon"): +icon("link", "material-icons")
-      a(href=href class='btn radius icon' title="This is a link radius with icon"): +icon("link", "material-icons")
-      a(href=href class='btn icon rounded' title="This is a link rounded with icon"): +icon("link", "material-icons")
 
     h4= buttons[1]
     div(class="grid grid-buttons")
-      a(href=href class='btn outlined') Link
-      a(href=href class='btn radius outlined') Link radius
-      a(href=href class='btn rounded outlined') Link rounded
       a(href=href class='btn icon outlined'): +icon("link", "material-icons")
       a(href=href class='btn radius icon outlined'): +icon("link", "material-icons")
       a(href=href class='btn icon rounded outlined'): +icon("link", "material-icons")
+      a(href=href class='btn outlined') Link
+      a(href=href class='btn radius outlined') Link radius
+      a(href=href class='btn rounded outlined') Link rounded
       a(href=href class='btn outlined')
         +icon("arrow_back", "material-icons")
         span Icon text
@@ -42,12 +42,12 @@ section(class="grid styleguide-buttons col--1")
     h3 button
     h4= buttons[0]
     div(class="grid grid-buttons")
-      button(class='btn') Button
-      button(class='btn radius') Button radius
-      button(class='btn rounded') Button rounded
       button(class='btn icon' aria-label="This is a button with icon"): +icon("link", "material-icons")
       button(class='btn radius icon' aria-label="This is a button radius with icon"): +icon("link", "material-icons")
       button(class='btn icon rounded' aria-label="This is a button rounded with icon"): +icon("link", "material-icons")
+      button(class='btn') Button
+      button(class='btn radius') Button radius
+      button(class='btn rounded') Button rounded
       button(class='btn')
         +icon("arrow_back", "material-icons")
         span Icon text
@@ -58,12 +58,12 @@ section(class="grid styleguide-buttons col--1")
 
     h4= buttons[1]
     div(class="grid grid-buttons")
-      button(class='btn outlined') Button
-      button(class='btn radius outlined') Button radius
-      button(class='btn rounded outlined') Button rounded
       button(class='btn icon outlined' aria-label="This is a button with icon"): +icon("link", "material-icons")
       button(class='btn radius icon outlined' aria-label="This is a button radius with icon"): +icon("link", "material-icons")
       button(class='btn icon rounded outlined' aria-label="This is a button rounded with icon"): +icon("link", "material-icons")
+      button(class='btn outlined') Button
+      button(class='btn radius outlined') Button radius
+      button(class='btn rounded outlined') Button rounded
       button(class='btn outlined')
         +icon("arrow_back", "material-icons")
         span Icon text

@@ -12,14 +12,15 @@
 @import "breakpoints";
 @import "base";
 @import "classes";
+@import "data";
 
 /* STYLES */
 @import "titles";
-@import "grid";
 @import "buttons";
-@import "forms";
-@import "tooltip";
 @import "tags";
+@import "tooltip";
+@import "forms";
+@import "grid";
 
 /* LAYOUT */
 @import "../../components/header/header.scss";

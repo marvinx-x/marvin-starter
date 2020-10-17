@@ -6,6 +6,7 @@ body {
   letter-spacing : $letterSpacingBase;
   font-weight: $fontWeightBase;
   font-family: "Helvetica", "Arial", sans-serif;
+  overflow-x : hidden;
 
   /* use to grab the content value in javascript */
   &::before {

@@ -33,13 +33,13 @@
     .col{
 
       & > h1{
-        padding-bottom: 5rem;
+        padding-bottom: 3rem;
       }
       & > h3{
         padding-bottom: 1.2rem;
       }
       & > h4{
-        padding: 2.2rem 0 1.25rem 0;
+        padding: 2.2rem 0;
       }
     }
   }
@@ -227,36 +227,20 @@
 /*  */
 /* ICONS */
 /*  */
-
-
 .styleguide-icons{
-
-  &.grid{
-    .col{
-      & > h3{
-        padding-bottom: 0;
-      }
-    }
-  }
-
-  .grid-icons{
-    $fontSizeIcons : 3rem;
-    grid-gap : $tinyGap;
-    grid-template-columns: repeat(auto-fill, minmax($lenghtColSquare, 1fr));
-
+  .grid{
+    .grid{
+      grid-gap : 0 $gridGap;
+     }
     .wrap-icon{
-      background-color : $backColorImg;
-      height : $lenghtColSquare;
-      @include icons($fontSizeIcons);
-      text-align: center;
-      padding-top : $fontSizeIcons + .5;
+      $fontSizeIcons : 3rem;
+      @include underlineText();
+      line-height: $fontSizeIcons + 2;
       display: flex;
-      flex-flow : column wrap;
+      flex-flow : row wrap;
       align-items: center;
-      justify-content: space-evenly;
-
-      p{
-        font-size: 1.4rem;
+      @include icons($fontSizeIcons){
+        margin-right: 1rem;
       }
     }
   }

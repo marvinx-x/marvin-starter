@@ -9,7 +9,7 @@ section(class="grid styleguide-forms col--1")
       .col
         form(class="styleguide-inputs" action="" method="get")
           div.input
-            input(type="text" id="text" name="text" placeholder="Normal" aria-label="your text")
+            input(type="text" id="text" name="text" placeholder="Normal" aria-label="your text" autocomplete="username")
             label(for="text") Input text
           div.input
             div.input-icons
@@ -90,6 +90,16 @@ section(class="grid styleguide-forms col--1")
             textarea(id="textarea-disabled" placeholder="This is disabled a textarea zone..." autocomplete="off" form="" maxlength="" minlength="" name="" spellcheck=false wrap="soft" disabled)
             label(for="textarea-disabled") disabled
 
+  /// SELECTS
+  .col
+    h3 Selects
+    form
+      select(name="select_name" id="select-example" data-tags="false" data-placeholder="Select an option..." data-allow-clear="false")
+        option(value="")
+        option(value="item select one") Item select one
+        option(value="item select two") Item select two
+        option(value="item select three") Item select three
+
   .col
     section(class="grid col--2")
       .col
@@ -120,32 +130,22 @@ section(class="grid styleguide-forms col--1")
             label(for="disabled-radio") Disabled
 
   .col
-    section(class="grid col--2")
-      .col
-        /// SWITCHES
-        h3 Switches
-        form(class="styleguide-switches")
-          div.input-switch
-            input(id="switch-off" type="checkbox" class="switch")
-            label(for="switch-off") Switch off
-          div.input-switch
-            input(id="switch-on" type="checkbox" class="switch" checked)
-            label(for="switch-on") Switch on
-          div.input-switch
-            input(id="switch-on" type="checkbox" class="switch" disabled)
-            label(for="switch-on") Switch disabled
-      .col
-        /// RANGE
-        h3 Range
-        form(class="styleguide-range")
-          div.input
-            input(type="range" id="range" name="range")
+    /// SWITCHES
+    h3 Switches
+    form(class="styleguide-switches")
+      div.input-switch
+        input(id="switch-off" type="checkbox" class="switch")
+        label(for="switch-off") Switch off
+      div.input-switch
+        input(id="switch-on" type="checkbox" class="switch" checked)
+        label(for="switch-on") Switch on
+      div.input-switch
+        input(id="switch-disabled" type="checkbox" class="switch" disabled)
+        label(for="switch-disabled") Switch disabled
+  .col
+    /// RANGE
+    h3 Range
+    form(class="styleguide-range")
+      div.input
+        input(type="range" id="range" name="range")
 
-    //- h3 Selects
-    //- form
-    //-   label(for="select-example") Select
-    //-   select(name="select_name" id="select-example")
-    //-     option(value="")
-    //-     option(value="item select one")
-    //-     option(value="item select two")
-    //-     option(value="item select three")

@@ -25,7 +25,7 @@ include ../../utils/mixins
 - var styleguideIconsCat = [custom, material, faFontFace, faUnicode, glyphiconFontFace, glyphiconUnicode];
 
 p= txt
-section(class="grid styleguide-icons col--2")
+section(class="grid styleguide-icons col--1")
   each librairyIcons, key in librairiesIcons
     - var librairy = librairyIcons.toLowerCase()
     .col
@@ -33,13 +33,17 @@ section(class="grid styleguide-icons col--2")
       case librairy
         when librairiesIcons[key]
           if(key == 0 || key == 1)
-            h4.style-h5= typeImplement[key]
-            div(class="grid grid-icons styleguide-icons--"+styleguideIconsCat[key])
-              p= NoIcon
+            div(class="grid col--1")
+              .col
+                h4.style-h5= typeImplement[key]
+                div(class="grid col--2 styleguide-icons--"+styleguideIconsCat[key])
+                  p= NoIcon
           else
-            -for(var i = 0; i < 2; i++)
-              h4.style-h5= typeImplement[i + 1]
-              div(class="grid grid-icons styleguide-icons--"+styleguideIconsCat[key == 2 ? key + i : key + i + 1])
-                p= NoIcon
+            div(class="grid col--2")
+              -for(var i = 0; i < 2; i++)
+                .col
+                  h4.style-h5= typeImplement[i + 1]
+                  div(class="grid styleguide-icons--"+styleguideIconsCat[key == 2 ? key + i : key + i + 1])
+                    p= NoIcon
 
 

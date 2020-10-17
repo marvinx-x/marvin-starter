@@ -3,6 +3,9 @@ require('webpack-icons-installer/google');  //load only google material-design-i
 require( 'webpack-icons-installer/bootstrap' );
 require( 'van11y-accessible-simple-tooltip-aria/src/van11y-accessible-simple-tooltip-aria.es6' );
 
+import $ from 'jquery';
+import select2 from 'select2';
+import 'select2/dist/css/select2.css';
 
 function resize() {
   let resizeTimer;
@@ -48,10 +51,18 @@ function inputFile() {
 }
 
 
+function selects() {
+	$( 'select' ).select2( {
+		width: 'style',
+		minimumResultsForSearch: Infinity
+	});
+}
+
 export function utils() {
   resize();
   requireAll( require.context( '../icons/', true, /\.svg$/ ) );
-  inputFile();
+	inputFile();
+	selects();
 }
 
 
