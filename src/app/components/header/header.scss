@@ -8,7 +8,6 @@ header[role="banner"] {
 	top: 0px;
 	z-index: 3;
 	padding: $paddingHeader;
-	transform: translateX(1%);
 
 	h1 {
 		position: relative;
@@ -17,9 +16,7 @@ header[role="banner"] {
 		grid-template-columns: $lengthLogo auto;
 		grid-gap: $gapElemsHeader;
 		align-items: flex-end;
-
 		justify-items: flex-start;
-
 		grid-template-areas:
 			"logo title"
 			"logo description";

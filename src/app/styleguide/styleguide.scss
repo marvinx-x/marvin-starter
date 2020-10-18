@@ -4,13 +4,6 @@
 /* STYLEGUIDE */
 /*  */
 
-.styleguide{
-  h1, h2, h3{
-    color : $colorText;
-  }
-
-}
-
 .styleguide-content {
   padding-top: $heightHeader + $paddingBody * 4;
   display: grid;
@@ -22,25 +15,11 @@
   grid-auto-flow: row;
   align-items: flex-start;
 
-
   & > .grid {
     grid-column-start: 2;
 
     &:first-of-type{
       grid-area: content;
-    }
-
-    .col{
-
-      & > h1{
-        padding-bottom: 3rem;
-      }
-      & > h3{
-        padding-bottom: 1.2rem;
-      }
-      & > h4{
-        padding: 2.2rem 0;
-      }
     }
   }
 
@@ -73,7 +52,6 @@
 /*  */
 /* COLORS */
 /*  */
-
 .styleguide-colors {
   grid-area: content;
   grid-column-start: 2;
@@ -81,12 +59,8 @@
   grid-row-end: 3;
 
   .col {
-    h3 {
-
-      & + p{
-        margin-bottom: .6rem;
-        font-size: 1.5rem;
-      }
+    > p{
+      font-size: 1.5rem;
     }
 
     @each $color in $colors{
@@ -132,8 +106,8 @@
 /*  */
 .styleguide-styles{
   $marginStyleguideStyles : 5rem;
-  margin-bottom : $marginStyleguideStyles;
-  margin-top : 1.2rem;
+  // margin-bottom : $marginStyleguideStyles;
+  // margin-top : 1.2rem;
 
   &:last-of-type{
     margin-bottom: 0;
@@ -193,7 +167,6 @@
         font-family: 'ralewaymedium';
       }
       p{
-
         $arrFontsCustom : ('extralight', 'light', 'medium', 'bold', 'extrabold', 'black');
 
         @each $font in $arrFontsCustom{
@@ -211,15 +184,15 @@
 /* TITLES */
 /*  */
 .styleguide-titles{
-  margin-top: 1rem;
+  margin-top: -1rem;
 
   h1, h2, h3, h4, h5, h6{
     @include underlineText();
-    line-height: .25;
+    line-height: $gridGap;
+  }
 
-    &::after{
-      bottom: -$gridGap/2;
-    }
+  h1{
+    line-height: $gridGap + 3rem;
   }
 }
 
@@ -246,6 +219,124 @@
   }
 }
 
+
+
+/*  */
+/* GRID */
+/*  */
+
+.styleguide-grids{
+  $gridGapStyleguide : 1.4rem;
+  $heightStyleGuideGrid : 10vw;
+  $minHeightStyleGuideGrid : 15rem;
+  $maxHeightStyleGuideGrid : 30rem;
+  background-color: lightness(var(--primary), 1);
+  padding: 0 $paddingContentHor;
+
+  &.grid, .grid{
+    grid-gap : $gridGapStyleguide;
+  }
+  .col{
+    background : alpha(var(--white), .15);
+  }
+
+  & > .col{
+    height: $heightStyleGuideGrid;
+    min-height : $minHeightStyleGuideGrid;
+    max-height : $maxHeightStyleGuideGrid;
+    .grid{
+      padding: $gridGapStyleguide;
+      .col{
+        height: calc(#{$heightStyleGuideGrid} - #{$gridGapStyleguide*2});
+        min-height : $minHeightStyleGuideGrid - $gridGapStyleguide*2;
+        max-height : $maxHeightStyleGuideGrid - $gridGapStyleguide*2;
+      }
+    }
+  }
+  @include breakpoints-max(mobileLandscape){
+    padding: 0 $paddingContentHorMobile/2;
+
+    & > .col{
+      height: calc(#{$heightStyleGuideGrid} + #{$gridGapStyleguide*2});
+      min-height : $minHeightStyleGuideGrid + ($gridGapStyleguide*2);
+      max-height : $maxHeightStyleGuideGrid + ($gridGapStyleguide*2);
+      .grid{
+        .col{
+          height: calc(#{$heightStyleGuideGrid} - #{$gridGapStyleguide*2})/3;
+          min-height : ($minHeightStyleGuideGrid - $gridGapStyleguide*2)/3;
+          max-height : ($maxHeightStyleGuideGrid - $gridGapStyleguide*2)/3;
+        }
+      }
+    }
+  }
+}
+
+/*  */
+/* TOOLTIPS */
+/*  */
+.styleguide-tooltips{
+
+  .col{
+    justify-self: flex-start;
+    @include breakpoints-min(largeDesktop) {
+
+      @for $i from 0 to 3{
+        &:nth-of-type(3n+#{$i+1}){
+          @if($i == 0){
+            justify-self: flex-start;
+          }
+          @else if($i == 1){
+            justify-self: center;
+          }
+          @else{
+            justify-self: flex-end;
+          }
+        }
+      }
+    }
+
+    @include breakpoints-max(mediumDesktop) {
+      order: 1;
+
+      &:nth-of-type(5){
+        display: none;
+      }
+
+      &:nth-of-type(2),
+      &:nth-of-type(4),
+      &:nth-of-type(7),
+      &:nth-of-type(9)
+      {
+        justify-self : flex-end;
+      }
+    }
+
+    @include breakpoints-max(mobileLandscape) {
+      justify-self: center !important;
+    }
+  }
+}
+
+
+/*  */
+/* FORMS */
+/*  */
+.styleguide-checkboxes,
+.styleguide-radios,
+.styleguide-switches{
+  display: flex;
+  flex-flow: row wrap;
+
+  & > div{
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  @include breakpoints-max("mobileLandscape"){
+    flex-direction: column;
+  }
+}
+
 /*  */
 /* IMAGES */
 /*  */
@@ -259,18 +350,7 @@ $imgs: (
 );
 
 $nbrImgs: length($imgs);
-
-
 .styleguide-imgs {
-
-
-  &.grid{
-    .col{
-      & > h3{
-        padding-bottom: 0;
-      }
-    }
-  }
 
   &--srcset {
 
@@ -330,116 +410,11 @@ $nbrImgs: length($imgs);
 
   .grid-imgs{
     grid-template-columns: repeat(auto-fill, minmax($lenghtColSquare, 1fr));
-    grid-gap : $tinyGap;
+    // grid-gap : $tinyGap;
+    grid-gap : 0;
   }
 }
 
-/*  */
-/* BUTTONS */
-/*  */
-
-.styleguide-buttons{
-
-  .grid-buttons{
-    grid-template-columns: repeat(3, auto);
-    justify-items: flex-start;
-    grid-gap : 1.5rem $gridGap;
-
-    @include breakpoints-max(mediumDesktop){
-      grid-template-columns: repeat(2, auto);
-    }
-
-    @include breakpoints-max(mobileLandscape){
-      grid-template-columns: repeat(1, auto);
-    }
-  }
-
-  h3{
-    padding-bottom: 0;
-  }
-
-  h4{
-    margin: 1rem 0 .5rem 0;
-  }
-}
-
-/*  */
-/* TAGS */
-/*  */
-
-.styleguide-tags{
-
-  &.grid{
-    .col{
-      > h3{
-
-        &:not(:first-of-type){
-          padding-top: 2rem;
-        }
-      }
-
-      > h4{
-        padding-top: .5rem;
-      }
-    }
-  }
-}
-
-/*  */
-/* TOOLTIPS */
-/*  */
-
-.styleguide-tooltips{
-  justify-items: flex-start;
-
-  @include breakpoints-max(mediumDesktop) {
-    > div{
-      display: none;
-    }
-  }
-
-  @include breakpoints-max(smallDesktop) {
-
-    .simpletooltip_container{
-
-      @for $i from 0 to 7{
-        &:nth-of-type(#{$i+1}){
-            order: $i + 1;
-        }
-      }
-    }
-  }
-
-  @include breakpoints-max(mobileLandscape) {
-    justify-items: center;
-  }
-}
-
-
-/*  */
-/* FORMS */
-/*  */
-
-.styleguide-checkboxes,
-.styleguide-radios,
-.styleguide-switches{
-  display: flex;
-  flex-flow: row wrap;
-
-  & > div{
-    display: flex;
-    flex-flow: row wrap;
-    margin-top : 1rem;
-  }
-
-  @include breakpoints-max("mobileLandscape"){
-    flex-direction: column;
-  }
-}
-
-.styleguide-range{
-  margin-top: 2rem;
-}
 
 /*  */
 /* PAGES */

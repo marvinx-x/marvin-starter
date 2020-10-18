@@ -11,6 +11,7 @@ $lineHeightTooltip : 1;
 /* position relative pour les conteneurs */
 .simpletooltip_container {
   position: relative;
+  display: block;
 }
 
 /* styles tooltip */
