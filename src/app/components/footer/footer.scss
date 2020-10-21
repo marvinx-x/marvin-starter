@@ -13,3 +13,9 @@ footer[role='contentinfo'] {
 	justify-items: center;
 	align-items: center;
 }
+
+.right-nav{
+	footer[role="contentinfo"]{
+		grid-column : 1 / 5;
+	}
+}

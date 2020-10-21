@@ -2,8 +2,9 @@
 
 - var titles = ["h1", "h2", "h3", "h4", "h5", "h6"]
 
-p= txt
+.styleguide-infos
+  p= txt
 section(class="grid styleguide-titles col--1")
   each title, key in titles
-    #{title} #{title.toUpperCase()} title
+    .col: #{title} #{title.toUpperCase()} title
 

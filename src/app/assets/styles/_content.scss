@@ -2,17 +2,24 @@
 
 main[role="main"] {
 	grid-area: main;
-	grid-column-start: 1;
-	grid-row-end: 4;
+	grid-row : 1 / 4;
+	grid-column : 1 / 4;
 	justify-self: center;
 	width: calc(100vw - #{$minWidth});
 	transition-property: transform;
 	transition-duration: $transitionNavDuration;
 	transition-timing-function: $transitionNavEase;
-	padding: 0 $paddingContentHor $paddingContentVert $paddingContentHor;
+	padding: $paddingContentVert $paddingContentHor;
+	display: grid;
 
 	@include breakpoints-max(smallDesktop) {
 		width: 100vw;
-		padding: 0 $paddingContentHorMobile $paddingContentVert $paddingContentHorMobile;
+		padding: $paddingContentVert $paddingContentHorMobile;
+	}
+}
+
+.right-nav{
+	main[role="main"]{
+		grid-column-end: 5;
 	}
 }

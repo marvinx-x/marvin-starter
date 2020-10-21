@@ -10,12 +10,13 @@ block vars
   - var navLess = false
   - var footerLess = false
   - var styleguide = false
+  - var typeLayout = ["top-bar", "left-nav", "right-nav"]
   // FONT
   - var fontCustomName = "Raleway";
   - var fontFamilyName = "Inter";
   - var googleFontsUrl = "https://fonts.googleapis.com/css2?family="+fontFamilyName.replace(" ", "+")+":wght@300;400;500;600;700&display=optional"
   // ITEMS STYLEGUIDE
-  - var starterItems = ["colors", "Typography", "Titles", "Icons", "Grid", "menu", "Buttons", "Tags", "Tooltip" , "Forms", "images", "Pages"]
+  - var starterItems = ["colors", "Typography", "Titles", "Icons", "Grid", "menu", "Buttons", "Tags", "Tooltip" , "Forms", "images"]
 
 html(lang=lang)
 
@@ -30,7 +31,7 @@ html(lang=lang)
 
   body( class=navLess ? 'nav-less' : null || styleguide ? 'styleguide' : null )
 
-    div#app(style="font-family:"+fontFamilyName+", sans-serif;")
+    div#app(style="font-family:"+fontFamilyName+", sans-serif;" class=typeLayout[1])
 
       if(!headerLess)
         include ../../components/header/header

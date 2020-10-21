@@ -27,6 +27,19 @@ header[role="banner"] {
 	}
 }
 
+.left-nav{
+	header[role="banner"]{
+		padding-left: 0;
+	}
+}
+
+.right-nav{
+	header[role="banner"]{
+		grid-column : 1 / 2;
+		grid-row : 1 / 2;
+	}
+}
+
 .logo {
 	grid-area: logo;
 	display: block;

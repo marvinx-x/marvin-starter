@@ -22,19 +22,41 @@ body.nav-less {
   }
 }
 
-body:not(.nav-less) {
-  header[role="banner"] {
-    padding-left: 0;
+#app {
+  $widthHeader : (calc(#{$widthNav} - #{$widthColumnButtonNav}));
+  min-height: 100vh;
+  position: relative;
+  display: grid;
+  grid-template-rows: $heightHeader 1fr $heightFooter;
+
+  &.left-nav{
+    grid-template-columns: $widthColumnButtonNav $widthHeader 1fr;
+    grid-template-areas:
+      "navbutton header main"
+      "nav nav main"
+      "footer footer footer";
+  }
+
+  &.right-nav{
+    $widthHeaderRight : (calc(#{$widthNav} - #{$widthColumnButtonNav} + #{$paddingHeader}));
+    grid-template-columns: $widthHeaderRight 1fr $widthHeader $widthColumnButtonNav;
+    grid-template-areas:
+      "header header header navbutton"
+      "main main nav nav"
+      "footer footer footer footer";
   }
 }
 
-#app {
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: $heightHeader 1fr $heightFooter;
-  grid-template-columns: $widthColumnButtonNav (calc(#{$widthNav} - #{$widthColumnButtonNav})) 1fr;
-  grid-template-areas:
-    "navbutton header main"
-    "nav nav main"
-    "footer footer footer";
-}
+
+/* remove this for a new start */
+// .start-here{
+//   $paddingStartHere: $widthNav/2 + $paddingContentHor;
+//   $colorGradient1: lightness(var(--primary), 1.3);
+//   $colorGradient2: lightness(var(--primary), 0.9);
+
+//   height: calc(100vh - #{$paddingStartHere*2});
+//   align-self : center;
+//   background: linear-gradient($colorGradient1, $colorGradient2);
+//   color : var(--white);
+//   position: relative;
+// }

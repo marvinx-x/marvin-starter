@@ -24,7 +24,16 @@ include ../../utils/mixins
 
 - var styleguideIconsCat = [custom, material, faFontFace, faUnicode, glyphiconFontFace, glyphiconUnicode];
 
-p= txt
+
+- var pages = ['index'];
+
+.styleguide-infos
+  p= txt
+  .styleguide-pages
+    each page in pages
+      a(href=page+".html")= page+".html"
+
+
 section(class="grid styleguide-icons col--1")
   each librairyIcons, key in librairiesIcons
     - var librairy = librairyIcons.toLowerCase()

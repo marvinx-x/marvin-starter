@@ -5,7 +5,6 @@
 /*  */
 
 .styleguide-content {
-  padding-top: $heightHeader + $paddingBody * 4;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
@@ -14,6 +13,11 @@
     "text content";
   grid-auto-flow: row;
   align-items: flex-start;
+  margin-top : $paddingContentVert;
+
+  &:first-of-type{
+    margin-top: 0;
+  }
 
   & > .grid {
     grid-column-start: 2;
@@ -23,15 +27,9 @@
     }
   }
 
-  & > h2{
-    padding-bottom: 3.5rem;
-  }
-
-
-  & > p:last-of-type {
+ .styleguide-infos {
     width: 30rem;
-    margin-right: 6vw;
-    margin-bottom: 4rem;
+    margin-right: $gridGap*2;
     grid-area: text;
     grid-column-start: 1;
     grid-row-end: 3;
@@ -39,9 +37,8 @@
 
   @include breakpoints-max("tabletLandscape") {
     display: block;
-    padding-top: $heightHeader + $paddingBody * 2;
 
-    & > p:last-of-type {
+    .styleguide-infos {
       width: 100%;
       margin-right: 0;
     }
@@ -106,8 +103,6 @@
 /*  */
 .styleguide-styles{
   $marginStyleguideStyles : 5rem;
-  // margin-bottom : $marginStyleguideStyles;
-  // margin-top : 1.2rem;
 
   &:last-of-type{
     margin-bottom: 0;
@@ -272,9 +267,44 @@
 }
 
 /*  */
+/* MENU */
+/*  */
+
+.styleguide-menu{
+  background: var(--dark);
+
+  $heightStyleGuideGrid : 10vw;
+  $minHeightStyleGuideGrid : 15rem;
+  $maxHeightStyleGuideGrid : 30rem;
+
+  height: $heightStyleGuideGrid;
+  min-height : $minHeightStyleGuideGrid;
+  max-height : $maxHeightStyleGuideGrid;
+}
+
+/*  */
+/* BUTTONS */
+/*  */
+
+.styleguide-buttons{
+  .grid{
+    @include breakpoints-max(mediumDesktop){
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include breakpoints-max(mobileLandscape){
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+/*  */
 /* TOOLTIPS */
 /*  */
 .styleguide-tooltips{
+
+  &.grid{
+    grid-gap : $gridGap;
+  }
 
   .col{
     justify-self: flex-start;
@@ -294,14 +324,16 @@
         }
       }
     }
-
-    @include breakpoints-max(mediumDesktop) {
+  }
+  @include breakpoints-max(desktop) {
+    &.grid{
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .col{
       order: 1;
-
       &:nth-of-type(5){
         display: none;
       }
-
       &:nth-of-type(2),
       &:nth-of-type(4),
       &:nth-of-type(7),
@@ -310,8 +342,13 @@
         justify-self : flex-end;
       }
     }
+  }
 
-    @include breakpoints-max(mobileLandscape) {
+  @include breakpoints-max(mobileLandscape) {
+    &.grid{
+      grid-template-columns: 1fr;
+    }
+    .col{
       justify-self: center !important;
     }
   }
@@ -378,7 +415,9 @@ $nbrImgs: length($imgs);
   &--css {
 
     .img{
+      height : 50vw;
       min-height: 14rem;
+      max-height : 18rem;
     }
 
     @each $key, $img in $imgs {
@@ -394,8 +433,27 @@ $nbrImgs: length($imgs);
 
   &--html,
   &--css{
-    .col {
+    --uriWidth : 4rem;
 
+    &.grid{
+      @for $i from 0 to 10 {
+        &.col--#{$i + 1} {
+          grid-template-columns: repeat($i, 1fr) var(--uriWidth);
+
+          @include breakpoints-max(largeDesktop) {
+            grid-template-columns: repeat(($i + 1)/2, 1fr);
+          }
+          @include breakpoints-max(tablet) {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          @include breakpoints-max(mobileLandscape) {
+            grid-template-columns: 1fr;
+          }
+        }
+      }
+    }
+
+    .col {
       &:last-of-type {
         img,
         .img {
@@ -406,12 +464,6 @@ $nbrImgs: length($imgs);
         }
       }
     }
-  }
-
-  .grid-imgs{
-    grid-template-columns: repeat(auto-fill, minmax($lenghtColSquare, 1fr));
-    // grid-gap : $tinyGap;
-    grid-gap : 0;
   }
 }
 

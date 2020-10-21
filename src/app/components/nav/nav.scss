@@ -5,7 +5,7 @@
 /*  */
 $paddingTopBottomNav: $paddingItemsNav - $paddingHeader/2;
 
-header[role="banner"] + button.button-nav {
+header[role="banner"] + .button-nav {
   grid-area: navbutton;
   z-index: 3;
   align-self: center;
@@ -27,6 +27,14 @@ header[role="banner"] + button.button-nav {
     svg {
       fill: lightness(var(--primary), 0.75);
     }
+  }
+}
+
+.right-nav{
+
+  header[role="banner"] + .button-nav{
+    grid-row : 1 / 2;
+    grid-column : 4 / 5;
   }
 }
 
@@ -144,6 +152,25 @@ nav[role="navigation"] {
       &::after {
         opacity: 1;
         height: 0.2rem;
+      }
+    }
+  }
+}
+
+
+.right-nav{
+  nav[role="navigation"] {
+    grid-column : 3 / 5;
+    clip-path: inset(0px 0px 0px $widthNav);
+
+    &.open {
+      clip-path: inset(0px 0px 0px 0px);
+      visibility: visible;
+
+      @include breakpoints-min(desktop) {
+        & + main[role="main"] {
+          transform: translate3d(#{-($minWidth/2)}, 0, 0);
+        }
       }
     }
   }

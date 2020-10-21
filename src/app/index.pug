@@ -3,10 +3,14 @@ extends includes/layout/default
 include utils/icons
 
 append vars
-  - var navLess= true
 
 append head
 
 append main
-  .test(style="margin-top : 15rem")
+  //- .test(style="margin-top : 15rem")
+  //-   a(href="./styleguide.html") use the styleguide
+  //-   +icon("html")
+  //-   p= htmlWebpackPlugin.options.chunks
+  section.start-here
+    h2 Start here
     a(href="./styleguide.html") use the styleguide
