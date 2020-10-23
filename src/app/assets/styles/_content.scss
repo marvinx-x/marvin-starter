@@ -10,11 +10,13 @@ main[role="main"] {
 	transition-duration: $transitionNavDuration;
 	transition-timing-function: $transitionNavEase;
 	padding: $paddingContentVert $paddingContentHor;
+	padding-top : 0;
 	display: grid;
 
 	@include breakpoints-max(smallDesktop) {
 		width: 100vw;
-		padding: $paddingContentVert $paddingContentHorMobile;
+		padding-left : $paddingContentHorMobile;
+		padding-right : $paddingContentHorMobile;
 	}
 }
 

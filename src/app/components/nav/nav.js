@@ -4,6 +4,7 @@ import { gsap, TimelineMax, Quad, ScrollToPlugin } from 'gsap/all';
 gsap.registerPlugin(ScrollToPlugin);
 
 export function navigation() {
+	const app = document.querySelector( '#app' );
 	const buttonNav = document.querySelectorAll('.button-nav');
 	const nav = document.querySelector('nav[role="navigation"]');
 	const navClass = 'open';
@@ -54,7 +55,8 @@ export function navigation() {
 
 		swipeEvent.on('swipe', (e) => {
 			deltaX = deltaX + e.deltaX;
-			e.offsetDirection === 2 ? navEvents() : null;
+			const right = app.classList.contains( 'right-nav' );
+			e.offsetDirection === 2 && !(right) ||  e.offsetDirection === 4 && right ? navEvents() : null;
 		});
 
 		const links = nav.querySelectorAll('a');

@@ -70,7 +70,7 @@ $colorElemsHeader: var(--dark);
 
 /* NAV */
 $paddingNav: $paddingBody + ($lengthLogo/3);
-$paddingItemsNav: 2.2rem;
+$paddingItemsNav: 2rem;
 
 /* BUTTONS */
 $heightLinks : 5.2rem;
@@ -89,6 +89,6 @@ $transitionNavDuration: 0.35s;
 /* MAIN CONTENT */
 $paddingContentHor: $widthButtonNav + $paddingBody*2;
 $paddingContentHorMobile: $widthButtonNav + $paddingBody;
-$paddingContentVert: $heightFooter;
+$paddingContentVert: $heightHeader + 5rem;
 $paddingContentBlock: $paddingContentHor;
 $colorText: lightness(var(--primary), 0.75);

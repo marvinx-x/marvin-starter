@@ -8,6 +8,7 @@ header[role="banner"] {
 	top: 0px;
 	z-index: 3;
 	padding: $paddingHeader;
+	padding-left: 0;
 
 	h1 {
 		position: relative;
@@ -27,16 +28,20 @@ header[role="banner"] {
 	}
 }
 
-.left-nav{
-	header[role="banner"]{
-		padding-left: 0;
-	}
-}
 
 .right-nav{
 	header[role="banner"]{
 		grid-column : 1 / 2;
 		grid-row : 1 / 2;
+		padding-left : $paddingHeader - .5rem;
+	}
+}
+
+.top-nav{
+	header[role="banner"]{
+		@include topNav(){
+			padding-left : $paddingHeader;
+		}
 	}
 }
 

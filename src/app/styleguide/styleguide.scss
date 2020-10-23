@@ -13,11 +13,7 @@
     "text content";
   grid-auto-flow: row;
   align-items: flex-start;
-  margin-top : $paddingContentVert;
-
-  &:first-of-type{
-    margin-top: 0;
-  }
+  padding-top : $paddingContentVert;
 
   & > .grid {
     grid-column-start: 2;

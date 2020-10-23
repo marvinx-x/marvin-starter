@@ -22,41 +22,90 @@ body.nav-less {
   }
 }
 
+
+//// topNav
+/// choose here the breakpoint value you want that the mobile version of the nav show up when top nav navigation on desktop
+ @mixin topNav($breakpoint : desktop){
+  @include breakpoints-min($breakpoint){
+    @content;
+  }
+}
+
+
+$widthHeader : (calc(#{$widthNav} - #{$widthColumnButtonNav}));
+$widthHeaderRight : (calc(#{$widthNav} - #{$widthColumnButtonNav} + #{$paddingHeader - .5rem}));
+$topBarHeight : $heightHeader + 1.25rem;
+
 #app {
-  $widthHeader : (calc(#{$widthNav} - #{$widthColumnButtonNav}));
   min-height: 100vh;
   position: relative;
   display: grid;
   grid-template-rows: $heightHeader 1fr $heightFooter;
-
-  &.left-nav{
-    grid-template-columns: $widthColumnButtonNav $widthHeader 1fr;
-    grid-template-areas:
-      "navbutton header main"
-      "nav nav main"
-      "footer footer footer";
-  }
+  grid-template-columns: $widthColumnButtonNav $widthHeader 1fr;
+  grid-template-areas:
+    "navbutton header main"
+    "nav nav main"
+    "footer footer footer";
 
   &.right-nav{
-    $widthHeaderRight : (calc(#{$widthNav} - #{$widthColumnButtonNav} + #{$paddingHeader}));
-    grid-template-columns: $widthHeaderRight 1fr $widthHeader $widthColumnButtonNav;
+    grid-template-columns: $widthHeaderRight 1fr minmax(0rem, $widthHeader) minmax(4rem, $widthColumnButtonNav);
     grid-template-areas:
       "header header header navbutton"
       "main main nav nav"
       "footer footer footer footer";
   }
+
+  &.top-nav{
+    @include topNav(){
+      $widthHeaderRight : (calc(#{$widthNav} - #{$widthColumnButtonNav} + #{$paddingHeader}));
+      grid-template-columns: $widthHeaderRight 1fr;
+      grid-template-areas:
+      "header nav"
+      "main main"
+      "footer footer";
+
+      &::before{
+        content : "";
+        display : block;
+        height: $topBarHeight;
+        width: 100%;
+        position : fixed;
+        top : 0;
+        left : 0;
+        z-index : 1;
+        background : var(--white);
+      }
+    }
+  }
 }
 
 
 /* remove this for a new start */
-// .start-here{
-//   $paddingStartHere: $widthNav/2 + $paddingContentHor;
-//   $colorGradient1: lightness(var(--primary), 1.3);
-//   $colorGradient2: lightness(var(--primary), 0.9);
+.start-here{
+  // $paddingStartHere: $widthNav/2 + $paddingContentHor;
+  $colorGradient1: lightness(var(--primary), 1.3);
+  $colorGradient2: lightness(var(--primary), 0.9);
+  // padding-top : $paddingContentVert;
 
-//   height: calc(100vh - #{$paddingStartHere*2});
-//   align-self : center;
-//   background: linear-gradient($colorGradient1, $colorGradient2);
-//   color : var(--white);
-//   position: relative;
-// }
+  // height: calc(100vh - #{$paddingStartHere*2});
+  // align-self : center;
+  background: linear-gradient($colorGradient1, $colorGradient2);
+  color : var(--white);
+  position : fixed;
+  top: 0;
+  left : 0;
+  width : 100vw;
+  height : 100vh;
+  border-style : solid;
+  border-color : var(--white);
+  border-top-width: $topBarHeight;
+  border-bottom-width: $heightFooter;
+  border-left-width: $paddingContentHor;
+  border-right-width: $paddingContentHor;
+  overflow : hidden;
+
+  @include breakpoints-max(desktop){
+    border-left-width: $paddingContentHorMobile;
+    border-right-width: $paddingContentHorMobile;
+  }
+}

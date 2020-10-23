@@ -10,7 +10,7 @@ block vars
   - var navLess = false
   - var footerLess = false
   - var styleguide = false
-  - var typeLayout = ["top-bar", "left-nav", "right-nav"]
+  - var typeLayout = ["right-nav", "top-nav"]
   // FONT
   - var fontCustomName = "Raleway";
   - var fontFamilyName = "Inter";
@@ -30,18 +30,29 @@ html(lang=lang)
     include ../../utils/mixins
 
   body( class=navLess ? 'nav-less' : null || styleguide ? 'styleguide' : null )
-
-    div#app(style="font-family:"+fontFamilyName+", sans-serif;" class=typeLayout[1])
+    div#app(style="font-family:"+fontFamilyName+", sans-serif;" class=!styleguide ? typeLayout[1] : false)
 
       if(!headerLess)
-        include ../../components/header/header
+        if(styleguide)
+          include ../../components/header/header
+        else
+          include ../../components/header/header
 
       if(!navLess)
-        include ../../components/nav/nav
+        button(type="button" aria-expanded="false" aria-controls="main-nav").button-nav.active-circle: +burger-svg()
+        nav(role="navigation" aria-label="Main navigation")
+          ul(id="main-nav")
+            if(styleguide)
+              include ../../styleguide/components/nav
+            else
+              include ../../components/nav/nav
 
       main(role="main")
         block main
 
       if(!footerLess)
-        include ../../components/footer/footer
+        if(styleguide)
+          include ../../components/footer/footer
+        else
+          include ../../components/footer/footer
 
