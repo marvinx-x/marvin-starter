@@ -6,7 +6,7 @@ header[role="banner"] {
 	grid-area: header;
 	position: sticky;
 	top: 0px;
-	z-index: 3;
+	z-index: 4;
 	padding: $paddingHeader;
 	padding-left: 0;
 
@@ -40,7 +40,7 @@ header[role="banner"] {
 .top-nav{
 	header[role="banner"]{
 		@include topNav(){
-			padding-left : $paddingHeader;
+			padding-left : $paddingHeader + .8rem;
 		}
 	}
 }

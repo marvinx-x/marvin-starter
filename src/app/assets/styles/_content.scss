@@ -9,7 +9,7 @@ main[role="main"] {
 	transition-property: transform;
 	transition-duration: $transitionNavDuration;
 	transition-timing-function: $transitionNavEase;
-	padding: $paddingContentVert $paddingContentHor;
+	padding: $heightFooter $paddingContentHor;
 	padding-top : 0;
 	display: grid;
 
@@ -23,5 +23,11 @@ main[role="main"] {
 .right-nav{
 	main[role="main"]{
 		grid-column-end: 5;
+	}
+}
+
+.top-nav{
+	main[role="main"]{
+		width: 100%;
 	}
 }

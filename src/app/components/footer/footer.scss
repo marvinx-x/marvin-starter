@@ -5,7 +5,7 @@ footer[role='contentinfo'] {
   grid-area: footer;
   position: sticky;
   bottom: 0;
-	z-index: 2;
+	z-index: 3;
 	max-width: $minWidth/2 + $paddingContentHor;
 	padding: 0 $paddingItemsNav;
 	display: grid;

@@ -7,7 +7,7 @@ $paddingTopBottomNav: $paddingItemsNav - $paddingHeader/2;
 
 header[role="banner"] + .button-nav {
   grid-area: navbutton;
-  z-index: 3;
+  z-index: 4;
   align-self: center;
   justify-self: center;
   position: sticky;
@@ -65,7 +65,7 @@ nav[role="navigation"] {
   transition-property: clip-path, visibility;
   transition-duration: $transitionNavDuration;
   transition-timing-function: $transitionNavEase;
-  z-index: 2;
+  z-index: 3;
   visibility: hidden;
   color : var(--white);
 

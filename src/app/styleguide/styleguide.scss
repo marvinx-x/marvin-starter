@@ -23,6 +23,27 @@
     }
   }
 
+
+  // .col > h1{
+  //   background : purple;
+  // }
+
+
+  & > h2{
+    margin-bottom: $gridGap/2;
+  }
+
+  // .col > h3{
+  //   // background : red;
+  //   outline : 1px solid red;
+  //   padding-bottom: 2rem;
+  // }
+
+  // .col > h4{
+  //   background : blue;
+  // }
+
+
  .styleguide-infos {
     width: 30rem;
     margin-right: $gridGap*2;
@@ -180,6 +201,8 @@
   h1, h2, h3, h4, h5, h6{
     @include underlineText();
     line-height: $gridGap;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   h1{
@@ -267,16 +290,86 @@
 /*  */
 
 .styleguide-menu{
-  background: var(--dark);
-
-  $heightStyleGuideGrid : 10vw;
-  $minHeightStyleGuideGrid : 15rem;
-  $maxHeightStyleGuideGrid : 30rem;
-
+  $heightStyleGuideGrid : 24rem;
+  $widthNavStyleguide : 8rem;
+  $widthButtonStyleguide : 2rem;
+  $heightHeaderStyleguide : 3.6rem;
+  background: lightness(var(--neutral), 1.5);
   height: $heightStyleGuideGrid;
-  min-height : $minHeightStyleGuideGrid;
-  max-height : $maxHeightStyleGuideGrid;
+  position: relative;
+
+  button,
+  header,
+  nav,
+  footer{
+    position: absolute;
+  }
+
+  button,
+  header,
+  footer{
+    background : lightness(var(--neutral), 1.2);
+    z-index : 1;
+  }
+
+
+  button{
+    top: ($heightHeaderStyleguide - $widthButtonStyleguide)/2;
+    left : 0;
+    width: $widthButtonStyleguide;
+    height: $widthButtonStyleguide;
+  }
+
+  header{
+    top: 0;
+    left : $widthButtonStyleguide + 1rem;
+    width: $widthNavStyleguide;
+    height: $heightHeaderStyleguide;
+  }
+
+  nav{
+    top: 0;
+    left: 0;
+    width: $widthNavStyleguide + $widthButtonStyleguide + 1rem;
+    height: 100%;
+    background :lightness(var(--neutral), 1.4);
+  }
+
+  footer{
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2rem;
+  }
+
+  &--right-nav{
+    button, nav{
+      left: auto;
+      right: 0;
+    }
+
+    header{
+      left: 0;
+    }
+  }
+
+  &--top-nav{
+
+    button{
+      display: none;
+    }
+
+    header{
+      left : 0;
+    }
+
+    nav{
+      height: $heightHeaderStyleguide;
+      width: 100%;
+    }
+  }
 }
+
 
 /*  */
 /* BUTTONS */
@@ -284,6 +377,8 @@
 
 .styleguide-buttons{
   .grid{
+    grid-gap : $gridGap/3 $gridGap;
+
     @include breakpoints-max(mediumDesktop){
       grid-template-columns: repeat(2, 1fr);
     }

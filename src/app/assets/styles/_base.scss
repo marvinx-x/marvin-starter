@@ -82,30 +82,77 @@ $topBarHeight : $heightHeader + 1.25rem;
 
 /* remove this for a new start */
 .start-here{
-  // $paddingStartHere: $widthNav/2 + $paddingContentHor;
-  $colorGradient1: lightness(var(--primary), 1.3);
-  $colorGradient2: lightness(var(--primary), 0.9);
-  // padding-top : $paddingContentVert;
+  $colorGradient1: lightness(var(--primary), 1.2);
+  $colorGradient2: lightness(var(--primary), 1.7);
+  $paddingStartHere : 12rem;
+  $heightStartHere : calc(100vh - #{$heightFooter*2});
 
-  // height: calc(100vh - #{$paddingStartHere*2});
-  // align-self : center;
-  background: linear-gradient($colorGradient1, $colorGradient2);
+  background: linear-gradient(45deg, $colorGradient1, $colorGradient2);
   color : var(--white);
-  position : fixed;
-  top: 0;
-  left : 0;
-  width : 100vw;
-  height : 100vh;
-  border-style : solid;
-  border-color : var(--white);
-  border-top-width: $topBarHeight;
-  border-bottom-width: $heightFooter;
-  border-left-width: $paddingContentHor;
-  border-right-width: $paddingContentHor;
   overflow : hidden;
+  max-height: $heightStartHere;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: $paddingStartHere;
+  @include icons(50vw){
+    position: absolute;
+    bottom : 0;
+    right: 8vw;
+    opacity : .3;
+    transform : scale(1.6);
+  }
 
-  @include breakpoints-max(desktop){
-    border-left-width: $paddingContentHorMobile;
-    border-right-width: $paddingContentHorMobile;
+  &::before{
+    @extend %after-before--utils;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent, $colorGradient1);
+    z-index: 1;
+  }
+
+  & > h2,
+  & > a{
+    position: relative;
+    z-index: 2;
+  }
+
+  h2{
+    margin-bottom: 1rem;
+  }
+
+  a{
+
+    &::first-letter{
+     text-transform: uppercase;
+    }
+  }
+
+  a{
+    font-size: 1.75rem;
+    @include underlineText();
+    line-height : 1.4;
+
+    &::after{
+      transition : opacity .15s;
+    }
+
+
+    &:hover{
+
+      &::after{
+        opacity : 1;
+
+      }
+    }
+  }
+
+  @include breakpoints-max(smallDesktop){
+    padding: 8vw;
   }
 }
