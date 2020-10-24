@@ -38,6 +38,8 @@ $colorHighlightForms : saturation(var(--primary), 1.25);
   }
 }
 
+
+
 %inputs {
   font-size: $fontSizeInput;
   border-radius : $radiusInputs;
@@ -47,6 +49,7 @@ $colorHighlightForms : saturation(var(--primary), 1.25);
   line-height: $lineHeightInput;
   font-weight : normal;
   color : $colorInput;
+
 
   &:hover{
     border-color : $borderColorHoverInput;
@@ -147,6 +150,7 @@ $colorHighlightForms : saturation(var(--primary), 1.25);
   display :flex;
   flex-flow : column-reverse wrap;
   position: relative;
+
 }
 
 input{
@@ -299,7 +303,7 @@ input[type="submit"]{
     border: .1rem solid $borderColorInput;
     white-space: nowrap;
     cursor: pointer;
-    margin : 0;
+    margin : 0 !important;
     display: flex;
     flex-flow : row nowrap;
     justify-content: space-between;
@@ -385,6 +389,7 @@ $activeColor : $colorHighlightForms;
   display: flex;
   flex-flow : row nowrap;
   line-height: $lengthCheckboxesRadios;
+  margin-bottom: 1.5rem;
 }
 
 input[type='checkbox'],

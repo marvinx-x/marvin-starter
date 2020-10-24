@@ -97,6 +97,8 @@ $topBarHeight : $heightHeader + 1.25rem;
   justify-content: flex-end;
   align-items: flex-start;
   padding: $paddingStartHere;
+  margin-top: $paddingContentVert;
+
   @include icons(50vw){
     position: absolute;
     bottom : 0;

@@ -1,10 +1,11 @@
 $gridGap : $paddingContentHorMobile;
+$gridGapVert : $gridGap/1.5;
 $tinyGap : .5rem;
 $lenghtColSquare : 16rem;
 
 .grid {
   display: grid;
-  grid-gap: 0 $gridGap;
+  grid-gap: $gridGapVert $gridGap;
   grid-auto-flow: row;
 
   @for $i from 0 to 10 {
