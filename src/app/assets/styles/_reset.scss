@@ -71,3 +71,13 @@ img,
 p {
 	@extend %text-style;
 }
+
+code{
+	background : $lightText;
+	border-radius: .4rem;
+	display: inline-block;
+	color : lightness(var(--primary), .75);
+	font-weight: 	600;
+	padding: .2rem .6rem;
+	word-break: break-word;
+}

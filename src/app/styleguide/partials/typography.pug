@@ -1,13 +1,13 @@
 append vars
 
-- var txt = "Lorem ipsum dolor sit amet consectetur adipisicing elit. In et dicta porro? Veritatis vero dolorem ut at optio corrupti fugit dolore, qui totam aliquid amet debitis mollitia ullam animi quidem exercitationem! Libero quas earum cum molestias iusto!"
+- var txt = "You can use a google font <code>fontFamilyName</code> or a local custom font <code>fontCustomName</code> on your main project. Params it in <code>default.pug</code> "
 
 - var typeFonts = ["google", "custom"]
 - var fontCats = ["used", "unused"]
 - var weightFonts = ["Thin", "Extra-light", "Light", "regular", "Medium", "Semi-bold", "Bold", "Extra-bold", "Black"]
 
 .styleguide-infos
-  p= txt
+  p!= txt
 
 section(class="grid  styleguide-fonts col--"+typeFonts.length)
   each typeFont, key in typeFonts

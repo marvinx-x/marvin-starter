@@ -21,18 +21,18 @@
 
 //// ::SELECTION
 %selection {
-  text-shadow: 0.1rem 0.1rem 0px alpha(var(--fluo), 0.5);
+  text-shadow: 0.1rem 0.1rem 0 alpha(var(--fluo), 1);
   background: alpha(var(--primary), 0.15);
-  color: var(--primary);
+  color: var(--dark);
 }
 
 //// style text paragraph
 %text-style {
-  opacity: 0.6;
   font-size: $fontSizeBase;
   font-style: normal;
   font-weight: 400;
   color: $colorText;
+  line-height: 1.8;
 }
 
 

@@ -91,4 +91,5 @@ $paddingContentHor: $widthButtonNav + $paddingBody*2;
 $paddingContentHorMobile: $widthButtonNav + $paddingBody;
 $paddingContentVert: $heightHeader + 5rem;
 $paddingContentBlock: $paddingContentHor;
-$colorText: lightness(var(--primary), 0.75);
+$colorText: lightness(var(--primary), 1.1);
+$lightText : lightness(var(--primary), 1.93);

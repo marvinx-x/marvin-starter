@@ -1,9 +1,9 @@
 //- block colors
 
-- var txt = "Lorem ipsum dolor sit amet consectetur adipisicing elit. In et dicta porro? Veritatis vero dolorem ut at optio corrupti fugit dolore, qui totam aliquid amet debitis mollitia ullam animi quidem exercitationem! Libero quas earum cum molestias iusto!"
+- var txt = "Find in <code>grid.scss</code>, a simple grid system which work with class <code>.grid</code> as a container. Add an additionnal class to it to put the number of wanted columns <code>.col--$numberCol</code>. Inside it, put other children with the class <code>.col</code>. You can nested this system."
 
 .styleguide-infos
-  p= txt
+  p!= txt
 section(class="grid col--1")
   .col
     - var nbr = 6

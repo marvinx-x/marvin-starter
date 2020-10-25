@@ -1,4 +1,5 @@
 @import "../assets/styles/styles.scss";
+$heightElemStyleguide : 22rem;
 
 /*  */
 /* STYLEGUIDE */
@@ -17,6 +18,7 @@
 
   & > .grid {
     grid-column-start: 2;
+    padding-top: 1rem;
 
     &:first-of-type{
       grid-area: content;
@@ -24,7 +26,7 @@
   }
 
   & > h2{
-    margin-bottom: $gridGapVert;
+    margin-bottom: $gridGapVert / 1.25;
   }
 
   .col > h1{
@@ -32,7 +34,8 @@
   }
 
   .col > h3 + p{
-    margin : 1rem 0 .25rem 0;
+    margin-top: 1rem;
+    font-size: $fontSizeBase - 0.12rem;
   }
 
   .col > h3{
@@ -62,12 +65,16 @@
 
 
  .styleguide-infos {
-    width: 30rem;
-    margin-right: $gridGap*2;
+    width: 32rem;
+    margin-right: $gridGap*1.5;
     grid-area: text;
     grid-column-start: 1;
     grid-row-end: 3;
     margin-bottom: $gridGapVert;
+
+    code{
+      margin-bottom: .5rem;
+    }
   }
 
   @include breakpoints-max("tabletLandscape") {
@@ -76,6 +83,7 @@
     .styleguide-infos {
       width: 100%;
       margin-right: 0;
+      margin-bottom: $gridGapVert/3;
     }
 
     & > h2{
@@ -83,6 +91,25 @@
     }
   }
 }
+
+
+
+/*  */
+/* PAGES */
+/*  */
+
+.styleguide-pages{
+  margin-top: $gridGapVert / 2;
+  font-size: 1.5rem;
+
+  a{
+    text-decoration: underline;
+    display: block;
+    @include underlineText();
+    line-height: 2.6;
+  }
+}
+
 
 
 /*  */
@@ -127,7 +154,7 @@
               } @else {
                 height: 10vw;
                 min-height : 15rem;
-                max-height : 20rem;
+                max-height : $heightElemStyleguide;
               }
             }
           }
@@ -184,6 +211,16 @@
 
 .styleguide-fonts{
   .col{
+
+    &:first-of-type{
+
+      .styleguide-styles{
+
+        &:first-of-type{
+          margin-bottom : $gridGapVert;
+        }
+      }
+    }
     &:last-of-type{
       h1{
         font-family: 'ralewaymedium';
@@ -206,7 +243,7 @@
 /* TITLES */
 /*  */
 .styleguide-titles{
-  margin-top: -1rem;
+  margin-top: -2rem;
 
   &.grid{
     grid-gap : 0;
@@ -234,20 +271,58 @@
       grid-gap : 0 $gridGap;
      }
     .wrap-icon{
-      $fontSizeIcons : 3rem;
+      $fontSizeIcons : 2.8rem;
       @include underlineText();
       line-height: $fontSizeIcons + 2;
       display: flex;
       flex-flow : row wrap;
       align-items: center;
+      padding : 1.25rem 0;
       @include icons($fontSizeIcons){
         margin-right: 1rem;
+      }
+
+      &:first-of-type{
+        padding-top: .75rem;
       }
     }
   }
 }
 
+/*  */
+/* BREAKPOINTS */
+/*  */
 
+.styleguide-breakpoints{
+
+  .col{
+    height : $heightElemStyleguide;
+    background : $lightText;
+    display: flex;
+    flex-flow : row wrap;
+    align-content: center;
+    justify-content: center;
+
+    h3{
+      margin: 0;
+    }
+
+    code{
+      &::before{
+        display: block;
+
+        @each $breakpoint in $breakpointsMin{
+          $i : index($breakpointsMin, $breakpoint);
+          $keys: map-keys($breakpointsMin);
+          $valueKey : nth($keys, $i);
+          @include breakpoints-min($valueKey){
+            content : quote("\"#{$valueKey}\"");
+          }
+        }
+      }
+    }
+  }
+}
 
 /*  */
 /* GRID */
@@ -304,11 +379,11 @@
 /*  */
 
 .styleguide-menu{
-  $heightStyleGuideGrid : 24rem;
+  $heightStyleGuideGrid : $heightElemStyleguide;
   $widthNavStyleguide : 8rem;
   $widthButtonStyleguide : 2rem;
   $heightHeaderStyleguide : 3.6rem;
-  background: lightness(var(--primary), 1.93);
+  background: $lightText;
   height: $heightStyleGuideGrid;
   position: relative;
 
@@ -588,19 +663,5 @@ $nbrImgs: length($imgs);
         }
       }
     }
-  }
-}
-
-
-/*  */
-/* PAGES */
-/*  */
-
-.styleguide-pages{
-  a{
-    text-decoration: underline;
-    display: block;
-    @include underlineText();
-    line-height: 3;
   }
 }
