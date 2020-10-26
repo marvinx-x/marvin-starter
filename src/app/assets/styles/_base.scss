@@ -143,8 +143,11 @@ $topBarHeight : $heightHeader + 1.25rem;
 
   a{
     font-size: 1.75rem;
-    @include underlineText();
+    letter-spacing: -0.025rem;
+    line-height: 2;
     line-height : 1.4;
+    @include underlineText();
+    display: flex;
 
     &::after{
       transition : opacity .15s;

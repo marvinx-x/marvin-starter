@@ -26,7 +26,8 @@ mixin description-svg()
     defs
       mask#mask-description
         rect
-        text(x='50%' y=0 dx=0, dy=dy text-anchor="middle" letter-spacing="0.35") marvin
-          tspan starter
+        text(x='0' y=0 dx=0, dy=dy text-anchor="start" letter-spacing="0.35")
+          tspan(x=6) marvin
+          tspan(x=74) starter
     rect(aria-hidden="true" mask="url(#mask-description)")
 

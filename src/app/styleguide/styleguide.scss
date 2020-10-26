@@ -98,13 +98,13 @@ $heightElemStyleguide : 22rem;
 /*  */
 
 .styleguide-pages{
-  margin-top: $gridGapVert / 2;
+  margin-top: $gridGapVert;
   font-size: 1.5rem;
 
   a{
     text-decoration: underline;
     display: block;
-    @include underlineText();
+    @include underlineText('top');
     line-height: 2.6;
   }
 }
@@ -304,6 +304,10 @@ $heightElemStyleguide : 22rem;
 
     h3{
       margin: 0;
+    }
+
+    code{
+      font-size: 3rem;
     }
 
     code{
