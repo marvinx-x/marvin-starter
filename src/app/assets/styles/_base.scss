@@ -99,6 +99,15 @@ $topBarHeight : $heightHeader + 1.25rem;
   padding: $paddingStartHere;
   margin-top: $paddingContentVert;
 
+  p{
+    color: currentColor;
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    line-height : 1.3;
+    letter-spacing: -0.1rem;
+  }
+
   @include icons(50vw){
     position: absolute;
     bottom : 0;
@@ -119,13 +128,10 @@ $topBarHeight : $heightHeader + 1.25rem;
   }
 
   & > h2,
-  & > a{
+  & > a,
+  & > p{
     position: relative;
     z-index: 2;
-  }
-
-  h2{
-    margin-bottom: 1rem;
   }
 
   a{

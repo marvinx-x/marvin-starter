@@ -1,9 +1,9 @@
-- var txt = "Lorem ipsum dolor sit amet consectetur adipisicing elit. In et dicta porro? Veritatis vero dolorem ut at optio corrupti fugit dolore, qui totam aliquid amet debitis mollitia ullam animi quidem exercitationem! Libero quas earum cum molestias iusto!"
+- var txt = "By default, the main layout is a left nav with a burger menu. On container <code>#app</code>, you can change it by putting class <code>.right-nav</code> to have the same system but in right side. You can also use class <code>.top-nav</code> and add a top bar navigation system."
 
 - var types = ['default', "right-nav", "top-nav"]
 
 .styleguide-infos
-  p= txt
+  p!= txt
 section(class="grid col--2")
   each type, key in types
     .col

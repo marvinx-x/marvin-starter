@@ -1,9 +1,9 @@
-- var txt = "Lorem ipsum dolor sit amet consectetur adipisicing elit. In et dicta porro? Veritatis vero dolorem ut at optio corrupti fugit dolore, qui totam aliquid amet debitis mollitia ullam animi quidem exercitationem! Libero quas earum cum molestias iusto!"
+- var txt = "Base on the script <a href='https://github.com/nico3333fr/van11y-accessible-hide-show-aria' target='_blank' class='text-link'>van11y-accessible-simple-tooltip-aria</a>, you can add any tooltip with the class <code>.js-simple-tooltip</code>. Add an additionnal class to set the position of your tooltip: <code>.tooltip--top</code> <code>.tooltip--right</code> <code>.tooltip--bottom</code> <code>.tooltip--left</code> <code>.tooltip--top-left</code> <code>.tooltip--top-right</code> <code>.tooltip--bottom-left</code> <code>.tooltip--bottom-right</code>. All tooltips are accessible and visible on focus."
 
 - var tooltips = ['top-left', 'top', 'top-right', 'right', 'empty', 'left', 'bottom-left', 'bottom', 'bottom-right']
 
 .styleguide-infos
-  p= txt
+  p!= txt
 section(class="grid styleguide-tooltips col--3")
   each tooltip in tooltips
     .col

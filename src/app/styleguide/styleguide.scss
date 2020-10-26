@@ -13,7 +13,6 @@ $heightElemStyleguide : 22rem;
     "title content"
     "text content";
   grid-auto-flow: row;
-  align-items: flex-start;
   padding-top : $paddingContentVert;
 
   & > .grid {
@@ -251,13 +250,13 @@ $heightElemStyleguide : 22rem;
 
   h1, h2, h3, h4, h5, h6{
     @include underlineText();
-    line-height: $gridGap;
+    line-height: 5.6rem;
     margin: 0 !important;
     padding: 0 !important;
   }
 
   h1{
-    line-height: $gridGap + 3rem;
+    line-height: 7.5rem;
   }
 }
 

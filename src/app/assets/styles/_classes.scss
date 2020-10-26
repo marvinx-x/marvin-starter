@@ -33,6 +33,16 @@ $weightFonts : ("Thin", "Extra-light", "Light", "regular", "Medium", "Semi-bold"
   font-style : italic;
 }
 
+.text-link{
+  color : saturation(var(--primary), 2);
+  text-decoration: underline;
+  transition : color .15s;
+
+  &:hover, &:focus, &:active{
+    color : var(--dark);
+  }
+}
+
 /*  */
 /* CROSSED TEXT */
 /*  */
@@ -50,6 +60,7 @@ $weightFonts : ("Thin", "Extra-light", "Light", "regular", "Medium", "Semi-bold"
     background : var(--red);
   }
 }
+
 
 
 /*  */
