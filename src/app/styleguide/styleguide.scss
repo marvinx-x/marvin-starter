@@ -5,6 +5,13 @@ $heightElemStyleguide : 22rem;
 /* STYLEGUIDE */
 /*  */
 
+.styleguide{
+
+  main[role=main]{
+    padding-top : 0 !important;
+  }
+}
+
 .styleguide-content {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -14,6 +21,10 @@ $heightElemStyleguide : 22rem;
     "text content";
   grid-auto-flow: row;
   padding-top : $paddingContentVert;
+
+  &:last-of-type{
+    margin-bottom: $paddingContentVert;
+  }
 
   & > .grid {
     grid-column-start: 2;

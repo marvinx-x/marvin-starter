@@ -9,10 +9,8 @@ main[role="main"] {
 	transition-property: transform;
 	transition-duration: $transitionNavDuration;
 	transition-timing-function: $transitionNavEase;
-	padding: $heightFooter $paddingContentHor;
-	padding-top : 0;
+	padding: $paddingContentVert $paddingContentHor;
 	display: grid;
-	// background : red;
 
 	@include breakpoints-max(smallDesktop) {
 		width: 100vw;

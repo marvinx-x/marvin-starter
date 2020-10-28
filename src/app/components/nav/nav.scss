@@ -10,8 +10,9 @@ header[role="banner"] + .button-nav {
   z-index: 4;
   align-self: center;
   justify-self: center;
-  position: sticky;
+  position: fixed;
   top: $paddingHeader;
+  left : $marginButtonNav;
   width: $widthButtonNav;
   height: $lengthLogo;
   display : block;
@@ -37,6 +38,8 @@ header[role="banner"] + .button-nav {
     grid-row : 1 / 2;
     grid-column : 4 / 5;
     justify-self: flex-start;
+    left : auto;
+    right: $marginButtonNav;
   }
 }
 
@@ -63,9 +66,11 @@ nav[role="navigation"] {
   background: linear-gradient($colorGradient1, $colorGradient2);
   grid-area: nav;
   grid-row: 1 / 4;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   height: 100vh;
+  width: $widthNav;
   clip-path: inset(0px $clipInset 0px 0px);
   transition-property: clip-path, visibility;
   transition-duration: $transitionNavDuration;
@@ -175,6 +180,8 @@ nav[role="navigation"] {
   nav[role="navigation"] {
     grid-column : 3 / 5;
     clip-path: inset(0px 0px 0px $clipInset);
+    left: auto;
+    right: 0;
 
     @include breakpoints-max(tablet){
       grid-column-start : 1;
@@ -204,6 +211,9 @@ nav[role="navigation"] {
       clip-path : unset;
       visibility: visible;
       color: $colorElemsHeader;
+      left : auto;
+      right : 0;
+      width : calc(100% - #{$widthHeaderRight});
 
       > ul {
         padding : 0;

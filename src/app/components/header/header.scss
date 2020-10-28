@@ -4,8 +4,9 @@ $heightTitle: ($heightDescription - $gapElemsHeader);
 
 header[role="banner"] {
 	grid-area: header;
-	position: sticky;
-	top: 0px;
+	position: fixed;
+	top: 0;
+	left: $widthColumnButtonNav;
 	z-index: 4;
 	padding: $paddingHeader;
 	padding-left: 0;
@@ -33,14 +34,15 @@ header[role="banner"] {
 	header[role="banner"]{
 		grid-column : 1 / 2;
 		grid-row : 1 / 2;
-		padding-left : $paddingHeader - .5rem;
+		padding-left : $paddingHeader;
+		left: 0;
 	}
 }
 
 .top-nav{
 	header[role="banner"]{
 		@include topNav(){
-			padding-left : $paddingHeader + .8rem;
+			left: $paddingHeader + .8rem;
 		}
 	}
 }

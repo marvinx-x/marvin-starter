@@ -3,8 +3,11 @@ $paddingFooter : $paddingBody;
 
 footer[role='contentinfo'] {
   grid-area: footer;
-  position: sticky;
-  bottom: 0;
+  position: fixed;
+	bottom: 0;
+	left: 0;
+	width: $widthNav;
+	height: $heightFooter;
 	z-index: 3;
 	max-width: $minWidth/2 + $paddingContentHor;
 	padding: 0 $paddingItemsNav;

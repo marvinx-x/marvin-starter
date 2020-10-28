@@ -33,11 +33,12 @@ body.nav-less {
 
 
 $widthHeader : (calc(#{$widthNav} - #{$widthColumnButtonNav}));
-$widthHeaderRight : (calc(#{$widthNav} - #{$widthColumnButtonNav} + #{$paddingHeader - .5rem}));
+$widthHeaderRight : (calc(#{$widthNav} - #{$widthColumnButtonNav} + #{$paddingHeader}));
 $topBarHeight : $heightHeader + 1.25rem;
 
 #app {
-  min-height: 100vh;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   position: relative;
   display: grid;
   grid-template-rows: $heightHeader 1fr $heightFooter;
@@ -86,8 +87,7 @@ $topBarHeight : $heightHeader + 1.25rem;
   $colorGradient2: lightness(var(--primary), 1.7);
   $paddingStartHere : 12rem;
   $marginTopStartHere : $paddingContentVert;
-  $heightStartHere : calc(85vh - #{$paddingContentVert*2});
-
+  $heightStartHere : 100%;
   background: linear-gradient(45deg, $colorGradient1, $colorGradient2);
   color : var(--white);
   overflow : hidden;
@@ -99,7 +99,8 @@ $topBarHeight : $heightHeader + 1.25rem;
   padding: $paddingStartHere;
   align-self : center;
   align-items: flex-start;
-  margin-top: $marginTopStartHere;
+  min-height: 25rem;
+
 
   p{
     color: currentColor;
@@ -163,5 +164,8 @@ $topBarHeight : $heightHeader + 1.25rem;
 
   @include breakpoints-max(smallDesktop){
     padding: 8vw;
+    justify-content: flex-end;
+    align-items: flex-end;
+    text-align: right;
   }
 }
