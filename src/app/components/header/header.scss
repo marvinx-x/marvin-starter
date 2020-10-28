@@ -54,6 +54,7 @@ header[role="banner"] {
 
 	svg {
 		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
 		position: absolute;
 		bottom: 0;
 		left: 0;
@@ -120,7 +121,7 @@ header[role="banner"] {
 			font-size: 1.68rem;
 		}
 
-		tspan:nth-of-type(2) {
+		text:nth-of-type(2) {
 			font-weight: 700;
 		}
 

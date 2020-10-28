@@ -32,13 +32,21 @@ $focusInputs : 0 0 .3rem var(--shadow, var(--primary));
 
 $colorHighlightForms : saturation(var(--primary), 1.25);
 
+
+input, textarea{
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  -moz-border-radius:$radiusInputs;
+  -webkit-border-radius:$radiusInputs;
+}
+
+
 @mixin typeInputs() {
   &:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]){
     @content;
   }
 }
-
-
 
 %inputs {
   font-size: $fontSizeInput;
@@ -49,7 +57,8 @@ $colorHighlightForms : saturation(var(--primary), 1.25);
   line-height: $lineHeightInput;
   font-weight : normal;
   color : $colorInput;
-
+  background: none;
+  width: 100%;
 
   &:hover{
     border-color : $borderColorHoverInput;
@@ -145,16 +154,25 @@ $colorHighlightForms : saturation(var(--primary), 1.25);
   content: "\f078";
 }
 
-
-
 .input{
   display :flex;
   flex-flow : column-reverse wrap;
   position: relative;
 
+  & > label{
+    margin: 1.5rem 0 .25rem 0;
+  }
+
+  &:first-of-type{
+
+    & > label{
+      margin-top: 0;
+    }
+  }
 }
 
 input{
+
 
   @include typeInputs(){
     padding: 0 $paddingInput;

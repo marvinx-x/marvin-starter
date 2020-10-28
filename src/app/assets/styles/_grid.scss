@@ -12,10 +12,10 @@ $lenghtColSquare : 16rem;
     &.col--#{$i + 1} {
       grid-template-columns: repeat($i + 1, 1fr);
 
-      @include breakpoints-max("mediumDesktop") {
+      @include breakpoints-max(mediumDesktop) {
         grid-template-columns: repeat(($i + 1)/2, 1fr);
       }
-      @include breakpoints-max("mobileLandscape") {
+      @include breakpoints-max(mobileLandscape) {
         grid-template-columns: 1fr;
       }
     }

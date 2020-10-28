@@ -1,42 +1,43 @@
 /* BREAKPOINTS */
 
-@function set-rem-breakpoint($breakpointValue) {
-  $value : $breakpointValue / $fontSizeBase;
+@function rem-to-px($breakpointValue) {
+  $value : parseInt($breakpointValue) * 10;
   @return $value;
 }
 
-$mobileBreakPortrait: set-rem-breakpoint($minWidth);
-$mobileBreakLandscape: set-rem-breakpoint(48rem);
-$tabletBreakPortrait: set-rem-breakpoint(76.8rem);
-$tabletBreakLandscape: set-rem-breakpoint(102.4rem);
-$desktopBreak : set-rem-breakpoint(120rem);
-$desktopMediumBreak : set-rem-breakpoint(133.6rem);
-$desktopLargeBreak : set-rem-breakpoint(160rem);
-$desktopMaxBreak: set-rem-breakpoint($maxWidth);
+$mobileBreakPortrait: rem-to-px($minWidth);
+$mobileBreakLandscape: rem-to-px(48rem);
+$tabletBreakPortrait: rem-to-px(76.8rem);
+$tabletBreakLandscape: rem-to-px(102.4rem);
+$desktopBreak : rem-to-px(120rem);
+$desktopMediumBreak : rem-to-px(133.6rem);
+$desktopLargeBreak : rem-to-px(160rem);
+$desktopMaxBreak: rem-to-px($maxWidth);
 
 $breakpointsMin: (
-  'mobile'  : ( min-width: 0rem ),
-  'mobileLandscape' : (min-width: $mobileBreakPortrait+0.1rem),
-  'tablet'  : (min-width: $mobileBreakLandscape + 0.1rem),
-  'tabletLandscape'  : (min-width: $tabletBreakPortrait + 0.1rem),
-  'smallDesktop'  :  (min-width: $tabletBreakLandscape + 0.1rem),
-  'desktop'  :  (min-width: $desktopBreak + 0.1rem),
-  'mediumDesktop'  :  (min-width: $desktopMediumBreak + 0.1rem),
-  'largeDesktop'  : (min-width: $desktopLargeBreak + 0.1rem),
-  'maxDesktop'  : (min-width: $desktopMaxBreak + 0rem)
+  'mobile'  : ( min-width: 0 ),
+  'mobileLandscape' : (min-width: $mobileBreakPortrait + 1px),
+  'tablet'  : (min-width: $mobileBreakLandscape + 1px),
+  'tabletLandscape'  : (min-width: $tabletBreakPortrait + 1px),
+  'smallDesktop'  :  (min-width: $tabletBreakLandscape + 1px),
+  'desktop'  :  (min-width: $desktopBreak + 1px),
+  'mediumDesktop'  :  (min-width: $desktopMediumBreak + 1px),
+  'largeDesktop'  : (min-width: $desktopLargeBreak + 1px),
+  'maxDesktop'  : (min-width: $desktopMaxBreak)
 );
 
 $breakpointsMax: (
-  'mobile'  : ( max-width: $mobileBreakPortrait + 0rem),
-  'mobileLandscape' : (max-width: $mobileBreakLandscape + 0rem),
-  'tablet'  : (max-width: $tabletBreakPortrait + 0rem),
-  'tabletLandscape'  : (max-width: $tabletBreakLandscape + 0rem),
-  'smallDesktop'  :  (max-width: $desktopBreak + 0rem),
-  'desktop'  :  (max-width: $desktopMediumBreak + 0rem),
-  'mediumDesktop'  :  (max-width: $desktopLargeBreak + 0rem),
-  'largeDesktop'  : (max-width: $desktopMaxBreak + 0rem),
+  'mobile'  : ( max-width: unquote($mobileBreakPortrait + 'px')),
+  'mobileLandscape' : (max-width: unquote($mobileBreakLandscape + 'px')),
+  'tablet'  : (max-width: unquote($tabletBreakPortrait + 'px')),
+  'tabletLandscape'  : (max-width: unquote($tabletBreakLandscape + 'px')),
+  'smallDesktop'  :  (max-width: unquote($desktopBreak + 'px')),
+  'desktop'  :  (max-width: unquote($desktopMediumBreak + 'px')),
+  'mediumDesktop'  :  (max-width: unquote($desktopLargeBreak + 'px')),
+  'largeDesktop'  : (max-width: unquote($desktopMaxBreak + 'px')),
   'maxDesktop'  : (max-width: 100vw)
 );
+
 
 
 @mixin breakpoints-min($name) {

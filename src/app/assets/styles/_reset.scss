@@ -60,14 +60,6 @@ img,
 	background-color: $backColorImg;
 }
 
-.img {
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center center;
-	min-width: 100%;
-	min-height: 20rem;
-}
-
 p {
 	@extend %text-style;
 }
@@ -80,6 +72,6 @@ code{
 	font-weight: 	600;
 	padding: .2rem .6rem;
 	word-break: break-word;
-	font-size : 14px;
+	font-size : 13px;
 	letter-spacing: -0.06rem;
 }

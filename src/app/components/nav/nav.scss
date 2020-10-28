@@ -81,6 +81,7 @@ nav[role="navigation"] {
     padding-top: $heightHeader;
     padding-bottom: $heightFooter + 2rem;
     position: relative;
+    touch-action: pan-y !important;
 
     &::before {
       @extend %after-before--utils;
@@ -117,13 +118,13 @@ nav[role="navigation"] {
 
   &::before {
     top: 0;
-    background: linear-gradient($colorGradient1 35%, transparent);
+    background: linear-gradient($colorGradient1 35%, alpha(var(--primary), 0));
     height: $heightHeader + $paddingHeader;
   }
 
   &::after {
     bottom: 0;
-    background: linear-gradient(0deg, $colorGradient2 35%, transparent);
+    background: linear-gradient(0deg, $colorGradient2 35%, alpha(var(--primary), 0));
     height: $heightFooter + $paddingHeader;
   }
 
@@ -198,7 +199,7 @@ nav[role="navigation"] {
     @include topNav(){
       background: none;
       grid-row : 1 / 2;
-      grid-column: 2 / 3;
+      grid-column: 2 / 5;
       height: $heightHeader;
       clip-path : unset;
       visibility: visible;

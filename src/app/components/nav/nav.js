@@ -1,9 +1,9 @@
 import 'hammerjs';
 
 import { gsap, TimelineMax, Quad, ScrollToPlugin } from 'gsap/all';
-gsap.registerPlugin(ScrollToPlugin);
+gsap.registerPlugin( ScrollToPlugin );
 
-export function navigation() {
+function nav() {
 	const app = document.querySelector( '#app' );
 	const buttonNav = document.querySelectorAll('.button-nav');
 	const nav = document.querySelector('nav[role="navigation"]');
@@ -49,11 +49,12 @@ export function navigation() {
 		};
 
 		let deltaX = 0;
-		const swipeEvent = new Hammer.Manager(nav, recognizer);
+		const swipeEvent = new Hammer.Manager(nav.firstElementChild, recognizer);
 		const Swipe = new Hammer.Swipe();
 		swipeEvent.add(Swipe);
 
 		swipeEvent.on('swipe', (e) => {
+
 			deltaX = deltaX + e.deltaX;
 			const right = app.classList.contains( 'right-nav' );
 			e.offsetDirection === 2 && !(right) ||  e.offsetDirection === 4 && right ? navEvents() : null;
@@ -96,4 +97,8 @@ export function navigation() {
 			});
 		});
 	});
+}
+
+export function navigation() {
+	nav();
 }

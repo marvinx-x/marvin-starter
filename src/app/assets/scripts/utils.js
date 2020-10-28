@@ -1,11 +1,19 @@
-require('webpack-icons-installer/font-awesome'); //load only font-awesome icons
-require('webpack-icons-installer/google');  //load only google material-design-icons
+require('webpack-icons-installer/font-awesome');
+require('webpack-icons-installer/google');
 require( 'webpack-icons-installer/bootstrap' );
 require( 'van11y-accessible-simple-tooltip-aria/src/van11y-accessible-simple-tooltip-aria.es6' );
 
 import $ from 'jquery';
 import select2 from 'select2';
 import 'select2/dist/css/select2.css';
+
+const { detect } = require('detect-browser');
+const browser = detect();
+
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+import "lazysizes/plugins/unveilhooks/ls.unveilhooks";
+
 
 function resize() {
   let resizeTimer;
@@ -21,7 +29,6 @@ function resize() {
 function requireAll(r) {
   r.keys().forEach(r);
 }
-
 
 function inputFile() {
   var inputs = document.querySelectorAll( '.input-file' );
@@ -43,8 +50,6 @@ function inputFile() {
 			else
 				label.innerHTML = labelVal;
 		});
-
-		// Firefox bug fix
 		input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
 		input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
 	});
@@ -58,12 +63,26 @@ function selects() {
 	});
 }
 
+function notSafari() {
+	if ( browser && browser.name === 'safari' || browser.name === 'ios' )
+	{
+		const imgs = document.getElementsByTagName( "img" );
+		imgs.forEach( ( img ) => {
+			if ( img.getAttribute('data-src').search( 'webp' ) !== -1 )
+			{
+				img.parentNode.classList.add( 'not-safari' );
+			}
+		});
+	}
+}
+
 
 export function utils() {
   resize();
   requireAll( require.context( '../icons/', true, /\.svg$/ ) );
 	inputFile();
 	selects();
+	notSafari();
 }
 
 

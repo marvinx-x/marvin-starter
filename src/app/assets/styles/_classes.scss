@@ -15,13 +15,10 @@ a {
   }
 }
 
-
 /*  */
 /* FONT-WEIGHT CLASSES */
 /*  */
-
 $weightFonts : ("Thin", "Extra-light", "Light", "regular", "Medium", "Semi-bold", "Bold", "Extra-bold", "Black");
-
 @each $weightFont in $weightFonts{
   $i: index($weightFonts, $weightFont);
   .font-weight--#{to-lower-case($weightFont)}{
@@ -61,8 +58,6 @@ $weightFonts : ("Thin", "Extra-light", "Light", "regular", "Medium", "Semi-bold"
   }
 }
 
-
-
 /*  */
 /* ICONS */
 /*  */
@@ -70,3 +65,40 @@ $weightFonts : ("Thin", "Extra-light", "Light", "regular", "Medium", "Semi-bold"
   font-family:"FontAwesome";
 }
 @include icons();
+
+/*  */
+/* IMAGES */
+/*  */
+.img {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	min-width: 100%;
+	min-height: 20rem;
+}
+
+.wrap-img{
+	background: $backColorImg;
+  display: inline-block;
+  min-width: 100%;
+}
+
+.lazyload,
+.lazyloading {
+    opacity: 0;
+}
+.lazyloaded {
+    opacity: 1;
+    transition: opacity .25s;
+}
+
+.not-safari{
+	img{
+		display: none;
+	}
+	&::after{
+    content : "Webp format are not supported in Safari";
+    background: var(--white);
+    display: block;
+	}
+}

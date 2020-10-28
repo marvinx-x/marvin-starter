@@ -49,20 +49,6 @@ $heightElemStyleguide : 22rem;
     margin-top : 1.2rem;
   }
 
-  .input{
-    & > label{
-      margin: 1.5rem 0 .25rem 0;
-    }
-
-    &:first-of-type{
-
-      & > label{
-        margin: 0;
-      }
-    }
-  }
-
-
  .styleguide-infos {
     width: 32rem;
     margin-right: $gridGap*1.5;
@@ -176,7 +162,7 @@ $heightElemStyleguide : 22rem;
   }
 
   p{
-    @include underlineText(100%, 0.1rem);
+    @include underlineText();
     line-height: 1.7;
     font-size : 2.9rem;
     letter-spacing: -0.15rem;
@@ -299,15 +285,15 @@ $heightElemStyleguide : 22rem;
     background : $lightText;
     display: flex;
     flex-flow : row wrap;
-    align-content: center;
     justify-content: center;
+    align-items:center;
 
     h3{
       margin: 0;
     }
 
     code{
-      font-size: 3rem;
+      font-size: 2.5rem;
     }
 
     code{
@@ -506,6 +492,7 @@ $heightElemStyleguide : 22rem;
 
   &.grid{
     grid-gap : $gridGap;
+    align-content: space-between;
   }
 
   .col{
@@ -576,6 +563,10 @@ $heightElemStyleguide : 22rem;
   }
 }
 
+.styleguide-textareas{
+  grid-gap : 0 $gridGap;
+}
+
 /*  */
 /* IMAGES */
 /*  */
@@ -594,7 +585,7 @@ $nbrImgs: length($imgs);
   &--srcset {
 
     picture{
-      height: 20rem;
+      height: $heightElemStyleguide;
     }
 
     $srcsets: (
@@ -657,8 +648,8 @@ $nbrImgs: length($imgs);
 
     .col {
       &:last-of-type {
-        img,
-        .img {
+        .wrap-img,
+        .img{
           min-width: unset;
           min-height: unset;
           width: 4rem;
