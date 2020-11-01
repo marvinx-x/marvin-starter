@@ -3,7 +3,9 @@ const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const SpriteLoaderPlugin = require( 'svg-sprite-loader/plugin' );
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ImageminPlugin = require( 'imagemin-webpack-plugin' ).default;
 const imageminMozjpeg = require( 'imagemin-mozjpeg' );
 const imageminPngquant = require( 'imagemin-pngquant' );
@@ -14,17 +16,6 @@ const isDev = process.env.NODE_ENV !== 'production';
 
 const entry = path.resolve( __dirname, './src/index.js' );
 const output = path.resolve( __dirname, './dist' );
-
-if ( isDev ){
-  module.exports.plugins.push(
-    new HtmlWebpackPlugin( {
-      filename: 'styleguide.html',
-      template: path.join( __dirname, './src/app/styleguide/styleguide.pug' ),
-      chunks: [ 'main' ],
-      title : 'Marvin Starter - Styleguide',
-    } ),
-  );
-}
 
 module.exports = {
   entry: {
@@ -124,6 +115,33 @@ module.exports = {
       },
     ]
   },
+  optimization: {
+    minimize: isDev ? false : true,
+    minimizer: [
+      new UglifyJsPlugin( {
+        uglifyOptions: {
+          warnings: false,
+          parse: {},
+          compress: {},
+          mangle: true,
+          output: null,
+          toplevel: false,
+          nameCache: null,
+          ie8: false,
+        },
+      }),
+      new CssMinimizerPlugin( {
+        minimizerOptions: {
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true },
+            },
+          ],
+        },
+      }),
+    ],
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin( {
@@ -141,7 +159,12 @@ module.exports = {
       filename: 'index.html',
       template: path.join( __dirname, './src/app/index.pug' ),
       chunks: ['main'],
-      title : 'Marvin Starter - Homepage',
+      title: 'Marvin Starter - Homepage',
+      minify: isDev ? false : {
+        collapseWhitespace: true,
+        removeComments: true,
+        useShortDoctype: true
+      }
     } ),
     new MiniCssExtractPlugin( {
       filename: isDev ? '[name].css' : '[name].[hash].css'
@@ -184,3 +207,15 @@ module.exports = {
     port: 8000
   }
 };
+
+
+if ( isDev ){
+  module.exports.plugins.push(
+    new HtmlWebpackPlugin( {
+      filename: 'styleguide.html',
+      template: path.join( __dirname, './src/app/styleguide/styleguide.pug' ),
+      chunks: [ 'main' ],
+      title : 'Marvin Starter - Styleguide',
+    } ),
+  );
+}

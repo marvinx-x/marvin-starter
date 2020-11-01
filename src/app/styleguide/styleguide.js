@@ -2,13 +2,6 @@
 
 import '../assets/fonts/stylesheet.css';
 import './styleguide.scss';
-import { utils } from '../assets/scripts/utils';
-import { navigation } from '../components/nav/nav';
-import { logo } from '../components/header/header';
-
-utils();
-navigation();
-logo();
 
 function hsl() {
   const sass = require( 'sass-extract-loader!./styleguide.scss' );
