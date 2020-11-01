@@ -2,7 +2,7 @@
 $heightDescription: ($lengthLogo / 2) + 0.2rem;
 $heightTitle: ($heightDescription - $gapElemsHeader);
 
-header[role="banner"] {
+%headerStarter{
 	grid-area: header;
 	position: fixed;
 	top: 0;
@@ -27,51 +27,34 @@ header[role="banner"] {
 			display: block;
 		}
 	}
-}
 
+	.logo {
+		grid-area: logo;
+		display: block;
+		position: relative;
+		height: $lengthLogo;
+		width: $lengthLogo;
 
-.right-nav{
-	header[role="banner"]{
-		grid-column : 1 / 2;
-		grid-row : 1 / 2;
-		padding-left : $paddingHeader;
-		left: 0;
-	}
-}
+		svg {
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+			position: absolute;
+			bottom: 0;
+			left: 0;
 
-.top-nav{
-	header[role="banner"]{
-		@include topNav(){
-			left: $paddingHeader + .8rem;
+			&:first-of-type {
+				fill: $colorElemsHeader;
+				z-index: 2;
+			}
+
+			&:last-of-type {
+				fill: lightness(var(--primary), 1);
+				z-index: 1;
+			}
 		}
 	}
 }
 
-.logo {
-	grid-area: logo;
-	display: block;
-	position: relative;
-	height: $lengthLogo;
-	width: $lengthLogo;
-
-	svg {
-		backface-visibility: hidden;
-		-webkit-backface-visibility: hidden;
-		position: absolute;
-		bottom: 0;
-		left: 0;
-
-		&:first-of-type {
-			fill: $colorElemsHeader;
-			z-index: 2;
-		}
-
-		&:last-of-type {
-			fill: lightness(var(--primary), 1);
-			z-index: 1;
-		}
-	}
-}
 
 .title {
 	grid-area: title;
@@ -135,6 +118,29 @@ header[role="banner"] {
 
 		g > rect {
 			fill: $colorElemsHeader;
+		}
+	}
+}
+
+
+
+header[role=banner]{
+	@extend %headerStarter;
+}
+
+.right-nav{
+	header[role="banner"]{
+		grid-column : 1 / 2;
+		grid-row : 1 / 2;
+		padding-left : $paddingHeader;
+		left: 0;
+	}
+}
+
+.top-nav{
+	header[role="banner"]{
+		@include topNav(){
+			left: $paddingHeader + .8rem;
 		}
 	}
 }

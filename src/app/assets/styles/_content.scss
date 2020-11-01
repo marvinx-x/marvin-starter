@@ -1,6 +1,6 @@
 /* MAIN CONTAINER */
 
-main[role="main"] {
+%wrapperStarter{
 	grid-area: main;
 	grid-row : 1 / 4;
 	grid-column : 1 / 4;
@@ -17,6 +17,10 @@ main[role="main"] {
 		padding-left : $paddingContentHorMobile;
 		padding-right : $paddingContentHorMobile;
 	}
+}
+
+main[role="main"] {
+	@extend %wrapperStarter;
 }
 
 .right-nav{

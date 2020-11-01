@@ -1,0 +1,12 @@
+- var urlProjectLinks = ["https://gitlab.com/marvinx-x/marvin-starter", "https://github.com/marvinx-x/marvin-starter", "https://bitbucket.org/Marvin_X/marvin-starter/src/master/"]
+
+footer(role="contentinfo")
+  each link in urlProjectLinks
+    - var nameGit = link.substring(link.indexOf('//') + 2, link.indexOf('.'));
+    - var upp = nameGit.charAt(0).toUpperCase() + nameGit.substring(1, nameGit.length);
+
+    a(href=link class='btn icon rounded outlined js-simple-tooltip tooltip--top' data-simpletooltip-text=upp target="_blank" aria-label="See project on "+nameGit+" (New window)")
+      if nameGit === "bitbucket"
+        +icon(nameGit)
+      else
+        +icon(nameGit, "font-awesome")

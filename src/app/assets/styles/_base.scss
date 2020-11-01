@@ -1,4 +1,4 @@
-body {
+%bodyStarter{
   font-size: $fontSizeBase;
   color: lightness(var(--primary), 0.9);
   background-color: var(--white);
@@ -15,17 +15,25 @@ body {
   }
 }
 
+body {
+  @extend %bodyStarter;
+}
+
 body.nav-less {
   header[role="banner"],
   main[role="main"] {
     grid-column-start: 1;
+  }
+
+  main[role=main]{
+    width: 100%;
   }
 }
 
 
 //// topNav
 /// choose here the breakpoint value you want that the mobile version of the nav show up when top nav navigation on desktop
- @mixin topNav($breakpoint : desktop){
+@mixin topNav($breakpoint : desktop){
   @include breakpoints-min($breakpoint){
     @content;
   }
@@ -36,8 +44,9 @@ $widthHeader : (calc(#{$widthNav} - #{$widthColumnButtonNav}));
 $widthHeaderRight : (calc(#{$widthNav} - #{$widthColumnButtonNav} + #{$paddingHeader}));
 $topBarHeight : $heightHeader + 1.25rem;
 
-#app {
+%appStarter{
   height: 100vh;
+  /* use to calculate the viewport height on mobile devices (resize, orientation changer) */
   height: calc(var(--vh, 1vh) * 100);
   position: relative;
   display: grid;
@@ -78,6 +87,10 @@ $topBarHeight : $heightHeader + 1.25rem;
       }
     }
   }
+}
+
+#app {
+ @extend %appStarter;
 }
 
 

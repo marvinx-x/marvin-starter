@@ -1,7 +1,8 @@
 /* FOOTER */
 $paddingFooter : $paddingBody;
 
-footer[role='contentinfo'] {
+
+%footerStarter{
   grid-area: footer;
   position: fixed;
 	bottom: 0;
@@ -15,6 +16,10 @@ footer[role='contentinfo'] {
 	grid-template-columns: repeat(3 , 1fr);
 	justify-items: center;
 	align-items: center;
+}
+
+footer[role='contentinfo'] {
+	@extend %footerStarter;
 }
 
 .right-nav{

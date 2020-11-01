@@ -10,19 +10,29 @@ const imageminPngquant = require( 'imagemin-pngquant' );
 const imageminGifsicle = require( 'imagemin-gifsicle' );
 const imageminSvgo = require( 'imagemin-svgo' );
 
-const isDevelopment = process.env.NODE_ENV !== 'production';
+const isDev = process.env.NODE_ENV !== 'production';
 
 const entry = path.resolve( __dirname, './src/index.js' );
 const output = path.resolve( __dirname, './dist' );
 
+if ( isDev ){
+  module.exports.plugins.push(
+    new HtmlWebpackPlugin( {
+      filename: 'styleguide.html',
+      template: path.join( __dirname, './src/app/styleguide/styleguide.pug' ),
+      chunks: [ 'main' ],
+      title : 'Marvin Starter - Styleguide',
+    } ),
+  );
+}
+
 module.exports = {
   entry: {
-    main: entry,
-    styleguide: path.resolve( __dirname, './src/app/styleguide/styleguide.js' )
+    main: isDev ? [entry, path.resolve( __dirname, './src/app/styleguide/styleguide.js' )] : entry
   },
   output: {
     path: output,
-    filename: isDevelopment ? '[name].bundle.js' : '[name].bundle.[hash].js',
+    filename: isDev ? '[name].bundle.js' : '[name].bundle.[hash].js',
     pathinfo: true
   },
   module: {
@@ -39,12 +49,8 @@ module.exports = {
       use: [{
         loader: 'pug-loader',
         options: {
-          pretty: isDevelopment ? true : false
-        },
-        //  data: {
-//         global: require('./src/content/global.json'),
-//         home: require('./src/content/home.json')
-//       }
+          pretty: isDev ? true : false
+        }
       }]
     },
     {
@@ -62,13 +68,13 @@ module.exports = {
           loader: 'css-loader',
           options: {
             url: false,
-            sourceMap: isDevelopment ? true : false
+            sourceMap: isDev ? true : false
           }
         },
         {
           loader: 'sass-loader',
           options: {
-            sourceMap: isDevelopment ? true : false
+            sourceMap: isDev ? true : false
           }
         }
       ]
@@ -137,20 +143,14 @@ module.exports = {
       chunks: ['main'],
       title : 'Marvin Starter - Homepage',
     } ),
-    new HtmlWebpackPlugin( {
-      filename: 'styleguide.html',
-      template: path.join( __dirname, './src/app/styleguide/styleguide.pug' ),
-      chunks: [ 'styleguide' ],
-      title : 'Marvin Starter - Styleguide',
-    } ),
     new MiniCssExtractPlugin( {
-      filename: isDevelopment ? '[name].css' : '[name].[hash].css'
+      filename: isDev ? '[name].css' : '[name].[hash].css'
     } ),
     new SpriteLoaderPlugin({
       plainSprite: true
     }),
     new ImageminPlugin( {
-      disable: isDevelopment,
+      disable: isDev,
       test: /\.(jpe?g|png|gif|svg|webp)$/,
       plugins: [
         imageminMozjpeg( {
@@ -173,8 +173,8 @@ module.exports = {
       ]
     } )
   ],
-  mode: isDevelopment ? 'development' : 'production',
-  devtool: isDevelopment ? 'source-map' : 'eval',
+  mode: isDev ? 'development' : 'production',
+  devtool: isDev ? 'source-map' : 'eval',
   devServer: {
     contentBase: output,
     watchContentBase: true,
@@ -184,4 +184,3 @@ module.exports = {
     port: 8000
   }
 };
-

@@ -1,14 +1,7 @@
-import {
-  gsap,
-  TimelineLite,
-  TweenLite,
-  Circ
-} from 'gsap/all';
-import {
-  isMobile
-} from 'mobile-device-detect';
+import { gsap, TimelineLite, TweenLite,Circ } from 'gsap/all';
+import { isMobile } from 'mobile-device-detect';
 
-export function logo() {
+function rotatingLogo() {
   const logo = document.querySelectorAll( '.logo' );
 
   logo.forEach( ( el, i ) => {
@@ -52,4 +45,9 @@ export function logo() {
       tapEvent.on( 'tap', ( e ) => timeline.reversed() ? timeline.play() : timeline.reverse() );
     }
   } );
+}
+
+
+export function logo() {
+	rotatingLogo();
 }
