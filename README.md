@@ -1,4 +1,4 @@
-# Styleguide starter
+<!-- # Styleguide starter
 
 Netlife Research Metalsmith starter for living stylguides with Knyle Style Sheets (KSS).
 
@@ -77,4 +77,4 @@ a.button.star{
 
 ### Dependencies
 * [kss](http://warpspire.com/kss/)
-* [Handlebars](http://handlebarsjs.com/)
+* [Handlebars](http://handlebarsjs.com/) -->
