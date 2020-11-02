@@ -11,6 +11,7 @@ const imageminMozjpeg = require( 'imagemin-mozjpeg' );
 const imageminPngquant = require( 'imagemin-pngquant' );
 const imageminGifsicle = require( 'imagemin-gifsicle' );
 const imageminSvgo = require( 'imagemin-svgo' );
+const FaviconsWebpackPlugin = require( 'favicons-webpack-plugin' );
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -194,7 +195,11 @@ module.exports = {
           removeViewBox: true
         } )
       ]
-    } )
+    } ),
+    new FaviconsWebpackPlugin({
+      logo: './src/app/assets/favicon/logo-40x40.svg',
+			prefix : 'assets/favicon/'
+    })
   ],
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'source-map' : 'eval',
@@ -202,7 +207,7 @@ module.exports = {
     contentBase: output,
     watchContentBase: true,
     inline: true,
-    open: false,
+    open: true,
     writeToDisk: true,
     port: 8000
   }
