@@ -67,7 +67,7 @@ $lengthLogo: 4rem;
 $paddingHeader: $paddingBody;
 $heightHeader: $lengthLogo + ($paddingHeader * 2);
 $gapElemsHeader: 0.6rem;
-$colorElemsHeader: var(--dark);
+$colorElemsHeader: var(--color, var(--dark));
 
 /* NAV */
 $paddingNav: $paddingBody + ($lengthLogo/3);

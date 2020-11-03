@@ -1,80 +1,109 @@
-<!-- # Styleguide starter
 
-Netlife Research Metalsmith starter for living stylguides with Knyle Style Sheets (KSS).
+# Styleguide starter
 
-Install the package:
-`npm i starter-styleguide`
+A starter and styleguide for any quick setup of HTML/CSS components.
 
-## Require and run like this:
-```js
-'use strict';
 
-var starterStyleguide = require('starter-styleguide');
+### Tech
+* [webpack](https://webpack.js.org/) - Module bundler
+* [pugJS](https://pugjs.org) - Clean, whitespace sensitive syntax for writing HTML
+* [SCSS](https://sass-lang.com/) - CSS preprocessor
 
-starterStyleguide.runKss();
+
+### Installation
+
+Install all your dependencies:
+```sh
+$ npm install
+```
+Start the application:
+
+```sh
+$ npm start
+```
+Create a non minified bundle of your app (with the styleguide):
+
+```sh
+$ npm run build
+```
+Build a minified final bundle without the styleguide:
+
+```sh
+$ npm run build:prod
 ```
 
-Default config is:
-```js
-source: 'src/scss',
-destination: 'dist/styleguide/',
-css: [
-    '../css/main.min.css',
-    '../css/styleguide.min.css'
-],
-homepage: 'index.md',
-placeholder: '{modifier}',
-title: 'Styleguide',
-template: __dirname+'/styleguide-template'
-```
 
-## Make your own config:
-```js
-starterStyleguide.extendConfig({ /* config overrides */ });
-```
+### Components
+#### Colors
 
-You can also add you own styleguide **template**, copy the folder _styleguide-template_ into your own projcect.
+In `variables.scss`, pick your main color in hsl values and play with the lightness and the saturation to get your palette color. You can after play with that color with these three sass functions: `lightness(var(--$color), $multiplier)` `saturation(var(--$color), $multiplier)` `alpha(var(--$color), $opacity)`
 
-Example:
-```js
-'use strict';
+#### Typography
+You can use a google font `fontFamilyName` or a local custom font `fontCustomName` on your main project. Params it in `default.pug`
 
-var starterStyleguide = require('starter-styleguide');
+#### Titles
+In `titles.scss`, you can style titles `h1, h2, h3, h4, h5, h6` or use class `.style-h#{nbr}` on it.
 
-starterStyleguide.extendConfig({
-    css: [
-        '../css/yourstyles.css',
-        '../css/custom/customstyles.css'
-    ],
-    template: 'your-own-template'
-});
+#### Icons
+Find here all icons used into your project.
+Icons are automatically generate in `styleguide.js`.
 
-starterStyleguide.runKss();
-```
+`font-awesome` `material-icons` and `glyphicon` librairies are already included and you can use it with this pug mixin: `+icon("nameIcon","nameLibrary")`.
+You can also use a custom svg icon in `assets/icons/nameIcon.svg`. That will create a `sprite.svg` that you can call into your pug pages simply this way: `+icon("nameIcon")`.
 
-## KSS
-Document in your stylesheets with KSS like this:
-```js
-// A button suitable for giving a star to someone.
-//
-// :hover             - Subtle hover highlight.
-// .star-given        - A highlight indicating you've already given a star.
-// .star-given:hover  - Subtle hover highlight on top of star-given styling.
-// .disabled          - Dims the button to indicate it cannot be used.
-//
-// Styleguide 2.1.3.
-a.button.star{
-  ...
-  &.star-given{
-    ...
-  }
-  &.disabled{
-    ...
-  }
-}
-```
-[kss documentation](http://warpspire.com/kss/syntax/)
+#### Breakpoints
+In `breakpoints.scss`, find differents mixins:
+`breakpoints-min($breakpoint)`
+`breakpoints-max($breakpoint)`
+`breakpoints-between($breakpoint)`
 
-### Dependencies
-* [kss](http://warpspire.com/kss/)
-* [Handlebars](http://handlebarsjs.com/) -->
+to play with differents devices points.
+
+#### Grid
+Find in `grid.scss`, a simple grid system which work with class `.grid` as a container.
+Add an additionnal class to it to put the number of wanted columns `.col--$numberCol`.
+Inside it, put other children with the class `.col`. You can nested this system.
+
+#### Menu
+By default, the main layout is a left nav with a burger menu.
+On container `#app`, you can change it by putting class `.right-nav` to have the same system but in right side.
+You can also use class `.top-nav` and add a top bar navigation system.
+
+#### Buttons
+The class `.btn` can be use on a link or a button. Put additionnals classes to style it: `.radius` `.outlined` `.rounded`
+
+#### Tags
+As buttons, put additionnals classes to `.tag` class: `.radius` `.outlined` `.rounded`.
+
+#### Tooltip
+Base on the [script van11y-accessible-simple-tooltip-aria](https://github.com/nico3333fr/van11y-accessible-hide-show-aria), you can add any tooltip with the class `.js-simple-tooltip`.
+
+Add an additionnal class to set the position of your tooltip:
+    `.tooltip--top`
+    `.tooltip--right`
+    `.tooltip--bottom`
+    `.tooltip--left`
+    `.tooltip--top-left`
+    `.tooltip--top-right`
+    `.tooltip--bottom-left`
+    `.tooltip--bottom-right`
+
+All tooltips are accessible and visible on focus.
+
+#### Forms
+All the forms elements are styled with css only in `forms.scss` at the exception of `input="file"` (simple javascript script) and select dropdown.
+
+Last ones work with Jquery, and the plugin [select2.js](https://select2.org/getting-started/installation).
+That make those selects entirely accessibles (keyboard navigation, focus...)
+
+#### Images
+Call any jpg, png or webp images like this in your pug files: `require(imgDir+"image.ext").src`.
+If you want to use a data-uri image, just call it this way: `require(imgDir+"image.ext").placeholder`.
+
+Thanks to `responsive-loader` package in `webpack.config.js`, we automatically generate the differents images in the good srcset dimensions.
+
+You can also params the quality of your images with `ImageminPlugin`.
+
+If you add the class `.lazyload` and replace src attribute by data-src to any images or elements with a background-image in css, you can lazyload those images by using included [lazysizes](https://www.npmjs.com/package/lazysizes) script.
+
+
