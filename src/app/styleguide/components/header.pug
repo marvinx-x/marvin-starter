@@ -1,0 +1,12 @@
+//- HEADER
+- var infos = { lastname: 'Bruhat', firstname: 'Marlène', username : '@Marvin_X_', urltwitter : 'https://twitter.com/Marvin_X_'}
+
+header(role="banner")
+  h1
+    a(href="./index.html" title=infos.firstname + ' ' + infos.lastname).logo: +logo-svg()
+
+    span.title #[strong= infos.lastname]
+      = infos.firstname
+      a(href=infos.urltwitter title=infos.username target="blank")= infos.username
+
+    span.description: +description-svg()

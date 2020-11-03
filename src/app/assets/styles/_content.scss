@@ -1,0 +1,37 @@
+/* MAIN CONTAINER */
+
+%wrapperStarter{
+	grid-area: main;
+	grid-row : 1 / 4;
+	grid-column : 1 / 4;
+	justify-self: center;
+	width: calc(100vw - #{$minWidth});
+	transition-property: transform;
+	transition-duration: $transitionNavDuration;
+	transition-timing-function: $transitionNavEase;
+	padding: $paddingContentVert $paddingContentHor;
+	display: grid;
+
+	@include breakpoints-max(smallDesktop) {
+		width: 100vw;
+		padding-left : $paddingContentHorMobile;
+		padding-right : $paddingContentHorMobile;
+	}
+}
+
+main[role="main"] {
+	@extend %wrapperStarter;
+}
+
+.right-nav{
+	main[role="main"]{
+		grid-column-end: 5;
+	}
+}
+
+.top-nav{
+	main[role="main"]{
+		width: 100%;
+		grid-column-end: 5;
+	}
+}

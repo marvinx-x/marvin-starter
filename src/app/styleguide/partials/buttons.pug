@@ -1,0 +1,75 @@
+- var txt = "The class <code>.btn</code> can be use on a link or a button</code>. Put additionnals classes to style it: <code>.radius</code> <code>.outlined</code> <code>.rounded</code>"
+- var buttons = ["default", "outlined"];
+- var href= "javascript:void(0);";
+
+.styleguide-infos
+  p!= txt
+section(class="grid styleguide-buttons col--1")
+  .col
+    h3 Link
+    h4= buttons[0]
+    div(class="grid col--3")
+      .col: a(href=href class='btn icon' title="This is a link with icon"): +icon("link", "material-icons")
+      .col: a(href=href class='btn radius icon' title="This is a link radius with icon"): +icon("link", "material-icons")
+      .col: a(href=href class='btn icon rounded' title="This is a link rounded with icon"): +icon("link", "material-icons")
+      .col: a(href=href class='btn') Link
+      .col: a(href=href class='btn radius')  Radius
+      .col: a(href=href class='btn rounded') Rounded
+      .col: a(href=href class='btn')
+        +icon("arrow_back", "material-icons")
+        span Icon text
+      .col: a(href=href class='btn')
+        span Icon text
+        +icon("arrow_forward", "material-icons")
+      .col: a(href=href class='btn disabled' tabindex="-1") Disabled
+
+    h4= buttons[1]
+    div(class="grid col--3")
+      .col: a(href=href class='btn icon outlined'): +icon("link", "material-icons")
+      .col: a(href=href class='btn radius icon outlined'): +icon("link", "material-icons")
+      .col: a(href=href class='btn icon rounded outlined'): +icon("link", "material-icons")
+      .col: a(href=href class='btn outlined') Link
+      .col: a(href=href class='btn radius outlined') Radius
+      .col: a(href=href class='btn rounded outlined') Rounded
+      .col: a(href=href class='btn outlined')
+        +icon("arrow_back", "material-icons")
+        span Icon text
+      .col: a(href=href class='btn outlined')
+        span Icon text
+        +icon("arrow_forward", "material-icons")
+      .col: a(href=href class='btn disabled outlined' tabindex="-1") Disabled
+
+  .col
+    h3 button
+    h4= buttons[0]
+    div(class="grid col--3")
+      .col: button(class='btn icon' aria-label="This is a button with icon"): +icon("link", "material-icons")
+      .col: button(class='btn radius icon' aria-label="This is a button radius with icon"): +icon("link", "material-icons")
+      .col: button(class='btn icon rounded' aria-label="This is a button rounded with icon"): +icon("link", "material-icons")
+      .col: button(class='btn') Button
+      .col: button(class='btn radius') Radius
+      .col: button(class='btn rounded') Rounded
+      .col: button(class='btn')
+        +icon("arrow_back", "material-icons")
+        span Icon text
+      .col: button(class='btn')
+        span Icon text
+        +icon("arrow_forward", "material-icons")
+      .col: button(class='btn disabled' tabindex="-1") Disabled
+
+    h4= buttons[1]
+    div(class="grid col--3")
+      .col: button(class='btn icon outlined' aria-label="This is a button with icon"): +icon("link", "material-icons")
+      .col: button(class='btn radius icon outlined' aria-label="This is a button radius with icon"): +icon("link", "material-icons")
+      .col: button(class='btn icon rounded outlined' aria-label="This is a button rounded with icon"): +icon("link", "material-icons")
+      .col: button(class='btn outlined') Button
+      .col: button(class='btn radius outlined')  Radius
+      .col: button(class='btn rounded outlined') Rounded
+      .col: button(class='btn outlined')
+        +icon("arrow_back", "material-icons")
+        span Icon text
+      .col: button(class='btn outlined')
+        span Icon text
+        +icon("arrow_forward", "material-icons")
+      .col: button(class='btn disabled outlined' tabindex="-1") Disabled
+

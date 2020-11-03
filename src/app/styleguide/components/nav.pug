@@ -1,0 +1,41 @@
+each starterItem in starterItems
+  - var item = starterItem.toLowerCase()
+  li: a(href="#"+item)
+    case item
+      when "colors"
+        +icon("invert_colors", "material-icons")
+
+      when "typography"
+        +icon("xf031", "font-awesome", true)
+
+      when "titles"
+        +icon("text_fields", "material-icons")
+
+      when "icons"
+        +icon("insert_emoticon", "material-icons")
+
+      when "breakpoints"
+        +icon("phonelink", "material-icons")
+
+      when "grid"
+        +icon("th", "glyphicon")
+
+      when "menu"
+        +icon("bars", "font-awesome")
+
+      when "buttons"
+        +icon("button")
+
+      when "tooltip"
+        +icon("tooltip")
+
+      when "tags"
+        +icon("tags", "font-awesome")
+
+      when "forms"
+        +icon("xe032", "glyphicon", true)
+
+      when "images"
+        +icon("images")
+
+    span= starterItem

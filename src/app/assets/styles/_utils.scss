@@ -1,0 +1,38 @@
+:root{
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  & {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    }
+}
+
+//// ::AFTER BEFORE
+%after-before--utils {
+  content: "";
+  display: block;
+}
+
+//// ::SELECTION
+%selection {
+  text-shadow: 0.1rem 0.1rem 0 alpha(var(--fluo), 1);
+  background: alpha(var(--primary), 0.15);
+  color: var(--dark);
+}
+
+//// style text paragraph
+%text-style {
+  font-size: $fontSizeBase;
+  font-style: normal;
+  font-weight: 400;
+  color: $colorText;
+  line-height: 1.8;
+}
+
+

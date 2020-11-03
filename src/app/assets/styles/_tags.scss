@@ -1,0 +1,108 @@
+/*  */
+/* TAGS */
+/*  */
+
+.tags{
+  display: flex;
+  flex-flow : row wrap;
+
+  li{
+    $marginTags : .6rem;
+    margin: 0 $marginTags $marginTags 0;
+  }
+}
+
+
+/*  */
+/* VARS */
+/*  */
+$backColorTag : saturation(var(--primary), 1.25);
+$backColorHoverTag : saturation(var(--primary), 0.9);
+$colorTag : var(--white);
+
+$backColorOutlinedTag : alpha(var(--white), .75);
+$backColorOutlinedHoverTag : var(--white);
+$colorOutlinedTag : currentColor;
+$colorHoverOutlinedTag : var(--dark);
+$borderColorOutlinedTag : alpha(var(--primary), .35);
+$borderColorOutlinedHoverTag : alpha($colorHoverOutlinedTag, .75);
+
+$fontWeightTag : 600;
+$fontSizeTag : 1.5rem;
+$letterSpacingTag : .001rem;
+
+$heightTag : 3rem;
+$paddingTag : 1.2rem;
+$timeTransitionTag : .2s;
+
+$radiusTag : .4rem;
+$opacityDisabledTag : .25;
+
+.tag{
+  background-color: $backColorTag;
+  color : $colorTag;
+  padding: 0 $paddingTag;
+  display: inline-flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  font-weight: $fontWeightTag;
+  font-size: $fontSizeTag;
+  letter-spacing: $letterSpacingTag;
+  height: $heightTag;
+  transition: all $timeTransitionTag;
+  line-height: 1.2;
+  @include icons($fontSizeTag - .3);
+
+  i + span,
+  svg + span,
+  span + i,
+  span + svg{
+    margin-left: .5rem;
+  }
+
+  &:hover,
+  &:active,
+  &:focus{
+    background-color: $backColorHoverTag;
+  }
+
+  /* OUTLINED */
+  &.outlined{
+    border: .1rem solid $borderColorOutlinedTag;
+    background-color : $backColorOutlinedTag;
+    color : $colorOutlinedTag;
+
+    &:hover,
+    &:active,
+    &:focus{
+      background-color : $backColorOutlinedHoverTag;
+      color : $colorHoverOutlinedTag;
+      border-color : $borderColorOutlinedHoverTag;
+    }
+  }
+
+  /* ROUNDED */
+  &.rounded{
+    border-radius: $heightTag;
+  }
+
+  /* RADIUS */
+  &.radius{
+    border-radius: $radiusTag;
+  }
+
+  /* DISABLED */
+  &.disabled{
+    pointer-events: none;
+    opacity: $opacityDisabledTag;
+  }
+
+  /* ICON ONLY */
+  &.icon{
+    width: $heightTag;
+    padding: 0;
+  }
+}
+
+

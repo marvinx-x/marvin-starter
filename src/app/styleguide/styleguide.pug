@@ -1,0 +1,50 @@
+extends ../includes/layout/default
+
+include ../utils/icons
+
+append head
+
+append vars
+  - var styleguide = true
+
+append main
+  each starterItem in starterItems
+    - var item = starterItem.toLowerCase()
+    .styleguide-content(id=item)
+      h2.styleguide-title= starterItem
+      case item
+        when "colors"
+          include partials/colors
+
+        when "typography"
+          include partials/typography
+
+        when "titles"
+          include partials/titles
+
+        when "icons"
+          include partials/icons
+
+        when "breakpoints"
+          include partials/breakpoints
+
+        when "grid"
+          include partials/grid
+
+        when "menu"
+          include partials/menu
+
+        when "buttons"
+          include partials/buttons
+
+        when "tags"
+          include partials/tags
+
+        when "tooltip"
+          include partials/tooltip
+
+        when "forms"
+          include partials/forms
+
+        when "images"
+          include partials/images

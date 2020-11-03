@@ -1,0 +1,670 @@
+@import "../assets/styles/styles.scss";
+$heightElemStyleguide : 22rem;
+
+/*  */
+/* STYLEGUIDE */
+/*  */
+.styleguide{
+  main[role=main]{
+    padding-top : 0 !important;
+  }
+}
+
+.styleguide-content {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "title content"
+    "text content";
+  grid-auto-flow: row;
+  padding-top : $paddingContentVert;
+
+  &:last-of-type{
+    margin-bottom: $paddingContentVert;
+  }
+
+  & > .grid {
+    grid-column-start: 2;
+    padding-top: 1rem;
+
+    &:first-of-type{
+      grid-area: content;
+    }
+  }
+
+  & > h2{
+    margin-bottom: $gridGapVert / 1.25;
+  }
+
+  .col > h1{
+    margin-bottom: .75rem;
+  }
+
+  .col > h3 + p{
+    margin-top: 1rem;
+    font-size: $fontSizeBase - 0.12rem;
+  }
+
+  .col > h3{
+    margin-bottom: .75rem;
+  }
+
+  .col > h4{
+    margin-bottom: 1rem;
+  }
+
+  form{
+    margin-top : 1.2rem;
+  }
+
+ .styleguide-infos {
+    width: 32rem;
+    margin-right: $gridGap*1.5;
+    grid-area: text;
+    grid-column-start: 1;
+    grid-row-end: 3;
+    margin-bottom: $gridGapVert;
+
+    code{
+      margin-bottom: .5rem;
+    }
+  }
+
+  @include breakpoints-max("tabletLandscape") {
+    display: block;
+
+    .styleguide-infos {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: $gridGapVert/3;
+    }
+
+    & > h2{
+      margin-bottom: $gridGapVert/3;
+    }
+  }
+}
+
+
+
+/*  */
+/* PAGES */
+/*  */
+
+.styleguide-pages{
+  margin-top: $gridGapVert;
+  font-size: 1.5rem;
+
+  a{
+    text-decoration: underline;
+    display: block;
+    @include underlineText('top');
+    line-height: 2.6;
+  }
+}
+
+
+
+/*  */
+/* COLORS */
+/*  */
+.styleguide-colors {
+  grid-area: content;
+  grid-column-start: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+
+  .col {
+    > p{
+      font-size: 1.5rem;
+    }
+
+    @each $color in $colors{
+      $i: index($colors, $color);
+      $keys: map-keys($colors);
+      $valueKey : nth($keys, $i);
+
+      &:nth-of-type(#{$i}) {
+        li {
+          @for $y from 0 to 5 {
+            &:nth-child(#{$y + 1}) {
+              @if ($valueKey == "primary") {
+                background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.2);
+              }
+              @if ($valueKey == "dark") {
+                background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.3);
+              }
+              @if ($valueKey == "neutral") {
+                background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.13);
+              }
+              @if ($valueKey == "light") {
+                background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.028);
+              }
+
+              @if ($y > 0) {
+                height: 3.2rem;
+                margin-top: -0.1rem;
+              } @else {
+                height: 10vw;
+                min-height : 15rem;
+                max-height : $heightElemStyleguide;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*  */
+/* TYPOGRAPHY */
+/*  */
+.styleguide-styles{
+  $marginStyleguideStyles : 5rem;
+
+  &:nth-of-type(2){
+    display: flex;
+    flex-flow : column wrap;
+    align-items : flex-start;
+  }
+
+  p{
+    @include underlineText();
+    line-height: 1.7;
+    font-size : 2.9rem;
+    letter-spacing: -0.15rem;
+
+    &::first-letter{
+      text-transform: uppercase;
+    }
+
+    &.crossed{
+      line-height: 1.25;
+      font-weight : 400;
+      font-size : 2.7rem;
+      letter-spacing: -0.25rem;
+      padding-right: .5rem;
+
+      &::after{
+        display: none;
+      }
+    }
+
+    @include breakpoints-max("tabletLandscape"){
+      font-size : 2.4rem;
+
+      &.crossed{
+        font-size : 2.25rem;
+        padding-right : 0;
+      }
+    }
+  }
+}
+
+.styleguide-fonts{
+  .col{
+
+    &:first-of-type{
+
+      .styleguide-styles{
+
+        &:first-of-type{
+          margin-bottom : $gridGapVert;
+        }
+      }
+    }
+    &:last-of-type{
+      h1{
+        font-family: 'ralewaymedium';
+      }
+      p{
+        $arrFontsCustom : ('extralight', 'light', 'medium', 'bold', 'extrabold', 'black');
+
+        @each $font in $arrFontsCustom{
+          $i : index($arrFontsCustom, $font);
+          &:nth-of-type(#{$i}){
+            font-family: quote('raleway#{$font}');
+          }
+        }
+      }
+    }
+  }
+}
+
+/*  */
+/* TITLES */
+/*  */
+.styleguide-titles{
+  margin-top: -2rem;
+
+  &.grid{
+    grid-gap : 0;
+  }
+
+  h1, h2, h3, h4, h5, h6{
+    @include underlineText();
+    line-height: 5.6rem;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  h1{
+    line-height: 7.5rem;
+  }
+}
+
+
+/*  */
+/* ICONS */
+/*  */
+.styleguide-icons{
+  .grid{
+    .grid{
+      grid-gap : 0 $gridGap;
+     }
+    .wrap-icon{
+      $fontSizeIcons : 2.8rem;
+      @include underlineText();
+      line-height: $fontSizeIcons + 2;
+      display: flex;
+      flex-flow : row wrap;
+      align-items: center;
+      padding : 1.25rem 0;
+      @include icons($fontSizeIcons){
+        margin-right: 1rem;
+      }
+
+      &:first-of-type{
+        padding-top: .75rem;
+      }
+    }
+  }
+}
+
+/*  */
+/* BREAKPOINTS */
+/*  */
+
+.styleguide-breakpoints{
+
+  .col{
+    height : $heightElemStyleguide;
+    background : $lightText;
+    display: flex;
+    flex-flow : row wrap;
+    justify-content: center;
+    align-items:center;
+
+    h3{
+      margin: 0;
+    }
+
+    code{
+      font-size: 2.5rem;
+    }
+
+    code{
+      &::before{
+        display: block;
+
+        @each $breakpoint in $breakpointsMin{
+          $i : index($breakpointsMin, $breakpoint);
+          $keys: map-keys($breakpointsMin);
+          $valueKey : nth($keys, $i);
+          @include breakpoints-min($valueKey){
+            content : quote("\"#{$valueKey}\"");
+          }
+        }
+      }
+    }
+  }
+}
+
+/*  */
+/* GRID */
+/*  */
+
+.styleguide-grids{
+  $gridGapStyleguide : 1.4rem;
+  $heightStyleGuideGrid : 10vw;
+  $minHeightStyleGuideGrid : 15rem;
+  $maxHeightStyleGuideGrid : 30rem;
+  background-color: lightness(var(--primary), 1);
+  padding: 0 $paddingContentHor;
+
+  &.grid, .grid{
+    grid-gap : $gridGapStyleguide;
+  }
+  .col{
+    background : alpha(var(--white), .15);
+  }
+
+  & > .col{
+    height: $heightStyleGuideGrid;
+    min-height : $minHeightStyleGuideGrid;
+    max-height : $maxHeightStyleGuideGrid;
+    .grid{
+      padding: $gridGapStyleguide;
+      .col{
+        height: calc(#{$heightStyleGuideGrid} - #{$gridGapStyleguide*2});
+        min-height : $minHeightStyleGuideGrid - $gridGapStyleguide*2;
+        max-height : $maxHeightStyleGuideGrid - $gridGapStyleguide*2;
+      }
+    }
+  }
+  @include breakpoints-max(mobileLandscape){
+    padding: 0 $paddingContentHorMobile/2;
+
+    & > .col{
+      height: calc(#{$heightStyleGuideGrid} + #{$gridGapStyleguide*2});
+      min-height : $minHeightStyleGuideGrid + ($gridGapStyleguide*2);
+      max-height : $maxHeightStyleGuideGrid + ($gridGapStyleguide*2);
+      .grid{
+        .col{
+          height: calc(#{$heightStyleGuideGrid} - #{$gridGapStyleguide*2})/3;
+          min-height : ($minHeightStyleGuideGrid - $gridGapStyleguide*2)/3;
+          max-height : ($maxHeightStyleGuideGrid - $gridGapStyleguide*2)/3;
+        }
+      }
+    }
+  }
+}
+
+/*  */
+/* MENU */
+/*  */
+
+.styleguide-menu{
+  $heightStyleGuideGrid : $heightElemStyleguide;
+  $widthNavStyleguide : 8rem;
+  $widthButtonStyleguide : 2rem;
+  $heightHeaderStyleguide : 3.6rem;
+  background: $lightText;
+  height: $heightStyleGuideGrid;
+  position: relative;
+
+  button,
+  header,
+  nav,
+  footer{
+    position: absolute;
+  }
+
+  button,
+  header,
+  footer{
+    background : lightness(var(--primary), 1.63);
+    z-index : 1;
+  }
+
+
+  button{
+    top: ($heightHeaderStyleguide - $widthButtonStyleguide)/2;
+    left : 0;
+    width: $widthButtonStyleguide;
+    height: $widthButtonStyleguide;
+  }
+
+  header{
+    top: 0;
+    left : $widthButtonStyleguide + 1rem;
+    width: $widthNavStyleguide;
+    height: $heightHeaderStyleguide;
+  }
+
+  nav{
+    top: 0;
+    left: 0;
+    width: $widthNavStyleguide + $widthButtonStyleguide + 1rem;
+    height: 100%;
+    background :lightness(var(--primary), 1.83);
+  }
+
+  footer{
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2rem;
+  }
+
+  &--right-nav{
+    button, nav{
+      left: auto;
+      right: 0;
+    }
+
+    header{
+      left: 0;
+    }
+  }
+
+  &--top-nav{
+
+    button{
+      display: none;
+    }
+
+    header{
+      left : 0;
+    }
+
+    nav{
+      height: $heightHeaderStyleguide;
+      width: 100%;
+    }
+  }
+}
+
+
+/*  */
+/* BUTTONS */
+/*  */
+
+.styleguide-buttons{
+  .grid{
+    grid-gap : $gridGap/3 $gridGap;
+
+    &:first-of-type{
+      margin-bottom: $gridGapVert;
+    }
+
+    @include breakpoints-max(mediumDesktop){
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include breakpoints-max(mobileLandscape){
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+/*  */
+/* TAGS */
+/*  */
+
+.styleguide-tags{
+
+  .tags{
+    margin-bottom: $gridGapVert/2;
+
+    &:last-of-type{
+      margin-bottom: 0;
+    }
+  }
+}
+
+/*  */
+/* TOOLTIPS */
+/*  */
+.styleguide-tooltips{
+
+  &.grid{
+    grid-gap : $gridGap;
+    align-content: space-between;
+  }
+
+  .col{
+    justify-self: flex-start;
+    @include breakpoints-min(largeDesktop) {
+
+      @for $i from 0 to 3{
+        &:nth-of-type(3n+#{$i+1}){
+          @if($i == 0){
+            justify-self: flex-start;
+          }
+          @else if($i == 1){
+            justify-self: center;
+          }
+          @else{
+            justify-self: flex-end;
+          }
+        }
+      }
+    }
+  }
+  @include breakpoints-max(desktop) {
+    &.grid{
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .col{
+      order: 1;
+      &:nth-of-type(5){
+        display: none;
+      }
+      &:nth-of-type(2),
+      &:nth-of-type(4),
+      &:nth-of-type(7),
+      &:nth-of-type(9)
+      {
+        justify-self : flex-end;
+      }
+    }
+  }
+
+  @include breakpoints-max(mobileLandscape) {
+    &.grid{
+      grid-template-columns: 1fr;
+    }
+    .col{
+      justify-self: center !important;
+    }
+  }
+}
+
+
+/*  */
+/* FORMS */
+/*  */
+.styleguide-checkboxes,
+.styleguide-radios,
+.styleguide-switches{
+  display: flex;
+  flex-flow: row wrap;
+
+  & > div{
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  @include breakpoints-max("mobileLandscape"){
+    flex-direction: column;
+  }
+}
+
+.styleguide-textareas{
+  grid-gap : 0 $gridGap;
+}
+
+/*  */
+/* IMAGES */
+/*  */
+$imgs: (
+  1: "image-342.jpg",
+  2: "image-342.png",
+  3: "image.gif",
+  4: "image.svg",
+  5: "image-342.webp",
+  6: "data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QMxaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzEzOCA3OS4xNTk4MjQsIDIwMTYvMDkvMTQtMDE6MDk6MDEgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkU3QjZCNjdBRUVGOTExRUFBMzBEOTlCMDgzRUMwMzlDIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkU3QjZCNjc5RUVGOTExRUFBMzBEOTlCMDgzRUMwMzlDIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE3IChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RDYyMERFRkRFRUY4MTFFQTk3M0ZFOERBNzJBRUQ3NEQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RDYyMERFRkVFRUY4MTFFQTk3M0ZFOERBNzJBRUQ3NEQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAeACgDAREAAhEBAxEB/8QAgQAAAgMBAAAAAAAAAAAAAAAABQcCAwYEAQADAQEBAAAAAAAAAAAAAAAAAQMCBAUQAAEDAgQDBQcFAAAAAAAAAAECAwQRBQAhEgYxURNBYSIVB3GRQlJiIxQyglNzJBEAAgIBAgYDAQAAAAAAAAAAAAERAiExEvBhcbEiA0GBwTL/2gAMAwEAAhEDEQA/AHKsppnj20coB3FuvbNgLSb3cWYK3z9ptwkuEfMUJClBP1EYpVSNIBNepu0pMUyYDr0wNu9OUwhpSH2EZ/fcaXRfT5ED3Y6Keh2+Ulxjk+ozQW+4wLnb2bjbpCJcCQKsyGjVJ7u4jtBzxJqHAi+uACrcTV7lQAxZ7h5ZJW4kOy0spkOhn4wyFlKEOclqqByxLbPIELDeHoQ+8pN22zcnl3ooS7JYuT3VU+6ni43LUKpWaV0rGnlTGGo6GN7U7v541M7t/wBMd53SYi57gcd24qKqn5QIFwc05HpspOlNf5FqAPZXFfW7J+LHb2YiqnsNmHZttbcuSi10IUu5IbabW69pdk6Rq1KaJQ3rJNStKBXFa13KUusaBWYzlhlZKCQqoUOIPHCRqTqUvljEAcchE1K+rGdrzYX+n9pHDFFtahoGhaep/qXuTby0QLda1QVPgFu9SUhxBUeKWAPDqTw8efIYxfx0z2EqJuRY2q07q3jcFyY3WmPuKpLukxRUhCv7iPH3ISK41SzlOkr8+ykj72tap1msrUGdcHrlIQal9+lEj5GhmoIHYFEnFLZZNmnzxEZFXDDAD7j8hNtkC9dAQdH+kyNPT0/Xqy9nbyxusxyAhbRbRBY8rLRhaB+MWadPRT4NOVPZjbkRd254QH//2Q==",
+);
+
+$nbrImgs: length($imgs);
+.styleguide-imgs {
+
+  &--srcset {
+
+    picture{
+      height: $heightElemStyleguide;
+    }
+
+    $srcsets: (
+      "maxDesktop": 1600,
+      "mediumDesktop": 912,
+      "tablet": 656,
+      "mobileLandscape": 368,
+      "mobile"  : 208,
+    );
+
+    @each $key, $srcset in $srcsets {
+      @include breakpoints-max($key) {
+        .img {
+          @include bgimage("https://via.placeholder.com/#{$srcset}x200/F4F6FA/bec8db?size=#{$srcset}");
+        }
+      }
+    }
+  }
+
+  &--css {
+
+    .img{
+      height : 50vw;
+      min-height: 14rem;
+      max-height : 18rem;
+    }
+
+    @each $key, $img in $imgs {
+      .col {
+        &:nth-child(#{$key}) {
+          .img {
+            @include bgimage($img);
+          }
+        }
+      }
+    }
+  }
+
+  &--html,
+  &--css{
+    --uriWidth : 4rem;
+
+    &.grid{
+      @for $i from 0 to 10 {
+        &.col--#{$i + 1} {
+          grid-template-columns: repeat($i, 1fr) var(--uriWidth);
+
+          @include breakpoints-max(largeDesktop) {
+            grid-template-columns: repeat(($i + 1)/2, 1fr);
+          }
+          @include breakpoints-max(tablet) {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          @include breakpoints-max(mobileLandscape) {
+            grid-template-columns: 1fr;
+          }
+        }
+      }
+    }
+
+    .col {
+      &:last-of-type {
+        .wrap-img,
+        .img{
+          min-width: unset;
+          min-height: unset;
+          width: 4rem;
+          height: 3rem;
+        }
+      }
+    }
+  }
+}

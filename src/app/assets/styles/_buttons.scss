@@ -1,0 +1,92 @@
+/*  */
+/* VARS */
+/*  */
+$backColorBtn : saturation(var(--primary), 1.25);
+$backColorHoverBtn : saturation(var(--primary), 0.9);
+$colorBtn : var(--white);
+
+$backColorOutlinedBtn : alpha(var(--white), .75);
+$backColorOutlinedHoverBtn : var(--white);
+$colorHoverOutlinedBtn : var(--dark);
+$borderColorOutlinedBtn : alpha(var(--primary), .35);
+$borderColorOutlinedHoverBtn : alpha($colorHoverOutlinedBtn, .75);
+
+$fontWeightBtn : 600;
+$fontSizeBtn : 1.5rem;
+$letterSpacingBtn : .005rem;
+
+$heightBtn : $heightLinks;
+$paddingBtn : $heightLinks/2.2;
+$timeTransitionBtn : .2s;
+
+$radiusBtn : .6rem;
+$opacityDisabledBtn : .25;
+
+.btn{
+  background-color: $backColorBtn;
+  color : $colorBtn;
+  padding: 0 $paddingBtn;
+  display: inline-flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  font-weight: $fontWeightBtn;
+  font-size: $fontSizeBtn;
+  letter-spacing: $letterSpacingBtn;
+  height: $heightBtn;
+  transition: all $timeTransitionBtn;
+  line-height: 1;
+  @include icons($fontSizeBtn + .65);
+
+  i + span,
+  svg + span,
+  span + i,
+  span + svg{
+    margin-left: .5rem;
+  }
+
+  &:hover,
+  &:active,
+  &:focus{
+    background-color: $backColorHoverBtn;
+  }
+
+  /* OUTLINED */
+  &.outlined{
+    border: .1rem solid $borderColorOutlinedBtn;
+    background-color : $backColorOutlinedBtn;
+    color : currentColor;
+
+    &:hover,
+    &:active,
+    &:focus{
+      background-color : $backColorOutlinedHoverBtn;
+      color : $colorHoverOutlinedBtn;
+      border-color : $borderColorOutlinedHoverBtn;
+    }
+  }
+
+  /* ROUNDED */
+  &.rounded{
+    border-radius: $heightBtn;
+  }
+
+  /* RADIUS */
+  &.radius{
+    border-radius: $radiusBtn;
+  }
+
+  /* DISABLED */
+  &.disabled{
+    pointer-events: none;
+    opacity: $opacityDisabledBtn;
+  }
+
+  /* ICON ONLY */
+  &.icon{
+    width: $heightBtn;
+    padding: 0;
+  }
+}
+
+

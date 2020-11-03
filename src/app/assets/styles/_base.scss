@@ -1,0 +1,184 @@
+%bodyStarter{
+  font-size: $fontSizeBase;
+  color: lightness(var(--primary), 0.9);
+  background-color: var(--white);
+  line-height: $lineHeightBase;
+  letter-spacing : $letterSpacingBase;
+  font-weight: $fontWeightBase;
+  font-family: "Helvetica", "Arial", sans-serif;
+  overflow-x : hidden;
+
+  /* use to grab the content value in javascript */
+  &::before {
+    content: quote(map-get($breakpointsMin, "desktop"));
+    display: none;
+  }
+}
+
+body {
+  @extend %bodyStarter;
+}
+
+body.nav-less {
+  header[role="banner"],
+  main[role="main"] {
+    grid-column-start: 1;
+  }
+
+  main[role=main]{
+    width: 100%;
+  }
+}
+
+
+//// topNav
+/// choose here the breakpoint value you want that the mobile version of the nav show up when top nav navigation on desktop
+@mixin topNav($breakpoint : desktop){
+  @include breakpoints-min($breakpoint){
+    @content;
+  }
+}
+
+
+$widthHeader : (calc(#{$widthNav} - #{$widthColumnButtonNav}));
+$widthHeaderRight : (calc(#{$widthNav} - #{$widthColumnButtonNav} + #{$paddingHeader}));
+$topBarHeight : $heightHeader + 1.25rem;
+
+%appStarter{
+  height: 100vh;
+  /* use to calculate the viewport height on mobile devices (resize, orientation changer) */
+  height: calc(var(--vh, 1vh) * 100);
+  position: relative;
+  display: grid;
+  grid-template-rows: $heightHeader 1fr $heightFooter;
+  grid-template-columns: $widthColumnButtonNav $widthHeader 1fr;
+  grid-template-areas:
+    "navbutton header main"
+    "nav nav main"
+    "footer footer footer";
+
+  &.right-nav{
+    grid-template-columns: $widthHeaderRight 1fr minmax(0rem, $widthHeader) minmax(4rem, $widthColumnButtonNav);
+    grid-template-areas:
+      "header header header navbutton"
+      "main main nav nav"
+      "footer footer footer footer";
+  }
+
+  &.top-nav{
+    @include topNav(){
+      $widthHeaderRight : (calc(#{$widthNav} - #{$widthColumnButtonNav} + #{$paddingHeader}));
+      grid-template-columns: $widthHeaderRight 1fr;
+      grid-template-areas:
+      "header nav"
+      "main main"
+      "footer footer";
+
+      &::before{
+        content : "";
+        display : block;
+        height: $topBarHeight;
+        width: 100%;
+        position : fixed;
+        top : 0;
+        left : 0;
+        z-index : 1;
+        background : var(--white);
+      }
+    }
+  }
+}
+
+#app {
+ @extend %appStarter;
+}
+
+
+/* remove this for a new start */
+.start-here{
+  $colorGradient1: lightness(var(--primary), 1.2);
+  $colorGradient2: lightness(var(--primary), 1.7);
+  $paddingStartHere : 12rem;
+  $marginTopStartHere : $paddingContentVert;
+  $heightStartHere : 100%;
+  background: linear-gradient(45deg, $colorGradient1, $colorGradient2);
+  color : var(--white);
+  overflow : hidden;
+  height: $heightStartHere;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  padding: $paddingStartHere;
+  align-self : center;
+  align-items: flex-start;
+  min-height: 25rem;
+
+
+  p{
+    color: currentColor;
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin: 1.5rem 0 3rem 0;
+    line-height : 1.3;
+    letter-spacing: -0.1rem;
+  }
+
+  @include icons(25vw){
+    position: absolute;
+    bottom : 0;
+    right: 8vw;
+    opacity : .3;
+    transform : scale(1.6);
+  }
+
+  &::before{
+    @extend %after-before--utils;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(alpha(var(--primary), 0), $colorGradient1);
+    z-index: 1;
+  }
+
+  & > h2,
+  & > a,
+  & > p{
+    position: relative;
+    z-index: 2;
+  }
+
+  a{
+    &::first-letter{
+     text-transform: uppercase;
+    }
+  }
+
+  a{
+    font-size: 1.75rem;
+    letter-spacing: -0.08rem;
+    line-height: 2;
+    line-height : 1.4;
+    @include underlineText();
+    display: flex;
+
+    &::after{
+      transition : opacity .15s;
+    }
+
+    &:hover{
+      &::after{
+        opacity : 1;
+      }
+    }
+  }
+
+  @include breakpoints-max(smallDesktop){
+    padding: 8vw;
+    justify-content: flex-end;
+    align-items: flex-end;
+    text-align: right;
+  }
+}

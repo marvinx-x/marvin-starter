@@ -1,0 +1,29 @@
+/* FOOTER */
+$paddingFooter : $paddingBody;
+
+
+%footerStarter{
+  grid-area: footer;
+  position: fixed;
+	bottom: 0;
+	left: 0;
+	width: $widthNav;
+	height: $heightFooter;
+	z-index: 3;
+	max-width: $minWidth/2 + $paddingContentHor;
+	padding: 0 $paddingItemsNav;
+	display: grid;
+	grid-template-columns: repeat(3 , 1fr);
+	justify-items: center;
+	align-items: center;
+}
+
+footer[role='contentinfo'] {
+	@extend %footerStarter;
+}
+
+.right-nav{
+	footer[role="contentinfo"]{
+		grid-column : 1 / 5;
+	}
+}

@@ -1,0 +1,58 @@
+block vars
+  // GLOBAL
+  - var documentTitle = htmlWebpackPlugin.options.title
+  - var lang = "fr"
+  // PATHS
+  - var imgDir = 'assets/images/'
+  - var spriteSvgIcons = './assets/icons/custom/sprite.svg'
+  // CLASSES
+  - var headerLess = false
+  - var navLess = false
+  - var footerLess = false
+  - var styleguide = false
+  - var typeLayout = ["right-nav", "top-nav"]
+  // FONT
+  - var fontCustomName = "Raleway";
+  - var fontFamilyName = "Inter";
+  - var googleFontsUrl = "https://fonts.googleapis.com/css2?family="+fontFamilyName.replace(" ", "+")+":wght@300;400;500;600;700&display=optional"
+  // ITEMS STYLEGUIDE
+  - var starterItems = ["colors", "Typography", "Titles", "Icons", "Breakpoints", "Grid", "menu", "Buttons", "Tags", "Tooltip" , "Forms", "images"]
+
+html(lang=lang)
+
+  head
+    block head
+
+    include ../../includes/layout/head
+
+    title=documentTitle
+
+    include ../../utils/mixins
+
+  body( class=navLess ? 'nav-less' : null || styleguide ? 'styleguide' : null )
+    div#app(style="font-family:"+fontFamilyName+", sans-serif;" class=!styleguide ? typeLayout[1] : false)
+
+      if(!headerLess)
+        if(styleguide)
+          include ../../styleguide/components/header
+        else
+          include ../../components/header/header
+
+      if(!navLess)
+        button(type="button" aria-expanded="false" aria-controls="main-nav").button-nav.active-circle: +burger-svg()
+        nav(role="navigation" aria-label="Main navigation")
+          ul(id="main-nav")
+            if(styleguide)
+              include ../../styleguide/components/nav
+            else
+              include ../../components/nav/nav
+
+      main(role="main")
+        block main
+
+      if(!footerLess)
+        if(styleguide)
+          include ../../styleguide/components/footer
+        else
+          include ../../components/footer/footer
+

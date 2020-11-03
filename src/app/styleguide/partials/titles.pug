@@ -1,0 +1,10 @@
+- var txt = "In <code>titles.scss</code>, you can style titles <code>h1, h2, h3, h4, h5, h6</code> or use class <code>.style-h#{nbr}</code> on it."
+
+- var titles = ["h1", "h2", "h3", "h4", "h5", "h6"]
+
+.styleguide-infos
+  p!= txt
+section(class="grid styleguide-titles col--1")
+  each title, key in titles
+    .col: #{title} #{title.toUpperCase()} title
+

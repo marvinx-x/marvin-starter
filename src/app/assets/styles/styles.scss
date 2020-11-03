@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+/* ICONS CUSTOM */
+
+/* GLOBALS */
+@import "functions";
+@import "mixins";
+@import "variables";
+@import "easings";
+@import "utils";
+@import "reset";
+@import "breakpoints";
+@import "base";
+@import "classes";
+@import "data";
+
+/* STYLES */
+@import "titles";
+@import "buttons";
+@import "tags";
+@import "tooltip";
+@import "forms";
+@import "grid";
+
+/* LAYOUT */
+@import "../../components/header/header.scss";
+@import "../../components/nav/nav.scss";
+@import "../../components/footer/footer.scss";
+@import "content";

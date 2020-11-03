@@ -1,0 +1,16 @@
+//- block colors
+
+- var txt = "In <code>variables.scss</code>, pick your main color in hsl values and play with the lightness and the saturation to get your palette color. You can after play with that color with these three sass functions: <code>lightness(var(--$color), $multiplier)</code>  <code>saturation(var(--$color), $multiplier)</code>  <code>alpha(var(--$color), $opacity)</code>"
+
+- var colors = ["primary", "dark", "neutral", "light"]
+
+.styleguide-infos
+  p!= txt
+section(class="grid styleguide-colors col--"+colors.length)
+  each color, key in colors
+    .col
+      h3= color
+      p hsl()
+      ul
+        - for(var i=0; i < 5; i++)
+          li

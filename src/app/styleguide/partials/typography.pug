@@ -1,0 +1,53 @@
+append vars
+
+- var txt = "You can use a google font <code>fontFamilyName</code> or a local custom font <code>fontCustomName</code> on your main project. Params it in <code>default.pug</code> "
+
+- var typeFonts = ["google", "custom"]
+- var fontCats = ["used", "unused"]
+- var weightFonts = ["Thin", "Extra-light", "Light", "regular", "Medium", "Semi-bold", "Bold", "Extra-bold", "Black"]
+
+.styleguide-infos
+  p!= txt
+
+section(class="grid  styleguide-fonts col--"+typeFonts.length)
+  each typeFont, key in typeFonts
+    .col
+      h3.styleguide-title #{typeFont} fonts example
+
+      case typeFont
+        when typeFonts[0]
+
+          h1= fontFamilyName.length > 0 ? fontFamilyName : 'Helvetica fallback'
+
+          if(googleFontsUrl && googleFontsUrl.length)
+          - var nbrWeights = googleFontsUrl.substr(googleFontsUrl.indexOf('@') + 1, googleFontsUrl.indexOf('&')-googleFontsUrl.indexOf('@') + 1).replace(/00|;/g, '');
+
+          each fontCat in fontCats
+            h3.styleguide-title #{fontCat} fonts
+
+            .styleguide-styles
+              each weightFont, key in weightFonts
+                case fontCat
+                  when fontCats[0]
+                    if(nbrWeights.indexOf(key+1) !== -1)
+                      p(class="font-weight--"+weightFont.toLowerCase())= weightFont + " " + (key+1) + "00"
+                        span.italic  Italic
+                    else if(nbrWeights.length === 0 && key === 0)
+                      p No #{fontCat} fonts
+                  when fontCats[1]
+                    if(nbrWeights.indexOf(key+1) === -1)
+                      p.crossed= weightFont + " " + (key+1) + "00"
+                    else if(key === 1)
+                      p No #{fontCat} fonts
+          else
+            p No #{typeFont} fonts loaded
+
+        when typeFonts[1]
+          h1= fontCustomName.length > 0 ? fontCustomName : 'No name set for custom font'
+          h3.styleguide-title #{fontCats[0]} fonts
+          .styleguide-styles
+            each weightFont, key in weightFonts
+              if(weightFont !== "Thin" && weightFont !== "regular" && weightFont !== "Semi-bold")
+                p= weightFont
+                  span.italic  Italic
+

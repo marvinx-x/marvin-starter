@@ -1,0 +1,147 @@
+/* HEADER */
+$heightDescription: ($lengthLogo / 2) + 0.2rem;
+$heightTitle: ($heightDescription - $gapElemsHeader);
+
+%headerStarter{
+	grid-area: header;
+	position: fixed;
+	top: 0;
+	left: $widthColumnButtonNav;
+	z-index: 4;
+	padding: $paddingHeader;
+	padding-left: 0;
+
+	h1 {
+		position: relative;
+		display: grid;
+		grid-template-rows: $heightTitle $heightDescription;
+		grid-template-columns: $lengthLogo auto;
+		grid-gap: $gapElemsHeader;
+		align-items: flex-end;
+		justify-items: flex-start;
+		grid-template-areas:
+			"logo title"
+			"logo description";
+
+		span {
+			display: block;
+		}
+	}
+
+	.logo {
+		grid-area: logo;
+		display: block;
+		position: relative;
+		height: $lengthLogo;
+		width: $lengthLogo;
+
+		svg {
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+
+			&:first-of-type {
+				fill: $colorElemsHeader;
+				z-index: 2;
+			}
+
+			&:last-of-type {
+				fill: lightness(var(--primary), 1);
+				z-index: 1;
+			}
+		}
+	}
+}
+
+
+.title {
+	grid-area: title;
+	text-transform: uppercase;
+	font-size: 1.6rem;
+	line-height: 1rem;
+	white-space: nowrap;
+	font-weight: 400;
+	letter-spacing: -0.045rem;
+
+
+	&,
+	a {
+		color: $colorElemsHeader;
+	}
+	strong {
+		font-weight: 700;
+	}
+
+	a {
+		text-transform: none;
+		font-size: 1.38rem;
+		transition: color ease 0.15s;
+		font-weight: 400;
+		letter-spacing: -.1rem;
+
+		&::before {
+			content: " ";
+		}
+
+		&:hover {
+			color: lightness(var(--primary), 0.65);
+		}
+	}
+}
+
+.description {
+	grid-area: description;
+	font-size: $heightDescription;
+
+	svg {
+		width: auto;
+
+		text {
+			text-transform: uppercase;
+			word-spacing: -0.5rem;
+			font-weight: 500;
+			fill: var(--black);
+			font-size: 1.68rem;
+		}
+
+		text:nth-of-type(2) {
+			font-weight: 700;
+		}
+
+		rect {
+			width: 100%;
+			height: 100%;
+			fill: white;
+		}
+
+		g > rect {
+			fill: $colorElemsHeader;
+		}
+	}
+}
+
+
+
+header[role=banner]{
+	@extend %headerStarter;
+}
+
+.right-nav{
+	header[role="banner"]{
+		grid-column : 1 / 2;
+		grid-row : 1 / 2;
+		padding-left : $paddingHeader;
+		left: 0;
+	}
+}
+
+.top-nav{
+	header[role="banner"]{
+		@include topNav(){
+			left: $paddingHeader + .8rem;
+		}
+	}
+}
+

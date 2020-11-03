@@ -1,0 +1,66 @@
+/* BREAKPOINTS */
+
+@function rem-to-px($breakpointValue) {
+  $value : parseInt($breakpointValue) * 10;
+  @return $value;
+}
+
+$mobileBreakPortrait: rem-to-px($minWidth);
+$mobileBreakLandscape: rem-to-px(48rem);
+$tabletBreakPortrait: rem-to-px(76.8rem);
+$tabletBreakLandscape: rem-to-px(102.4rem);
+$desktopBreak : rem-to-px(120rem);
+$desktopMediumBreak : rem-to-px(133.6rem);
+$desktopLargeBreak : rem-to-px(160rem);
+$desktopMaxBreak: rem-to-px($maxWidth);
+
+$breakpointsMin: (
+  'mobile'  : ( min-width: 0 ),
+  'mobileLandscape' : (min-width: $mobileBreakPortrait + 1px),
+  'tablet'  : (min-width: $mobileBreakLandscape + 1px),
+  'tabletLandscape'  : (min-width: $tabletBreakPortrait + 1px),
+  'smallDesktop'  :  (min-width: $tabletBreakLandscape + 1px),
+  'desktop'  :  (min-width: $desktopBreak + 1px),
+  'mediumDesktop'  :  (min-width: $desktopMediumBreak + 1px),
+  'largeDesktop'  : (min-width: $desktopLargeBreak + 1px),
+  'maxDesktop'  : (min-width: $desktopMaxBreak)
+);
+
+$breakpointsMax: (
+  'mobile'  : ( max-width: unquote($mobileBreakPortrait + 'px')),
+  'mobileLandscape' : (max-width: unquote($mobileBreakLandscape + 'px')),
+  'tablet'  : (max-width: unquote($tabletBreakPortrait + 'px')),
+  'tabletLandscape'  : (max-width: unquote($tabletBreakLandscape + 'px')),
+  'smallDesktop'  :  (max-width: unquote($desktopBreak + 'px')),
+  'desktop'  :  (max-width: unquote($desktopMediumBreak + 'px')),
+  'mediumDesktop'  :  (max-width: unquote($desktopLargeBreak + 'px')),
+  'largeDesktop'  : (max-width: unquote($desktopMaxBreak + 'px')),
+  'maxDesktop'  : (max-width: 100vw)
+);
+
+
+
+@mixin breakpoints-min($name) {
+  @if map-has-key($breakpointsMin, $name) {
+    @media screen and #{inspect(map-get($breakpointsMin, $name))} {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoints-max($name) {
+  @if map-has-key($breakpointsMax, $name) {
+    @media screen and #{inspect(map-get($breakpointsMax, $name))} {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoints-between($name) {
+  @if map-has-key($breakpointsMin, $name) {
+    @media screen and #{inspect(map-get($breakpointsMin, $name))} and #{inspect(map-get($breakpointsMax, $name))} {
+      @content;
+    }
+  }
+}
+

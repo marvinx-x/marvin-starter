@@ -1,0 +1,23 @@
+//- block colors
+
+- var txt = "Find in <code>grid.scss</code>, a simple grid system which work with class <code>.grid</code> as a container. Add an additionnal class to it to put the number of wanted columns <code>.col--$numberCol</code>. Inside it, put other children with the class <code>.col</code>. You can nested this system."
+
+.styleguide-infos
+  p!= txt
+section(class="grid col--1")
+  .col
+    - var nbr = 6
+    h3 columns grid
+    section(class="grid styleguide-grids col--"+nbr)
+      - for(var i = 0; i < nbr; i++)
+        .col
+  .col
+    h3 nested grid
+    section(class="grid styleguide-grids col--2")
+      - for(var i = 0; i < 2; i++)
+        .col
+          - var nbr2 = 3
+          section(class="grid col--"+nbr2)
+            - for(var y = 0; y < nbr2; y++)
+              .col
+

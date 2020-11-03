@@ -1,0 +1,57 @@
+include ../../utils/mixins
+//////////////////////////////////////
+// icons are automatically generate in js, all document is parse and each of the icons are clone into this block
+////////////////////////////////////
+
+- var txt = "Find here all icons used into your project. <br/>Icons are automatically generate in <code>styleguide.js</code>.<br /> <code>font-awesome</code> <code>material-icons</code> and <code>glyphicon</code> librairies are already included and you can use it with this pug mixin: <code>+icon(\"nameIcon\",\"nameLibrary\")</code>. <br />You can also use a custom svg icon in <code>assets/icons/nameIcon.svg</code>. That will create a <code>sprite.svg</code> that you can call into your pug pages simply this way: <code>+icon(\"nameIcon\")</code>.<br />But first of all, you have to put under here the name of the pages you want to parse."
+
+- var pages = ['index'];
+
+- var NoIcon = "No Icons";
+- var typeImplement = ['svg use', 'font face', 'svg unicode'];
+
+- var unicode = typeImplement[2].substr(4);
+- var fontface = typeImplement[1].replace(/\s/g, '');
+
+- var custom = librairiesIcons[0];
+
+- var material = librairiesIcons[1].substr(0, librairiesIcons[1].indexOf('-'));
+
+- var fontawesome = librairiesIcons[2].charAt(0)+librairiesIcons[2].charAt(5);
+- var faUnicode = fontawesome+unicode;
+- var faFontFace = fontawesome+fontface;
+
+- var glyphiconUnicode = librairiesIcons[3]+unicode;
+- var glyphiconFontFace = librairiesIcons[3]+fontface;
+
+- var styleguideIconsCat = [custom, material, faFontFace, faUnicode, glyphiconFontFace, glyphiconUnicode];
+
+
+.styleguide-infos
+  p!= txt
+  .styleguide-pages
+    each page in pages
+      a(href=page+".html")= page+".html"
+
+section(class="grid styleguide-icons col--1")
+  each librairyIcons, key in librairiesIcons
+    - var librairy = librairyIcons.toLowerCase()
+    .col
+      h3= librairy
+      case librairy
+        when librairiesIcons[key]
+          if(key == 0 || key == 1)
+            div(class="grid col--1")
+              .col
+                h4.style-h5= typeImplement[key]
+                div(class="grid col--2 styleguide-icons--"+styleguideIconsCat[key])
+                  p= NoIcon
+          else
+            div(class="grid col--2")
+              -for(var i = 0; i < 2; i++)
+                .col
+                  h4.style-h5= typeImplement[i + 1]
+                  div(class="grid styleguide-icons--"+styleguideIconsCat[key == 2 ? key + i : key + i + 1])
+                    p= NoIcon
+
+

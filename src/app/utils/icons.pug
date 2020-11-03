@@ -1,0 +1,32 @@
+mixin burger-svg()
+  - var lengthBurger = 40
+  - var widthLine = 23
+  - var heightLine = 4
+  - var spaceLines = 3
+  - var space = heightLine + spaceLines
+  - var positionTop = lengthBurger/2 - (heightLine*3 + spaceLines*2) / 2
+  - var positionLeft = lengthBurger/2 - widthLine/2
+  svg(aria-hidden="true" role="button" viewBox='0 0 '+lengthBurger+' '+lengthBurger+'' style='enable-background:new 0 0 '+lengthBurger+' '+lengthBurger+';' preserveAspectRatio='xMidYMid meet')
+    g(aria-hidden="true")
+      - for(var i=0; i < 3; i++)
+        rect(aria-hidden="true" x=Math.round(positionLeft) y='' + (i * space + positionTop) + '' width=widthLine height=heightLine)
+    g(aria-hidden="true"): text(opacity="0") open menu
+
+mixin logo-svg()
+  - var lenghtLogo = 40
+  - for(var i=0; i < 2; i++)
+    svg(aria-hidden="true" viewBox='0 0 '+lenghtLogo+' '+lenghtLogo+'' style='enable-background:new 0 0 '+lenghtLogo+' '+lenghtLogo+';' preserveAspectRatio='xMidYMid meet'  xml:space="preserve"): g(aria-hidden="true"): g(aria-hidden="true")
+      path(aria-hidden="true" d="M22,18V0h-9H9h-9.1v18.2L0,18h4V4h5v9h4V4h5v14v22h22v-9v-4v-9H22z M36,31v5H22V22h14v5h-9v4H36z" shape-rendering="crispEdges")
+
+mixin description-svg()
+  - var widthDescription = 157
+  - var heightDescription = 22
+  - var dy = 17
+  svg(aria-hidden="true" width=widthDescription height=heightDescription viewBox='0 0 '+widthDescription+' '+heightDescription+'' style='enable-background:new 0 0 '+widthDescription+' '+heightDescription+';' preserveAspectRatio='xMidYMid meet' xml:space="preserve"): g(aria-hidden="true")
+    defs
+      mask#mask-description
+        rect
+        text(x=5 y=0 dx=0, dy=dy text-anchor="start" letter-spacing="0.35") marvin
+        text(x=73 y=0 dx=0, dy=dy text-anchor="start" letter-spacing="0.35") starter
+    rect(aria-hidden="true" mask="url(#mask-description)")
+

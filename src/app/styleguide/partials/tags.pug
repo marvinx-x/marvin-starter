@@ -1,0 +1,69 @@
+- var txt = "As buttons, put additionnals classes to <code>.tag</code> class: <code>.radius</code> <code>.outlined</code> <code>.rounded</code>"
+
+- var nbrTags = 4
+- var typeTags = ["default", "radius", "rounded", "icon"]
+
+.styleguide-infos
+  p!= txt
+section(class="grid styleguide-tags col--2")
+  .col
+    h3= typeTags[0]
+    ul.tags
+      -for(var i = 0; i < nbrTags; i++)
+        li: button(class='tag') Tag
+
+    h4= typeTags[1]
+    ul.tags
+      -for(var i = 0; i < nbrTags; i++)
+        li: button(class='tag radius') Tag
+
+    h4= typeTags[2]
+    ul.tags
+      -for(var i = 0; i < nbrTags; i++)
+        li: button(class='tag rounded') Tag
+
+    h4 icon left
+    ul.tags
+      -for(var i = 0; i < nbrTags; i++)
+        li: button(class='tag')
+              +icon("bookmark", "font-awesome")
+              span Tag
+
+    h4 icon right
+    ul.tags
+      -for(var i = 0; i < nbrTags; i++)
+        li: button(class='tag radius')
+              span Tag
+              +icon("close")
+
+  .col
+    h3 outlined
+    ul.tags
+      -for(var i = 0; i < nbrTags; i++)
+        li: button(class='tag outlined') Tag
+
+    h4 #{typeTags[1]}
+    ul.tags
+      -for(var i = 0; i < nbrTags; i++)
+        li: button(class='tag radius outlined') Tag
+
+    h4 #{typeTags[2]}
+    ul.tags
+      -for(var i = 0; i < nbrTags; i++)
+        li: button(class='tag rounded outlined') Tag
+
+    h4 icon left
+    ul.tags
+      -for(var i = 0; i < nbrTags; i++)
+        li: button(class='tag outlined')
+              +icon("bookmark", "font-awesome")
+              span Tag
+
+    h4 icon right
+    ul.tags
+      -for(var i = 0; i < nbrTags; i++)
+        li: button(class='tag outlined radius')
+              span Tag
+              +icon("close")
+
+

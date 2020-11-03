@@ -1,0 +1,62 @@
+/* MIXINS */
+
+/// DEFINE A COLOR IN HSL
+@mixin defineColorHSL($color, $hue, $saturation, $lightness) {
+  #{$color}: unquote("hsl(#{$hue}, #{$saturation}, #{$lightness})");
+  #{$color}-h: #{$hue};
+  #{$color}-s: #{$saturation};
+  #{$color}-l: #{$lightness};
+}
+
+/// BACKGROUND IMAGE PATH
+@mixin bgimage($name) {
+  $url: null;
+  @if (str-index($name, "data:image") or str-index($name, "http")) {
+    $url: "#{$name}";
+  } @else {
+    $url: "#{$pathImgs}#{$name}";
+  }
+  background-image: url($url);
+}
+
+/// DEFINE A COLOR LINE
+@mixin underlineText($position : 'bottom', $width: 100%, $height: 0.1rem, $color: currentColor, $opacity : .25) {
+  position: relative;
+
+  &::after {
+    @extend %after-before--utils;
+    width: $width;
+    height: $height;
+    background: $color;
+    position: absolute;
+    #{$position}: 0;
+    left: 0;
+    opacity : $opacity;
+  }
+}
+
+////// CONTENT BEFORE AFTER TEXT PARAGRAPHE
+@mixin content-text($text) {
+  content: "#{$text}";
+  display: block;
+  @extend %text-style;
+}
+
+//////// ICONS
+@mixin icons($fontSize : $sizeBaseIcon) {
+  .material-icons,
+  .fa,
+  .glyphicon,
+  .fa-icon{
+    font-size: $fontSize !important;
+    @content;
+  }
+
+  .custom-icon,
+  svg.fa-icon,
+  svg.glyphicon{
+    width : $fontSize;
+    height : $fontSize;
+    @content;
+  }
+}

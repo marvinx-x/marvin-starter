@@ -1,0 +1,75 @@
+append vars
+
+- var txt = "Call any jpg, png or webp images like this in your pug files: <code>require(imgDir+\"image.ext\").src</code> If you want to use a data-uri image, just call it this way: <code>require(imgDir+\"image.ext\").placeholder</code> Thanks to <code>responsive-loader</code> package in <code>webpack.config.js</code>, we automatically generate the differents images in the good srcset dimensions. <br /> You can also params the quality of your images with <code>ImageminPlugin</code>. <br /><br/> If you add the class <code>.lazyload</code> and replace <code>src</code> attribute by <code>data-src</code> to any images or elements with a background-image in css, you can lazyload those images by using <a href='https://www.npmjs.com/package/lazysizes' target='_blank' class='text-link'>lazysizes</a> script."
+
+- var methods = ["html", "css", "srcset"]
+- var extensions = ["jpg", "png", "gif", "svg", "webp", "uri"]
+
+.styleguide-infos
+  p!= txt
+section(class="grid styleguide-imgs col--1")
+  each method in methods
+    .col
+      h3= method
+      case method
+
+        when "html"
+          section(class="grid col--6 styleguide-imgs--"+method)
+
+            each extension in extensions
+              .col
+                h4= extension
+                .wrap-img
+                  case extension
+                    when "jpg"
+                      img(data-src=require("../"+imgDir+"image.jpg").src alt="image jpg" class="lazyload")
+
+                    when "png"
+                      img(data-src=require("../"+imgDir+"image.png").src alt="image png" class="lazyload")
+
+                    when "gif"
+                      img(data-src=imgDir+"image.gif" alt="image gif" class="lazyload")
+
+                    when "svg"
+                      img(data-src=imgDir+"image.svg" alt="image svg" class="lazyload")
+
+                    when "webp"
+                      img(data-src=require("../"+imgDir+"image.webp").src alt="image webp" class="lazyload")
+
+                    when "uri"
+                      img(data-src=require("../"+imgDir+"image.jpg").placeholder alt="image data-uri" class="lazyload")
+
+        when "css"
+          section(class="grid col--6 styleguide-imgs--"+method)
+            each extension in extensions
+              .col
+                h4= extension
+                .img(data-bgset=imgDir+"image."+extension class="lazyload")
+
+        when "srcset"
+          - const srcsets = ["img", "picture", "background-image"]
+          - var urlImg = "https://via.placeholder.com/"
+          - var originalSizeImg = 1600;
+          - var heightImageSrcSet = 200;
+          - var extImageSrcSet = 'jpg';
+          - var colorImg = "/F4F6FA/bec8db"
+          - var endUrl = "x"+heightImageSrcSet+"."+extImageSrcSet+colorImg
+
+          section(class="grid styleguide-imgs--"+method+" col--1")
+            each srcset in srcsets
+              .col
+                h4= srcset
+                case srcset
+                  when "img"
+                    - var arrBreakpointsImgs = [320, 480, 768, 1600]
+                    - var arrSizesImgs = [208, 368, 656, 912]
+                    img(data-src=urlImg+arrSizesImgs[3]+endUrl data-srcset=urlImg+arrSizesImgs[0]+endUrl+" "+arrSizesImgs[0]+"w, "+urlImg+arrSizesImgs[1]+endUrl+" "+arrSizesImgs[1]+"w, "+urlImg+arrSizesImgs[2]+endUrl+" "+arrSizesImgs[2]+"w, "+urlImg+arrSizesImgs[3]+endUrl+" "+arrSizesImgs[3]+"w, "+urlImg+originalSizeImg+endUrl+" "+originalSizeImg+"w" data-sizes="auto" alt="example img implementation" class="lazyload")
+                  when "picture"
+                    - var valuesSizes = { 320 : 208 , 480 : 368, 768 : 656, 1600 : 912}
+                    picture
+                      each val, key in valuesSizes
+                        source(media="(max-width: "+key+"px)" data-srcset=urlImg+val+endUrl data-sizes="auto" type="image/"+extImageSrcSet)
+                      img(data-src=urlImg+originalSizeImg+endUrl alt="example picture implementation" class="lazyload")
+
+                  when "background-image"
+                    .img(data-bgset=urlImg+arrSizesImgs[3]+endUrl class="lazyload")

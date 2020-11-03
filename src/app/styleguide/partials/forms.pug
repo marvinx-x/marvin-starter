@@ -1,0 +1,152 @@
+- var txt = "All the forms elements are styled with css only in <code>forms.scss</code> at the exception of <code>input=\"file\"</code> (simple javascript script) and <code>select</code> dropdown. Last ones work with Jquery, and the plugin <a href='https://select2.org/getting-started/installation' target='_blank' class='text-link'>select2.js</a>. That make those selects entirely accessibles (keyboard navigation, focus...)"
+
+.styleguide-infos
+  p!= txt
+section(class="grid styleguide-forms col--1")
+  .col
+    /// INPUTS
+    h3 Inputs
+    section(class="grid col--2")
+      .col
+        form(class="styleguide-inputs" action="" method="get")
+          div.input
+            input(type="text" id="text" name="text" placeholder="Normal" aria-label="your text" autocomplete="username")
+            label(for="text") Input text
+          div.input
+            div.input-icons
+              +icon("xf002", "font-awesome", true)
+              input(type="search" id="search" name="search" placeholder="Search" title="Search here" aria-label="your search")
+            label(for="search") Input search
+          div.input
+            input(type="password" id="password" name="password" placeholder="Password" autocomplete="current-password" aria-label="your password")
+            label(for="password") Input password
+          div.input
+            input(type="tel" id="tel" name="tel" placeholder="xx.xx.xx.xx.xx" pattern="[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}" autocomplete="tel-country-code" aria-label="your phone")
+            label(for="tel") Input tel
+          div.input
+            input(type="url" id="url" name="url" placeholder="https://example.com" pattern="https://.*" autocomplete="url" aria-label="put the url")
+            label(for="url") Input url
+          div.input
+            input(type="email" id="email" name="email" placeholder="example@example.com" aria-label="Your email")
+            label(for="email") Input email
+          div.input
+            div.input-number
+              input(type="number" id="number" name="number" placeholder="0-100" min="0" max="100" autocomplete="email" aria-label="Put a number betwwen 0 and 100")
+            label(for="number") Input number
+          div.input
+            input(type="text" id="required" name="required" placeholder="Required" aria-label="your input required" required)
+            label(for="required") Input required
+          div.input
+            input(type="text" id="disabled" name="disabled" placeholder="Disabled" aria-label="Your text" disabled)
+            label(for="disabled") Input disabled
+      .col
+        form(class="styleguide-inputs")
+          div.input
+            input(type="date" id="date" name="date" aria-label="put a date")
+            label(for="date") Input date
+          div.input
+            input(type="month" id="month" name="month" aria-label="put a month")
+            label(for="month") Input month
+          div.input
+            input(type="week" id="week" name="week" aria-label="put a week")
+            label(for="week") Input week
+          div.input
+            input(type="time" id="time" name="time" aria-label="put a time")
+            label(for="time") Input time
+          div.input
+            input(type="button" id="button" name="button" value="Button" class="btn outlined radius")
+            label(for="button") Input button
+          div.input
+            input(type="submit" id="submit" name="submit" class="btn outlined radius" value="Submit")
+            label(for="submit") Input submit
+          div.input
+            input#file.input-file(type='file' name='file' data-multiple-caption='{count} files selected' multiple='' aria-label="Choose a file")
+            label(for='file')
+              span
+              strong
+                +icon("system_update_alt", "material-icons")
+                | Choose a file
+            label(for="") Input file
+          div.input
+            input(type="text" id="success" name="success" placeholder="Success" value="Success" class="success")
+            label(for="success") Input success
+            span Success !
+          div.input
+            input(type="text" id="error" name="error" placeholder="Error" value="Error" class="error")
+            label(for="error") Input error
+            span Error !
+
+  .col
+    /// TEXTAREA
+    h3 Textareas
+    section(class="grid styleguide-textareas col--2")
+      .col
+        form
+          div.input
+            textarea(id="textarea" placeholder="This is a textarea zone..." autocomplete="off" form="" maxlength="" minlength="" name="" spellcheck=false wrap="soft")
+            label(for="textarea") default
+      .col
+        form
+          div.input
+            textarea(id="textarea-disabled" placeholder="This is disabled a textarea zone..." autocomplete="off" form="" maxlength="" minlength="" name="" spellcheck=false wrap="soft" disabled)
+            label(for="textarea-disabled") disabled
+
+  /// SELECTS
+  .col
+    h3 Selects
+    form
+      select(name="select_name" id="select-example" data-tags="false" data-placeholder="Select an option..." data-allow-clear="false")
+        option(value="")
+        option(value="item select one") Item select one
+        option(value="item select two") Item select two
+        option(value="item select three") Item select three
+
+  .col
+    section(class="grid col--2")
+      .col
+        /// CHECKBOXES
+        h3 Checkboxes
+        form(class="styleguide-checkboxes")
+          div.input-checkbox
+            input(type="checkbox" id="normal-checkbox" name="normal-checkbox")
+            label(for="normal-checkbox") Normal
+          div.input-checkbox
+            input(type="checkbox" id="checked-checkbox" name="checked-checkbox" checked)
+            label(for="checked-checkbox") Checked
+          div.input-checkbox
+            input(type="checkbox" id="disabled-checkbox" name="disabled-checkbox" disabled)
+            label(for="disabled-checkbox") Disabled
+      .col
+        /// RADIOS
+        h3 Radios
+        form(class="styleguide-radios")
+          div.input-radio
+            input(type="radio" id="normal-radio" name="radio" value="normal-radio")
+            label(for="normal-radio") Normal
+          div.input-radio
+            input(type="radio" id="checked-radio" name="radio" value="checked-radio" checked)
+            label(for="checked-radio") Checked
+          div.input-radio
+            input(type="radio" id="disabled-radio" name="radio" value="disabled-radio" disabled)
+            label(for="disabled-radio") Disabled
+
+  .col
+    /// SWITCHES
+    h3 Switches
+    form(class="styleguide-switches")
+      div.input-switch
+        input(id="switch-off" type="checkbox" class="switch")
+        label(for="switch-off") Switch off
+      div.input-switch
+        input(id="switch-on" type="checkbox" class="switch" checked)
+        label(for="switch-on") Switch on
+      div.input-switch
+        input(id="switch-disabled" type="checkbox" class="switch" disabled)
+        label(for="switch-disabled") Switch disabled
+  .col
+    /// RANGE
+    h3 Range
+    form(class="styleguide-range")
+      div.input
+        input(type="range" id="range" name="range")
+

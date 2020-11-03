@@ -1,0 +1,96 @@
+$mainHue: 220;
+$colors : (
+	primary : (
+		hue : $mainHue,
+		saturation : 40,
+		lightness : 50
+	),
+	dark : (
+		hue : $mainHue,
+		saturation : 15,
+		lightness : 18
+	),
+	neutral : (
+		hue : $mainHue,
+		saturation : 5,
+		lightness : 60
+	),
+	light : (
+		hue : $mainHue,
+		saturation : 40,
+		lightness : 88
+	)
+);
+
+:root {
+	/* COLORS */
+	@each $color in $colors{
+		$i: index($colors, $color);
+		$keys: map-keys($colors);
+		$valueKey : nth($keys, $i);
+		$colorValues : map-keys(map-get($colors, $valueKey));
+		$hue : map-deep-get($colors, $valueKey, hue);
+		$saturation : map-deep-get($colors, $valueKey, saturation)+"%";
+		$lightness : map-deep-get($colors, $valueKey, lightness)+"%";
+		@include defineColorHSL(--#{$valueKey}, $hue, $saturation, $lightness);
+	}
+
+	@include defineColorHSL(--white, 0, 0%, 100%);
+	@include defineColorHSL(--black, 0, 0%, 0%);
+	@include defineColorHSL(--fluo, 60, 100%, 50%);
+	@include defineColorHSL(--red, 358, 100%, 33%);
+	@include defineColorHSL(--green, 159, 100%, 33%);
+
+
+	font-size: 62.5%;
+}
+
+/* PATHS */
+$pathImgs: "./assets/images/";
+$pathIcons: "./assets/icons/";
+
+/* SIZES */
+//minimal wiewport size
+$minWidth: 32rem;
+$maxWidth: 192rem;
+$paddingBody: 1.6rem;
+$fontSizeBase: 1.6rem;
+$sizeBaseIcon : $fontSizeBase + .2rem;
+$fontWeightBase: 500;
+$letterSpacingBase: -0.001rem;
+$lineHeightBase: 2.35rem;
+$backColorImg : lightness(var(--light), 1.1);
+
+/* HEADER */
+// logo width and height
+$lengthLogo: 4rem;
+$paddingHeader: $paddingBody;
+$heightHeader: $lengthLogo + ($paddingHeader * 2);
+$gapElemsHeader: 0.6rem;
+$colorElemsHeader: var(--color, var(--dark));
+
+/* NAV */
+$paddingNav: $paddingBody + ($lengthLogo/3);
+$paddingItemsNav: 2rem;
+
+/* BUTTONS */
+$heightLinks : 5.2rem;
+
+/* FOOTER */
+$heightFooter: $heightLinks + $paddingItemsNav*2.4;
+
+/* NAVIGATION */
+$widthNav: $minWidth;
+$widthButtonNav: $lengthLogo;
+$marginButtonNav: $paddingBody/2;
+$widthColumnButtonNav: $widthButtonNav + $marginButtonNav * 2;
+$transitionNavEase: ease(easeInOutQuad);
+$transitionNavDuration: 0.35s;
+
+/* MAIN CONTENT */
+$paddingContentHor: $widthButtonNav + $paddingBody*2;
+$paddingContentHorMobile: $widthButtonNav + $paddingBody;
+$paddingContentVert: $heightHeader + 5rem;
+$paddingContentBlock: $paddingContentHor;
+$colorText: lightness(var(--primary), 1.1);
+$lightText : lightness(var(--primary), 1.93);
