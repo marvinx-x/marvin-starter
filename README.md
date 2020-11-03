@@ -2,6 +2,7 @@
 # Styleguide starter
 
 A starter and styleguide for any quick setup of HTML/CSS components.
+You can have an overview of what the styleguide looks like at the start with this [demo](www.marvinx.com).
 
 
 ### Tech
@@ -36,7 +37,10 @@ $ npm run build:prod
 ### Components
 #### Colors
 
-In `variables.scss`, pick your main color in hsl values and play with the lightness and the saturation to get your palette color. You can after play with that color with these three sass functions: `lightness(var(--$color), $multiplier)` `saturation(var(--$color), $multiplier)` `alpha(var(--$color), $opacity)`
+In `variables.scss`, pick your main color in hsl values and play with the lightness and the saturation to get your palette color. You can after play with that color with these three sass functions:
+* `lightness(var(--$color), $multiplier)`
+* `saturation(var(--$color), $multiplier)`
+* `alpha(var(--$color), $opacity)`
 
 #### Typography
 You can use a google font `fontFamilyName` or a local custom font `fontCustomName` on your main project. Params it in `default.pug`
@@ -53,9 +57,9 @@ You can also use a custom svg icon in `assets/icons/nameIcon.svg`. That will cre
 
 #### Breakpoints
 In `breakpoints.scss`, find differents mixins:
-`breakpoints-min($breakpoint)`
-`breakpoints-max($breakpoint)`
-`breakpoints-between($breakpoint)`
+* `breakpoints-min($breakpoint)`
+* `breakpoints-max($breakpoint)`
+* `breakpoints-between($breakpoint)`
 
 to play with differents devices points.
 
@@ -79,14 +83,14 @@ As buttons, put additionnals classes to `.tag` class: `.radius` `.outlined` `.ro
 Base on the [script van11y-accessible-simple-tooltip-aria](https://github.com/nico3333fr/van11y-accessible-hide-show-aria), you can add any tooltip with the class `.js-simple-tooltip`.
 
 Add an additionnal class to set the position of your tooltip:
-    `.tooltip--top`
-    `.tooltip--right`
-    `.tooltip--bottom`
-    `.tooltip--left`
-    `.tooltip--top-left`
-    `.tooltip--top-right`
-    `.tooltip--bottom-left`
-    `.tooltip--bottom-right`
+* `.tooltip--top`
+* `.tooltip--right`
+* `.tooltip--bottom`
+* `.tooltip--left`
+* `.tooltip--top-left`
+* `.tooltip--top-right`
+* `.tooltip--bottom-left`
+* `.tooltip--bottom-right`
 
 All tooltips are accessible and visible on focus.
 
