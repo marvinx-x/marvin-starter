@@ -45,13 +45,13 @@ section(class="grid styleguide-icons col--1")
               .col
                 h4.style-h5= typeImplement[key]
                 div(class="grid col--2 styleguide-icons--"+styleguideIconsCat[key])
-                  p= NoIcon
+                  p.no-icon= NoIcon
           else
             div(class="grid col--2")
               -for(var i = 0; i < 2; i++)
                 .col
                   h4.style-h5= typeImplement[i + 1]
                   div(class="grid styleguide-icons--"+styleguideIconsCat[key == 2 ? key + i : key + i + 1])
-                    p= NoIcon
+                    p.no-icon= NoIcon
 
 
