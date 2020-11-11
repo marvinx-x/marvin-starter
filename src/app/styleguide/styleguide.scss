@@ -38,7 +38,8 @@ $heightElemStyleguide : 22rem;
   }
 
   .col > h1{
-    margin-bottom: .75rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
   }
 
   .col > h3 + p{
@@ -272,8 +273,10 @@ $heightElemStyleguide : 22rem;
       flex-flow : row wrap;
       align-items: center;
       padding : 1.25rem 0;
+
       @include icons($fontSizeIcons){
         margin-right: 1rem;
+        min-width : $fontSizeIcons;
       }
 
       &:first-of-type{
