@@ -7,13 +7,27 @@ import $ from 'jquery';
 import select2 from 'select2';
 import 'select2/dist/css/select2.css';
 
-const { detect } = require('detect-browser');
-const browser = detect();
-
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import "lazysizes/plugins/unveilhooks/ls.unveilhooks";
 
+const { detect } = require('detect-browser');
+const browser = detect();
+
+const categories = ["custom", "material", "fa", "glyphicon"];
+const iconClasses = `.${categories[0]}-icon, .${categories[1]}-icons, .${categories[2]}-icon, .${categories[2]}, .${categories[3]}`;
+
+function iconsLoad() {
+	window.addEventListener( 'load', function () {
+		const icons = document.querySelectorAll( '.material-icons, .fa, .glyphicon, .fa-icon, .custom-icon' );
+		icons.forEach( ( icon ) => {
+			icon.style.visibility = "visible";
+			setTimeout(function(){
+				icon.style.opacity = 1;
+			}, 100);
+		} );
+	} );
+}
 
 function resize() {
   let resizeTimer;
@@ -78,29 +92,23 @@ function notSafari() {
 
 
 function heightBrowserMobile() {
-	// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 	let vh = window.innerHeight * 0.01;
-	// Then we set the value in the --vh custom property to the root of the document
 	document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-	// We listen to the resize event
 	window.addEventListener('resize', () => {
-		// We execute the same script as before
 		let vh = window.innerHeight * 0.01;
 		document.documentElement.style.setProperty('--vh', `${vh}px`);
 	});
 }
 
+
+export { categories, iconClasses };
 export function utils() {
-  resize();
+	resize();
+	iconsLoad();
   requireAll( require.context( '../icons/', true, /\.svg$/ ) );
 	inputFile();
 	selects();
 	notSafari();
 	heightBrowserMobile();
 }
-
-
-
-
 
