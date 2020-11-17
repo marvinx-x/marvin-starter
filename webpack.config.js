@@ -20,7 +20,8 @@ const output = path.resolve( __dirname, './dist' );
 
 module.exports = {
   entry: {
-    main: isDev ? [entry, path.resolve( __dirname, './src/app/styleguide/styleguide.js' )] : entry
+    main: entry,
+    styleguide : path.resolve( __dirname, './src/app/styleguide/styleguide.js' )
   },
   output: {
     path: output,
@@ -167,6 +168,12 @@ module.exports = {
         useShortDoctype: true
       }
     } ),
+    new HtmlWebpackPlugin( {
+      filename: 'styleguide.html',
+      template: path.join( __dirname, './src/app/styleguide/styleguide.pug' ),
+      chunks: [ 'styleguide' ],
+      title : 'Marvin Starter - Styleguide',
+    } ),
     new MiniCssExtractPlugin( {
       filename: isDev ? '[name].css' : '[name].[hash].css'
     } ),
@@ -214,13 +221,3 @@ module.exports = {
 };
 
 
-if ( isDev ){
-  module.exports.plugins.push(
-    new HtmlWebpackPlugin( {
-      filename: 'styleguide.html',
-      template: path.join( __dirname, './src/app/styleguide/styleguide.pug' ),
-      chunks: [ 'main' ],
-      title : 'Marvin Starter - Styleguide',
-    } ),
-  );
-}

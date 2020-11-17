@@ -3,6 +3,14 @@
 import '../assets/fonts/stylesheet.css';
 import './styleguide.scss';
 
+import { navigation } from './../components/nav/nav';
+import { utils } from './../assets/scripts/utils';
+import { logo } from './../components/header/header';
+
+utils();
+logo();
+navigation();
+
 
 function hsl() {
   const sass = require( 'sass-extract-loader!./styleguide.scss' );
@@ -43,14 +51,14 @@ function hsl() {
 hsl();
 
 ///////////////////////////////
+import { categories, iconClasses } from '../assets/scripts/utils.js';
 
-const categories = ["custom", "material", "fa", "glyphicon"];
-const iconClasses = `.${categories[0]}-icon, .${categories[1]}-icons, .${categories[2]}-icon, .${categories[2]}, .${categories[3]}`;
 const catIcons = [categories[0], categories[1], categories[2] + "Fontface", categories[2] + "Unicode", categories[3] + "Fontface", categories[3] + "Unicode"];
 const wrapClass = "wrap-icon";
 const pages = document.querySelectorAll( '.styleguide-pages a' );
 
 const urls = [];
+
 pages.forEach( ( page ) => {
   urls.push( `/${page.innerHTML}` );
 } );

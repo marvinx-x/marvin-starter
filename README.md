@@ -23,12 +23,12 @@ Start the application:
 ```sh
 $ npm start
 ```
-Create a non minified bundle of your app (with the styleguide):
+Create a non minified bundle of your app:
 
 ```sh
 $ npm run build
 ```
-Build a minified final bundle without the styleguide:
+Build a minified and optimized final bundle:
 
 ```sh
 $ npm run build:prod
