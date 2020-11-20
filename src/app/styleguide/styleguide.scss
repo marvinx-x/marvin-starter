@@ -21,7 +21,7 @@ $heightElemStyleguide : 22rem;
   padding-top : $paddingContentVert;
 
   &:last-of-type{
-    margin-bottom: $paddingContentVert;
+    padding-bottom: $paddingContentVert;
   }
 
   & > .grid {
