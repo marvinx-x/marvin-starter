@@ -54,7 +54,7 @@ Find here all icons used into your project.
 Icons are automatically generate in `styleguide.js`.
 
 `font-awesome` `material-icons` and `glyphicon` librairies are already included (long to install via `npm install`) and you can use it with this pug mixin: `+icon("nameIcon","nameLibrary")`.
-You can also use a custom svg icon in `assets/icons/nameIcon.svg`. That will create a `sprite.svg` that you can call into your pug pages simply this way: `+icon("nameIcon")`.
+You can also use a custom svg icon in `assets/icons/nameIcon.svg`. That will create a `sprite.svg` that you can call into your pug pages simply this way: `+icon("nameIcon")`. You can also use it with a background-image with mixin in `_sprites.scss`.
 
 #### Breakpoints
 In `breakpoints.scss`, find differents mixins:
