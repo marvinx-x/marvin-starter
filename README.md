@@ -53,7 +53,7 @@ In `titles.scss`, you can style titles `h1, h2, h3, h4, h5, h6` or use class `.s
 Find here all icons used into your project.
 Icons are automatically generate in `styleguide.js`.
 
-`font-awesome` `material-icons` and `glyphicon` librairies are already included and you can use it with this pug mixin: `+icon("nameIcon","nameLibrary")`.
+`font-awesome` `material-icons` and `glyphicon` librairies are already included (long to install via `npm install`) and you can use it with this pug mixin: `+icon("nameIcon","nameLibrary")`.
 You can also use a custom svg icon in `assets/icons/nameIcon.svg`. That will create a `sprite.svg` that you can call into your pug pages simply this way: `+icon("nameIcon")`.
 
 #### Breakpoints

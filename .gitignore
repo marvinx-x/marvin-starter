@@ -1,4 +1,3 @@
 node_modules
-dist
-.htaccess
-robots.txt
+public
+package-lock.json
