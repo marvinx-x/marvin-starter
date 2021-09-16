@@ -13,7 +13,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 const isDev = process.env.NODE_ENV !== "production";
 const entry = path.resolve( __dirname, "./src/index.js" );
-const output = path.resolve( __dirname, "./public" );
+const output = path.resolve( __dirname, "./dist" );
 
 const paramHtmls = {
   inject: 'body',
@@ -33,7 +33,7 @@ const config = {
   },
   output: {
     path: output,
-    publicPath: path.resolve( __dirname, "./public/assets/" ),
+    publicPath: path.resolve( __dirname, "./dist/assets/" ),
     filename: isDev ? "[name].bundle.js" : "[name].bundle.[contenthash].js",
     assetModuleFilename: 'assets/[name][ext][query]'
   },
@@ -210,7 +210,7 @@ const config = {
     } ),
     new FaviconsWebpackPlugin( {
       logo: path.resolve( __dirname, 'src/app/assets/favicon/favicon.png' ),
-      outputPath: path.resolve( __dirname, './public/assets/favicon/' ),
+      outputPath: path.resolve( __dirname, './dist/assets/favicon/' ),
       prefix: '/assets/favicon/',
       cache: true,
       inject: true,
