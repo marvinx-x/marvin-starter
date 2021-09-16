@@ -7,7 +7,9 @@ const HtmlWebpackPlugin = require( "html-webpack-plugin" );
 const MiniCssExtractPlugin = require( "mini-css-extract-plugin" );
 const CssMinimizerPlugin = require( "css-minimizer-webpack-plugin" );
 const SVGSpritemapPlugin = require( 'svg-spritemap-webpack-plugin' );
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const FaviconsWebpackPlugin = require( 'favicons-webpack-plugin' );
+const ImageminWebpack = require( 'image-minimizer-webpack-plugin' );
+const TerserPlugin = require("terser-webpack-plugin");
 
 const isDev = process.env.NODE_ENV !== "production";
 const entry = path.resolve( __dirname, "./src/index.js" );
@@ -15,7 +17,7 @@ const output = path.resolve( __dirname, "./public" );
 
 const paramHtmls = {
   inject: 'body',
-  cache : false,
+  cache: false,
   minify: isDev ?
     false : {
       collapseWhitespace: true,
@@ -71,8 +73,7 @@ const config = {
       },
       {
         test: /\.scss$/,
-        use: [
-          {
+        use: [ {
             loader: MiniCssExtractPlugin.loader,
             options: {
               esModule: false,
@@ -82,7 +83,7 @@ const config = {
             loader: "css-loader",
             options: {
               sourceMap: isDev ? true : false,
-              url : false
+              url: false
             },
           },
           {
@@ -94,9 +95,12 @@ const config = {
         ],
       },
       {
-        test: /assets\/icons\/.*\.svg$/,
-        include: [ path.resolve( __dirname, "./src/app/assets/icons" ) ],
-        type: 'asset/source'
+        test: /\.(woff|woff2)$/i,
+        include: [ path.resolve( __dirname, "./src/app/assets/fonts" ) ],
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/fonts/[name][ext][query]'
+        }
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -107,12 +111,32 @@ const config = {
         }
       },
       {
-        test: /\.(woff|woff2)$/i,
-        include: [ path.resolve( __dirname, "./src/app/assets/fonts" ) ],
+        test: /assets\/icons\/.*\.svg$/,
+        include: [ path.resolve( __dirname, "./src/app/assets/icons" ) ],
+        type: 'asset/source'
+      },
+      {
+        test: /\.svg$/,
+        include: [ path.resolve( __dirname, "./src/app/assets/images" ) ],
         type: 'asset/resource',
         generator: {
-          filename: 'assets/fonts/[name][ext][query]'
-        }
+          filename: 'assets/images/[name][ext][query]'
+        },
+        use: isDev ? [] : [ {
+          loader: 'svgo-loader',
+          options: {
+            removeViewBox: true,
+            removeXMLNS: true,
+            convertStyleToAttrs: true,
+            cleanupListOfValues: true,
+            removeDimensions: true,
+            removeAttrs: true,
+            removeAttributesBySelector: true,
+            removeElementsByAttr: true,
+            removeStyleElement: true,
+            removeScriptElement: true,
+          }
+        } ]
       },
       {
         test: /\.(jpe?g|png|webp)$/i,
@@ -123,49 +147,25 @@ const config = {
             name: "[name]-[width].[ext]",
             outputPath: "./assets/images",
             placeholder: true,
-            placeholderSize : 40,
+            placeholderSize: 40,
+            quality: isDev ? 100 : 80,
             adapter: require( "responsive-loader/sharp" ),
           },
-        },
-      ]
+        }, ]
       },
-    ],
-  },
-  optimization: {
-    minimize: isDev ? false : true,
-    minimizer: [
-      new CssMinimizerPlugin( {
-        minimizerOptions: {
-          preset: [
-            "default",
-            {
-              discardComments: {
-                removeAll: true
-              },
-            },
-          ],
-        },
-      } ),
     ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new ProgressBarPlugin( {
-      format: chalk.yellow( "build :bar " ) +
-        chalk.green( ":percent" ) +
-        chalk.cyan( " :elapsed seconds " ),
+      format: chalk.yellow( "build :bar " ) + chalk.green( ":percent" ) + chalk.cyan( " :elapsed seconds " ),
       clear: false,
     } ),
     new CopyWebpackPlugin( {
       patterns: [ {
-          from: "./src/app/assets/images/*.gif",
-          to: "assets/images/[name][ext][query]",
-        },
-        {
-          from: "./src/app/assets/images/*.svg",
-          to: "assets/images/[name][ext][query]",
-        },
-      ],
+        from: "./src/app/assets/images/*.gif",
+        to: "assets/images/[name][ext][query]",
+      }, ],
     } ),
     new HtmlWebpackPlugin( {
       filename: "index.html",
@@ -208,51 +208,69 @@ const config = {
         callback: ( content ) => `.sprite-cover { background-size: cover; } ${content}`
       }
     } ),
-    new FaviconsWebpackPlugin({
+    new FaviconsWebpackPlugin( {
       logo: path.resolve( __dirname, 'src/app/assets/favicon/favicon.png' ),
-      outputPath:  path.resolve( __dirname, './public/assets/favicons/' ),
-      prefix : '/assets/favicons/',
+      outputPath: path.resolve( __dirname, './public/assets/favicon/' ),
+      prefix: '/assets/favicon/',
       cache: true,
       inject: true,
-      mode : 'light'
-    }),
-    // new ImageminPlugin( {
-    //   // disable: isDev,
-    //   test: /\.(jpe?g|png|gif|svg|webp)$/,
-    //   plugins: [
-    //     imageminMozjpeg( {
-    //       quality: 80,
-    //       progressive: true,
-    //       arithmetic: false,
-    //       smooth : 1
-    //     } ),
-    //     imageminPngquant( {
-    //       speed: 6,
-    //       strip: true,
-    //       quality: [0.5, 0.8]
-    //     } ),
-    //     imageminGifsicle( {
-    //       interlaced: true,
-    //       optimizationLevel: 3,
-    //       colors: 150
-    //     } ),
-    //     imageminSvgo( {
-    //       removeViewBox: true,
-    //       removeXMLNS: true,
-    //       convertStyleToAttrs: true,
-    //       cleanupListOfValues: true,
-    //       removeDimensions: true,
-    //       removeAttrs: true,
-    //       removeAttributesBySelector: true,
-    //       removeElementsByAttr: true,
-    //       removeStyleElement: true,
-    //       removeScriptElement: true,
-    //     } )
-    //   ]
-    // } ),
+      mode: 'light'
+    } ),
+    new ImageminWebpack( {
+      test: /\.(png|gif)$/i,
+      include: [ path.resolve( __dirname, "./src/app/assets/images" ) ],
+      minimizerOptions: {
+        plugins: [
+          [ 'gifsicle', {
+            interlaced: true,
+            optimizationLevel: 3,
+            colors: 150
+          } ],
+          [ 'optipng', {
+            optimizationLevel: 5
+          } ],
+        ]
+      }
+    } )
   ],
+  optimization: {
+    minimize: isDev ? false : true,
+    minimizer: [
+      new TerserPlugin({
+        test: /\.js(\?.*)?$/i,
+        exclude: /\/node_modules/,
+        extractComments : false,
+        terserOptions: {
+          compress: isDev ? false : true,
+          module : true,
+          mangle : true,
+          toplevel: true,
+          safari10: false,
+          format: {
+            comments: false,
+          },
+        },
+      }),
+      new CssMinimizerPlugin( {
+        minimizerOptions: {
+          preset: [
+            "default",
+            {
+              discardComments: {
+                removeAll: true
+              },
+            },
+          ],
+        },
+      } ),
+    ],
+  },
+  performance: {
+    maxEntrypointSize: 600000,
+    maxAssetSize: 3000000
+  },
   mode: isDev ? "development" : "production",
-  devtool: isDev ? "source-map" : "eval",
+  devtool: false,
   devServer: {
     port: 8000,
     open: false,

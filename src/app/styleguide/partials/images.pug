@@ -31,7 +31,7 @@ section(class="grid styleguide-imgs col--1")
                       img(data-src=imgDir+"image.gif" alt="image gif" class="lazyload")
 
                     when "svg"
-                      img(data-src=imgDir+"image.svg" alt="image svg" class="lazyload")
+                      img(data-src=require("../"+imgDir+"image.svg") alt="image svg" class="lazyload")
 
                     when "webp"
                       img(data-src=require("../"+imgDir+"image.webp").src alt="image webp" class="lazyload")
