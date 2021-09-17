@@ -12,12 +12,11 @@ const ImageminWebpack = require( 'image-minimizer-webpack-plugin' );
 const TerserPlugin = require("terser-webpack-plugin");
 
 const isDev = process.env.NODE_ENV !== "production";
-const entry = path.resolve( __dirname, "./src/index.js" );
-const output = path.resolve( __dirname, "./dist" );
+const entry = path.join( __dirname, "src/index.js" );
+const output = path.join( __dirname, "dist" );
 
 const paramHtmls = {
   inject: 'body',
-  cache: false,
   minify: isDev ?
     false : {
       collapseWhitespace: true,
@@ -29,11 +28,11 @@ const paramHtmls = {
 const config = {
   entry: {
     main: entry,
-    styleguide: path.resolve( __dirname, "./src/app/styleguide/styleguide.js" ),
+    styleguide: path.join( __dirname, "src/app/styleguide/styleguide.js" ),
   },
   output: {
     path: output,
-    publicPath: path.resolve( __dirname, "./dist/assets/" ),
+    publicPath: output,
     filename: isDev ? "[name].bundle.js" : "[name].bundle.[contenthash].js",
     assetModuleFilename: 'assets/[name][ext][query]'
   },
@@ -77,6 +76,7 @@ const config = {
             loader: MiniCssExtractPlugin.loader,
             options: {
               esModule: false,
+              publicPath: path.join( __dirname, "dist" ),
             },
           },
           {
@@ -96,7 +96,7 @@ const config = {
       },
       {
         test: /\.(woff|woff2)$/i,
-        include: [ path.resolve( __dirname, "./src/app/assets/fonts" ) ],
+        include: [ path.join( __dirname, "src/app/assets/fonts" ) ],
         type: 'asset/resource',
         generator: {
           filename: 'assets/fonts/[name][ext][query]'
@@ -112,12 +112,12 @@ const config = {
       },
       {
         test: /assets\/icons\/.*\.svg$/,
-        include: [ path.resolve( __dirname, "./src/app/assets/icons" ) ],
-        type: 'asset/source'
+        include: [ path.join( __dirname, "src/app/assets/icons" ) ],
+        type: 'asset/source',
       },
       {
         test: /\.svg$/,
-        include: [ path.resolve( __dirname, "./src/app/assets/images" ) ],
+        include: [ path.join( __dirname, "src/app/assets/images" ) ],
         type: 'asset/resource',
         generator: {
           filename: 'assets/images/[name][ext][query]'
@@ -140,7 +140,7 @@ const config = {
       },
       {
         test: /\.(jpe?g|png|webp)$/i,
-        include: [ path.resolve( __dirname, "./src/app/assets/images" ) ],
+        include: [ path.join( __dirname, "src/app/assets/images" ) ],
         use: [ {
           loader: 'responsive-loader',
           options: {
@@ -169,14 +169,14 @@ const config = {
     } ),
     new HtmlWebpackPlugin( {
       filename: "index.html",
-      template: path.resolve( __dirname, "./src/app/index.pug" ),
+      template: path.join( __dirname, "src/app/index.pug" ),
       chunks: [ "main" ],
       title: "Marvin Starter - Homepage",
       ...paramHtmls,
     } ),
     new HtmlWebpackPlugin( {
       filename: "styleguide.html",
-      template: path.resolve( __dirname, "./src/app/styleguide/styleguide.pug" ),
+      template: path.join( __dirname, "src/app/styleguide/styleguide.pug" ),
       chunks: [ "styleguide" ],
       title: "Marvin Starter - Styleguide",
       ...paramHtmls,
@@ -202,15 +202,15 @@ const config = {
         },
       },
       styles: {
-        filename: path.resolve( __dirname, './src/app/assets/styles/_sprites.scss' ),
+        filename: path.join( __dirname, 'src/app/assets/styles/_sprites.scss' ),
         format: 'fragment',
         keepAttributes: false,
         callback: ( content ) => `.sprite-cover { background-size: cover; } ${content}`
       }
     } ),
     new FaviconsWebpackPlugin( {
-      logo: path.resolve( __dirname, 'src/app/assets/favicon/favicon.png' ),
-      outputPath: path.resolve( __dirname, './dist/assets/favicon/' ),
+      logo: path.join( __dirname, 'src/app/assets/favicon/favicon.png' ),
+      outputPath: path.join( __dirname, 'dist/assets/favicon/' ),
       prefix: '/assets/favicon/',
       cache: true,
       inject: true,
@@ -218,7 +218,7 @@ const config = {
     } ),
     new ImageminWebpack( {
       test: /\.(png|gif)$/i,
-      include: [ path.resolve( __dirname, "./src/app/assets/images" ) ],
+      include: [ path.join( __dirname, "src/app/assets/images" ) ],
       minimizerOptions: {
         plugins: [
           [ 'gifsicle', {
@@ -286,6 +286,9 @@ const config = {
     },
     devMiddleware: {
       writeToDisk: true,
+    },
+    static: {
+      directory: output,
     },
   },
 }
