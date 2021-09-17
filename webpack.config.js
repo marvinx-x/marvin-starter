@@ -294,6 +294,5 @@ const config = {
 }
 
 module.exports = () => {
-  console.log('test');
   return config;
 };
