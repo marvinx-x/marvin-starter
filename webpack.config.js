@@ -1,223 +1,297 @@
-const path = require( 'path' );
-const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
-const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
-const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const SpriteLoaderPlugin = require( 'svg-sprite-loader/plugin' );
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const ImageminPlugin = require( 'imagemin-webpack-plugin' ).default;
-const imageminMozjpeg = require( 'imagemin-mozjpeg' );
-const imageminPngquant = require( 'imagemin-pngquant' );
-const imageminGifsicle = require( 'imagemin-gifsicle' );
-const imageminSvgo = require( 'imagemin-svgo' );
+const path = require( "path" );
+const chalk = require( "chalk" );
+const ProgressBarPlugin = require( "progress-bar-webpack-plugin" );
+const { CleanWebpackPlugin } = require( "clean-webpack-plugin" );
+const CopyWebpackPlugin = require( "copy-webpack-plugin" );
+const HtmlWebpackPlugin = require( "html-webpack-plugin" );
+const MiniCssExtractPlugin = require( "mini-css-extract-plugin" );
+const CssMinimizerPlugin = require( "css-minimizer-webpack-plugin" );
+const SVGSpritemapPlugin = require( 'svg-spritemap-webpack-plugin' );
 const FaviconsWebpackPlugin = require( 'favicons-webpack-plugin' );
+const ImageminWebpack = require( 'image-minimizer-webpack-plugin' );
+const TerserPlugin = require("terser-webpack-plugin");
 
-const isDev = process.env.NODE_ENV !== 'production';
+const isDev = process.env.NODE_ENV !== "production";
+const entry = path.join( __dirname, "src/index.js" );
+const output = path.join( __dirname, "dist" );
 
-const entry = path.resolve( __dirname, './src/index.js' );
-const output = path.resolve( __dirname, './dist' );
+const paramHtmls = {
+  inject: 'body',
+  minify: isDev ?
+    false : {
+      collapseWhitespace: true,
+      removeComments: true,
+      useShortDoctype: true,
+    },
+};
 
-module.exports = {
+const config = {
   entry: {
     main: entry,
-    styleguide : path.resolve( __dirname, './src/app/styleguide/styleguide.js' )
+    styleguide: path.join( __dirname, "src/app/styleguide/styleguide.js" ),
   },
   output: {
     path: output,
-    filename: isDev ? '[name].bundle.js' : '[name].bundle.[hash].js',
-    pathinfo: true
+    filename: isDev ? "[name].bundle.js" : "[name].bundle.[contenthash].js",
+    assetModuleFilename: 'assets/[name][ext][query]'
   },
   module: {
     rules: [ {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
-        }
-    },
-    {
-      test: /\.pug$/,
-      exclude: /node_modules/,
-      use: [{
-        loader: 'pug-loader',
-        options: {
-          pretty: isDev ? true : false
-        }
-      }]
-    },
-    {
-      test: /\.css$/,
-      use: [ 'style-loader', MiniCssExtractPlugin.loader, 'css-loader' ]
-    },
-    {
-      test: /\.scss$/,
-      use: [
-        'style-loader',
-        {
-          loader: MiniCssExtractPlugin.loader
+          loader: "babel-loader",
         },
-        {
-          loader: 'css-loader',
+      },
+      {
+        test: /\.pug$/,
+        exclude: /node_modules/,
+        use: [ {
+          loader: "pug-loader",
           options: {
-            url: false,
-            sourceMap: isDev ? true : false
-          }
-        },
-        {
-          loader: 'sass-loader',
-          options: {
-            sourceMap: isDev ? true : false
-          }
-        }
-      ]
-    },
-    {
-      test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-      exclude: /assets\/icons\/.*\.svg$/,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: (url, resourcePath) => {
-              if ( /assets\/fonts/.test( resourcePath ) )
-              {
-                return `/assets/fonts/${url}`;
-              }
-              if ( /node_modules/.test( resourcePath ) )
-              {
-                return `/assets/icons/${url}`;
-              }
-              return `/assets/${url}`;
+            pretty: isDev ? true : false,
+          },
+        }, ],
+      },
+      {
+        test: /\.css$/,
+        use: [ {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: false,
             },
-          }
-        }
-      ]
-     },
-     {
-      test: /assets\/icons\/.*\.svg$/,
-      loader: 'svg-sprite-loader',
-      options: {
-        extract: true,
-        spriteFilename: './assets/icons/custom/sprite.svg'
+          },
+          {
+            loader: "css-loader",
+            options: {
+              url: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.scss$/,
+        use: [ {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: false,
+              publicPath: path.join( __dirname, "dist" ),
+            },
+          },
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: isDev ? true : false,
+              url: false
+            },
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: isDev ? true : false,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(woff|woff2)$/i,
+        include: [ path.join( __dirname, "src/app/assets/fonts" ) ],
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/fonts/[name][ext][query]'
         }
       },
       {
-        test: /\.(jpe?g|png|webp)$/i,
-        use: [ {
-          loader: 'responsive-loader',
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        include: /node_modules/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/icons/[name][ext][query]'
+        }
+      },
+      {
+        test: /assets\/icons\/.*\.svg$/,
+        include: [ path.join( __dirname, "src/app/assets/icons" ) ],
+        type: 'asset/source',
+      },
+      {
+        test: /\.svg$/,
+        include: [ path.join( __dirname, "src/app/assets/images" ) ],
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/images/[name][ext][query]'
+        },
+        use: isDev ? [] : [ {
+          loader: 'svgo-loader',
           options: {
-            name: '[name]-[width].[ext]',
-            outputPath: './assets/images',
-            placeholder: true,
-            adapter: require( 'responsive-loader/sharp' )
+            removeViewBox: true,
+            removeXMLNS: true,
+            convertStyleToAttrs: true,
+            cleanupListOfValues: true,
+            removeDimensions: true,
+            removeAttrs: true,
+            removeAttributesBySelector: true,
+            removeElementsByAttr: true,
+            removeStyleElement: true,
+            removeScriptElement: true,
           }
         } ]
       },
-    ]
+      {
+        test: /\.(jpe?g|png|webp)$/i,
+        include: [ path.join( __dirname, "src/app/assets/images" ) ],
+        use: [ {
+          loader: 'responsive-loader',
+          options: {
+            name: "[name]-[width].[ext]",
+            outputPath: "./assets/images",
+            placeholder: true,
+            placeholderSize: 40,
+            quality: isDev ? 100 : 80,
+            adapter: require( "responsive-loader/sharp" ),
+          },
+        }, ]
+      },
+    ],
   },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new ProgressBarPlugin( {
+      format: chalk.yellow( "build :bar " ) + chalk.green( ":percent" ) + chalk.cyan( " :elapsed seconds " ),
+      clear: false,
+    } ),
+    new CopyWebpackPlugin( {
+      patterns: [ {
+        from: "./src/app/assets/images/*.gif",
+        to: "assets/images/[name][ext][query]",
+      }, ],
+    } ),
+    new HtmlWebpackPlugin( {
+      filename: "index.html",
+      template: path.join( __dirname, "src/app/index.pug" ),
+      chunks: [ "main" ],
+      title: "Marvin Starter - Homepage",
+      ...paramHtmls,
+    } ),
+    new HtmlWebpackPlugin( {
+      filename: "styleguide.html",
+      template: path.join( __dirname, "src/app/styleguide/styleguide.pug" ),
+      chunks: [ "styleguide" ],
+      title: "Marvin Starter - Styleguide",
+      ...paramHtmls,
+    } ),
+    new MiniCssExtractPlugin( {
+      filename: isDev ? "[name].css" : "[name].[contenthash].css",
+    } ),
+    new SVGSpritemapPlugin( 'src/app/assets/icons/*.svg', {
+      output: {
+        filename: 'assets/icons/custom/sprite.svg',
+        svg: {
+          sizes: false
+        }
+      },
+      sprite: {
+        prefix: 'sprite-',
+        gutter: false,
+        generate: {
+          title: false,
+          symbol: true,
+          use: true,
+          view: '-fragment'
+        },
+      },
+      styles: {
+        filename: path.join( __dirname, 'src/app/assets/styles/_sprites.scss' ),
+        format: 'fragment',
+        keepAttributes: false,
+        callback: ( content ) => `.sprite-cover { background-size: cover; } ${content}`
+      }
+    } ),
+    new FaviconsWebpackPlugin( {
+      logo: path.join( __dirname, 'src/app/assets/favicon/favicon.png' ),
+      outputPath: path.join( __dirname, 'dist/assets/favicon/' ),
+      prefix: '/assets/favicon/',
+      cache: true,
+      inject: true,
+      mode: 'light'
+    } ),
+    new ImageminWebpack( {
+      test: /\.(png|gif)$/i,
+      include: [ path.join( __dirname, "src/app/assets/images" ) ],
+      minimizerOptions: {
+        plugins: [
+          [ 'gifsicle', {
+            interlaced: true,
+            optimizationLevel: 3,
+            colors: 150
+          } ],
+          [ 'optipng', {
+            optimizationLevel: 5
+          } ],
+        ]
+      }
+    } )
+  ],
   optimization: {
     minimize: isDev ? false : true,
     minimizer: [
-      new UglifyJsPlugin( {
-        uglifyOptions: {
-          warnings: false,
-          parse: {},
-          compress: {},
-          mangle: true,
-          output: null,
-          toplevel: false,
-          nameCache: null,
-          ie8: false,
+      new TerserPlugin({
+        test: /\.js(\?.*)?$/i,
+        exclude: /\/node_modules/,
+        extractComments : false,
+        terserOptions: {
+          compress: isDev ? false : true,
+          module : true,
+          mangle : true,
+          toplevel: true,
+          safari10: false,
+          format: {
+            comments: false,
+          },
         },
       }),
       new CssMinimizerPlugin( {
         minimizerOptions: {
           preset: [
-            'default',
+            "default",
             {
-              discardComments: { removeAll: true },
+              discardComments: {
+                removeAll: true
+              },
             },
           ],
         },
-      }),
+      } ),
     ],
   },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new CopyWebpackPlugin( {
-    patterns: [ {
-        from: './src/app/assets/images/*.gif',
-        to: 'assets/images/[name].[ext]'
-        },
-        {
-          from: './src/app/assets/images/*.svg',
-          to: 'assets/images/[name].[ext]'
-        }
-      ]
-    } ),
-    new HtmlWebpackPlugin( {
-      filename: 'index.html',
-      template: path.join( __dirname, './src/app/index.pug' ),
-      chunks: ['main'],
-      title: 'Marvin Starter - Homepage',
-      minify: isDev ? false : {
-        collapseWhitespace: true,
-        removeComments: true,
-        useShortDoctype: true
-      }
-    } ),
-    new HtmlWebpackPlugin( {
-      filename: 'styleguide.html',
-      template: path.join( __dirname, './src/app/styleguide/styleguide.pug' ),
-      chunks: [ 'styleguide' ],
-      title : 'Marvin Starter - Styleguide',
-    } ),
-    new MiniCssExtractPlugin( {
-      filename: isDev ? '[name].css' : '[name].[hash].css'
-    } ),
-    new SpriteLoaderPlugin({
-      plainSprite: true
-    }),
-    new ImageminPlugin( {
-      disable: isDev,
-      test: /\.(jpe?g|png|gif|svg|webp)$/,
-      plugins: [
-        imageminMozjpeg( {
-          quality: 80,
-          progressive: true
-        } ),
-        imageminGifsicle( {
-          interlaced: false,
-          optimizationLevel: 3,
-          colors: 150
-        } ),
-        imageminPngquant( {
-          speed: 6,
-          strip: true,
-          quality: [ 0.5, 0.8 ]
-        } ),
-        imageminSvgo( {
-          removeViewBox: true
-        } )
-      ]
-    } ),
-    new FaviconsWebpackPlugin({
-      logo: './src/app/assets/favicon/logo-40x40.svg',
-			prefix : 'assets/favicon/'
-    })
-  ],
-  mode: isDev ? 'development' : 'production',
-  devtool: isDev ? 'source-map' : 'eval',
+  performance: {
+    maxEntrypointSize: 600000,
+    maxAssetSize: 3000000
+  },
+  mode: isDev ? "development" : "production",
+  devtool: false,
   devServer: {
-    contentBase: output,
-    watchContentBase: true,
-    inline: true,
-    open: true,
-    writeToDisk: true,
-    port: 8000
-  }
+    port: 8000,
+    open: false,
+    liveReload: true,
+    hot: false,
+    watchFiles: [ "src/**/*" ],
+    client: {
+      progress: false,
+      overlay: {
+        errors: false,
+        warnings: false,
+      },
+    },
+    devMiddleware: {
+      writeToDisk: true,
+    },
+    static: {
+      directory: output,
+    },
+  },
+}
+
+module.exports = () => {
+  return config;
 };
-
-

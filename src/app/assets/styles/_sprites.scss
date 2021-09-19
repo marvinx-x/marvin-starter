@@ -1,0 +1,101 @@
+.sprite-cover { background-size: cover; } $sprites: (
+    'bitbucket': "/assets/icons/custom/sprite.svg#sprite-bitbucket-fragment",
+    'button': "/assets/icons/custom/sprite.svg#sprite-button-fragment",
+    'close': "/assets/icons/custom/sprite.svg#sprite-close-fragment",
+    'html': "/assets/icons/custom/sprite.svg#sprite-html-fragment",
+    'images': "/assets/icons/custom/sprite.svg#sprite-images-fragment",
+    'menu': "/assets/icons/custom/sprite.svg#sprite-menu-fragment",
+    'tooltip': "/assets/icons/custom/sprite.svg#sprite-tooltip-fragment"
+);
+
+$sizes: (
+    'bitbucket': (
+        'width': 512px,
+        'height': 512px
+    ),
+    'button': (
+        'width': 511.999px,
+        'height': 511.999px
+    ),
+    'close': (
+        'width': 329.269px,
+        'height': 329px
+    ),
+    'html': (
+        'width': 512px,
+        'height': 512px
+    ),
+    'images': (
+        'width': 512px,
+        'height': 512px
+    ),
+    'menu': (
+        'width': 512px,
+        'height': 512px
+    ),
+    'tooltip': (
+        'width': 512px,
+        'height': 512px
+    )
+);
+
+$variables: (
+    /* EMPTY */
+);
+
+// https://github.com/waldemarfm/sass-svg-uri/blob/v1.0.0/_svg-uri.scss
+@function sprite-str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search);
+
+    @if type-of($replace) == 'null' {
+        $replace: '';
+    }
+
+    @if ( $index ) {
+        @return str-slice($string, 1, $index - 1) + $replace + sprite-str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+
+    @return $string;
+}
+
+@function sprite-svg-uri($value) {
+    $output: $value;
+
+    $output: sprite-str-replace($output, '"', "'");
+    $output: sprite-str-replace($output, '<', '%3C');
+    $output: sprite-str-replace($output, '>', '%3E');
+    $output: sprite-str-replace($output, '&', '%26');
+    $output: sprite-str-replace($output, '#', '%23');
+
+    @return $output;
+}
+
+@mixin sprite($name, $user-variables: (), $include-size: false) {
+    $sprite: map-get($sprites, $name);
+
+    // Inject variables
+    $default-variables: map-get($variables, $name);
+    @if type-of($default-variables) == 'map' {
+        @each $key, $value in map-merge($default-variables, $user-variables) {
+            @if ( not map-has-key($default-variables, $key) ) {
+                @warn 'Sprite \'#{$name}\' does not support variable named \'#{$key}\'';
+            }
+
+            $sprite: sprite-str-replace($sprite, '___#{$key}___', sprite-svg-uri(quote(#{$value})));
+        }
+    } @else if type-of($user-variables) == 'map' {
+        @warn 'Sprite \'#{$name}\' does not contain any variables';
+    }
+
+    background: url($sprite) center no-repeat;
+
+    @if $include-size {
+        $size: map-get($sizes, $name);
+        @if $include-size == true {
+            background-size: map-get($size, width) map-get($size, height);
+        } @else if $include-size == 'box' {
+            width: map-get($size, width);
+            height: map-get($size, height);
+        }
+    }
+}

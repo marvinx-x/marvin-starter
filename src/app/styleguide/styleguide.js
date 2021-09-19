@@ -11,41 +11,46 @@ utils();
 logo();
 navigation();
 
-
 function hsl() {
-  const sass = require( 'sass-extract-loader!./styleguide.scss' );
-  const globalSass = sass.global;
-  const colorValues = Object.keys( globalSass.$colors.value );
+  const getRGB = (str) => {
+    var match = str.match(/rgba?\((\d{1,3}), ?(\d{1,3}), ?(\d{1,3})\)?(?:, ?(\d(?:\.\d?))\))?/);
+    return match ? {
+      red: match[1],
+      green: match[2],
+      blue: match[3]
+    } : {};
+  }
 
-  document.querySelectorAll( '.styleguide-colors p' ).forEach( ( el, i ) => {
-    const color = colorValues[i];
-    switch (color) {
-      case 'primary':
-        const huePrimary = globalSass.$colors.value.primary.value.hue.value;
-        const saturationPrimary = globalSass.$colors.value.primary.value.saturation.value;
-        const lightnessPrimary = globalSass.$colors.value.primary.value.lightness.value;
-        el.innerHTML = `hsl(${huePrimary}, ${saturationPrimary}%, ${lightnessPrimary}%)`;
-        break;
-      case 'dark':
-        const hueDark = globalSass.$colors.value.dark.value.hue.value;
-        const saturationDark = globalSass.$colors.value.dark.value.saturation.value;
-        const lightnessDark = globalSass.$colors.value.dark.value.lightness.value;
-        el.innerHTML = `hsl(${hueDark}, ${saturationDark}%, ${lightnessDark}%)`;
-        break;
-      case 'neutral':
-        const hueNeutral = globalSass.$colors.value.neutral.value.hue.value;
-        const saturationNeutral = globalSass.$colors.value.neutral.value.saturation.value;
-        const lightnessNeutral = globalSass.$colors.value.neutral.value.lightness.value;
-        el.innerHTML = `hsl(${hueNeutral}, ${saturationNeutral}%, ${lightnessNeutral}%)`;
-        break;
-      case 'light':
-        const hueLight = globalSass.$colors.value.light.value.hue.value;
-        const saturationLight = globalSass.$colors.value.light.value.saturation.value;
-        const lightnessLight = globalSass.$colors.value.light.value.lightness.value;
-        el.innerHTML = `hsl(${hueLight}, ${saturationLight}%, ${lightnessLight}%)`;
-        break;
-    }
-  } );
+  const RGBToHSL = (r, g, b) => {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    const l = Math.max(r, g, b);
+    const s = l - Math.min(r, g, b);
+    const h = s
+      ? l === r
+        ? (g - b) / s
+        : l === g
+        ? 2 + (b - r) / s
+        : 4 + (r - g) / s
+      : 0;
+    return [
+      60 * h < 0 ? 60 * h + 360 : 60 * h,
+      100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0),
+      (100 * (2 * l - s)) / 2,
+    ];
+  };
+
+  const liHsl = document.querySelectorAll('.styleguide-colors li:nth-of-type(1)');
+  for(const li of liHsl){
+    const color = window.getComputedStyle(li).getPropertyValue('background-color');
+    const red = Number(getRGB(color).red);
+    const green = Number(getRGB(color).green);
+    const blue = Number(getRGB(color).blue);
+    const hsls = RGBToHSL(red, green, blue);
+    const txt = li.parentElement.previousElementSibling;
+    txt.innerHTML = `hsl(${Math.round(hsls[0])}, ${Math.round(hsls[1])}%, ${Math.round(hsls[2])}%)`;
+  }
 }
 
 hsl();
@@ -53,7 +58,7 @@ hsl();
 ///////////////////////////////
 import { categories, iconClasses } from '../assets/scripts/utils.js';
 
-const catIcons = [categories[0], categories[1], categories[2] + "Fontface", categories[2] + "Unicode", categories[3] + "Fontface", categories[3] + "Unicode"];
+const catIcons = [categories[0], categories[1], categories[2] + "fontface", categories[2] + "unicode", categories[3] + "fontface", categories[3] + "unicode"];
 const wrapClass = "wrap-icon";
 const pages = document.querySelectorAll( '.styleguide-pages a' );
 
@@ -95,7 +100,6 @@ function domParser(e, indexRequest) {
 
 const arrIcons = [];
 function noDuplicate(icons, indexRequest) {
-
   icons.forEach( ( icon ) => {
     arrIcons.push( icon.outerHTML.replace( /\s+/g, ' ' ).trim() );
   } );
@@ -125,8 +129,9 @@ function nameIcon(icon) {
   icon.after( txt );
   if (icon.classList.contains(categories[0]+'-icon'))
   {
+
     const linkHref = icon.querySelector( 'use' ).getAttribute( 'xlink:href' );
-    txt.innerHTML = linkHref.substring(linkHref.indexOf('#') + 1);
+    txt.innerHTML = linkHref.substring(linkHref.indexOf('#') + 8);
   }
   else if ( icon.classList.contains( categories[1]+'-icons' ) )
   {
@@ -147,12 +152,10 @@ function nameIcon(icon) {
 
 function iconsCategory( wrapper, icon ) {
   const str = icon.outerHTML.replace( /\s+/g, ' ' ).trim();
-
   const appendWrapper = ( cat ) => {
     const category = document.querySelector( `.styleguide-icons--${cat}` );
     category.append( wrapper );
   };
-
   str.includes( catIcons[0] ) ? appendWrapper(catIcons[0]) : null;
   str.includes( catIcons[1] ) ? appendWrapper(catIcons[1]) : null;
   str.includes( categories[2]+' '+categories[2]+'-' ) ? appendWrapper(catIcons[2]) :  null;
