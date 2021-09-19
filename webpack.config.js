@@ -48,9 +48,9 @@ const config = {
         exclude: /node_modules/,
         use: [ {
           loader: "pug-loader",
-          // options: {
-          //   pretty: isDev ? true : false,
-          // },
+          options: {
+            pretty: isDev ? true : false,
+          },
         }, ],
       },
       {
