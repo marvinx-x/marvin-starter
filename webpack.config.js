@@ -293,5 +293,6 @@ const config = {
 }
 
 module.exports = () => {
+
   return config;
 };
