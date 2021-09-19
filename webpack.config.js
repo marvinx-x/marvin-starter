@@ -32,7 +32,6 @@ const config = {
   },
   output: {
     path: output,
-    publicPath: output,
     filename: isDev ? "[name].bundle.js" : "[name].bundle.[contenthash].js",
     assetModuleFilename: 'assets/[name][ext][query]'
   },
