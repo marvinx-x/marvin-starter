@@ -15,6 +15,7 @@ const isDev = process.env.NODE_ENV !== "production";
 const entry = path.join( __dirname, "src/index.js" );
 const output = path.join( __dirname, "dist" );
 
+const pathImgs = "assets/images";
 const paramHtmls = {
   inject: 'body',
   minify: isDev ?
@@ -33,7 +34,7 @@ const config = {
   output: {
     path: output,
     filename: isDev ? "[name].bundle.js" : "[name].bundle.[contenthash].js",
-    assetModuleFilename: 'assets/[name][ext][query]'
+    assetModuleFilename: '[name][ext][query]'
   },
   module: {
     rules: [ {
@@ -73,10 +74,6 @@ const config = {
         test: /\.scss$/,
         use: [ {
             loader: MiniCssExtractPlugin.loader,
-            options: {
-              esModule: false,
-              publicPath: path.join( __dirname, "dist" ),
-            },
           },
           {
             loader: "css-loader",
@@ -87,9 +84,10 @@ const config = {
           },
           {
             loader: "sass-loader",
-            options: {
+            options :{
               sourceMap: isDev ? true : false,
-            },
+              additionalData: `$pathImgs:"${pathImgs}";`
+            }
           },
         ],
       },
@@ -116,10 +114,10 @@ const config = {
       },
       {
         test: /\.svg$/,
-        include: [ path.join( __dirname, "src/app/assets/images" ) ],
+        include: [ path.join( __dirname, `src/app/${pathImgs}` ) ],
         type: 'asset/resource',
         generator: {
-          filename: 'assets/images/[name][ext][query]'
+          filename: `${pathImgs}/[name][ext][query]`
         },
         use: isDev ? [] : [ {
           loader: 'svgo-loader',
@@ -139,16 +137,18 @@ const config = {
       },
       {
         test: /\.(jpe?g|png|webp)$/i,
-        include: [ path.join( __dirname, "src/app/assets/images" ) ],
+        include: [ path.join( __dirname, `src/app/${pathImgs}` ) ],
         use: [ {
           loader: 'responsive-loader',
           options: {
-            name: "[name]-[width].[ext]",
-            outputPath: "./assets/images",
+            name: "[name].[ext]",
+            outputPath: `./${pathImgs}`,
             placeholder: true,
             placeholderSize: 40,
             quality: isDev ? 100 : 80,
-            adapter: require( "responsive-loader/sharp" ),
+            publicPath: `${pathImgs}/`,
+            emitFile : true,
+            adapter: require( "responsive-loader/sharp" )
           },
         }, ]
       },
@@ -162,8 +162,8 @@ const config = {
     } ),
     new CopyWebpackPlugin( {
       patterns: [ {
-        from: "./src/app/assets/images/*.gif",
-        to: "assets/images/[name][ext][query]",
+        from: `./src/app/${pathImgs}/*.gif`,
+        to: `${pathImgs}/[name][ext][query]`,
       }, ],
     } ),
     new HtmlWebpackPlugin( {
@@ -217,7 +217,7 @@ const config = {
     } ),
     new ImageminWebpack( {
       test: /\.(png|gif)$/i,
-      include: [ path.join( __dirname, "src/app/assets/images" ) ],
+      include: [ path.join( __dirname, `src/app/${pathImgs}` ) ],
       minimizerOptions: {
         plugins: [
           [ 'gifsicle', {
