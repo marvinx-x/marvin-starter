@@ -277,8 +277,8 @@ $heightElemStyleguide : 22rem;
       @include icons($fontSizeIcons){
         margin-right: 1rem;
         min-width : $fontSizeIcons;
-        opacity : 1;
-        visibility : visible;
+        opacity : 1 !important;
+        visibility : visible !important;
       }
 
       &:first-of-type{
