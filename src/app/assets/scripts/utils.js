@@ -90,7 +90,6 @@ function notSafari() {
 	}
 }
 
-
 function heightBrowserMobile() {
 	let vh = window.innerHeight * 0.01;
 	document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -99,7 +98,6 @@ function heightBrowserMobile() {
 		document.documentElement.style.setProperty('--vh', `${vh}px`);
 	});
 }
-
 
 export { categories, iconClasses };
 export function utils() {
