@@ -11,7 +11,8 @@ const FaviconsWebpackPlugin = require( 'favicons-webpack-plugin' );
 const ImageminWebpack = require( 'image-minimizer-webpack-plugin' );
 const TerserPlugin = require("terser-webpack-plugin");
 
-const isDev = process.env.NODE_ENV !== "production";
+const isDev = process.env.NODE_ENV === "development";
+const isProd = process.env.NODE_ENV === "production";
 const entry = path.join( __dirname, "src/index.js" );
 const output = path.join( __dirname, "dist" );
 
@@ -26,11 +27,10 @@ const paramHtmls = {
     },
 };
 
+const entries = { main: entry }
 const config = {
-  entry: {
-    main: entry,
-    styleguide: path.join( __dirname, "src/app/styleguide/styleguide.js" ),
-  },
+  entry: isProd ? { ...entries } :
+  {...entries, styleguide: path.join( __dirname, "src/app/styleguide/styleguide.js" )},
   output: {
     path: output,
     filename: isDev ? "[name].bundle.js" : "[name].bundle.[contenthash].js",
@@ -173,13 +173,13 @@ const config = {
       title: "Marvin Starter - Homepage",
       ...paramHtmls,
     } ),
-    new HtmlWebpackPlugin( {
+    !isProd ? new HtmlWebpackPlugin( {
       filename: "styleguide.html",
       template: path.join( __dirname, "src/app/styleguide/styleguide.pug" ),
       chunks: [ "styleguide" ],
       title: "Marvin Starter - Styleguide",
       ...paramHtmls,
-    } ),
+    } ) : false,
     new MiniCssExtractPlugin( {
       filename: isDev ? "[name].css" : "[name].[contenthash].css",
     } ),
@@ -231,7 +231,7 @@ const config = {
         ]
       }
     } )
-  ],
+  ].filter(n => n),
   optimization: {
     minimize: isDev ? false : true,
     minimizer: [
