@@ -31,6 +31,12 @@ header[role="banner"] + .button-nav {
       fill: lightness(var(--primary), 0.75);
     }
   }
+
+
+  &:focus{
+    background : none;
+    outline: none;
+  }
 }
 
 .right-nav{
