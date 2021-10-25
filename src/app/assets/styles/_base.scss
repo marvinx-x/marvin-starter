@@ -13,6 +13,15 @@
     content: quote(map-get($breakpointsMin, "desktop"));
     display: none;
   }
+
+  a{
+    &:hover,
+    &:active,
+    &:focus{
+      text-decoration: none;
+      color: var(--white);
+    }
+  }
 }
 
 body {
