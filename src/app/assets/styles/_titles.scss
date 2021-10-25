@@ -79,6 +79,7 @@ $titles : (
     font-weight: normal;
     font-style: normal;
     color: currentColor;
+    margin: 0;
     @extend %h#{$i}-style;
 
     &::first-letter {

@@ -69,6 +69,6 @@
   svg.fa-icon,
   svg.glyphicon{
     width : $fontSize;
-    height : $fontSize;
+    height : $fontSize + 0.5;
   }
 }

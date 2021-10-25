@@ -58,7 +58,6 @@
 		"van11y-accessible-simple-tooltip-aria": "^3.0.0",
 		"webpack": "^5.52.1",
 		"webpack-cli": "^4.8.0",
-		"webpack-dev-server": "^4.2.1",
-		"webpack-icons-installer": "^2.0.0"
+		"webpack-dev-server": "^4.2.1"
 	}
 }

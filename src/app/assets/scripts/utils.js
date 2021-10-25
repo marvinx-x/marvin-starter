@@ -1,6 +1,6 @@
-require('webpack-icons-installer/font-awesome');
-require('webpack-icons-installer/google');
-require( 'webpack-icons-installer/bootstrap' );
+// require('webpack-icons-installer/font-awesome');
+// require('webpack-icons-installer/google');
+// require( 'webpack-icons-installer/bootstrap' );
 require( 'van11y-accessible-simple-tooltip-aria/src/van11y-accessible-simple-tooltip-aria.es6' );
 
 import $ from 'jquery';
