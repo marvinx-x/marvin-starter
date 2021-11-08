@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"no test specified\" && exit 1",
-		"start": "webpack serve",
+		"start": "cross-env NODE_ENV=development webpack serve",
 		"build": "cross-env NODE_ENV=development webpack",
 		"build:prod": "cross-env NODE_ENV=production webpack",
 		"build:styleguide": "cross-env NODE_ENV=styleguide webpack"

@@ -233,7 +233,7 @@ const config = {
     } )
   ].filter(n => n),
   optimization: {
-    minimize: isDev ? false : true,
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         test: /\.js(\?.*)?$/i,
@@ -255,9 +255,8 @@ const config = {
           preset: [
             "default",
             {
-              discardComments: {
-                removeAll: true
-              },
+              discardComments: isDev ? false : true,
+              normalizeWhitespace: isDev ? false : true
             },
           ],
         },
