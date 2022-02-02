@@ -233,7 +233,7 @@ const config = {
     } )
   ].filter(n => n),
   optimization: {
-    minimize: true,
+    minimize: isDev ? false : true,
     minimizer: [
       new TerserPlugin({
         test: /\.js(\?.*)?$/i,
