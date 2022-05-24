@@ -15,8 +15,11 @@ mixin burger-svg()
 mixin logo-svg()
   - var lenghtLogo = 40
   - for(var i=0; i < 2; i++)
-    svg(aria-hidden="true" viewBox='0 0 '+lenghtLogo+' '+lenghtLogo+'' style='enable-background:new 0 0 '+lenghtLogo+' '+lenghtLogo+';' preserveAspectRatio='xMidYMid meet'  xml:space="preserve"): g(aria-hidden="true"): g(aria-hidden="true")
-      path(aria-hidden="true" d="M22,18V0h-9H9h-9.1v18.2L0,18h4V4h5v9h4V4h5v14v22h22v-9v-4v-9H22z M36,31v5H22V22h14v5h-9v4H36z" shape-rendering="crispEdges")
+    .logo-wrap
+      svg(aria-hidden="true" viewBox='0 0 '+lenghtLogo+' '+lenghtLogo+'' style='enable-background:new 0 0 '+lenghtLogo+' '+lenghtLogo+';' preserveAspectRatio='xMidYMid meet'  xml:space="preserve")
+        g(aria-hidden="true")
+          path(aria-hidden="true" d="M22,18V0h-9H9h-9.1v18.2L0,18h4V4h5v9h4V4h5v14v22h22v-9v-4v-9H22z M36,31v5H22V22h14v5h-9v4H36z" shape-rendering="crispEdges")
+
 
 mixin description-svg()
   - var widthDescription = 157

@@ -28,28 +28,41 @@ $heightTitle: ($heightDescription - $gapElemsHeader);
 		}
 	}
 
+
 	.logo {
-		grid-area: logo;
-		display: block;
-		position: relative;
 		height: $lengthLogo;
 		width: $lengthLogo;
+		position: relative;
+		display: block;
+		grid-area: logo;
 
-		svg {
+		.logo-wrap{
 			backface-visibility: hidden;
 			-webkit-backface-visibility: hidden;
 			position: absolute;
-			bottom: 0;
+			top: 0;
 			left: 0;
+			height: $lengthLogo;
+			width: $lengthLogo;
+
+			svg{
+				position: absolute;
+			}
 
 			&:first-of-type {
-				fill: $colorElemsHeader;
 				z-index: 2;
+
+				svg{
+					fill : $colorElemsHeader;
+				}
 			}
 
 			&:last-of-type {
-				fill: lightness(var(--primary), 1);
 				z-index: 1;
+
+				svg{
+					fill: lightness(var(--primary), 1);
+				}
 			}
 		}
 	}
