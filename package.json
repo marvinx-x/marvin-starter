@@ -54,7 +54,7 @@
 		"sass-loader": "^12.1.0",
 		"sass-to-js": "^2.0.0",
 		"select2": "^4.1.0-rc.0",
-		"sharp": "^0.29.1",
+		"sharp": "^0.30.5",
 		"sitemap-webpack-plugin": "^1.1.1",
 		"svg-spritemap-webpack-plugin": "^4.3.2",
 		"svgo-loader": "^3.0.0",
