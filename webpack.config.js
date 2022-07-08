@@ -31,11 +31,11 @@ const output = path.join( __dirname, "dist" );
 
 /* PATHS */
 const pathImgs = "assets/images";
-const pathVideos = "assets/videos";
+// const pathVideos = "assets/videos";
 
 /* ARRAYS */
 const arrImages = fs.readdirSync( path.join( __dirname, `src/app/${pathImgs}` ) );
-const arrVideos = fs.readdirSync(path.join(__dirname,`src/app/${pathVideos}`));
+// const arrVideos = fs.readdirSync(path.join(__dirname,`src/app/${pathVideos}`));
 
 /* OBJECTS */
 const sizeMedias = { mobile : 320, tablet : 480,  tabletLandscape : 768, smallDesktop : 1024, desktop : 1200, mediumDesktop : 1336, largeDesktop : 1600, maxDesktop : 1920};
@@ -56,7 +56,7 @@ const paramHtmls = {
     DESCRIPTION : description,
     NAME_FIRSTNAME: firstLastName,
     PATH_IMGS: pathImgs,
-    PATH_VIDEOS: pathVideos,
+    // PATH_VIDEOS: pathVideos,
   }
 };
 
@@ -173,9 +173,9 @@ const config = {
     new webpack.DefinePlugin({
       ENV : JSON.stringify(process.env.NODE_ENV),
       PATH_IMGS: JSON.stringify(pathImgs),
-      PATH_VIDEOS: JSON.stringify(pathVideos),
+      // PATH_VIDEOS: JSON.stringify(pathVideos),
       OBJ_IMGS: JSON.stringify(arrImages),
-      OBJ_VIDEOS: JSON.stringify(arrVideos),
+      // OBJ_VIDEOS: JSON.stringify(arrVideos),
       SIZE_MEDIAS: JSON.stringify(sizeMedias)
     }),
     new CopyWebpackPlugin( {
