@@ -1,2 +1,7 @@
-- for (var i = 0; i < 5; i++)
-  li: a(href="#"+item)= "item "+(i+1)
+button(type="button" aria-expanded="false" aria-controls="main-nav").button-nav.active-circle: +burger-svg()
+nav(role="navigation" aria-label="Main navigation")
+  ul(id="main-nav")
+    - for (var i = 0; i < 5; i++)
+      li: a(href="#"+item)= "item "+(i+1)
+
+

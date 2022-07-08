@@ -1,27 +1,3 @@
-$mainHue: 220;
-$colors : (
-	primary : (
-		hue : $mainHue,
-		saturation : 40,
-		lightness : 50
-	),
-	dark : (
-		hue : $mainHue,
-		saturation : 15,
-		lightness : 18
-	),
-	neutral : (
-		hue : $mainHue,
-		saturation : 5,
-		lightness : 60
-	),
-	light : (
-		hue : $mainHue,
-		saturation : 40,
-		lightness : 88
-	)
-);
-
 :root {
 	/* COLORS */
 	@each $color in $colors{
@@ -67,6 +43,7 @@ $fontWeightBase: 500;
 $letterSpacingBase: -0.001rem;
 $lineHeightBase: 2.35rem;
 $backColorImg : lightness(var(--light), 1.1);
+
 
 /* HEADER */
 // logo width and height

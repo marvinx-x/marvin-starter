@@ -14,7 +14,7 @@
   @if (str-index($name, "data:image") or str-index($name, "http")) {
     $url: "#{$name}";
   } @else {
-    $url: "#{$pathImgs}/#{$name}";
+    $url: "#{$PATH_IMGS}/#{$name}";
   }
   background-image: url($url);
 }
@@ -53,9 +53,6 @@
   .fa-icon,
   .custom-icon{
     @content;
-    opacity : 0;
-    visibility : hidden;
-    transition : opacity .1s;
   }
 
   .material-icons,

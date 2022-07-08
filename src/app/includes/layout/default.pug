@@ -1,37 +1,44 @@
 block vars
-  // GLOBAL
-  - var documentTitle = htmlWebpackPlugin.options.title
-  - var lang = "fr"
-  // PATHS
-  - var imgDir = 'assets/images/'
-  - var spriteSvgIcons = './assets/icons/custom/sprite.svg'
-  // CLASSES
-  - var headerLess = false
-  - var navLess = false
-  - var footerLess = false
+  //- CLASSES
   - var styleguide = false
   - var typeLayout = ["right-nav", "top-nav"]
-  // FONT
+  //- FONTS
   - var fontCustomName = "Raleway";
   - var fontFamilyName = "Inter";
   - var googleFontsUrl = "https://fonts.googleapis.com/css2?family="+fontFamilyName.replace(" ", "+")+":wght@300;400;500;600;700&display=optional"
-  // ITEMS STYLEGUIDE
-  - var starterItems = ["colors", "Typography", "Titles", "Icons", "Breakpoints", "Grid", "menu", "Buttons", "Tags", "Tooltip" , "Forms", "images"]
 
 
 doctype html
-html(lang=lang)
+html(lang="fr")
 
   head
     block head
-
     include ../../includes/layout/head
-
-    title=documentTitle
-
     include ../../utils/mixins
 
-  body( class=navLess ? 'nav-less' : null || styleguide ? 'styleguide' : null )
+  body(class=styleguide ? 'styleguide' : null )
+    div#app(style="font-family:"+fontFamilyName+", sans-serif;" class=!styleguide ? typeLayout[1] : false)
+
+      if(!styleguide)
+        include ../../components/header/header
+        include ../../components/nav/nav
+        main(role="main"): block main
+        include ../../components/footer/footer
+
+      else
+        - var starterItems = ["colors", "Typography", "Titles", "Icons", "Breakpoints", "Grid", "menu", "Buttons", "Tags", "Tooltip" , "Forms", "images"]
+        include ../../styleguide/components/header
+        include ../../styleguide/components/nav
+        main(role="main"): block main
+        include ../../styleguide/components/footer
+
+
+
+
+
+
+  //- body( class=navLess ? 'nav-less' : null || styleguide ? 'styleguide' : null )
+
     div#app(style="font-family:"+fontFamilyName+", sans-serif;" class=!styleguide ? typeLayout[1] : false)
 
       if(!headerLess)

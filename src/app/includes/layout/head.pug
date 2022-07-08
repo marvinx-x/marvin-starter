@@ -1,10 +1,11 @@
 append vars
 
-- var descriptionHead = "A starter and styleguide for any quick setup of HTML/CSS components"
 
 meta(charset="UTF-8")
 meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
-meta(name="description" content=descriptionHead)
+meta(name="description" content=DESCRIPTION)
+
+title=htmlWebpackPlugin.options.title
 
 link(rel="preconnect" href="https://fonts.googleapis.com" crossorigin)
 link(rel="prefetch" href=googleFontsUrl as="font")
@@ -18,9 +19,28 @@ link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/
 link(defer href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet")
 noscript Your browser does not support JavaScript!
 
-script(async src="https://www.googletagmanager.com/gtag/js?id=G-2HE2XCYKYD")
-script.
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-2HE2XCYKYD');
+
+if(ENV == "production")
+  meta(property="og:locale" content='fr_FR')
+  meta(property="og:locale:alternate" content='en_US')
+  meta(property="og:type" content="Styleguide")
+  meta(property="og:description" content=DESCRIPTION)
+  meta(property="og:url" content=DOMAIN)
+  meta(property="og:title" content=documentTitle)
+  meta(property="og:site_name" content=documentTitle)
+  meta(property="og:image" content=PATH_IMGS+"/og-image.jpg")
+
+  meta(name="twitter:card" content='summary')
+  meta(name="twitter:site" content='@marvin_x_')
+  meta(name="twitter:title" content=documentTitle)
+  meta(name="twitter:description" content=DESCRIPTION)
+  meta(name="twitter:image:src" content=PATH_IMGS+"/twitter-image.jpg")
+
+  link(rel="canonical" href=DOMAIN)
+
+  script(async src="https://www.googletagmanager.com/gtag/js?id=G-2HE2XCYKYD")
+  script.
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2HE2XCYKYD');

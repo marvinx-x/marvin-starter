@@ -1,4 +1,6 @@
+const webpack = require( 'webpack' );
 const path = require( "path" );
+const fs = require( 'fs' );
 const chalk = require( "chalk" );
 const ProgressBarPlugin = require( "progress-bar-webpack-plugin" );
 const { CleanWebpackPlugin } = require( "clean-webpack-plugin" );
@@ -6,26 +8,58 @@ const CopyWebpackPlugin = require( "copy-webpack-plugin" );
 const HtmlWebpackPlugin = require( "html-webpack-plugin" );
 const MiniCssExtractPlugin = require( "mini-css-extract-plugin" );
 const CssMinimizerPlugin = require( "css-minimizer-webpack-plugin" );
+const flattenObjSass = require("js-to-scss");
 const SVGSpritemapPlugin = require( 'svg-spritemap-webpack-plugin' );
 const FaviconsWebpackPlugin = require( 'favicons-webpack-plugin' );
 const ImageminWebpack = require( 'image-minimizer-webpack-plugin' );
 const TerserPlugin = require("terser-webpack-plugin");
+const SitemapPlugin = require('sitemap-webpack-plugin').default;
+
+
+/* NAME | DESCRIPTION */
+const domain = 'https://marvinstarter.marvinx.com';
+const firstLastName = 'Marvin Starter';
+const description = "A starter and styleguide for any quick setup of HTML/CSS components";
+
+/* URLS */
+const paths = [`/index.html/`];
 
 const isDev = process.env.NODE_ENV === "development";
 const isProd = process.env.NODE_ENV === "production";
 const entry = path.join( __dirname, "src/index.js" );
 const output = path.join( __dirname, "dist" );
 
+/* PATHS */
 const pathImgs = "assets/images";
+const pathVideos = "assets/videos";
+
+/* ARRAYS */
+const arrImages = fs.readdirSync( path.join( __dirname, `src/app/${pathImgs}` ) );
+const arrVideos = fs.readdirSync(path.join(__dirname,`src/app/${pathVideos}`));
+
+/* OBJECTS */
+const sizeMedias = { mobile : 320, tablet : 480,  tabletLandscape : 768, smallDesktop : 1024, desktop : 1200, mediumDesktop : 1336, largeDesktop : 1600, maxDesktop : 1920};
+
 const paramHtmls = {
   inject: 'body',
-  minify: isDev ?
-    false : {
-      collapseWhitespace: true,
-      removeComments: true,
-      useShortDoctype: true,
-    },
+  minify: isDev ? false : {
+    collapseWhitespace: true,
+    removeComments: true,
+    useShortDoctype: true,
+    removeRedundantAttributes: false,
+    removeScriptTypeAttributes: true,
+    removeStyleLinkTypeAttributes: true
+  },
+  templateParameters: {
+    ENV : process.env.NODE_ENV,
+    DOMAIN: domain,
+    DESCRIPTION : description,
+    NAME_FIRSTNAME: firstLastName,
+    PATH_IMGS: pathImgs,
+    PATH_VIDEOS: pathVideos,
+  }
 };
+
 
 const entries = { main: entry }
 const config = {
@@ -55,57 +89,32 @@ const config = {
         }, ],
       },
       {
-        test: /\.css$/,
+        test: /\.(css|scss)$/,
         use: [ {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            publicPath: `src/app/${pathImgs}/`,
               esModule: false,
             },
           },
           {
             loader: "css-loader",
             options: {
-              url: true,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.scss$/,
-        use: [ {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          {
-            loader: "css-loader",
-            options: {
               sourceMap: isDev ? true : false,
-              url: false
+              url: false,
+              modules: {
+                mode: "global",
+              },
             },
           },
           {
             loader: "sass-loader",
             options :{
               sourceMap: isDev ? true : false,
-              additionalData: `$pathImgs:"${pathImgs}";`
+              additionalData :  `$PATH_IMGS:"${pathImgs}"; ${flattenObjSass(sizeMedias)};`
             }
           },
         ],
-      },
-      {
-        test: /\.(woff|woff2)$/i,
-        include: [ path.join( __dirname, "src/app/assets/fonts" ) ],
-        type: 'asset/resource',
-        generator: {
-          filename: 'assets/fonts/[name][ext][query]'
-        }
-      },
-      {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        include: /node_modules/,
-        type: 'asset/resource',
-        generator: {
-          filename: 'assets/icons/[name][ext][query]'
-        }
       },
       {
         test: /assets\/icons\/.*\.svg$/,
@@ -159,27 +168,31 @@ const config = {
     new ProgressBarPlugin( {
       format: chalk.yellow( "build :bar " ) + chalk.green( ":percent" ) + chalk.cyan( " :elapsed seconds " ),
       clear: false,
-    } ),
+    }),
+    isProd ? new SitemapPlugin({ base: domain,paths }) : false,
+    new webpack.DefinePlugin({
+      ENV : JSON.stringify(process.env.NODE_ENV),
+      PATH_IMGS: JSON.stringify(pathImgs),
+      PATH_VIDEOS: JSON.stringify(pathVideos),
+      OBJ_IMGS: JSON.stringify(arrImages),
+      OBJ_VIDEOS: JSON.stringify(arrVideos),
+      SIZE_MEDIAS: JSON.stringify(sizeMedias)
+    }),
     new CopyWebpackPlugin( {
-      patterns: [ {
+      patterns: [{
+        from: `./src/app/assets/fonts/*.woff2`,
+        to: `assets/fonts/[name][ext][query]`
+      },
+      {
         from: `./src/app/${pathImgs}/*.gif`,
-        to: `${pathImgs}/[name][ext][query]`,
-      }, ],
+        to: `${pathImgs}/[name][ext][query]`
+      },
+      // {
+      //   from: `./src/app/${pathVideos}/*.mp4`,
+      //   to: `${pathVideos}/[name][ext][query]`
+      //   },
+      ]
     } ),
-    new HtmlWebpackPlugin( {
-      filename: "index.html",
-      template: path.join( __dirname, "src/app/index.pug" ),
-      chunks: [ "main" ],
-      title: "Marvin Starter - Homepage",
-      ...paramHtmls,
-    } ),
-    !isProd ? new HtmlWebpackPlugin( {
-      filename: "styleguide.html",
-      template: path.join( __dirname, "src/app/styleguide/styleguide.pug" ),
-      chunks: [ "styleguide" ],
-      title: "Marvin Starter - Styleguide",
-      ...paramHtmls,
-    } ) : false,
     new MiniCssExtractPlugin( {
       filename: isDev ? "[name].css" : "[name].[contenthash].css",
     } ),
@@ -230,7 +243,21 @@ const config = {
           } ],
         ]
       }
-    } )
+    } ),
+    new HtmlWebpackPlugin( {
+      filename: "index.html",
+      template: path.join( __dirname, "src/app/index.pug" ),
+      chunks: [ "main" ],
+      title: `${firstLastName} - Homepage`,
+      ...paramHtmls,
+    } ),
+    !isProd ? new HtmlWebpackPlugin( {
+      filename: "styleguide.html",
+      template: path.join( __dirname, "src/app/styleguide/styleguide.pug" ),
+      chunks: [ "styleguide" ],
+      title: `${firstLastName} - Styleguide`,
+      ...paramHtmls,
+    } ) : false,
   ].filter(n => n),
   optimization: {
     minimize: isDev ? false : true,

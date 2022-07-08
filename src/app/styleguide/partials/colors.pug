@@ -9,8 +9,10 @@
 section(class="grid styleguide-colors col--"+colors.length)
   each color, key in colors
     .col
-      h3= color
-      p hsl()
-      ul
-        - for(var i=0; i < 5; i++)
-          li
+      h4 title color
+      .color-values
+        p hsl()
+        p #
+        p rgb()
+      ul: li
+

@@ -1,4 +1,4 @@
-@import "../assets/styles/styles.scss";
+@import "../assets/styles/styles_styleguide.scss";
 $heightElemStyleguide : 22rem;
 
 /*  */
@@ -116,45 +116,35 @@ $heightElemStyleguide : 22rem;
   grid-row-start: 1;
   grid-row-end: 3;
 
-  .col {
+  .col{
     > p{
       font-size: 1.5rem;
     }
+  }
 
-    @each $color in $colors{
-      $i: index($colors, $color);
-      $keys: map-keys($colors);
-      $valueKey : nth($keys, $i);
+  .color-values {
+    p {
+      font-size: 1.3rem;
+      border-bottom: 0.1rem solid alpha(var(--dark), 0.25);
+      padding: 0.5rem 0;
 
-      &:nth-of-type(#{$i}) {
-        li {
-          @for $y from 0 to 5 {
-            &:nth-child(#{$y + 1}) {
-              @if ($valueKey == "primary") {
-                background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.2);
-              }
-              @if ($valueKey == "dark") {
-                background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.3);
-              }
-              @if ($valueKey == "neutral") {
-                background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.13);
-              }
-              @if ($valueKey == "light") {
-                background-color: lightness(var(--#{unquote($valueKey)}), 1 + $y * 0.028);
-              }
-
-              @if ($y > 0) {
-                height: 3.2rem;
-                margin-top: -0.1rem;
-              } @else {
-                height: 10vw;
-                min-height : 15rem;
-                max-height : $heightElemStyleguide;
-              }
-            }
-          }
-        }
+      &:last-of-type {
+        border-bottom: none;
       }
+    }
+  }
+
+  ul{
+    margin: 1rem 0;
+  }
+
+  li {
+    margin-top: -0.1rem;
+    height: 3.2rem;
+    background-color: alpha(var(--dark), 0.1);
+
+    &:first-of-type{
+      height: 12rem;
     }
   }
 }

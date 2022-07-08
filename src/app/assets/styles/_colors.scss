@@ -1,0 +1,34 @@
+@import "sass-to-js/sass/sass-to-js";
+
+$mainHue: 220;
+$colors : (
+	primary : (
+		hue : $mainHue,
+		saturation : 40,
+		lightness : 50
+	),
+	dark : (
+		hue : $mainHue,
+		saturation : 15,
+		lightness : 18
+	),
+	neutral : (
+		hue : $mainHue,
+		saturation : 5,
+		lightness : 60
+	),
+	light : (
+		hue : $mainHue,
+		saturation : 40,
+		lightness : 88
+	)
+);
+
+
+:export {
+	@each $key, $color in $colors{
+		#{inspect($key)} : sassToJs($color);
+	}
+}
+
+

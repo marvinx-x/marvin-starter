@@ -1,6 +1,6 @@
 append vars
 
-- var txt = "Call any jpg, png or webp images like this in your pug files: <code>require(imgDir+\"image.ext\").src</code> If you want to use a data-uri image, just call it this way: <code>require(imgDir+\"image.ext\").placeholder</code> Thanks to <code>responsive-loader</code> package in <code>webpack.config.js</code>, we automatically generate the differents images in the good srcset dimensions. <br /> You can also params the quality of your images with <code>ImageminPlugin</code>. <br /><br/> If you add the class <code>.lazyload</code> and replace <code>src</code> attribute by <code>data-src</code> to any images or elements with a background-image in css, you can lazyload those images by using <a href='https://www.npmjs.com/package/lazysizes' class='text-link'>lazysizes</a> script."
+- var txt = "Call any jpg, png or webp images like this in your pug files: <code>require(PATH_IMGS+\"image.ext\").src</code> If you want to use a data-uri image, just call it this way: <code>require(PATH_IMGS+\"image.ext\").placeholder</code> Thanks to <code>responsive-loader</code> package in <code>webpack.config.js</code>, we automatically generate the differents images in the good srcset dimensions. <br /> You can also params the quality of your images with <code>ImageminPlugin</code>. <br /><br/> If you add the class <code>.lazyload</code> and replace <code>src</code> attribute by <code>data-src</code> to any images or elements with a background-image in css, you can lazyload those images by using <a href='https://www.npmjs.com/package/lazysizes' class='text-link'>lazysizes</a> script."
 
 - var methods = ["html", "css", "srcset"]
 - var extensions = ["jpg", "png", "gif", "svg", "webp", "uri"]
@@ -22,29 +22,29 @@ section(class="grid styleguide-imgs col--1")
                 .wrap-img
                   case extension
                     when "jpg"
-                      img(data-src=require("../"+imgDir+"image.jpg").src alt="image jpg" class="lazyload")
+                      img(data-src=require("../"+PATH_IMGS+"/image.jpg").src alt="image jpg" class="lazyload")
 
                     when "png"
-                      img(data-src=require("../"+imgDir+"image.png").src alt="image png" class="lazyload")
+                      img(data-src=require("../"+PATH_IMGS+"/image.png").src alt="image png" class="lazyload")
 
                     when "gif"
-                      img(data-src=imgDir+"image.gif" alt="image gif" class="lazyload")
+                      img(data-src=PATH_IMGS+"/image.gif" alt="image gif" class="lazyload")
 
                     when "svg"
-                      img(data-src=require("../"+imgDir+"image.svg") alt="image svg" class="lazyload")
+                      img(data-src=require("../"+PATH_IMGS+"/image.svg") alt="image svg" class="lazyload")
 
                     when "webp"
-                      img(data-src=require("../"+imgDir+"image.webp").src alt="image webp" class="lazyload")
+                      img(data-src=require("../"+PATH_IMGS+"/image.webp").src alt="image webp" class="lazyload")
 
                     when "uri"
-                      img(data-src=require("../"+imgDir+"image.jpg").placeholder alt="image data-uri" class="lazyload")
+                      img(data-src=require("../"+PATH_IMGS+"/image.jpg").placeholder alt="image data-uri" class="lazyload")
 
         when "css"
           section(class="grid col--6 styleguide-imgs--"+method)
             each extension in extensions
               .col
                 h4= extension
-                .img(data-bgset=imgDir+"image."+extension class="lazyload")
+                .img(data-bgset=PATH_IMGS+"/image."+extension class="lazyload")
 
         when "srcset"
           - const srcsets = ["img", "picture", "background-image"]

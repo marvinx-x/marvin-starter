@@ -112,3 +112,27 @@ You can also params the quality of your images with `ImageminPlugin`.
 If you add the class `.lazyload` and replace src attribute by data-src to any images or elements with a background-image in css, you can lazyload those images by using included [lazysizes](https://www.npmjs.com/package/lazysizes) script.
 
 
+### Global variables
+Global variables passed from `webpack.config.js` to `JS` threw the plugin `DefinePlugin` are :
+* `ENV` => if we are on dev or prod
+* `PATH_IMGS` => get the path to the images folder
+* `PATH_VIDEOS` => get the path to the videos folder
+* `OBJ_IMGS` => get an array of all images that exist in that folder
+* `OBJ_VIDEOS` => get an array of all videos that exist in that folder
+* `SIZE_MEDIAS` => get all breakpoints in js
+
+Global variables passed from `webpack.config.js` to `PUG/HTML` threw the value `templateParameters` are :
+* `ENV` => if we are on dev or prod
+* `DOMAIN` => website url
+* `DESCRIPTION` => description of the website
+* `NAME_FIRSTNAME` => title of the page
+* `PATH_IMGS` => get the path to the images folder
+* `PATH_VIDEOS` => get the path to the videos folder
+
+Global variables passed from `webpack.config.js` to `SCSS` threw the plugin `js-to-scss` and value `additionalData` :
+* `PATH_IMGS` => get the path to the images folder
+* `sizeMedias` => get all the breakpoints available
+### Sitemap
+
+Add a sitemap when build on prod.
+Add or change variable `domain` and `paths` in `webpack.config.js`

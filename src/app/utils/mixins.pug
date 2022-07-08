@@ -4,7 +4,7 @@
 mixin icon(icon = false, library = librairiesIcons[0], glyph = false, animated = false, typeAnim = "spin")
   if(library === librairiesIcons[0])
     svg(class="custom-icon" preserveAspectRatio='xMidYMid meet' aria-hidden="true" shape-rendering="geometricPrecision")
-      use(xlink:href=spriteSvgIcons+"#sprite-"+icon aria-hidden="true")
+      use(xlink:href="../assets/icons/custom/sprite.svg#sprite-"+icon aria-hidden="true")
 
   else if(library === librairiesIcons[1])
     - var webfont = true
