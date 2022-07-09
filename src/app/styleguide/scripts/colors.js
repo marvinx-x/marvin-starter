@@ -22,7 +22,7 @@ export class styleguideColors extends Colors{
   }
 
   decreaseColor(key,i) {
-    const incrementValue = 2;
+    const incrementValue = key === 3 ? 2.2 : 6;
     const valuesHSL = Object.values(this.objColors)[key];
     const valueDecreased = `hsl(${valuesHSL.hue}, ${valuesHSL.saturation}%, ${valuesHSL.lightness+(incrementValue*i)}%)`;
     return valueDecreased;
