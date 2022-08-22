@@ -10,7 +10,7 @@
 
   /* use to grab the content value in javascript */
   &::before {
-    content: quote(map-get($breakpointsMin, "desktop"));
+    content: "(min-width: 1200px)";
     display: none;
   }
 

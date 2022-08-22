@@ -1,5 +1,5 @@
 /* HEADER */
-$heightDescription: ($lengthLogo / 2) + 0.2rem;
+$heightDescription: (calc($lengthLogo / 2)) + 0.2rem;
 $heightTitle: ($heightDescription - $gapElemsHeader);
 
 %headerStarter{

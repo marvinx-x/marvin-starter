@@ -10,7 +10,7 @@ $paddingFooter : $paddingBody;
 	width: $widthNav;
 	height: $heightFooter;
 	z-index: 3;
-	max-width: $minWidth/2 + $paddingContentHor;
+	max-width: calc($minWidth / 2) + $paddingContentHor;
 	padding: 0 $paddingItemsNav;
 	display: grid;
 	grid-template-columns: repeat(3 , 1fr);

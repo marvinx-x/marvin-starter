@@ -1,5 +1,5 @@
 $gridGap : $paddingContentHorMobile;
-$gridGapVert : $gridGap/1.5;
+$gridGapVert : calc($gridGap / 1.5);
 $tinyGap : .5rem;
 $lenghtColSquare : 16rem;
 
@@ -13,7 +13,7 @@ $lenghtColSquare : 16rem;
       grid-template-columns: repeat($i + 1, 1fr);
 
       @include breakpoints-max(mediumDesktop) {
-        grid-template-columns: repeat(($i + 1)/2, 1fr);
+        grid-template-columns: repeat(calc(($i + 1) / 2), 1fr);
       }
       @include breakpoints-max(mobileLandscape) {
         grid-template-columns: 1fr;

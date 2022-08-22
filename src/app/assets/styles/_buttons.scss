@@ -16,7 +16,7 @@ $fontSizeBtn : 1.5rem;
 $letterSpacingBtn : .005rem;
 
 $heightBtn : $heightLinks;
-$paddingBtn : $heightLinks/2.2;
+$paddingBtn : calc($heightLinks / 2.2);
 $timeTransitionBtn : .2s;
 
 $radiusBtn : .6rem;

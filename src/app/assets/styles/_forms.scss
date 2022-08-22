@@ -259,7 +259,7 @@ input[type="submit"]{
 /*  */
 
 .input-number{
-  $widthArrowsNumber : $lineHeightInput/1.5;
+  $widthArrowsNumber : calc($lineHeightInput / 1.5);
   position: relative;
 
   &::before,
@@ -267,7 +267,7 @@ input[type="submit"]{
     @extend %arrowInput;
     position: absolute;
     right: 0;
-    height: $lineHeightInput/2;
+    height: calc($lineHeightInput / 2);
     width: $widthArrowsNumber;
     pointer-events: none;
     display: flex;
@@ -473,8 +473,8 @@ input[type='checkbox'] {
       $height : .8rem;
       width: $width;
       height: $height;
-      margin-left : -($width/2) - .1rem;
-      margin-top : -($height/2) - .2rem;
+      margin-left : -(calc($width / 2)) - .1rem;
+      margin-top : -(calc($height / 2)) - .2rem;
       border: .2rem solid var(--white);
       border-top: 0;
       border-left: 0;
@@ -490,7 +490,7 @@ input[type='checkbox'] {
 
     width: $widthSwitchButton;
     height : $heightSwitchButton;
-    border-radius: $heightSwitchButton/2;
+    border-radius: calc($heightSwitchButton / 2);
     position: relative;
 
     &:after {
@@ -500,7 +500,7 @@ input[type='checkbox'] {
       position: absolute;
       left: $spaceSwitchInside;
       top: 50%;
-      margin-top : -($lengthSwitchButtonInside/2);
+      margin-top : -(calc($lengthSwitchButtonInside / 2));
       background: var(--ab, var(--light));
     }
 
@@ -515,15 +515,15 @@ input[type='checkbox'] {
 }
 
 input[type='radio'] {
-  $sizeChecked : $lengthCheckboxesRadios - $lengthCheckboxesRadios/2;
+  $sizeChecked : $lengthCheckboxesRadios - calc($lengthCheckboxesRadios / 2);
   border-radius: 50%;
 
   &:after {
     width: $sizeChecked;
     height: $sizeChecked;
     border-radius: 50%;
-    margin-left : -($sizeChecked/2);
-    margin-top : -($sizeChecked/2);
+    margin-left : -(calc($sizeChecked / 2));
+    margin-top : -(calc($sizeChecked / 2));
     background: var(--white);
     transform: scale(var(--s, 0));
   }
@@ -548,7 +548,7 @@ $heightTrack : .4rem;
   border-radius: 50%;
   background: $colorThumb;
   transition : background .15s;
-  margin-top : -($lengthThumb/2) + $heightTrack;
+  margin-top : -(calc($lengthThumb / 2)) + $heightTrack;
 }
 
 @mixin range-track(){
@@ -704,7 +704,7 @@ select + .select2{
         position: absolute;
         top : 0;
         right: 0;
-        width: $heightSelect/1.5;
+        width: calc($heightSelect / 1.5);
 
         b{
           top: 0;
@@ -751,7 +751,7 @@ body{
     .select2-results__option{
       padding: 0 $paddingInput;
       font-size: $fontSizeInput;
-      line-height: $heightSelect/1.25;
+      line-height: calc($heightSelect / 1.25);
       color : $colorInput;
 
       &[aria-selected=true]{

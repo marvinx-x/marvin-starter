@@ -34,7 +34,7 @@ $heightElemStyleguide : 22rem;
   }
 
   & > h2{
-    margin-bottom: $gridGapVert / 1.25;
+    margin-bottom: calc($gridGap / 1.25);
   }
 
   .col > h1{
@@ -78,11 +78,11 @@ $heightElemStyleguide : 22rem;
     .styleguide-infos {
       width: 100%;
       margin-right: 0;
-      margin-bottom: $gridGapVert/3;
+      margin-bottom: calc($gridGapVert / 1.5);
     }
 
     & > h2{
-      margin-bottom: $gridGapVert/3;
+      margin-bottom: calc($gridGapVert / 3);
     }
   }
 }
@@ -350,7 +350,7 @@ $heightElemStyleguide : 22rem;
     }
   }
   @include breakpoints-max(mobileLandscape){
-    padding: 0 $paddingContentHorMobile/2;
+    padding: 0 calc($paddingContentHorMobile / 2);
 
     & > .col{
       height: calc(#{$heightStyleGuideGrid} + #{$gridGapStyleguide*2});
@@ -359,8 +359,8 @@ $heightElemStyleguide : 22rem;
       .grid{
         .col{
           height: calc(#{$heightStyleGuideGrid} - #{$gridGapStyleguide*2})/3;
-          min-height : ($minHeightStyleGuideGrid - $gridGapStyleguide*2)/3;
-          max-height : ($maxHeightStyleGuideGrid - $gridGapStyleguide*2)/3;
+          min-height : calc(($minHeightStyleGuideGrid - $gridGapStyleguide * 2) / 3);
+          max-height : calc(($maxHeightStyleGuideGrid - $gridGapStyleguide * 2) / 3);
         }
       }
     }
@@ -396,7 +396,7 @@ $heightElemStyleguide : 22rem;
 
 
   button{
-    top: ($heightHeaderStyleguide - $widthButtonStyleguide)/2;
+    top: calc(($heightHeaderStyleguide - $widthButtonStyleguide) / 2);
     left : 0;
     width: $widthButtonStyleguide;
     height: $widthButtonStyleguide;
@@ -459,7 +459,7 @@ $heightElemStyleguide : 22rem;
 
 .styleguide-buttons{
   .grid{
-    grid-gap : $gridGap/3 $gridGap;
+    grid-gap : calc($gridGap / 3) $gridGap;
 
     &:first-of-type{
       margin-bottom: $gridGapVert;
@@ -481,7 +481,7 @@ $heightElemStyleguide : 22rem;
 .styleguide-tags{
 
   .tags{
-    margin-bottom: $gridGapVert/2;
+    margin-bottom: calc($gridGapVert/2 );
 
     &:last-of-type{
       margin-bottom: 0;
@@ -638,7 +638,7 @@ $nbrImgs: length($imgs);
           grid-template-columns: repeat($i, 1fr) var(--uriWidth);
 
           @include breakpoints-max(largeDesktop) {
-            grid-template-columns: repeat(($i + 1)/2, 1fr);
+            grid-template-columns: repeat(calc(($i + 1) / 2), 1fr);
           }
           @include breakpoints-max(tablet) {
             grid-template-columns: repeat(2, 1fr);

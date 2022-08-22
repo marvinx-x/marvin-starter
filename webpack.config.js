@@ -10,8 +10,6 @@ const MiniCssExtractPlugin = require( "mini-css-extract-plugin" );
 const CssMinimizerPlugin = require( "css-minimizer-webpack-plugin" );
 const flattenObjSass = require("js-to-scss");
 const SVGSpritemapPlugin = require( 'svg-spritemap-webpack-plugin' );
-const FaviconsWebpackPlugin = require( 'favicons-webpack-plugin' );
-const ImageminWebpack = require( 'image-minimizer-webpack-plugin' );
 const TerserPlugin = require("terser-webpack-plugin");
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
 
@@ -179,7 +177,8 @@ const config = {
       SIZE_MEDIAS: JSON.stringify(sizeMedias)
     }),
     new CopyWebpackPlugin( {
-      patterns: [{
+      patterns: [
+        {
         from: `./src/app/assets/fonts/*.woff2`,
         to: `assets/fonts/[name][ext][query]`
       },
@@ -187,10 +186,10 @@ const config = {
         from: `./src/app/${pathImgs}/*.gif`,
         to: `${pathImgs}/[name][ext][query]`
       },
-      // {
-      //   from: `./src/app/${pathVideos}/*.mp4`,
-      //   to: `${pathVideos}/[name][ext][query]`
-      //   },
+      {
+        from: `./src/app/assets/favicon/*`,
+        to: `assets/favicon/[name][ext][query]`
+        },
       ]
     } ),
     new MiniCssExtractPlugin( {
@@ -218,30 +217,6 @@ const config = {
         format: 'fragment',
         keepAttributes: false,
         callback: ( content ) => `.sprite-cover { background-size: cover; } ${content}`
-      }
-    } ),
-    new FaviconsWebpackPlugin( {
-      logo: path.join( __dirname, 'src/app/assets/favicon/favicon.png' ),
-      outputPath: path.join( __dirname, 'dist/assets/favicon/' ),
-      prefix: '/assets/favicon/',
-      cache: true,
-      inject: true,
-      mode: 'light'
-    } ),
-    new ImageminWebpack( {
-      test: /\.(png|gif)$/i,
-      include: [ path.join( __dirname, `src/app/${pathImgs}` ) ],
-      minimizerOptions: {
-        plugins: [
-          [ 'gifsicle', {
-            interlaced: true,
-            optimizationLevel: 3,
-            colors: 150
-          } ],
-          [ 'optipng', {
-            optimizationLevel: 5
-          } ],
-        ]
       }
     } ),
     new HtmlWebpackPlugin( {
