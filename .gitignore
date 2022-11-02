@@ -1,5 +1,6 @@
 node_modules
 dist
+package-lock.json
 .vscode
 src/app/assets/images/og-image.jpg
 src/app/assets/images/twitter-image.jpg
