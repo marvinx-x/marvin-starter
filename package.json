@@ -40,6 +40,7 @@
 		"jquery": "^3.6.0",
 		"js-to-scss": "^1.0.0",
 		"lazysizes": "^5.3.2",
+		"loader-utils": ">=3.2.1",
 		"mini-css-extract-plugin": "^2.3.0",
 		"mobile-device-detect": "^0.4.3",
 		"progress-bar-webpack-plugin": "^2.1.0",
