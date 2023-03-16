@@ -56,7 +56,7 @@
 		"svgo-loader": "^3.0.0",
 		"terser-webpack-plugin": "^5.2.4",
 		"van11y-accessible-simple-tooltip-aria": "^3.0.0",
-		"webpack": "^5.52.1",
+		"webpack": "^5.76.2",
 		"webpack-cli": "^4.8.0",
 		"webpack-dev-server": "^4.2.1"
 	}
