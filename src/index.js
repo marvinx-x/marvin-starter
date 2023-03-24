@@ -12,5 +12,6 @@ window.addEventListener('load',() => {
   logo();
   navigation();
   new Colors();
+
 })
 
