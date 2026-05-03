@@ -13,12 +13,11 @@ mixin burger-svg()
     g(aria-hidden="true"): text(opacity="0") open menu
 
 mixin logo-svg()
-  - var lenghtLogo = 40
   - for(var i=0; i < 2; i++)
     .logo-wrap
-      svg(aria-hidden="true" viewBox='0 0 '+lenghtLogo+' '+lenghtLogo+'' style='enable-background:new 0 0 '+lenghtLogo+' '+lenghtLogo+';' preserveAspectRatio='xMidYMid meet'  xml:space="preserve")
+      svg(aria-hidden="true" viewBox='0 0 48 48' preserveAspectRatio='xMidYMid meet' xml:space="preserve")
         g(aria-hidden="true")
-          path(aria-hidden="true" d="M22,18V0h-9H9h-9.1v18.2L0,18h4V4h5v9h4V4h5v14v22h22v-9v-4v-9H22z M36,31v5H22V22h14v5h-9v4H36z" shape-rendering="crispEdges")
+          path(aria-hidden="true" d="M27.2893 20.7107H48V48H20.467V41.1777H41.1777V37.7665H20.467V30.9442H41.1777V27.533H20.467V6.82233H17.0558V27.533H10.2335V6.82233H6.82233V27.533H0V0H27.2893V20.7107Z")
 
 
 mixin description-svg()
