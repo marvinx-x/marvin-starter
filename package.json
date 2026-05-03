@@ -9,7 +9,7 @@
     "build": "cross-env NODE_ENV=development webpack",
     "build:prod": "cross-env NODE_ENV=production webpack",
     "build:styleguide": "cross-env NODE_ENV=styleguide webpack",
-    "deploy": "git push github main && git push gitlab main"
+    "deploy": "git push github master && git push gitlab master"
   },
   "repository": {
     "type": "git",
