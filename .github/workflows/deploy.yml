@@ -1,4 +1,4 @@
-name: Deploy to OVH
+name: Deploy to OVH FTP
 
 on:
   push:
